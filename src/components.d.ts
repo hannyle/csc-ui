@@ -57,6 +57,9 @@ export namespace Components {
     interface CContainer {
         "width": number;
     }
+    interface CContentSwitcher {
+        "value": number;
+    }
     interface CCscLogo {
     }
     interface CFlex {
@@ -112,6 +115,7 @@ export namespace Components {
     }
     interface CProgressbar {
         "color": string;
+        "indeterminate": boolean;
         "value": number;
     }
     interface CRadio {
@@ -159,15 +163,14 @@ export namespace Components {
     }
     interface CTabButton {
         "active": boolean;
-        "color": string;
         "disabled": boolean;
         "hostId": string;
-        "icon": string;
         "label": string;
     }
     interface CTag {
         "active": boolean;
         "closeable": boolean;
+        "dense": boolean;
         "fit": boolean;
     }
     interface CTextField {
@@ -254,6 +257,12 @@ declare global {
     var HTMLCContainerElement: {
         prototype: HTMLCContainerElement;
         new (): HTMLCContainerElement;
+    };
+    interface HTMLCContentSwitcherElement extends Components.CContentSwitcher, HTMLStencilElement {
+    }
+    var HTMLCContentSwitcherElement: {
+        prototype: HTMLCContentSwitcherElement;
+        new (): HTMLCContentSwitcherElement;
     };
     interface HTMLCCscLogoElement extends Components.CCscLogo, HTMLStencilElement {
     }
@@ -438,6 +447,7 @@ declare global {
         "c-col": HTMLCColElement;
         "c-consent": HTMLCConsentElement;
         "c-container": HTMLCContainerElement;
+        "c-content-switcher": HTMLCContentSwitcherElement;
         "c-csc-logo": HTMLCCscLogoElement;
         "c-flex": HTMLCFlexElement;
         "c-h1": HTMLCH1Element;
@@ -524,6 +534,10 @@ declare namespace LocalJSX {
     interface CContainer {
         "width"?: number;
     }
+    interface CContentSwitcher {
+        "onChangeValue"?: (event: CustomEvent<any>) => void;
+        "value"?: number;
+    }
     interface CCscLogo {
     }
     interface CFlex {
@@ -579,6 +593,7 @@ declare namespace LocalJSX {
     }
     interface CProgressbar {
         "color"?: string;
+        "indeterminate"?: boolean;
         "value"?: number;
     }
     interface CRadio {
@@ -628,15 +643,14 @@ declare namespace LocalJSX {
     }
     interface CTabButton {
         "active"?: boolean;
-        "color"?: string;
         "disabled"?: boolean;
         "hostId"?: string;
-        "icon"?: string;
         "label"?: string;
     }
     interface CTag {
         "active"?: boolean;
         "closeable"?: boolean;
+        "dense"?: boolean;
         "fit"?: boolean;
     }
     interface CTextField {
@@ -684,6 +698,7 @@ declare namespace LocalJSX {
         "c-col": CCol;
         "c-consent": CConsent;
         "c-container": CContainer;
+        "c-content-switcher": CContentSwitcher;
         "c-csc-logo": CCscLogo;
         "c-flex": CFlex;
         "c-h1": CH1;
@@ -727,6 +742,7 @@ declare module "@stencil/core" {
             "c-col": LocalJSX.CCol & JSXBase.HTMLAttributes<HTMLCColElement>;
             "c-consent": LocalJSX.CConsent & JSXBase.HTMLAttributes<HTMLCConsentElement>;
             "c-container": LocalJSX.CContainer & JSXBase.HTMLAttributes<HTMLCContainerElement>;
+            "c-content-switcher": LocalJSX.CContentSwitcher & JSXBase.HTMLAttributes<HTMLCContentSwitcherElement>;
             "c-csc-logo": LocalJSX.CCscLogo & JSXBase.HTMLAttributes<HTMLCCscLogoElement>;
             "c-flex": LocalJSX.CFlex & JSXBase.HTMLAttributes<HTMLCFlexElement>;
             "c-h1": LocalJSX.CH1 & JSXBase.HTMLAttributes<HTMLCH1Element>;
