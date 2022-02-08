@@ -58,6 +58,22 @@ export namespace Components {
         "width": number;
     }
     interface CContentSwitcher {
+        /**
+          * Display full width switcher
+          * @type {boolean}
+          * @memberof ContentSwitcher
+         */
+        "block": boolean;
+        /**
+          * Disable the content switcher
+         */
+        "hostDisabled": boolean;
+        /**
+          * Always require a value
+          * @type {boolean}
+          * @memberof ContentSwitcher
+         */
+        "mandatory": boolean;
         "value": number;
     }
     interface CCscLogo {
@@ -156,6 +172,11 @@ export namespace Components {
     interface CSubnavigationitem {
         "active": boolean;
         "href": string;
+    }
+    interface CSwitch {
+        "hostDisabled": boolean;
+        "hostId": string;
+        "value": boolean;
     }
     interface CTab {
         "active": boolean;
@@ -396,6 +417,12 @@ declare global {
         prototype: HTMLCSubnavigationitemElement;
         new (): HTMLCSubnavigationitemElement;
     };
+    interface HTMLCSwitchElement extends Components.CSwitch, HTMLStencilElement {
+    }
+    var HTMLCSwitchElement: {
+        prototype: HTMLCSwitchElement;
+        new (): HTMLCSwitchElement;
+    };
     interface HTMLCTabElement extends Components.CTab, HTMLStencilElement {
     }
     var HTMLCTabElement: {
@@ -470,6 +497,7 @@ declare global {
         "c-sidenavigationitem": HTMLCSidenavigationitemElement;
         "c-spacer": HTMLCSpacerElement;
         "c-subnavigationitem": HTMLCSubnavigationitemElement;
+        "c-switch": HTMLCSwitchElement;
         "c-tab": HTMLCTabElement;
         "c-tab-button": HTMLCTabButtonElement;
         "c-tag": HTMLCTagElement;
@@ -535,8 +563,24 @@ declare namespace LocalJSX {
         "width"?: number;
     }
     interface CContentSwitcher {
+        /**
+          * Display full width switcher
+          * @type {boolean}
+          * @memberof ContentSwitcher
+         */
+        "block"?: boolean;
+        /**
+          * Disable the content switcher
+         */
+        "hostDisabled"?: boolean;
+        /**
+          * Always require a value
+          * @type {boolean}
+          * @memberof ContentSwitcher
+         */
+        "mandatory"?: boolean;
         "onChangeValue"?: (event: CustomEvent<any>) => void;
-        "value"?: number;
+        "value": number;
     }
     interface CCscLogo {
     }
@@ -637,6 +681,12 @@ declare namespace LocalJSX {
         "active"?: boolean;
         "href"?: string;
     }
+    interface CSwitch {
+        "hostDisabled"?: boolean;
+        "hostId"?: string;
+        "onChangeValue"?: (event: CustomEvent<any>) => void;
+        "value"?: boolean;
+    }
     interface CTab {
         "active"?: boolean;
         "hostId"?: string;
@@ -721,6 +771,7 @@ declare namespace LocalJSX {
         "c-sidenavigationitem": CSidenavigationitem;
         "c-spacer": CSpacer;
         "c-subnavigationitem": CSubnavigationitem;
+        "c-switch": CSwitch;
         "c-tab": CTab;
         "c-tab-button": CTabButton;
         "c-tag": CTag;
@@ -765,6 +816,7 @@ declare module "@stencil/core" {
             "c-sidenavigationitem": LocalJSX.CSidenavigationitem & JSXBase.HTMLAttributes<HTMLCSidenavigationitemElement>;
             "c-spacer": LocalJSX.CSpacer & JSXBase.HTMLAttributes<HTMLCSpacerElement>;
             "c-subnavigationitem": LocalJSX.CSubnavigationitem & JSXBase.HTMLAttributes<HTMLCSubnavigationitemElement>;
+            "c-switch": LocalJSX.CSwitch & JSXBase.HTMLAttributes<HTMLCSwitchElement>;
             "c-tab": LocalJSX.CTab & JSXBase.HTMLAttributes<HTMLCTabElement>;
             "c-tab-button": LocalJSX.CTabButton & JSXBase.HTMLAttributes<HTMLCTabButtonElement>;
             "c-tag": LocalJSX.CTag & JSXBase.HTMLAttributes<HTMLCTagElement>;

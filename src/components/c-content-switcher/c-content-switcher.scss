@@ -1,3 +1,11 @@
 .c-content-switcher {
-  display: flex;
+  display: inline-flex;
+
+  &--block {
+    display: flex;
+
+    ::slotted(c-button) {
+      flex: 1;
+    }
+  }
 }

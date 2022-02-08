@@ -8,6 +8,7 @@
   --csc-lightest-grey: rgb(223 225 227 / 50%);
   --csc-light-grey: rgb(223 225 227);
   --csc-mid-grey: rgb(140 140 140);
+  --csc-dark-grey: rgb(89 89 89);
 
   --csc-secondary: rgba(131, 0, 81, var(--a, 1));
   --csc-secondary-hover: #d8e8ea;

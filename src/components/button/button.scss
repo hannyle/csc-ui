@@ -11,10 +11,8 @@ button {
 button:focus {
   outline: none;
 }
-button:focus:not(:focus-visible) {
-}
+
 button:focus-visible {
-  /* Some even *more* exciting button focus styles */
   outline: 2px var(--csc-primary) solid;
   outline-offset: 2px;
 }
@@ -219,7 +217,7 @@ button.fit {
 
   &.grouped {
     border-radius: 0;
-    margin: 0 -1px;
+    margin: 0 -2px;
 
     &--first {
       border-radius: var(--c-radius) 0 0 var(--c-radius);
@@ -230,6 +228,16 @@ button.fit {
       border-radius: 0 var(--c-radius) var(--c-radius) 0;
       margin-right: 0;
     }
+  }
+
+  &-disabled.grouped:not(.outlined) {
+    background: var(--csc-light-grey) !important;
+    color: var(--csc-dark-grey) !important;
+    box-shadow: none;
+  }
+
+  &-disabled.grouped.outlined {
+    box-shadow: inset 0px 0px 0px 2px var(--csc-light-grey);
   }
 }
 

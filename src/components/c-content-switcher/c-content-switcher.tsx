@@ -5,6 +5,8 @@ import {
   Prop,
   Event,
   EventEmitter,
+  Watch,
+  Listen,
 } from '@stencil/core';
 
 @Component({
@@ -13,39 +15,69 @@ import {
   shadow: true,
 })
 export class ContentSwitcher {
-  @Prop({ mutable: true }) value: number = 0;
-  @Element() host: HTMLDivElement;
+  @Prop({ mutable: true }) value!: number;
+  /**
+   * Display full width switcher
+   *
+   * @type {boolean}
+   * @memberof ContentSwitcher
+   */
+  @Prop() block: boolean = false;
+  /**
+   * Always require a value
+   *
+   * @type {boolean}
+   * @memberof ContentSwitcher
+   */
+  @Prop() mandatory: boolean = false;
+  /**
+   * Disable the content switcher
+   */
+  @Prop({ attribute: 'disabled' }) hostDisabled: boolean;
+  @Element() el: HTMLElement;
   @Event() changeValue: EventEmitter;
 
-  get buttons() {
-    const slotted = this.host.shadowRoot.querySelector(
-      'slot',
-    ) as HTMLSlotElement;
-
-    return (slotted.assignedNodes() as HTMLElement[]).filter(
-      (node) => node.tagName === 'C-BUTTON',
-    );
-  }
-
-  clickEventListener(button, index) {
-    return () => {
-      this.value === index;
-
-      for (let btn of this.buttons) {
-        /* @ts-ignore */
-        btn.outlined = true;
-      }
+  @Watch('value')
+  watchPropHandler(value: number) {
+    if (value || value === 0) {
       /* @ts-ignore */
-      button.outlined = false;
+      this.buttons[value].outlined = false;
+    }
 
-      this.changeValue.emit(this.value);
-    };
+    this.changeValue.emit(value);
   }
 
-  componentDidLoad() {
-    for (let [index, button] of this.buttons.entries()) {
+  @Listen('click')
+  onHandleClickEvent(ev) {
+    const clickStack = ev.composedPath();
+    const switcher = clickStack.find((e) => e.tagName === 'C-CONTENT-SWITCHER');
+    const button = clickStack.find((e) => e.tagName === 'C-BUTTON');
+    const { index } = button.dataset;
+
+    if (+index === this.value && this.mandatory) return;
+
+    switcher.childNodes.forEach((btn: HTMLElement) => {
+      /* @ts-ignore */
+      btn.outlined = true;
+    });
+
+    this.value = this.value === +index ? null : +index;
+  }
+
+  get buttons() {
+    return this.el.childNodes;
+  }
+
+  componentDidRender() {
+    this.buttons.forEach((button: HTMLElement, index) => {
+      button.setAttribute('data-index', String(index));
+
       /* @ts-ignore */
       button.noRadius = true;
+      /* @ts-ignore */
+      button.fit = true;
+      /* @ts-ignore */
+      button.disabled = !!this.hostDisabled;
 
       if (index !== this.value) {
         /* @ts-ignore */
@@ -53,6 +85,7 @@ export class ContentSwitcher {
       }
 
       const buttonElement = button.shadowRoot.querySelector('.csc-button');
+
       buttonElement.classList.add('grouped');
 
       if (index === 0) {
@@ -62,23 +95,24 @@ export class ContentSwitcher {
       if (index === this.buttons.length - 1) {
         buttonElement.classList.add('grouped--last');
       }
-
-      button.addEventListener('click', this.clickEventListener(button, index));
-    }
+    });
   }
 
-  disconnectedCallback() {
-    for (let [index, button] of this.buttons.entries()) {
-      button.removeEventListener(
-        'click',
-        this.clickEventListener(button, index),
-      );
-    }
+  valueChangedHandler(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
+
+    this.value = +value;
+    this.changeValue.emit(+value);
   }
 
   render() {
+    const classes = {
+      'c-content-switcher': true,
+      'c-content-switcher--block': this.block,
+    };
+
     return (
-      <div class="c-content-switcher">
+      <div class={classes}>
         <slot></slot>
       </div>
     );

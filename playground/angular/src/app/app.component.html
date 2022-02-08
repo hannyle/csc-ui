@@ -1,0 +1,115 @@
+<c-button>Press</c-button>
+<br />
+<br />
+
+<c-row>
+  <c-col>
+    <c-text-field
+      label="test"
+      ngDefaultControl
+      name="test"
+      [(ngModel)]="test"
+    ></c-text-field>
+  </c-col>
+  <c-col>{{ test }}</c-col>
+</c-row>
+
+<c-row>
+  <c-col>
+    <c-content-switcher
+      ngDefaultControl
+      [(ngModel)]="csValue"
+      mandatory
+      disabled
+    >
+      <c-button>Press</c-button>
+      <c-button>Press</c-button>
+      <c-button>Press</c-button>
+    </c-content-switcher>
+    CS: {{ csValue }}
+    <br />
+    <button (click)="csValue = 1">Set to 1</button>
+  </c-col>
+
+  <c-col>
+    <c-content-switcher
+      name="cs2"
+      ngDefaultControl
+      [(ngModel)]="csValue2"
+      block
+      (changeValue)="log($event)"
+    >
+      <c-button>One</c-button>
+      <c-button>Two</c-button>
+      <c-button>Three</c-button>
+    </c-content-switcher>
+    CS2: {{ csValue2 }}
+    <br />
+    <button (click)="csValue2 = 0">Set to 0</button>
+  </c-col>
+
+  <c-col>
+    <c-content-switcher
+      name="cs"
+      ngDefaultControl
+      mandatory
+      [(ngModel)]="csValue2"
+      (input)="log($event)"
+    >
+      <c-button>One</c-button>
+      <c-button>Two</c-button>
+      <c-button>Three</c-button>
+    </c-content-switcher>
+    CS2: {{ csValue2 }}
+    <br />
+    <button (click)="csValue2 = 0">Set to 0</button>
+  </c-col>
+</c-row>
+
+<c-rov>
+  <c-col>
+    <c-button disabled>One</c-button>
+    <c-button>Two</c-button>
+    <c-button outlined>Three</c-button>
+    <c-button outlined disabled>Three</c-button>
+  </c-col>
+</c-rov>
+
+<c-row>
+  <c-col>
+    <c-switch
+      ngDefaultControl
+      name="sw"
+      [(ngModel)]="swValue"
+      (input)="log($event)"
+      (change)="log($event)"
+      (changeValue)="log($event)"
+      >Default</c-switch
+    >
+    <br />
+    sw: {{ swValue }}
+    <br />
+    <c-switch disabled>Disabled</c-switch>
+    <br />
+    <br />
+    <c-switch ngDefaultControl name="sw2" [(ngModel)]="swValue"></c-switch>
+    <br />
+    <c-button (click)="swValue = !swValue">Toggle</c-button>
+  </c-col>
+</c-row>
+
+<c-col>
+  <c-row>
+    <c-select
+      ngDefaultControl
+      name="cb"
+      [(ngModel)]="cbValue"
+      [items]="[
+        { value: '1esa', name: 'Jooooo' },
+        { value: '0mica', name: 'Jee' }
+      ]"
+    ></c-select>
+    <br />
+    cb: {{ cbValue | json }}
+  </c-row>
+</c-col>
