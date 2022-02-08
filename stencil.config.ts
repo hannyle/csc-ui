@@ -7,7 +7,7 @@ import {
 
 const angularValueAccessorBindings: ValueAccessorConfig[] = [
   {
-    elementSelectors: ['c-select', 'c-autocomplete'],
+    elementSelectors: ['c-select', 'c-autocomplete', 'c-content-switcher'],
     event: 'changeValue',
     targetAttr: 'value',
     type: 'select',
