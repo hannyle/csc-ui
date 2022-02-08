@@ -77,6 +77,7 @@ export namespace Components {
         "underline": boolean;
     }
     interface CLoader {
+        "contentdelay": number;
     }
     interface CMain {
     }
@@ -544,6 +545,7 @@ declare namespace LocalJSX {
         "underline"?: boolean;
     }
     interface CLoader {
+        "contentdelay"?: number;
     }
     interface CMain {
     }
