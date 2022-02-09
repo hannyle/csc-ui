@@ -10,6 +10,8 @@ export class Button {
   @Prop() fixed: boolean;
   @Prop() dense: boolean;
   @Prop() fit: boolean;
+  @Prop() ghost: boolean;
+  @Prop() text: boolean;
   @Prop() noRadius: boolean;
   @Prop() outlined: boolean;
   @Prop() secondary: boolean;
@@ -31,12 +33,8 @@ export class Button {
     );
 
     let selectedIcon = null;
-    const secondary = this.secondary ? 'secondary ' : '';
     let svg = '';
-    let radius = 'border-radius';
-    if (this.noRadius) {
-      radius = '';
-    }
+
     if (this.icon) {
       const icons = {
         plus: mdiPlus,
@@ -51,36 +49,30 @@ export class Button {
         </svg>
       );
     }
-    let classes;
-    if (this.disabled) {
-      classes = `csc-button csc-button-disabled ${this.fit ? 'fit' : ''} ${
-        this.fixed ? 'fixed' : ''
-      } ${radius}`;
-    } else {
-      classes = `csc-button csc-bg-color ${secondary}${this.fit ? 'fit' : ''} ${
-        this.fixed ? 'fixed' : ''
-      } ${radius}`;
-    }
-    if (this.outlined) {
-      classes = `${classes} outlined`;
-    }
 
-    let padding = 'csc-button-padding';
-    if (this.dense) {
-      padding = 'dense';
-    }
-    if (!this.disabled) {
-      padding = `${padding} ripple`;
-    }
+    const buttonClasses = {
+      'border-radius': !this.noRadius,
+      'csc-bg-color': !this.disabled,
+      'csc-button-disabled': !!this.disabled,
+      'csc-button-ghost': !!this.ghost,
+      'csc-button': true,
+      'csc-button-text': !!this.text,
+      fit: !!this.fit,
+      fixed: !!this.fixed,
+      outlined: !!this.outlined,
+      secondary: !!this.secondary,
+    };
 
-    if (this.loading) {
-      padding = `${padding} hide-text`;
-    }
+    const innerClasses = {
+      'csc-button-padding': !this.dense,
+      'hide-text': this.loading,
+      dense: !!this.dense,
+      ripple: !this.disabled,
+    };
 
-    let hostClasses = '';
-    if (this.fit) {
-      hostClasses = 'fit';
-    }
+    const hostClasses = {
+      fit: !!this.fit,
+    };
 
     return (
       <button
@@ -90,7 +82,7 @@ export class Button {
         role="button"
         disabled={this.disabled}
       >
-        <div class={classes}>
+        <div class={buttonClasses}>
           {this.loading ? (
             <div
               class={
@@ -102,7 +94,7 @@ export class Button {
           ) : (
             ''
           )}
-          <div class={padding}>
+          <div class={innerClasses}>
             {svg}
             <slot></slot>
           </div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,20 @@ export class AppComponent {
   swValue = false;
   cbValue = { name: 'Joo', value: '1' };
   test = '';
+  form: FormGroup;
+  form2: FormGroup;
+
+  constructor() {
+    this.form = new FormGroup({
+      contentSwitcher: new FormControl(2, [Validators.required]),
+      switch: new FormControl(false, [Validators.requiredTrue]),
+    });
+
+    this.form2 = new FormGroup({
+      contentSwitcher2: new FormControl(1, [Validators.required]),
+      switch: new FormControl(false, [Validators.requiredTrue]),
+    });
+  }
 
   log(e: Event) {
     console.log('🤡', e.type, (e.target as HTMLInputElement).value);

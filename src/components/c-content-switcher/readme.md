@@ -7,12 +7,12 @@
 
 ## Properties
 
-| Property             | Attribute   | Description                  | Type      | Default     |
-| -------------------- | ----------- | ---------------------------- | --------- | ----------- |
-| `block`              | `block`     | Display full width switcher  | `boolean` | `false`     |
-| `hostDisabled`       | `disabled`  | Disable the content switcher | `boolean` | `undefined` |
-| `mandatory`          | `mandatory` | Always require a value       | `boolean` | `false`     |
-| `value` _(required)_ | `value`     |                              | `number`  | `undefined` |
+| Property             | Attribute   | Description                  | Type                   | Default     |
+| -------------------- | ----------- | ---------------------------- | ---------------------- | ----------- |
+| `hostDisabled`       | `disabled`  | Disable the content switcher | `boolean`              | `undefined` |
+| `mandatory`          | `mandatory` | Always require a value       | `boolean`              | `false`     |
+| `size`               | `size`      | Always require a value       | `"default" \| "small"` | `'default'` |
+| `value` _(required)_ | `value`     |                              | `number`               | `undefined` |
 
 
 ## Events

@@ -1,5 +1,3 @@
-@import '../../global/app.css';
-
 :host {
   display: inline-block;
 }
@@ -39,9 +37,10 @@
   }
 
   &__input {
-    height: 100%;
+    height: var(--switch-height);
     position: relative;
     width: var(--switch-width);
+    align-self: start;
   }
 
   &__slider {

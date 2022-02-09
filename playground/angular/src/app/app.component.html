@@ -4,9 +4,75 @@
 
 <c-row>
   <c-col>
+    <c-card color="white">
+      <form [formGroup]="form">
+        <c-card-title>Usage in Angular forms</c-card-title>
+        <c-card-content>
+          <c-content-switcher
+            cControl
+            formControlName="contentSwitcher"
+            mandatory
+            block
+          >
+            <c-button>Option 8</c-button>
+            <c-button>Option 2</c-button>
+            <c-button>Option 3</c-button>
+            <c-button>Option 4</c-button>
+            <c-button>Option 5</c-button>
+            <c-button>Option 6</c-button>
+          </c-content-switcher>
+
+          <c-switch cControl formControlName="switch"
+            >Use multiplexinator to assimilate the subjects?</c-switch
+          >
+        </c-card-content>
+
+        <c-card-actions>
+          <c-spacer></c-spacer>
+          <c-button outlined>Cancel</c-button>
+          <c-button [disabled]="!form.valid">Submit</c-button>
+        </c-card-actions>
+      </form>
+    </c-card>
+
+    <pre>{{ form.value | json }}</pre>
+  </c-col>
+  <c-col>
+    <c-card color="white">
+      <form [formGroup]="form2">
+        <c-card-title>Usage in Angular forms</c-card-title>
+        <c-card-content>
+          <c-content-switcher
+            formControlName="contentSwitcher2"
+            cControl
+            mandatory
+            size="small"
+          >
+            <c-button>Press 2</c-button>
+            <c-button>Press 8</c-button>
+            <c-button>Press 7</c-button>
+          </c-content-switcher>
+
+          <c-switch cControl formControlName="switch"
+            >Use multiplexinator to assimilate the subjects?</c-switch
+          >
+        </c-card-content>
+
+        <c-card-actions>
+          <c-button fit outlined>Cancel</c-button>
+          <c-button fit [disabled]="!form2.valid">Submit</c-button>
+        </c-card-actions>
+      </form>
+    </c-card>
+  </c-col>
+  <c-col></c-col>
+</c-row>
+
+<c-row>
+  <c-col>
     <c-text-field
       label="test"
-      ngDefaultControl
+      cControl
       name="test"
       [(ngModel)]="test"
     ></c-text-field>
@@ -16,12 +82,7 @@
 
 <c-row>
   <c-col>
-    <c-content-switcher
-      ngDefaultControl
-      [(ngModel)]="csValue"
-      mandatory
-      disabled
-    >
+    <c-content-switcher cControl [(ngModel)]="csValue" mandatory disabled>
       <c-button>Press</c-button>
       <c-button>Press</c-button>
       <c-button>Press</c-button>

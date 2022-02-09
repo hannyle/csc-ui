@@ -17,19 +17,19 @@ import {
 export class ContentSwitcher {
   @Prop({ mutable: true }) value!: number;
   /**
-   * Display full width switcher
-   *
-   * @type {boolean}
-   * @memberof ContentSwitcher
-   */
-  @Prop() block: boolean = false;
-  /**
    * Always require a value
    *
    * @type {boolean}
    * @memberof ContentSwitcher
    */
   @Prop() mandatory: boolean = false;
+  /**
+   * Always require a value
+   *
+   * @type {boolean}
+   * @memberof ContentSwitcher
+   */
+  @Prop() size: 'default' | 'small' = 'default';
   /**
    * Disable the content switcher
    */
@@ -52,6 +52,9 @@ export class ContentSwitcher {
     const clickStack = ev.composedPath();
     const switcher = clickStack.find((e) => e.tagName === 'C-CONTENT-SWITCHER');
     const button = clickStack.find((e) => e.tagName === 'C-BUTTON');
+
+    if (!button || !switcher) return;
+
     const { index } = button.dataset;
 
     if (+index === this.value && this.mandatory) return;
@@ -77,7 +80,9 @@ export class ContentSwitcher {
       /* @ts-ignore */
       button.fit = true;
       /* @ts-ignore */
-      button.disabled = !!this.hostDisabled;
+      button.disabled = this.hostDisabled;
+      /* @ts-ignore */
+      button.dense = this.size === 'small';
 
       if (index !== this.value) {
         /* @ts-ignore */
@@ -87,14 +92,6 @@ export class ContentSwitcher {
       const buttonElement = button.shadowRoot.querySelector('.csc-button');
 
       buttonElement.classList.add('grouped');
-
-      if (index === 0) {
-        buttonElement.classList.add('grouped--first');
-      }
-
-      if (index === this.buttons.length - 1) {
-        buttonElement.classList.add('grouped--last');
-      }
     });
   }
 
@@ -108,7 +105,7 @@ export class ContentSwitcher {
   render() {
     const classes = {
       'c-content-switcher': true,
-      'c-content-switcher--block': this.block,
+      'c-content-switcher--disabled': this.hostDisabled,
     };
 
     return (
