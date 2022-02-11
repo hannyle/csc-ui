@@ -7,11 +7,11 @@
 
 ## Properties
 
-| Property       | Attribute  | Description | Type      | Default     |
-| -------------- | ---------- | ----------- | --------- | ----------- |
-| `hostDisabled` | `disabled` |             | `boolean` | `undefined` |
-| `hostId`       | `id`       |             | `string`  | `undefined` |
-| `value`        | `value`    |             | `boolean` | `false`     |
+| Property       | Attribute  | Description          | Type      | Default     |
+| -------------- | ---------- | -------------------- | --------- | ----------- |
+| `hostDisabled` | `disabled` | Disable the switch   | `boolean` | `false`     |
+| `hostId`       | `id`       | Id for the element   | `string`  | `undefined` |
+| `value`        | `value`    | Value of the element | `boolean` | `false`     |
 
 
 ## Events

@@ -8,37 +8,20 @@ button {
   padding: 0;
   background: transparent;
   border-radius: 2px;
-}
 
-button:focus {
-  outline: none;
-}
-
-button:focus-visible {
-  outline: 2px var(--csc-primary) solid;
-  outline-offset: 2px;
-}
-
-@media (max-width: 767px) {
-  button.full-width {
-    flex-grow: 1 !important;
+  &:focus {
+    outline: none;
   }
-}
 
-button.fit {
-  flex-grow: 1 !important;
-  width: 100%;
-}
+  &:focus-visible {
+    outline: 2px var(--csc-primary) solid;
+    outline-offset: 2px;
+  }
 
-.csc-button svg.button-icon {
-  margin-right: 16px;
-  font-size: 10px;
-  margin-left: -8px;
-  margin-bottom: -2px;
-}
-
-.csc-button.border-radius {
-  border-radius: var(--c-radius);
+  &.fit {
+    flex-grow: 1 !important;
+    width: 100%;
+  }
 }
 
 @media (max-width: 767px) {
@@ -46,14 +29,20 @@ button.fit {
     max-width: 100% !important;
     width: 100% !important;
     margin: 0 !important;
+
+    .csc-button-padding {
+      padding: 24px 38px;
+    }
   }
 
-  .full-width-mobile .csc-button-padding {
-    padding: 24px 38px;
+  button.full-width {
+    flex-grow: 1 !important;
   }
 }
 
 .csc-button {
+  --c-radius: 4px;
+
   background-color: var(--current-color);
   position: relative;
   cursor: pointer;
@@ -69,149 +58,33 @@ button.fit {
   font-weight: 700;
   line-height: 18px;
   user-select: none;
-}
 
-.csc-button:hover {
-  background-color: var(--csc-primary-hover);
-}
+  svg {
+    fill: #fff;
 
-.csc-button svg {
-  fill: #fff;
-}
+    &.button-icon {
+      margin-right: 16px;
+      font-size: 10px;
+      margin-left: -8px;
+      margin-bottom: -2px;
+    }
+  }
 
-.csc-button.outlined {
-  box-shadow: inset 0px 0px 0px 2px var(--current-color);
-}
+  &.border-radius {
+    border-radius: var(--c-radius);
+  }
 
-.csc-button.outlined svg {
-  fill: var(--current-color);
-}
+  &:hover {
+    background-color: var(--csc-primary-hover);
+  }
 
-.outlined:hover {
-  background-color: #d8e8ea !important;
-}
+  &.outlined {
+    box-shadow: inset 0 0 0 2px var(--current-color);
 
-.secondary {
-  background-color: #d0dced !important;
-  color: #025b96;
-}
-
-.secondary:hover {
-  background-color: #025b96 !important;
-  color: #ffffff;
-}
-
-.spinner__circle {
-  animation: 3s ease-in-out infinite both circle-animation;
-  display: block;
-  fill: transparent;
-  stroke: #fff;
-  stroke-linecap: round;
-  stroke-dasharray: 283;
-  stroke-dashoffset: 280;
-  stroke-width: 10px;
-  transform-origin: 50% 50%;
-}
-
-.outlined .spinner__circle {
-  stroke: var(--current-color) !important;
-}
-
-.outlined svg {
-  fill: var(--current-color);
-}
-
-.outlined {
-  background-color: transparent !important;
-  transition: background 0.5s;
-  color: var(--current-color);
-}
-
-.csc-button-disabled {
-  background: #e8e8e8 !important;
-  color: #8c8c8c;
-  box-shadow: inset 0px 0px 0px 2px #e8e8e8;
-  cursor: default !important;
-}
-
-.outlined.csc-button-disabled svg {
-  fill: #8c8c8c !important;
-}
-
-.csc-button-disabled.outlined:hover {
-  background-color: transparent !important;
-}
-
-.csc-button-disabled.outlined {
-  background-color: transparent !important;
-  box-shadow: inset 0px 0px 0px 2px #8c8c8c;
-}
-
-.csc-button-disabled svg {
-  fill: #8c8c8c;
-}
-
-.csc-button-padding {
-  padding: 13px 30px;
-}
-
-.ripple {
-  transition: background 0.5s;
-  background-position: center;
-}
-
-.ripple:hover {
-  background: rgba(255, 255, 255, 0)
-    radial-gradient(circle, transparent 1%, rgba(255, 255, 255, 0.15) 1%)
-    center/15000%;
-}
-.ripple:active {
-  background-color: rgba(255, 255, 255, 0.25);
-  background-size: 100%;
-  transition: background 0s;
-}
-
-.dense {
-  padding: 10px !important;
-}
-
-.fit {
-  width: 100%;
-}
-
-.hide-text {
-  color: transparent !important;
-}
-
-.hide-text svg,
-.hide-text .outlined.csc-button svg {
-  fill: transparent !important;
-}
-
-.spinner_wrapper {
-  width: 100%;
-  position: absolute;
-  padding-top: 7px;
-}
-
-.spinner_wrapper.dense_spinner {
-  padding-top: 7px;
-}
-
-.spinner {
-  animation: 2s linear infinite svg-animation;
-  max-width: 30px;
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.spinner_wrapper.dense_spinner .spinner {
-  max-width: 24px;
-}
-
-.csc-button {
-  --c-radius: 4px;
+    svg {
+      fill: var(--current-color);
+    }
+  }
 
   &.grouped {
     border-radius: 0;
@@ -228,8 +101,136 @@ button.fit {
   }
 
   &-disabled.grouped {
+    box-shadow: none !important;
     border: solid 1px var(--csc-light-grey);
   }
+}
+
+.outlined {
+  background-color: transparent !important;
+  transition: background 0.5s;
+  color: var(--current-color);
+
+  &:hover {
+    background-color: #d8e8ea !important;
+  }
+
+  .spinner__circle {
+    stroke: var(--current-color) !important;
+  }
+
+  svg {
+    fill: var(--current-color);
+  }
+
+  &.csc-button-disabled svg {
+    fill: #8c8c8c !important;
+  }
+}
+
+.secondary {
+  background-color: #d0dced !important;
+  color: #025b96;
+
+  &:hover {
+    background-color: #025b96 !important;
+    color: #ffffff;
+  }
+}
+
+.spinner__circle {
+  animation: 3s ease-in-out infinite both circle-animation;
+  display: block;
+  fill: transparent;
+  stroke: #fff;
+  stroke-linecap: round;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 280;
+  stroke-width: 10px;
+  transform-origin: 50% 50%;
+}
+
+.csc-button-disabled {
+  background: #e8e8e8 !important;
+  color: #8c8c8c;
+  box-shadow: inset 0 0 0 2px #e8e8e8;
+  cursor: default !important;
+
+  &.outlined {
+    background-color: transparent !important;
+    box-shadow: inset 0 0 0 2px #8c8c8c;
+
+    &:hover {
+      background-color: transparent !important;
+    }
+  }
+
+  svg {
+    fill: #8c8c8c;
+  }
+}
+
+.csc-button-padding {
+  padding: 13px 30px;
+}
+
+.ripple {
+  transition: background 0.5s;
+  background-position: center;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0)
+      radial-gradient(circle, transparent 1%, rgba(255, 255, 255, 0.15) 1%)
+      center/15000%;
+  }
+
+  &:active {
+    background-color: rgba(255, 255, 255, 0.25);
+    background-size: 100%;
+    transition: background 0s;
+  }
+}
+
+.dense {
+  padding: 10px !important;
+}
+
+.fit {
+  width: 100%;
+}
+
+.hide-text {
+  color: transparent !important;
+
+  svg {
+    fill: transparent !important;
+  }
+
+  .outlined.csc-button svg {
+    fill: transparent !important;
+  }
+}
+
+.spinner_wrapper {
+  width: 100%;
+  position: absolute;
+  padding-top: 7px;
+
+  &.dense_spinner {
+    padding-top: 7px;
+
+    .spinner {
+      max-width: 24px;
+    }
+  }
+}
+
+.spinner {
+  animation: 2s linear infinite svg-animation;
+  max-width: 30px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @keyframes svg-animation {

@@ -7,19 +7,20 @@
 
 ## Properties
 
-| Property    | Attribute   | Description                     | Type      | Default     |
-| ----------- | ----------- | ------------------------------- | --------- | ----------- |
-| `dense`     | `dense`     |                                 | `boolean` | `undefined` |
-| `disabled`  | `disabled`  |                                 | `boolean` | `undefined` |
-| `fit`       | `fit`       | Fit width to containing element | `boolean` | `undefined` |
-| `ghost`     | `ghost`     | Light button background         | `boolean` | `undefined` |
-| `hostId`    | `id`        |                                 | `string`  | `undefined` |
-| `icon`      | `icon`      |                                 | `string`  | `undefined` |
-| `loading`   | `loading`   |                                 | `boolean` | `undefined` |
-| `noRadius`  | `no-radius` |                                 | `boolean` | `undefined` |
-| `outlined`  | `outlined`  | Outlined button style           | `boolean` | `undefined` |
-| `secondary` | `secondary` |                                 | `boolean` | `undefined` |
-| `text`      | `text`      | Transparent button background   | `boolean` | `undefined` |
+| Property    | Attribute   | Description                                                                                                                              | Type                                       | Default     |
+| ----------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ----------- |
+| `dense`     | `dense`     | Dense variant                                                                                                                            | `boolean`                                  | `false`     |
+| `disabled`  | `disabled`  | Disable the button                                                                                                                       | `boolean`                                  | `false`     |
+| `fit`       | `fit`       | Fit width to containing element                                                                                                          | `boolean`                                  | `false`     |
+| `ghost`     | `ghost`     | Light button background                                                                                                                  | `boolean`                                  | `false`     |
+| `hostId`    | `id`        | Id of the button                                                                                                                         | `string`                                   | `undefined` |
+| `icon`      | `icon`      | <span style="color:red">**[DEPRECATED]**</span> Please use the icon slot instead<br/><br/>Name of the icon to be displayed in the button | `"account" \| "edit" \| "minus" \| "plus"` | `undefined` |
+| `loading`   | `loading`   | Display loader on the button                                                                                                             | `boolean`                                  | `false`     |
+| `noRadius`  | `no-radius` | Remove the default border radius                                                                                                         | `boolean`                                  | `false`     |
+| `outlined`  | `outlined`  | Outlined button style                                                                                                                    | `boolean`                                  | `false`     |
+| `secondary` | `secondary` | Secondary variant                                                                                                                        | `boolean`                                  | `false`     |
+| `text`      | `text`      | Transparent button background                                                                                                            | `boolean`                                  | `false`     |
+| `value`     | `value`     | Value for the button - for use in the c-content-switcher                                                                                 | `number \| string`                         | `undefined` |
 
 
 ## Slots

@@ -15,31 +15,68 @@ export class Button {
   /**
    * Outlined button style
    */
-  @Prop() outlined: boolean;
+  @Prop() outlined = false;
+
   /**
    * Light button background
    */
-  @Prop() ghost: boolean;
+  @Prop() ghost = false;
+
   /**
    * Transparent button background
    */
-  @Prop() text: boolean;
-  @Prop() loading: boolean;
+  @Prop() text = false;
 
-  @Prop() dense: boolean;
+  /**
+   * Display loader on the button
+   */
+  @Prop() loading = false;
+
+  /**
+   * Dense variant
+   */
+  @Prop() dense = false;
+
   /**
    * Fit width to containing element
    */
-  @Prop() fit: boolean;
-  @Prop() noRadius: boolean;
-  @Prop() secondary: boolean;
-  @Prop({ reflect: true })
-  disabled: boolean;
-  @Prop() icon: string;
+  @Prop() fit = false;
+
+  /**
+   * Remove the default border radius
+   */
+  @Prop() noRadius = false;
+
+  /**
+   * Secondary variant
+   */
+  @Prop() secondary = false;
+
+  /**
+   * Disable the button
+   */
+  @Prop({ reflect: true }) disabled = false;
+
+  /**
+   * Name of the icon to be displayed in the button
+   *
+   * @deprecated Please use the icon slot instead
+   */
+  @Prop() icon: 'plus' | 'minus' | 'account' | 'edit';
+
+  /**
+   * Value for the button
+   * - for use in the c-content-switcher
+   */
+  @Prop() value?: number | string;
+
+  /**
+   * Id of the button
+   */
   @Prop({ attribute: 'id' }) hostId: string;
 
   render() {
-    const SPINNER_SMALL = (
+    const SPINNER_SMALL: SVGImageElement = (
       <svg
         class="spinner"
         viewBox="0 0 100 100"
@@ -50,7 +87,7 @@ export class Button {
     );
 
     let selectedIcon = null;
-    let svg = '';
+    let svg: SVGImageElement;
 
     if (this.icon) {
       const icons = {

@@ -4,7 +4,7 @@ import { Component, h, Prop } from '@stencil/core';
  */
 @Component({
   tag: 'c-icon-button',
-  styleUrl: 'c-icon-button.css',
+  styleUrl: 'c-icon-button.scss',
   shadow: true,
 })
 export class CIconButton {
@@ -14,6 +14,7 @@ export class CIconButton {
   @Prop() outlined: boolean;
   @Prop() ghost: boolean;
   @Prop() disabled: boolean;
+  @Prop() size: 'default' | 'small' = 'default';
 
   renderBadge() {
     return <div class="icon-button-badge">{this.badge}</div>;
@@ -26,6 +27,7 @@ export class CIconButton {
       text: !!this.text,
       ghost: !!this.ghost,
       outlined: !!this.outlined,
+      'icon-button--small': this.size === 'small',
     };
   }
 

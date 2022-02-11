@@ -16,9 +16,18 @@ import {
   shadow: true,
 })
 export class Switch {
-  @Prop({ attribute: 'disabled' }) hostDisabled: boolean;
+  /**
+   * Disable the switch
+   */
+  @Prop({ attribute: 'disabled' }) hostDisabled = false;
+  /**
+   * Id for the element
+   */
   @Prop({ attribute: 'id' }) hostId: string;
-  @Prop({ mutable: true }) value: boolean = false;
+  /**
+   * Value of the element
+   */
+  @Prop({ mutable: true }) value = false;
 
   @Element() host: HTMLElement;
   @State() hasLabel: boolean = false;
