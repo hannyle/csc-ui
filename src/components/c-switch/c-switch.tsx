@@ -7,7 +7,9 @@ import {
   Event,
   EventEmitter,
 } from '@stencil/core';
-
+/**
+ * @group Form
+ */
 @Component({
   tag: 'c-switch',
   styleUrl: 'c-switch.scss',

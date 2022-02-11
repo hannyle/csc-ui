@@ -1,5 +1,15 @@
-import { Component, Host, h, Prop, Listen, Event, EventEmitter } from '@stencil/core';
-
+import {
+  Component,
+  Host,
+  h,
+  Prop,
+  Listen,
+  Event,
+  EventEmitter,
+} from '@stencil/core';
+/**
+ * @group Form
+ */
 @Component({
   tag: 'c-radio',
   styleUrl: 'c-radio.css',
@@ -18,7 +28,7 @@ export class CRadio {
   @Event() changeValue: EventEmitter;
 
   @Listen('keydown')
-  handleKeyDown(ev: any){
+  handleKeyDown(ev: any) {
     if (ev.key === ' ') {
       ev.preventDefault();
     }
@@ -39,15 +49,30 @@ export class CRadio {
   getRadioButton = (item) => {
     const itemId = item.value.toString().replace(/[^a-zA-Z0-9-_]/g, '');
 
-    return  (
+    return (
       <div class="c-radio-row" onClick={() => this.select(item)}>
-        <div class="c-radio-wrapper" role="radio" tabindex="0" aria-labelledby={itemId} aria-checked={ this.selected === item } onKeyDown={(event) => this.selectWithSpace(event, item)}>
-          <div class={ this.selected === item ? `c-radio active csc-bg-color ${this.color}` : `c-radio csc-bg-color ${this.color}` }>
+        <div
+          class="c-radio-wrapper"
+          role="radio"
+          tabindex="0"
+          aria-labelledby={itemId}
+          aria-checked={this.selected === item}
+          onKeyDown={(event) => this.selectWithSpace(event, item)}
+        >
+          <div
+            class={
+              this.selected === item
+                ? `c-radio active csc-bg-color ${this.color}`
+                : `c-radio csc-bg-color ${this.color}`
+            }
+          >
             <div class="c-radio-outer-circle"></div>
             <div class="c-radio-inner-circle"></div>
           </div>
         </div>
-        <label class="c-radio-label" id={itemId}>{ item.label }</label>
+        <label class="c-radio-label" id={itemId}>
+          {item.label}
+        </label>
       </div>
     );
   };
@@ -55,12 +80,11 @@ export class CRadio {
   render() {
     return (
       <Host>
-        { this.label ? <label id="c-radio-group-label">{ this.label }</label> : '' }
+        {this.label ? <label id="c-radio-group-label">{this.label}</label> : ''}
         <div role="radiogroup" aria-labelledby="c-radio-group-label">
-          { this.items.map(item => this.getRadioButton(item)) }
+          {this.items.map((item) => this.getRadioButton(item))}
         </div>
       </Host>
     );
   }
-
 }

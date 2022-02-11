@@ -1,8 +1,10 @@
-import { Component, h, Prop } from "@stencil/core";
-
+import { Component, h, Prop } from '@stencil/core';
+/**
+ * @group Buttons
+ */
 @Component({
-  tag: "c-icon-button",
-  styleUrl: "c-icon-button.css",
+  tag: 'c-icon-button',
+  styleUrl: 'c-icon-button.css',
   shadow: true,
 })
 export class CIconButton {
@@ -19,7 +21,7 @@ export class CIconButton {
 
   outerClasses() {
     return {
-      "icon-button": true,
+      'icon-button': true,
       disabled: !!this.disabled,
       text: !!this.text,
       ghost: !!this.ghost,
@@ -29,7 +31,7 @@ export class CIconButton {
 
   innerClasses() {
     return {
-      "inner-container": true,
+      'inner-container': true,
       ripple: !this.disabled,
     };
   }
@@ -37,7 +39,7 @@ export class CIconButton {
   cssClasses(classes) {
     return Object.keys(classes)
       .filter((key) => classes[key])
-      .join(" ");
+      .join(' ');
   }
 
   button() {
@@ -46,7 +48,7 @@ export class CIconButton {
         <div class={this.cssClasses(this.innerClasses())}>
           <slot></slot>
         </div>
-        {this.badge ? this.renderBadge() : ""}
+        {this.badge ? this.renderBadge() : ''}
       </button>
     );
   }

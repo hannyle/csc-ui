@@ -1,5 +1,5 @@
 {
-  "timestamp": "2022-02-11T12:20:09",
+  "timestamp": "2022-02-11T14:12:33",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.13.0",
@@ -103,7 +103,12 @@
       "tag": "c-autocomplete",
       "readme": "# c-autocomplete\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Form"
+        }
+      ],
       "usage": {},
       "props": [
         {
@@ -261,6 +266,10 @@
       "readme": "# c-button\n\n\n",
       "docs": "",
       "docsTags": [
+        {
+          "name": "group",
+          "text": "Buttons"
+        },
         {
           "name": "slot",
           "text": "- Button text"
@@ -658,7 +667,12 @@
       "tag": "c-checkbox",
       "readme": "# c-checkbox\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Form"
+        }
+      ],
       "usage": {},
       "props": [
         {
@@ -803,7 +817,12 @@
       "tag": "c-content-switcher",
       "readme": "# c-content-switcher\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Tabs"
+        }
+      ],
       "usage": {},
       "props": [
         {
@@ -928,7 +947,12 @@
       "tag": "c-csc-logo",
       "readme": "# c-csc-logo\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "parent",
+          "text": "c-toolbar"
+        }
+      ],
       "usage": {},
       "props": [],
       "methods": [],
@@ -966,7 +990,12 @@
       "tag": "c-icon-button",
       "readme": "# c-icon-button\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Buttons"
+        }
+      ],
       "usage": {},
       "props": [
         {
@@ -1150,7 +1179,12 @@
       "tag": "c-loader",
       "readme": "# c-loader\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Indicators"
+        }
+      ],
       "usage": {},
       "props": [
         {
@@ -1205,7 +1239,12 @@
       "tag": "c-menu",
       "readme": "# c-menu\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Navigation"
+        }
+      ],
       "usage": {},
       "props": [
         {
@@ -1309,7 +1348,12 @@
       "tag": "c-menu-item",
       "readme": "# c-menu-item\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "parent",
+          "text": "c-menu"
+        }
+      ],
       "usage": {},
       "props": [
         {
@@ -1406,7 +1450,12 @@
       "tag": "c-navigationbutton",
       "readme": "# c-navigationbutton\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "parent",
+          "text": "c-toolbar"
+        }
+      ],
       "usage": {},
       "props": [],
       "methods": [],
@@ -1574,7 +1623,12 @@
       "tag": "c-progressbar",
       "readme": "# c-progressbar\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Indicators"
+        }
+      ],
       "usage": {},
       "props": [
         {
@@ -1626,7 +1680,12 @@
       "tag": "c-radio",
       "readme": "# c-radio\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Form"
+        }
+      ],
       "usage": {},
       "props": [
         {
@@ -1854,7 +1913,12 @@
       "tag": "c-select",
       "readme": "# c-select\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Form"
+        }
+      ],
       "usage": {},
       "props": [
         {
@@ -2120,7 +2184,12 @@
       "tag": "c-sidenavigation",
       "readme": "# c-sidenavigation\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Navigation"
+        }
+      ],
       "usage": {},
       "props": [
         {
@@ -2173,7 +2242,12 @@
       "tag": "c-sidenavigationitem",
       "readme": "# c-sidenavigationitem\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "parent",
+          "text": "c-sidenavigation"
+        }
+      ],
       "usage": {},
       "props": [
         {
@@ -2280,7 +2354,12 @@
       "tag": "c-subnavigationitem",
       "readme": "# c-subnavigationitem\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "parent",
+          "text": "c-sidenavigation"
+        }
+      ],
       "usage": {},
       "props": [
         {
@@ -2332,7 +2411,12 @@
       "tag": "c-switch",
       "readme": "# c-switch\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Form"
+        }
+      ],
       "usage": {},
       "props": [
         {
@@ -2411,7 +2495,12 @@
       "tag": "c-tab",
       "readme": "# c-tab\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Tabs"
+        }
+      ],
       "usage": {},
       "props": [
         {
@@ -2463,7 +2552,12 @@
       "tag": "c-tab-button",
       "readme": "# c-tab\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Tabs"
+        }
+      ],
       "usage": {},
       "props": [
         {
@@ -2655,7 +2749,12 @@
       "tag": "c-text-field",
       "readme": "# c-text-field\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Form"
+        }
+      ],
       "usage": {},
       "props": [
         {
@@ -3055,7 +3154,12 @@
       "tag": "c-toggle",
       "readme": "# c-toggle\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Buttons"
+        }
+      ],
       "usage": {},
       "props": [
         {
@@ -3171,7 +3275,12 @@
       "tag": "c-toolbar",
       "readme": "# c-toolbar\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Navigation"
+        }
+      ],
       "usage": {},
       "props": [],
       "methods": [],

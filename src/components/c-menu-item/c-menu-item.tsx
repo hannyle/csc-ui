@@ -1,4 +1,7 @@
 import { Component, Host, h, Prop } from '@stencil/core';
+/**
+ * @parent c-menu
+ */
 
 @Component({
   tag: 'c-menu-item',
@@ -20,5 +23,4 @@ export class CMenuItem {
       </Host>
     );
   }
-
 }

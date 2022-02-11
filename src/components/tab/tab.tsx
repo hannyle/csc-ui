@@ -1,9 +1,11 @@
 import { Component, h, Host, Prop } from '@stencil/core';
-
+/**
+ * @group Tabs
+ */
 @Component({
   tag: 'c-tab',
   styleUrl: 'tab.css',
-  shadow: true
+  shadow: true,
 })
 export class Tab {
   @Prop() active: boolean;
@@ -12,11 +14,10 @@ export class Tab {
   render() {
     return (
       <Host tabindex="0" role="button">
-        <div id={this.hostId} class={ this.active ? 'c-tab active' : 'c-tab' }>
+        <div id={this.hostId} class={this.active ? 'c-tab active' : 'c-tab'}>
           <slot></slot>
         </div>
       </Host>
     );
   }
-
 }

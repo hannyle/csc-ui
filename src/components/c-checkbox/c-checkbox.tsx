@@ -7,7 +7,9 @@ import {
   Event,
   EventEmitter,
 } from '@stencil/core';
-
+/**
+ * @group Form
+ */
 @Component({
   tag: 'c-checkbox',
   styleUrl: 'c-checkbox.css',

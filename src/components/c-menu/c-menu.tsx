@@ -1,9 +1,11 @@
-import { Component, Host, h, State, Prop, Listen } from "@stencil/core";
-import { mdiChevronDown } from "@mdi/js";
-
+import { Component, Host, h, State, Prop, Listen } from '@stencil/core';
+import { mdiChevronDown } from '@mdi/js';
+/**
+ * @group Navigation
+ */
 @Component({
-  tag: "c-menu",
-  styleUrl: "c-menu.css",
+  tag: 'c-menu',
+  styleUrl: 'c-menu.css',
   shadow: true,
 })
 export class CMenu {
@@ -17,9 +19,9 @@ export class CMenu {
     // { name: 'Default 1', action: () => alert('action') },
   ];
 
-  @Listen("keydown", { capture: true })
+  @Listen('keydown', { capture: true })
   handleKeyDown(ev: any) {
-    if (ev.key === "ArrowDown") {
+    if (ev.key === 'ArrowDown') {
       ev.preventDefault();
       if (this.menuVisible === false) {
         this.menuVisible = true;
@@ -32,7 +34,7 @@ export class CMenu {
       }
     }
 
-    if (ev.key === "ArrowUp") {
+    if (ev.key === 'ArrowUp') {
       ev.preventDefault();
       this.menuVisible = true;
       if (this.currentIndex !== null && this.currentIndex > 0) {
@@ -42,14 +44,14 @@ export class CMenu {
       }
     }
 
-    if (ev.key === "Escape") {
+    if (ev.key === 'Escape') {
       if (this.menuVisible === true) {
         this.menuVisible = false;
         this.currentIndex = null;
       }
     }
 
-    if (ev.key === "Enter") {
+    if (ev.key === 'Enter') {
       if (this.currentIndex !== null) {
         const selectedItem = this.items[this.currentIndex];
         selectedItem.action();
@@ -84,22 +86,22 @@ export class CMenu {
   render() {
     const hostClasses = [];
     if (this.menuVisible) {
-      hostClasses.push("active");
+      hostClasses.push('active');
     }
     if (this.simple) {
-      hostClasses.push("simple-host");
+      hostClasses.push('simple-host');
     }
     if (this.small) {
-      hostClasses.push("small");
+      hostClasses.push('small');
     }
     if (this.nohover) {
-      hostClasses.push("nohover");
+      hostClasses.push('nohover');
     }
     return (
       <Host
         tabindex="0"
         role="button"
-        class={hostClasses.join(" ")}
+        class={hostClasses.join(' ')}
         onBlur={() => this.hideMenu()}
       >
         {this.simple ? (
@@ -112,14 +114,14 @@ export class CMenu {
             ref={(el) => (this.current = el as HTMLElement)}
             class="full-width"
           >
-            <div class={this.small ? "c-select-row small" : "c-select-row"}>
+            <div class={this.small ? 'c-select-row small' : 'c-select-row'}>
               <slot name="activator"></slot>
               <svg
-                width={this.small ? "16" : "22"}
-                height={this.small ? "16" : "22"}
+                width={this.small ? '16' : '22'}
+                height={this.small ? '16' : '22'}
                 viewBox="0 0 24 24"
                 class={
-                  this.menuVisible ? "c-select-icon rotated" : "c-select-icon"
+                  this.menuVisible ? 'c-select-icon rotated' : 'c-select-icon'
                 }
               >
                 <path d={mdiChevronDown} />
@@ -132,7 +134,7 @@ export class CMenu {
             {this.items.map((item) => this.getListItem(item))}
           </div>
         ) : (
-          ""
+          ''
         )}
       </Host>
     );

@@ -9,7 +9,9 @@ import {
   mdiNas,
   mdiChip,
 } from '@mdi/js';
-
+/**
+ * @group Tabs
+ */
 @Component({
   tag: 'c-tab-button',
   styleUrl: 'tab-button.css',

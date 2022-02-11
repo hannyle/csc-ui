@@ -9,6 +9,9 @@ import {
   Listen,
 } from '@stencil/core';
 
+/**
+ * @group Tabs
+ */
 @Component({
   tag: 'c-content-switcher',
   styleUrl: 'c-content-switcher.scss',

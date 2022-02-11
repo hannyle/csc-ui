@@ -8,22 +8,25 @@
 
   <c-row class="no-margin no-wrap">
     <c-sidenavigation class="autoheight" *ngIf="components.length">
-      <c-sidenavigationitem
-        *ngFor="let item of components"
-        [routerLink]="['/' + item.tag]"
-        routerLinkActive="active"
-        [active]="selectedComponent === item"
-        (click)="selectedComponent = item"
-      >
-        <div slot="main">{{ item.tag }}</div>
-        <div slot="subnavitem">
-          <c-subnavigationitem
-            *ngFor="let child of item.children"
-            (click)="showElement(child.tag)"
-            >{{ child.tag }}</c-subnavigationitem
-          >
-        </div>
-      </c-sidenavigationitem>
+      <div *ngFor="let group of groupedComponents">
+        <p class="subheader">{{ group.name }}</p>
+        <c-sidenavigationitem
+          *ngFor="let item of group.components"
+          [routerLink]="['/' + item.tag]"
+          routerLinkActive="active"
+          [active]="componentDataService.activeComponent?.tag === item?.tag"
+        >
+          <div slot="main">{{ item.tag }}</div>
+          <div slot="subnavitem">
+            <c-subnavigationitem
+              *ngFor="let child of item.children"
+              (click)="showElement(child.tag)"
+            >
+              {{ child.tag }}
+            </c-subnavigationitem>
+          </div>
+        </c-sidenavigationitem>
+      </div>
     </c-sidenavigation>
 
     <c-flex class="container-height">

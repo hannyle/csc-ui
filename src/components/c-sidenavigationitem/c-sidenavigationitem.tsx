@@ -1,6 +1,8 @@
 import { mdiChevronRight } from '@mdi/js';
 import { Component, Host, h, Prop } from '@stencil/core';
-
+/**
+ * @parent c-sidenavigation
+ */
 @Component({
   tag: 'c-sidenavigationitem',
   styleUrl: 'c-sidenavigationitem.css',

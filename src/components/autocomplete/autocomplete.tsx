@@ -16,6 +16,9 @@ export interface SelectItem {
   name: string;
   value: string;
 }
+/**
+ * @group Form
+ */
 @Component({
   tag: 'c-autocomplete',
   styleUrl: 'autocomplete.css',

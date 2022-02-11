@@ -2,6 +2,7 @@ import { Component, Prop, h } from '@stencil/core';
 import { mdiPlus, mdiMinus, mdiAccount, mdiPencil } from '@mdi/js';
 
 /**
+ * @group Buttons
  * @slot - Button text
  * @slot icon - Icon
  */

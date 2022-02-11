@@ -6,6 +6,7 @@ import { ViewerComponent } from './viewer/viewer.component';
 const appRoutes: Routes = [
   {
     path: '',
+    resolve: [ViewerResolverService],
     children: [
       {
         path: ':tag',
@@ -17,9 +18,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules }),
-  ],
+  imports: [RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

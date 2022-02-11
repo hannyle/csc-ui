@@ -1,5 +1,7 @@
 import { Component, Host, h, Prop } from '@stencil/core';
-
+/**
+ * @group Indicators
+ */
 @Component({
   tag: 'c-loader',
   styleUrl: 'c-loader.css',

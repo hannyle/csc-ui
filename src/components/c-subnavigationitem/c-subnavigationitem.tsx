@@ -1,5 +1,7 @@
 import { Component, Host, h, Prop } from '@stencil/core';
-
+/**
+ * @parent c-sidenavigation
+ */
 @Component({
   tag: 'c-subnavigationitem',
   styleUrl: 'c-subnavigationitem.css',
@@ -18,10 +20,9 @@ export class CSubnavigationitem {
   render() {
     const classes = this.active && 'active';
     return (
-      <Host onClick={() => this.redirect()} class={classes} >
+      <Host onClick={() => this.redirect()} class={classes}>
         <slot></slot>
       </Host>
     );
   }
-
 }

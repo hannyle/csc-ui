@@ -1,5 +1,7 @@
 import { Component, Host, h, Prop } from '@stencil/core';
-
+/**
+ * @group Indicators
+ */
 @Component({
   tag: 'c-progressbar',
   styleUrl: 'c-progressbar.css',
@@ -11,17 +13,14 @@ export class CProgressbar {
 
   render() {
     const color = this.color ? this.color : '#008675';
-    const style = { 'width': `${this.value}%`, 'background-color': color };
+    const style = { width: `${this.value}%`, 'background-color': color };
     return (
       <Host>
         <div class="c-progress-bar-container">
           <div class="c-progress-bar" style={style}></div>
         </div>
-        <div class="c-progress-bar-percentage">
-          { this.value } %
-        </div>
+        <div class="c-progress-bar-percentage">{this.value} %</div>
       </Host>
     );
   }
-
 }

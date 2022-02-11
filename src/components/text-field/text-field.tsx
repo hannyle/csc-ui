@@ -9,7 +9,9 @@ import {
   Watch,
   Element,
 } from '@stencil/core';
-
+/**
+ * @group Form
+ */
 @Component({
   tag: 'c-text-field',
   styleUrl: 'text-field.css',
