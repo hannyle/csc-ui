@@ -13,6 +13,9 @@ import { CCardComponent } from './examples/c-card/c-card.component';
 import { ExampleComponent } from './examples/example/example.component';
 import { ViewerAttributesComponent } from './viewer/viewer-attributes/viewer-attributes.component';
 import { ViewerSlotsComponent } from './viewer/viewer-slots/viewer-slots.component';
+import { CSwitchComponent } from './examples/c-switch/c-switch.component';
+import { CContentSwitcherComponent } from './examples/c-content-switcher/c-content-switcher.component';
+import { CIconButtonComponent } from './examples/c-icon-button/c-icon-button.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import { ViewerSlotsComponent } from './viewer/viewer-slots/viewer-slots.compone
     ExampleComponent,
     ViewerAttributesComponent,
     ViewerSlotsComponent,
+    CSwitchComponent,
+    CContentSwitcherComponent,
+    CIconButtonComponent,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HighlightModule],
   providers: [

@@ -1,9 +1,13 @@
-<p class="fs-5 fw-bold text-primary">{{ title }}</p>
-<div #example>
+<div class="mb-3">
+  <p class="fs-5 fw-bold text-primary mb-0">{{ title }}</p>
+  <p class="mb-0" *ngIf="subtitle">{{ subtitle }}</p>
+</div>
+
+<div [class.flex]="flex.length === 0" #example>
   <ng-content></ng-content>
 </div>
 
-<c-accordion-item [heading]="'Code for ' + title" class="mt-3">
+<c-accordion-item [heading]="'Code for example: ' + title" class="mt-3 mb-0">
   <i class="mdi mdi-xml" slot="icon"></i>
   <pre><code [highlight]="code"></code></pre>
 </c-accordion-item>

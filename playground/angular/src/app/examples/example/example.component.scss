@@ -3,3 +3,13 @@ code {
   padding: 32px !important;
   font-family: 'IBM Plex Mono', monospace;
 }
+
+pre {
+  margin-bottom: 0;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

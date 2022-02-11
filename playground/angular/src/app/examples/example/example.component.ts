@@ -20,16 +20,21 @@ import docs from '../../../../../../docs.json';
 })
 export class ExampleComponent implements AfterViewInit, AfterContentChecked {
   @Input() title: string;
+  @Input() subtitle: string;
+  @Input() flex: string;
   @ViewChild('example') example;
   code = '';
   allowedAttributes = [];
 
   constructor(private cdref: ChangeDetectorRef) {
-    const attrs = docs.components.reduce((items, component) => {
-      items.push(...component.props.map((prop) => prop.attr || prop.name));
+    const attrs = docs.components.reduce(
+      (items, component) => {
+        items.push(...component.props.map((prop) => prop.attr || prop.name));
 
-      return items;
-    }, []);
+        return items;
+      },
+      ['class'],
+    );
     this.allowedAttributes = [...new Set(attrs)];
   }
 

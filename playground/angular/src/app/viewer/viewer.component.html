@@ -6,10 +6,11 @@
       <a
         class="nav-link"
         aria-current="page"
-        [class]="{ active: activeTab === tab }"
-        (click)="activeTab = tab"
+        [routerLink]="[]"
+        [queryParams]="tab.query"
+        [class]="{ active: activeTab === tab.label, disabled: !tab.enabled }"
       >
-        {{ tab }}
+        {{ tab.label }}
       </a>
     </li>
   </ul>

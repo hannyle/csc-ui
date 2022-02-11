@@ -1,6 +1,31 @@
+$csc-cyan: #006778;
+$csc-magenta: #830051;
+$csc-grey: #515151;
+$csc-dark-blue: #002f5f;
+$csc-blue: #117bc2;
+$csc-mid-blue: #d0dced;
+$csc-light-blue: #f8f9fc;
+$csc-light-blue-old: #eef2f8;
+$csc-navi-bg-blue: #005d8f;
+$csc-lime: #82bf37;
+$csc-light-green: #e2efd4;
+$csc-white: #fff;
+$csc-quote-green: #82bf37;
+
+$warning: #ffbb00;
+$danger: #d40c0c;
+$dark: #181a1b;
+
 $font-family-sans-serif: 'proxima-nova', sans-serif;
 $theme-colors: (
-  'primary': #006778,
+  'primary': $csc-cyan,
+  'secondary': $csc-magenta,
+  'success': $csc-quote-green,
+  'info': $csc-blue,
+  'warning': $warning,
+  'danger': $danger,
+  'light': $csc-light-blue,
+  'dark': $dark,
 );
 
 $link-color: #006778;

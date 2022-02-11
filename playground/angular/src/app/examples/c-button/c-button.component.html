@@ -1,8 +1,36 @@
-<c-card-content>
-  <p>Button examples</p>
-  <c-button>Normal</c-button>
-  <c-button loading>Loading</c-button>
+<app-example title="Default button" flex>
+  <c-button>Default</c-button>
+  <c-button loading>Default</c-button>
+  <c-button disabled>Default</c-button>
+</app-example>
+
+<app-example title="Outlined variant" flex>
   <c-button outlined>Outlined</c-button>
-  <c-button disabled>Disabled</c-button>
+  <c-button outlined loading>Outlined</c-button>
+  <c-button outlined disabled>Outlined</c-button>
+</app-example>
+
+<app-example title="No radius" flex>
   <c-button no-radius>No radius</c-button>
-</c-card-content>
+  <c-button no-radius loading>No radius</c-button>
+  <c-button no-radius disabled>No radius</c-button>
+</app-example>
+
+<app-example title="Fitted" flex>
+  <c-button fit>Fitted</c-button>
+</app-example>
+
+<app-example title="With icon" flex>
+  <c-button>
+    <i class="mdi mdi-login" slot="icon"></i>
+    Login
+  </c-button>
+  <c-button loading>
+    <i class="mdi mdi-login" slot="icon"></i>
+    Login
+  </c-button>
+  <c-button disabled>
+    <i class="mdi mdi-login" slot="icon"></i>
+    Login
+  </c-button>
+</app-example>
