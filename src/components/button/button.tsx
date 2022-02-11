@@ -1,25 +1,41 @@
 import { Component, Prop, h } from '@stencil/core';
 import { mdiPlus, mdiMinus, mdiAccount, mdiPencil } from '@mdi/js';
 
+/**
+ * @slot - Button text
+ * @slot icon - Icon
+ */
 @Component({
   tag: 'c-button',
   styleUrl: 'button.scss',
   shadow: true,
 })
 export class Button {
-  @Prop() fixed: boolean;
-  @Prop() dense: boolean;
-  @Prop() fit: boolean;
-  @Prop() ghost: boolean;
-  @Prop() text: boolean;
-  @Prop() noRadius: boolean;
+  /**
+   * Outlined button style
+   */
   @Prop() outlined: boolean;
+  /**
+   * Light button background
+   */
+  @Prop() ghost: boolean;
+  /**
+   * Transparent button background
+   */
+  @Prop() text: boolean;
+  @Prop() loading: boolean;
+
+  @Prop() dense: boolean;
+  /**
+   * Fit width to containing element
+   */
+  @Prop() fit: boolean;
+  @Prop() noRadius: boolean;
   @Prop() secondary: boolean;
   @Prop({ reflect: true })
   disabled: boolean;
   @Prop() icon: string;
   @Prop({ attribute: 'id' }) hostId: string;
-  @Prop() loading: boolean;
 
   render() {
     const SPINNER_SMALL = (
@@ -58,7 +74,6 @@ export class Button {
       'csc-button': true,
       'csc-button-text': !!this.text,
       fit: !!this.fit,
-      fixed: !!this.fixed,
       outlined: !!this.outlined,
       secondary: !!this.secondary,
     };
@@ -95,6 +110,7 @@ export class Button {
             ''
           )}
           <div class={innerClasses}>
+            <slot name="icon"></slot>
             {svg}
             <slot></slot>
           </div>

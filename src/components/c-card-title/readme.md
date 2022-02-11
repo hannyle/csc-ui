@@ -5,6 +5,13 @@
 <!-- Auto Generated Below -->
 
 
+## Slots
+
+| Slot | Description     |
+| ---- | --------------- |
+|      | Card title text |
+
+
 ## Dependencies
 
 ### Depends on

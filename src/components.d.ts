@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { CardBackground } from "./components/card/card";
 export namespace Components {
     interface CAccordionItem {
         "heading": string;
@@ -13,7 +14,10 @@ export namespace Components {
     }
     interface CAutocomplete {
         "dense": boolean;
-        "items": any[];
+        "items": {
+    name: string;
+    value: string;
+  }[];
         "label": string;
         "name": string;
         "query": any;
@@ -23,31 +27,39 @@ export namespace Components {
     interface CButton {
         "dense": boolean;
         "disabled": boolean;
+        /**
+          * Fit width to containing element
+         */
         "fit": boolean;
-        "fixed": boolean;
+        /**
+          * Light button background
+         */
         "ghost": boolean;
         "hostId": string;
         "icon": string;
         "loading": boolean;
         "noRadius": boolean;
+        /**
+          * Outlined button style
+         */
         "outlined": boolean;
         "secondary": boolean;
+        /**
+          * Transparent button background
+         */
         "text": boolean;
     }
     interface CCard {
-        "background": string;
-        "color": string;
-        "dark": boolean;
-        "elevation": number;
-        "ma": number;
-        "mx": number;
-        "my": number;
-        "noRadius": boolean;
-        "pa": number;
-        "px": number;
-        "py": number;
+        /**
+          * Card background image for login pages of specific services
+         */
+        "background": CardBackground;
     }
     interface CCardActions {
+        /**
+          * Align actions to the right
+         */
+        "right": boolean;
     }
     interface CCardContent {
     }
@@ -57,8 +69,6 @@ export namespace Components {
         "checked": boolean;
         "color": string;
         "label": string;
-    }
-    interface CCol {
     }
     interface CConsent {
     }
@@ -87,8 +97,6 @@ export namespace Components {
     interface CCscLogo {
     }
     interface CFlex {
-    }
-    interface CH1 {
     }
     interface CIconButton {
         "badge": string;
@@ -127,11 +135,6 @@ export namespace Components {
         "notification": any;
         "position": string;
     }
-    interface COption {
-        "dense": boolean;
-        "label": string;
-        "value": string;
-    }
     interface CPaginationrow {
         "items": any[];
         "itemsPerPage": number;
@@ -149,6 +152,22 @@ export namespace Components {
         "selected": object;
     }
     interface CRow {
+        /**
+          * Align items vertically
+         */
+        "align": 'start' | 'center' | 'end';
+        /**
+          * Gap between items in px
+         */
+        "gap": number;
+        /**
+          * Justify content horizontally
+         */
+        "justify": 'start' | 'center' | 'end';
+        /**
+          * Flex wrap
+         */
+        "wrap": boolean;
     }
     interface CSelect {
         "dense": boolean;
@@ -288,12 +307,6 @@ declare global {
         prototype: HTMLCCheckboxElement;
         new (): HTMLCCheckboxElement;
     };
-    interface HTMLCColElement extends Components.CCol, HTMLStencilElement {
-    }
-    var HTMLCColElement: {
-        prototype: HTMLCColElement;
-        new (): HTMLCColElement;
-    };
     interface HTMLCConsentElement extends Components.CConsent, HTMLStencilElement {
     }
     var HTMLCConsentElement: {
@@ -323,12 +336,6 @@ declare global {
     var HTMLCFlexElement: {
         prototype: HTMLCFlexElement;
         new (): HTMLCFlexElement;
-    };
-    interface HTMLCH1Element extends Components.CH1, HTMLStencilElement {
-    }
-    var HTMLCH1Element: {
-        prototype: HTMLCH1Element;
-        new (): HTMLCH1Element;
     };
     interface HTMLCIconButtonElement extends Components.CIconButton, HTMLStencilElement {
     }
@@ -383,12 +390,6 @@ declare global {
     var HTMLCNotificationElement: {
         prototype: HTMLCNotificationElement;
         new (): HTMLCNotificationElement;
-    };
-    interface HTMLCOptionElement extends Components.COption, HTMLStencilElement {
-    }
-    var HTMLCOptionElement: {
-        prototype: HTMLCOptionElement;
-        new (): HTMLCOptionElement;
     };
     interface HTMLCPaginationrowElement extends Components.CPaginationrow, HTMLStencilElement {
     }
@@ -501,13 +502,11 @@ declare global {
         "c-card-content": HTMLCCardContentElement;
         "c-card-title": HTMLCCardTitleElement;
         "c-checkbox": HTMLCCheckboxElement;
-        "c-col": HTMLCColElement;
         "c-consent": HTMLCConsentElement;
         "c-container": HTMLCContainerElement;
         "c-content-switcher": HTMLCContentSwitcherElement;
         "c-csc-logo": HTMLCCscLogoElement;
         "c-flex": HTMLCFlexElement;
-        "c-h1": HTMLCH1Element;
         "c-icon-button": HTMLCIconButtonElement;
         "c-link": HTMLCLinkElement;
         "c-loader": HTMLCLoaderElement;
@@ -517,7 +516,6 @@ declare global {
         "c-modal": HTMLCModalElement;
         "c-navigationbutton": HTMLCNavigationbuttonElement;
         "c-notification": HTMLCNotificationElement;
-        "c-option": HTMLCOptionElement;
         "c-paginationrow": HTMLCPaginationrowElement;
         "c-progressbar": HTMLCProgressbarElement;
         "c-radio": HTMLCRadioElement;
@@ -546,7 +544,10 @@ declare namespace LocalJSX {
     }
     interface CAutocomplete {
         "dense"?: boolean;
-        "items"?: any[];
+        "items"?: {
+    name: string;
+    value: string;
+  }[];
         "label"?: string;
         "name"?: string;
         "onChangeValue"?: (event: CustomEvent<any>) => void;
@@ -557,31 +558,39 @@ declare namespace LocalJSX {
     interface CButton {
         "dense"?: boolean;
         "disabled"?: boolean;
+        /**
+          * Fit width to containing element
+         */
         "fit"?: boolean;
-        "fixed"?: boolean;
+        /**
+          * Light button background
+         */
         "ghost"?: boolean;
         "hostId"?: string;
         "icon"?: string;
         "loading"?: boolean;
         "noRadius"?: boolean;
+        /**
+          * Outlined button style
+         */
         "outlined"?: boolean;
         "secondary"?: boolean;
+        /**
+          * Transparent button background
+         */
         "text"?: boolean;
     }
     interface CCard {
-        "background"?: string;
-        "color"?: string;
-        "dark"?: boolean;
-        "elevation"?: number;
-        "ma"?: number;
-        "mx"?: number;
-        "my"?: number;
-        "noRadius"?: boolean;
-        "pa"?: number;
-        "px"?: number;
-        "py"?: number;
+        /**
+          * Card background image for login pages of specific services
+         */
+        "background"?: CardBackground;
     }
     interface CCardActions {
+        /**
+          * Align actions to the right
+         */
+        "right"?: boolean;
     }
     interface CCardContent {
     }
@@ -592,8 +601,6 @@ declare namespace LocalJSX {
         "color"?: string;
         "label"?: string;
         "onChangeValue"?: (event: CustomEvent<any>) => void;
-    }
-    interface CCol {
     }
     interface CConsent {
     }
@@ -623,8 +630,6 @@ declare namespace LocalJSX {
     interface CCscLogo {
     }
     interface CFlex {
-    }
-    interface CH1 {
     }
     interface CIconButton {
         "badge"?: string;
@@ -663,11 +668,6 @@ declare namespace LocalJSX {
         "notification"?: any;
         "position"?: string;
     }
-    interface COption {
-        "dense"?: boolean;
-        "label"?: string;
-        "value"?: string;
-    }
     interface CPaginationrow {
         "items"?: any[];
         "itemsPerPage"?: number;
@@ -686,6 +686,22 @@ declare namespace LocalJSX {
         "selected"?: object;
     }
     interface CRow {
+        /**
+          * Align items vertically
+         */
+        "align"?: 'start' | 'center' | 'end';
+        /**
+          * Gap between items in px
+         */
+        "gap"?: number;
+        /**
+          * Justify content horizontally
+         */
+        "justify"?: 'start' | 'center' | 'end';
+        /**
+          * Flex wrap
+         */
+        "wrap"?: boolean;
     }
     interface CSelect {
         "dense"?: boolean;
@@ -787,13 +803,11 @@ declare namespace LocalJSX {
         "c-card-content": CCardContent;
         "c-card-title": CCardTitle;
         "c-checkbox": CCheckbox;
-        "c-col": CCol;
         "c-consent": CConsent;
         "c-container": CContainer;
         "c-content-switcher": CContentSwitcher;
         "c-csc-logo": CCscLogo;
         "c-flex": CFlex;
-        "c-h1": CH1;
         "c-icon-button": CIconButton;
         "c-link": CLink;
         "c-loader": CLoader;
@@ -803,7 +817,6 @@ declare namespace LocalJSX {
         "c-modal": CModal;
         "c-navigationbutton": CNavigationbutton;
         "c-notification": CNotification;
-        "c-option": COption;
         "c-paginationrow": CPaginationrow;
         "c-progressbar": CProgressbar;
         "c-radio": CRadio;
@@ -835,13 +848,11 @@ declare module "@stencil/core" {
             "c-card-content": LocalJSX.CCardContent & JSXBase.HTMLAttributes<HTMLCCardContentElement>;
             "c-card-title": LocalJSX.CCardTitle & JSXBase.HTMLAttributes<HTMLCCardTitleElement>;
             "c-checkbox": LocalJSX.CCheckbox & JSXBase.HTMLAttributes<HTMLCCheckboxElement>;
-            "c-col": LocalJSX.CCol & JSXBase.HTMLAttributes<HTMLCColElement>;
             "c-consent": LocalJSX.CConsent & JSXBase.HTMLAttributes<HTMLCConsentElement>;
             "c-container": LocalJSX.CContainer & JSXBase.HTMLAttributes<HTMLCContainerElement>;
             "c-content-switcher": LocalJSX.CContentSwitcher & JSXBase.HTMLAttributes<HTMLCContentSwitcherElement>;
             "c-csc-logo": LocalJSX.CCscLogo & JSXBase.HTMLAttributes<HTMLCCscLogoElement>;
             "c-flex": LocalJSX.CFlex & JSXBase.HTMLAttributes<HTMLCFlexElement>;
-            "c-h1": LocalJSX.CH1 & JSXBase.HTMLAttributes<HTMLCH1Element>;
             "c-icon-button": LocalJSX.CIconButton & JSXBase.HTMLAttributes<HTMLCIconButtonElement>;
             "c-link": LocalJSX.CLink & JSXBase.HTMLAttributes<HTMLCLinkElement>;
             "c-loader": LocalJSX.CLoader & JSXBase.HTMLAttributes<HTMLCLoaderElement>;
@@ -851,7 +862,6 @@ declare module "@stencil/core" {
             "c-modal": LocalJSX.CModal & JSXBase.HTMLAttributes<HTMLCModalElement>;
             "c-navigationbutton": LocalJSX.CNavigationbutton & JSXBase.HTMLAttributes<HTMLCNavigationbuttonElement>;
             "c-notification": LocalJSX.CNotification & JSXBase.HTMLAttributes<HTMLCNotificationElement>;
-            "c-option": LocalJSX.COption & JSXBase.HTMLAttributes<HTMLCOptionElement>;
             "c-paginationrow": LocalJSX.CPaginationrow & JSXBase.HTMLAttributes<HTMLCPaginationrowElement>;
             "c-progressbar": LocalJSX.CProgressbar & JSXBase.HTMLAttributes<HTMLCProgressbarElement>;
             "c-radio": LocalJSX.CRadio & JSXBase.HTMLAttributes<HTMLCRadioElement>;

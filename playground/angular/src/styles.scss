@@ -1,3 +1,13 @@
+$font-family-sans-serif: 'proxima-nova', sans-serif;
+$theme-colors: (
+  'primary': #006778,
+);
+
+$link-color: #006778;
+$link-hover-color: #004b58;
+
+@import '~bootstrap/scss/bootstrap.scss';
+
 /* You can add global styles to this file, and also import other style files */
 html,
 body {
@@ -5,6 +15,16 @@ body {
 }
 
 body {
-  font-family: "proxima-nova", sans-serif;
+  font-family: 'proxima-nova', sans-serif;
   background-color: #d7e8ea;
+}
+
+.example {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+
+.monospace {
+  font-family: 'IBM Plex Mono', monospace;
 }

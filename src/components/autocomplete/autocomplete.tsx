@@ -1,10 +1,25 @@
-import { Component, Element, Host, Prop, State, h, Listen, Event, EventEmitter, Watch } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Host,
+  Prop,
+  State,
+  h,
+  Listen,
+  Event,
+  EventEmitter,
+  Watch,
+} from '@stencil/core';
 import { mdiChevronDown } from '@mdi/js';
 
+export interface SelectItem {
+  name: string;
+  value: string;
+}
 @Component({
   tag: 'c-autocomplete',
   styleUrl: 'autocomplete.css',
-  shadow: true
+  shadow: true,
 })
 export class Autocomplete {
   @Prop() label: string;
@@ -13,11 +28,10 @@ export class Autocomplete {
   @Prop({ mutable: true }) value: any = null;
   @Prop() dense: boolean;
   @Prop() required: boolean = null;
-  @Prop() items: any[] = [
-    { name: 'Default 1', value: 'default1' },
-    { name: 'Default 2', value: 'default2' },
-    { name: 'Default 3', value: 'default3' },
-  ];
+  @Prop() items: {
+    name: string;
+    value: string;
+  }[] = [];
 
   @Event() changeValue: EventEmitter;
   valueChangedHandler(item: any) {
@@ -39,7 +53,7 @@ export class Autocomplete {
   outerWrapperClasses = ['outer-wrapper'];
   validationClasses = ['validation-message'];
   @Listen('keydown')
-  handleKeyDown(ev: any){
+  handleKeyDown(ev: any) {
     if (ev.key === 'Tab') {
       this.menuVisible = false;
     }
@@ -51,7 +65,7 @@ export class Autocomplete {
       } else {
         if (this.currentIndex === null) {
           this.currentIndex = 0;
-        } else if (this.currentIndex + 1 < this.items.length){
+        } else if (this.currentIndex + 1 < this.items.length) {
           this.currentIndex = this.currentIndex + 1;
         }
       }
@@ -60,9 +74,9 @@ export class Autocomplete {
     if (ev.key === 'ArrowUp') {
       ev.preventDefault();
       this.menuVisible = true;
-      if (this.currentIndex !== null && this.currentIndex > 0){
+      if (this.currentIndex !== null && this.currentIndex > 0) {
         this.currentIndex = this.currentIndex - 1;
-      } else if (this.currentIndex === 0){
+      } else if (this.currentIndex === 0) {
         this.currentIndex = null;
       }
     }
@@ -89,7 +103,18 @@ export class Autocomplete {
   }
 
   current = null;
-  validationIcon = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#E71D32" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/></svg>;
+  validationIcon = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="#E71D32"
+      width="18px"
+      height="18px"
+    >
+      <path d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z" />
+    </svg>
+  );
 
   showMenu() {
     if (this.menuVisible) {
@@ -97,7 +122,7 @@ export class Autocomplete {
     }
     this.menuVisible = !this.menuVisible;
   }
-  
+
   handleChange(event) {
     this.menuVisible = true;
     this.query = event.target.value;
@@ -113,16 +138,15 @@ export class Autocomplete {
   componentDidLoad() {
     const _this = this;
 
-    window.addEventListener("click", function(event: any) {
+    window.addEventListener('click', function (event: any) {
       if (!event.target.matches('c-autocomplete')) {
         _this.menuVisible = false;
         _this.currentIndex = null;
       }
     });
-  
   }
 
-  getListItem = (item)=> {
+  getListItem = (item) => {
     let classes = '';
     if (this.dense) {
       classes = 'dense';
@@ -135,7 +159,7 @@ export class Autocomplete {
     return (
       <li
         id={'item_' + item.value}
-        ref={el => item.ref = el as HTMLElement}
+        ref={(el) => (item.ref = el as HTMLElement)}
         onClick={() => this.select(item)}
         class={classes}
       >
@@ -154,18 +178,29 @@ export class Autocomplete {
       this.outerWrapperClasses.push('required');
       this.validationClasses.push('show');
     } else {
-      this.outerWrapperClasses = this.outerWrapperClasses.filter(c => c !== 'required');
-      this.validationClasses = this.validationClasses.filter(c => c !== 'show');
+      this.outerWrapperClasses = this.outerWrapperClasses.filter(
+        (c) => c !== 'required'
+      );
+      this.validationClasses = this.validationClasses.filter(
+        (c) => c !== 'show'
+      );
     }
 
-
-    let classes = 'c-autocomplete-wrapper'
+    let classes = 'c-autocomplete-wrapper';
     if (this.menuVisible) classes = `${classes} c-autocomplete-wrapper-active`;
     if (this.dense) classes = `${classes} c-autocomplete-dense`;
-    const labelBlock = (<div class={borderLabel}>
-      <label class="top-span" htmlFor={ this.name }>{ this.label }{ this.required ? '*' : '' }</label>
-      <label class="hidden">{ this.label }{ this.required ? '*' : '' }</label>
-    </div>);
+    const labelBlock = (
+      <div class={borderLabel}>
+        <label class="top-span" htmlFor={this.name}>
+          {this.label}
+          {this.required ? '*' : ''}
+        </label>
+        <label class="hidden">
+          {this.label}
+          {this.required ? '*' : ''}
+        </label>
+      </div>
+    );
 
     return (
       <Host>
@@ -229,7 +264,7 @@ export class Autocomplete {
               <div class="c-autocomplete-current">
                 <input
                   value={this.query}
-                  ref={el => this.current = el as HTMLElement}
+                  ref={(el) => (this.current = el as HTMLElement)}
                   aria-autocomplete="list"
                   aria-controls="c-menu-parent"
                   aria-haspopup="true"
@@ -241,31 +276,40 @@ export class Autocomplete {
                 height="22"
                 fill="#222"
                 viewBox="0 0 24 24"
-                class={ this.menuVisible ? 'c-autocomplete-icon rotated' : 'c-autocomplete-icon'}
+                class={
+                  this.menuVisible
+                    ? 'c-autocomplete-icon rotated'
+                    : 'c-autocomplete-icon'
+                }
               >
-                <path d={ mdiChevronDown } />
+                <path d={mdiChevronDown} />
               </svg>
             </c-row>
           </div>
-          <input
-            type="hidden"
-            value={ this.value.value }
-            name={ this.name }
-          />
-          <div id="c-menu-parent" class="c-menu-parent" aria-expanded={this.menuVisible}>
-            { this.menuVisible ? <ul class="c-menu">
-              {this.items.map(item => this.getListItem(item))}
-            </ul> : ''}
+          <input type="hidden" value={this.value.value} name={this.name} />
+          <div
+            id="c-menu-parent"
+            class="c-menu-parent"
+            aria-expanded={this.menuVisible}
+          >
+            {this.menuVisible ? (
+              <ul class="c-menu">
+                {this.items.map((item) => this.getListItem(item))}
+              </ul>
+            ) : (
+              ''
+            )}
           </div>
           <div class="border-wrapper">
             <div class="border-left"></div>
-            { this.label ? labelBlock : null }
+            {this.label ? labelBlock : null}
             <div class="border-right"></div>
           </div>
         </div>
-        <div class={this.validationClasses.join(' ')}>{this.validationIcon} Required field</div>
+        <div class={this.validationClasses.join(' ')}>
+          {this.validationIcon} Required field
+        </div>
       </Host>
     );
   }
-
 }

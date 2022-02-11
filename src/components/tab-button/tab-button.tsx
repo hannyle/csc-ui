@@ -1,4 +1,4 @@
-import { Component, Prop, h } from "@stencil/core";
+import { Component, Prop, h } from '@stencil/core';
 import {
   mdiPlus,
   mdiMinus,
@@ -8,11 +8,11 @@ import {
   mdiServerSecurity,
   mdiNas,
   mdiChip,
-} from "@mdi/js";
+} from '@mdi/js';
 
 @Component({
-  tag: "c-tab-button",
-  styleUrl: "tab-button.css",
+  tag: 'c-tab-button',
+  styleUrl: 'tab-button.css',
   shadow: true,
 })
 export class Tab {
@@ -21,15 +21,15 @@ export class Tab {
   @Prop() active: boolean;
   @Prop() icon: string;
   @Prop() label: string;
-  @Prop({ attribute: "id" }) hostId: string;
+  @Prop({ attribute: 'id' }) hostId: string;
 
   render() {
     let classes,
-      subClasses = "",
+      subClasses = '',
       svg,
       selectedIcon;
     if (this.disabled) {
-      classes = "c-tab-button c-tab-button-disabled";
+      classes = 'c-tab-button c-tab-button-disabled';
     } else {
       classes = `c-tab-button ${this.color}`;
     }
@@ -51,7 +51,7 @@ export class Tab {
         <svg
           width="38"
           height="38"
-          fill={this.disabled ? "#8C8C8C" : "rgba(255,255,255,0.4)"}
+          fill={this.disabled ? '#8C8C8C' : 'rgba(255,255,255,0.4)'}
           viewBox="0 0 24 24"
         >
           <path d={selectedIcon} />
@@ -61,9 +61,9 @@ export class Tab {
 
     if (!this.disabled) {
       if (this.active) {
-        subClasses = "c-tab-button-active ripple";
+        subClasses = 'c-tab-button-active ripple';
       } else {
-        subClasses = "ripple";
+        subClasses = 'ripple';
       }
     }
     subClasses = `${subClasses} c-tab-button-padding`;
@@ -74,7 +74,7 @@ export class Tab {
         class="c-tab-button-wrapper"
         tabindex="0"
         role="button"
-        style={{ width: "500px;" }}
+        style={{ width: '500px;' }}
       >
         <div class={classes}>
           <div class={subClasses}>

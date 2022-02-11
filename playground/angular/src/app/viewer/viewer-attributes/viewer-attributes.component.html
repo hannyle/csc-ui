@@ -1,0 +1,19 @@
+<p class="fs-5 fw-bold my-1 text-primary">{{ data?.tag }}</p>
+<table class="table">
+  <thead>
+    <tr class="d-flex">
+      <th class="col-3">Attribute</th>
+      <th class="col-3">Type</th>
+      <th class="col-3">Default</th>
+      <th class="col-3">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let prop of data?.props" class="d-flex">
+      <td class="col-3">{{ prop.attr || prop.name }}</td>
+      <td class="col-3 monospace">{{ prop.type }}</td>
+      <td class="col-3">{{ prop.default }}</td>
+      <td class="col-3">{{ prop.docs }}</td>
+    </tr>
+  </tbody>
+</table>

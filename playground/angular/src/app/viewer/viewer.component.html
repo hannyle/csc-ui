@@ -1,0 +1,42 @@
+<div class="viewer">
+  <h1>{{ componentData?.tag }}</h1>
+
+  <ul class="nav nav-tabs mt-3">
+    <li class="nav-item" *ngFor="let tab of tabs">
+      <a
+        class="nav-link"
+        aria-current="page"
+        [class]="{ active: activeTab === tab }"
+        (click)="activeTab = tab"
+      >
+        {{ tab }}
+      </a>
+    </li>
+  </ul>
+
+  <div class="pt-4">
+    <div [hidden]="activeTab !== 'Examples'">
+      <ng-container appDynamicComponent></ng-container>
+    </div>
+
+    <div *ngIf="activeTab === 'Attributes'">
+      <app-viewer-attributes [data]="componentData"></app-viewer-attributes>
+
+      <div *ngFor="let child of componentData?.children">
+        <div *ngIf="child?.props.length">
+          <app-viewer-attributes [data]="child"></app-viewer-attributes>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="activeTab === 'Slots'">
+      <app-viewer-slots [data]="componentData"></app-viewer-slots>
+
+      <div *ngFor="let child of componentData?.children">
+        <div *ngIf="child?.slots.length">
+          <app-viewer-slots [data]="child"></app-viewer-slots>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
