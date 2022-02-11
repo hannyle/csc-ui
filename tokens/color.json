@@ -1,0 +1,12 @@
+{
+  "csc": {
+    "color": {
+      "primary": {
+        "value": "#fbbf24"
+      },
+      "secondary": {
+        "value": "#fb24be"
+      }
+    }
+  }
+}
