@@ -6,11 +6,14 @@ import {
   ViewChild,
   ChangeDetectionStrategy,
   Input,
+  ContentChildren,
+  QueryList,
 } from '@angular/core';
 import sanitizeHtml from 'sanitize-html';
 import prettier from 'prettier';
 import parser from 'prettier/parser-html';
 import docs from '../../../../../../docs.json';
+import { Example } from './Example';
 
 @Component({
   selector: 'app-example',
@@ -23,6 +26,8 @@ export class ExampleComponent implements AfterViewInit, AfterContentChecked {
   @Input() subtitle: string;
   @Input() flex: string;
   @ViewChild('example') example;
+  @ContentChildren(Example) items: QueryList<Example>;
+  exampleHtml: Example;
   code = '';
   allowedAttributes = [];
 
@@ -63,6 +68,9 @@ export class ExampleComponent implements AfterViewInit, AfterContentChecked {
         htmlWhitespaceSensitivity: 'ignore',
       },
     );
+
+    this.exampleHtml = this.items.toArray()[0];
+    console.log('🅱️', this.exampleHtml.templateText);
     // console.warn(prettier);
     // prettier.resolveConfig('../../../prettier.config.js').then(options => {
     //   console.warn('jokke', options);
