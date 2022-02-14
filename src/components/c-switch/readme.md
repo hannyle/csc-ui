@@ -16,9 +16,9 @@
 
 ## Events
 
-| Event         | Description | Type               |
-| ------------- | ----------- | ------------------ |
-| `changeValue` |             | `CustomEvent<any>` |
+| Event         | Description                       | Type               |
+| ------------- | --------------------------------- | ------------------ |
+| `changeValue` | Emit inner value change to parent | `CustomEvent<any>` |
 
 
 ----------------------------------------------

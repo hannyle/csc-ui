@@ -29,9 +29,12 @@ export class Switch {
    */
   @Prop({ mutable: true }) value = false;
 
-  @Element() host: HTMLElement;
+  @Element() host: HTMLCSwitchElement;
   @State() hasLabel: boolean = false;
 
+  /**
+   * Emit inner value change to parent
+   */
   @Event() changeValue: EventEmitter;
 
   componentDidLoad() {
@@ -40,7 +43,7 @@ export class Switch {
     this.hasLabel = slotted && slotted.length > 0;
   }
 
-  valueChangedHandler(event: Event) {
+  private _valueChangedHandler(event: Event) {
     const value = (event.currentTarget as HTMLInputElement).checked;
 
     this.value = value;
@@ -64,7 +67,7 @@ export class Switch {
             role="switch"
             disabled={this.hostDisabled}
             checked={this.value}
-            onInput={(e) => this.valueChangedHandler(e)}
+            onInput={(e) => this._valueChangedHandler(e)}
           />
           <span class="c-switch__slider"></span>
         </div>
