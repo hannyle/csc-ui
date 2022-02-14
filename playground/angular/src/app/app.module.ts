@@ -16,6 +16,9 @@ import { ViewerSlotsComponent } from './viewer/viewer-slots/viewer-slots.compone
 import { CSwitchComponent } from './examples/c-switch/c-switch.component';
 import { CContentSwitcherComponent } from './examples/c-content-switcher/c-content-switcher.component';
 import { CIconButtonComponent } from './examples/c-icon-button/c-icon-button.component';
+import { ViewerEventsComponent } from './viewer/viewer-events/viewer-events.component';
+import { CTitleComponent } from './examples/c-title/c-title.component';
+import { CTagComponent } from './examples/c-tag/c-tag.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { CIconButtonComponent } from './examples/c-icon-button/c-icon-button.com
     CSwitchComponent,
     CContentSwitcherComponent,
     CIconButtonComponent,
+    ViewerEventsComponent,
+    CTitleComponent,
+    CTagComponent,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HighlightModule],
   providers: [
