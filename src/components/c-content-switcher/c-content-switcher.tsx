@@ -11,6 +11,7 @@ import {
 
 /**
  * @group Tabs
+ * @slot - Default slot for the c-button elements
  */
 @Component({
   tag: 'c-content-switcher',
@@ -18,39 +19,39 @@ import {
   shadow: true,
 })
 export class ContentSwitcher {
-  @Prop({ mutable: true }) value!: number;
   /**
-   * Always require a value
-   *
-   * @type {boolean}
-   * @memberof ContentSwitcher
+   * Value of the content switcher
+   */
+  @Prop({ mutable: true }) value!: number | string;
+  /**
+   * Always require a selection
    */
   @Prop() mandatory: boolean = false;
   /**
-   * Always require a value
-   *
-   * @type {boolean}
-   * @memberof ContentSwitcher
+   * Size of the buttons
    */
   @Prop() size: 'default' | 'small' = 'default';
   /**
    * Disable the content switcher
    */
-  @Prop({ attribute: 'disabled' }) hostDisabled: boolean;
-  @Element() el: HTMLElement;
+  @Prop({ attribute: 'disabled' }) hostDisabled = false;
+
+  /**
+   * Emit changes to the parent
+   */
   @Event() changeValue: EventEmitter;
+  @Element() el: HTMLCContentSwitcherElement;
 
   @Watch('value')
-  watchPropHandler(value: number) {
-    if (value || value === 0) {
-      /* @ts-ignore */
+  watchPropHandler(value: string | number) {
+    if (value !== null) {
       this.buttons[value].outlined = false;
     }
 
     this.changeValue.emit(value);
   }
 
-  @Listen('click')
+  @Listen('click', { passive: true })
   onHandleClickEvent(ev) {
     const clickStack = ev.composedPath();
     const switcher = clickStack.find((e) => e.tagName === 'C-CONTENT-SWITCHER');
@@ -60,10 +61,19 @@ export class ContentSwitcher {
 
     const { index } = button.dataset;
 
-    if (+index === this.value && this.mandatory) return;
+    // Disable deselection if mandatory prop is set to true
+    if (
+      (this.mandatory &&
+        !this._isString(this.value) &&
+        +index === +this.value) ||
+      (this.mandatory &&
+        this._isString(this.value) &&
+        button.value === this.value)
+    ) {
+      return;
+    }
 
-    switcher.childNodes.forEach((btn: HTMLElement) => {
-      /* @ts-ignore */
+    switcher.childNodes.forEach((btn: HTMLCButtonElement) => {
       btn.outlined = true;
     });
 
@@ -71,24 +81,28 @@ export class ContentSwitcher {
   }
 
   get buttons() {
-    return this.el.childNodes;
+    return Array.from(this.el.childNodes) as HTMLCButtonElement[];
   }
 
-  componentDidRender() {
-    this.buttons.forEach((button: HTMLElement, index) => {
-      button.setAttribute('data-index', String(index));
+  get valueIsString() {
+    return Number.isNaN(+this.value);
+  }
 
-      /* @ts-ignore */
+  componentDidLoad() {
+    // use 0 as value if nothing is provided
+    this.value = this.value ?? 0;
+
+    this.buttons.forEach((button: HTMLCButtonElement, index) => {
+      button.setAttribute('data-index', String(index));
       button.noRadius = true;
-      /* @ts-ignore */
       button.fit = true;
-      /* @ts-ignore */
       button.disabled = this.hostDisabled;
-      /* @ts-ignore */
       button.dense = this.size === 'small';
 
-      if (index !== this.value) {
-        /* @ts-ignore */
+      if (
+        (!this._isString(this.value) && index !== +this.value) ||
+        (this._isString(this.value) && button.value !== this.value)
+      ) {
         button.outlined = true;
       }
 
@@ -98,11 +112,8 @@ export class ContentSwitcher {
     });
   }
 
-  valueChangedHandler(event: Event) {
-    const value = (event.target as HTMLInputElement).value;
-
-    this.value = +value;
-    this.changeValue.emit(+value);
+  private _isString(value) {
+    return Number.isNaN(+value);
   }
 
   render() {
