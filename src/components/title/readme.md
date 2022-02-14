@@ -5,6 +5,13 @@
 <!-- Auto Generated Below -->
 
 
+## Slots
+
+| Slot | Description  |
+| ---- | ------------ |
+|      | Default slot |
+
+
 ## Dependencies
 
 ### Used by

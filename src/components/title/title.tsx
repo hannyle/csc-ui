@@ -1,12 +1,15 @@
 import { Component, Host, h } from '@stencil/core';
 
+/**
+ * @slot - Default slot
+ */
+
 @Component({
   tag: 'c-title',
   styleUrl: 'title.css',
-  shadow: true
+  shadow: true,
 })
 export class Title {
-
   render() {
     return (
       <Host>
@@ -15,5 +18,4 @@ export class Title {
       </Host>
     );
   }
-
 }

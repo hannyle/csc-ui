@@ -3,7 +3,7 @@
   <p class="mb-0" *ngIf="subtitle">{{ subtitle }}</p>
 </div>
 
-<div [class.flex]="flex.length === 0" #example>
+<div [class.flex]="flex?.length === 0" #example>
   <ng-content></ng-content>
 </div>
 
