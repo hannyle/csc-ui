@@ -13,19 +13,42 @@ export namespace Components {
         "value": boolean;
     }
     interface CAutocomplete {
+        /**
+          * Dense variant
+         */
         "dense": boolean;
+        /**
+          * Items to be selected
+         */
         "items": {
     name: string;
     value: string;
   }[];
+        /**
+          * Element label
+         */
         "label": string;
-        "name": string;
-        "query": any;
+        /**
+          * Search string
+         */
+        "query": string;
+        /**
+          * Show required validation
+         */
         "required": boolean;
-        "value": any;
+        /**
+          * Selected item
+         */
+        "value": { name: string; value: string };
     }
     interface CButton {
+        /**
+          * Dense variant
+         */
         "dense": boolean;
+        /**
+          * Disable the button
+         */
         "disabled": boolean;
         /**
           * Fit width to containing element
@@ -35,19 +58,39 @@ export namespace Components {
           * Light button background
          */
         "ghost": boolean;
+        /**
+          * Id of the button
+         */
         "hostId": string;
-        "icon": string;
+        /**
+          * Name of the icon to be displayed in the button
+          * @deprecated Please use the icon slot instead
+         */
+        "icon": 'plus' | 'minus' | 'account' | 'edit';
+        /**
+          * Display loader on the button
+         */
         "loading": boolean;
+        /**
+          * Remove the default border radius
+         */
         "noRadius": boolean;
         /**
           * Outlined button style
          */
         "outlined": boolean;
+        /**
+          * Secondary variant
+         */
         "secondary": boolean;
         /**
           * Transparent button background
          */
         "text": boolean;
+        /**
+          * Value for the button - for use in the c-content-switcher
+         */
+        "value"?: number | string;
     }
     interface CCard {
         /**
@@ -66,8 +109,13 @@ export namespace Components {
     interface CCardTitle {
     }
     interface CCheckbox {
+        /**
+          * Is the element checked
+         */
         "checked": boolean;
-        "color": string;
+        /**
+          * Element label
+         */
         "label": string;
     }
     interface CConsent {
@@ -81,18 +129,17 @@ export namespace Components {
          */
         "hostDisabled": boolean;
         /**
-          * Always require a value
-          * @type {boolean}
-          * @memberof ContentSwitcher
+          * Always require a selection
          */
         "mandatory": boolean;
         /**
-          * Always require a value
-          * @type {boolean}
-          * @memberof ContentSwitcher
+          * Size of the buttons
          */
         "size": 'default' | 'small';
-        "value": number;
+        /**
+          * Value of the content switcher
+         */
+        "value": number | string;
     }
     interface CCscLogo {
     }
@@ -104,6 +151,7 @@ export namespace Components {
         "ghost": boolean;
         "icon": string;
         "outlined": boolean;
+        "size": 'default' | 'small';
         "text": boolean;
     }
     interface CLink {
@@ -201,8 +249,17 @@ export namespace Components {
         "href": string;
     }
     interface CSwitch {
+        /**
+          * Disable the switch
+         */
         "hostDisabled": boolean;
+        /**
+          * Id for the element
+         */
         "hostId": string;
+        /**
+          * Value of the element
+         */
         "value": boolean;
     }
     interface CTab {
@@ -543,20 +600,50 @@ declare namespace LocalJSX {
         "value"?: boolean;
     }
     interface CAutocomplete {
+        /**
+          * Dense variant
+         */
         "dense"?: boolean;
+        /**
+          * Items to be selected
+         */
         "items"?: {
     name: string;
     value: string;
   }[];
+        /**
+          * Element label
+         */
         "label"?: string;
-        "name"?: string;
+        /**
+          * Triggered when text is typed
+         */
+        "onChangeQuery"?: (event: CustomEvent<any>) => void;
+        /**
+          * Triggered when an item is selected
+         */
         "onChangeValue"?: (event: CustomEvent<any>) => void;
-        "query"?: any;
+        /**
+          * Search string
+         */
+        "query"?: string;
+        /**
+          * Show required validation
+         */
         "required"?: boolean;
-        "value"?: any;
+        /**
+          * Selected item
+         */
+        "value"?: { name: string; value: string };
     }
     interface CButton {
+        /**
+          * Dense variant
+         */
         "dense"?: boolean;
+        /**
+          * Disable the button
+         */
         "disabled"?: boolean;
         /**
           * Fit width to containing element
@@ -566,19 +653,39 @@ declare namespace LocalJSX {
           * Light button background
          */
         "ghost"?: boolean;
+        /**
+          * Id of the button
+         */
         "hostId"?: string;
-        "icon"?: string;
+        /**
+          * Name of the icon to be displayed in the button
+          * @deprecated Please use the icon slot instead
+         */
+        "icon"?: 'plus' | 'minus' | 'account' | 'edit';
+        /**
+          * Display loader on the button
+         */
         "loading"?: boolean;
+        /**
+          * Remove the default border radius
+         */
         "noRadius"?: boolean;
         /**
           * Outlined button style
          */
         "outlined"?: boolean;
+        /**
+          * Secondary variant
+         */
         "secondary"?: boolean;
         /**
           * Transparent button background
          */
         "text"?: boolean;
+        /**
+          * Value for the button - for use in the c-content-switcher
+         */
+        "value"?: number | string;
     }
     interface CCard {
         /**
@@ -597,9 +704,17 @@ declare namespace LocalJSX {
     interface CCardTitle {
     }
     interface CCheckbox {
+        /**
+          * Is the element checked
+         */
         "checked"?: boolean;
-        "color"?: string;
+        /**
+          * Element label
+         */
         "label"?: string;
+        /**
+          * Triggered when element is checked or unchecked
+         */
         "onChangeValue"?: (event: CustomEvent<any>) => void;
     }
     interface CConsent {
@@ -613,19 +728,21 @@ declare namespace LocalJSX {
          */
         "hostDisabled"?: boolean;
         /**
-          * Always require a value
-          * @type {boolean}
-          * @memberof ContentSwitcher
+          * Always require a selection
          */
         "mandatory"?: boolean;
+        /**
+          * Emit changes to the parent
+         */
         "onChangeValue"?: (event: CustomEvent<any>) => void;
         /**
-          * Always require a value
-          * @type {boolean}
-          * @memberof ContentSwitcher
+          * Size of the buttons
          */
         "size"?: 'default' | 'small';
-        "value": number;
+        /**
+          * Value of the content switcher
+         */
+        "value": number | string;
     }
     interface CCscLogo {
     }
@@ -637,6 +754,7 @@ declare namespace LocalJSX {
         "ghost"?: boolean;
         "icon"?: string;
         "outlined"?: boolean;
+        "size"?: 'default' | 'small';
         "text"?: boolean;
     }
     interface CLink {
@@ -736,9 +854,18 @@ declare namespace LocalJSX {
         "href"?: string;
     }
     interface CSwitch {
+        /**
+          * Disable the switch
+         */
         "hostDisabled"?: boolean;
+        /**
+          * Id for the element
+         */
         "hostId"?: string;
         "onChangeValue"?: (event: CustomEvent<any>) => void;
+        /**
+          * Value of the element
+         */
         "value"?: boolean;
     }
     interface CTab {

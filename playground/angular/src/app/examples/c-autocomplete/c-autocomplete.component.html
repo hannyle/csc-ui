@@ -1,0 +1,10 @@
+<app-example title="Basic usage in Angular" flex [raw]="examples[0]" [script]="scripts[0]">
+  <c-autocomplete
+    label="Basic autocomplete"
+    cControl
+    [items]="filteredItems"
+    [query]="query"
+    (changeQuery)="changeQuery($event)"
+    [(ngModel)]="value"
+  ></c-autocomplete>
+</app-example>

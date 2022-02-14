@@ -1,5 +1,5 @@
 {
-  "timestamp": "2022-02-11T14:12:33",
+  "timestamp": "2022-02-14T13:55:56",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.13.0",
@@ -117,7 +117,7 @@
           "mutable": false,
           "attr": "dense",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Dense variant",
           "docsTags": [],
           "values": [
             {
@@ -132,7 +132,7 @@
           "type": "{ name: string; value: string; }[]",
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Items to be selected",
           "docsTags": [],
           "default": "[]",
           "values": [
@@ -149,23 +149,7 @@
           "mutable": false,
           "attr": "label",
           "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "name",
-          "type": "string",
-          "mutable": false,
-          "attr": "name",
-          "reflectToAttr": false,
-          "docs": "",
+          "docs": "Element label",
           "docsTags": [],
           "values": [
             {
@@ -177,16 +161,16 @@
         },
         {
           "name": "query",
-          "type": "any",
+          "type": "string",
           "mutable": true,
           "attr": "query",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Search string",
           "docsTags": [],
           "default": "null",
           "values": [
             {
-              "type": "any"
+              "type": "string"
             }
           ],
           "optional": false,
@@ -198,7 +182,7 @@
           "mutable": false,
           "attr": "required",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Show required validation",
           "docsTags": [],
           "default": "null",
           "values": [
@@ -211,16 +195,15 @@
         },
         {
           "name": "value",
-          "type": "any",
+          "type": "{ name: string; value: string; }",
           "mutable": true,
-          "attr": "value",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Selected item",
           "docsTags": [],
           "default": "null",
           "values": [
             {
-              "type": "any"
+              "type": "{ name: string; value: string; }"
             }
           ],
           "optional": false,
@@ -230,12 +213,21 @@
       "methods": [],
       "events": [
         {
+          "event": "changeQuery",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Triggered when text is typed",
+          "docsTags": []
+        },
+        {
           "event": "changeValue",
           "detail": "any",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "",
+          "docs": "Triggered when an item is selected",
           "docsTags": []
         }
       ],
@@ -287,8 +279,9 @@
           "mutable": false,
           "attr": "dense",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Dense variant",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -303,8 +296,9 @@
           "mutable": false,
           "attr": "disabled",
           "reflectToAttr": true,
-          "docs": "",
+          "docs": "Disable the button",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -321,6 +315,7 @@
           "reflectToAttr": false,
           "docs": "Fit width to containing element",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -337,6 +332,7 @@
           "reflectToAttr": false,
           "docs": "Light button background",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -351,7 +347,7 @@
           "mutable": false,
           "attr": "id",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Id of the button",
           "docsTags": [],
           "values": [
             {
@@ -363,14 +359,33 @@
         },
         {
           "name": "icon",
-          "type": "string",
+          "type": "\"account\" | \"edit\" | \"minus\" | \"plus\"",
           "mutable": false,
           "attr": "icon",
           "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [],
+          "docs": "Name of the icon to be displayed in the button",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Please use the icon slot instead"
+            }
+          ],
+          "deprecation": "Please use the icon slot instead",
           "values": [
             {
+              "value": "account",
+              "type": "string"
+            },
+            {
+              "value": "edit",
+              "type": "string"
+            },
+            {
+              "value": "minus",
+              "type": "string"
+            },
+            {
+              "value": "plus",
               "type": "string"
             }
           ],
@@ -383,8 +398,9 @@
           "mutable": false,
           "attr": "loading",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Display loader on the button",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -399,8 +415,9 @@
           "mutable": false,
           "attr": "no-radius",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Remove the default border radius",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -417,6 +434,7 @@
           "reflectToAttr": false,
           "docs": "Outlined button style",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -431,8 +449,9 @@
           "mutable": false,
           "attr": "secondary",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Secondary variant",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -449,12 +468,32 @@
           "reflectToAttr": false,
           "docs": "Transparent button background",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
             }
           ],
           "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "number | string",
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "Value for the button\n- for use in the c-content-switcher",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
           "required": false
         }
       ],
@@ -681,27 +720,12 @@
           "mutable": true,
           "attr": "checked",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Is the element checked",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "color",
-          "type": "string",
-          "mutable": false,
-          "attr": "color",
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
             }
           ],
           "optional": false,
@@ -713,8 +737,9 @@
           "mutable": false,
           "attr": "label",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Element label",
           "docsTags": [],
+          "default": "''",
           "values": [
             {
               "type": "string"
@@ -732,7 +757,7 @@
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "",
+          "docs": "Triggered when element is checked or unchecked",
           "docsTags": []
         }
       ],
@@ -821,6 +846,10 @@
         {
           "name": "group",
           "text": "Tabs"
+        },
+        {
+          "name": "slot",
+          "text": "- Default slot for the c-button elements"
         }
       ],
       "usage": {},
@@ -833,6 +862,7 @@
           "reflectToAttr": false,
           "docs": "Disable the content switcher",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -847,17 +877,8 @@
           "mutable": false,
           "attr": "mandatory",
           "reflectToAttr": false,
-          "docs": "Always require a value",
-          "docsTags": [
-            {
-              "name": "type",
-              "text": "{boolean}"
-            },
-            {
-              "name": "memberof",
-              "text": "ContentSwitcher"
-            }
-          ],
+          "docs": "Always require a selection",
+          "docsTags": [],
           "default": "false",
           "values": [
             {
@@ -873,17 +894,8 @@
           "mutable": false,
           "attr": "size",
           "reflectToAttr": false,
-          "docs": "Always require a value",
-          "docsTags": [
-            {
-              "name": "type",
-              "text": "{boolean}"
-            },
-            {
-              "name": "memberof",
-              "text": "ContentSwitcher"
-            }
-          ],
+          "docs": "Size of the buttons",
+          "docsTags": [],
           "default": "'default'",
           "values": [
             {
@@ -900,15 +912,18 @@
         },
         {
           "name": "value",
-          "type": "number",
+          "type": "number | string",
           "mutable": true,
           "attr": "value",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Value of the content switcher",
           "docsTags": [],
           "values": [
             {
               "type": "number"
+            },
+            {
+              "type": "string"
             }
           ],
           "optional": false,
@@ -923,7 +938,7 @@
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "",
+          "docs": "Emit changes to the parent",
           "docsTags": []
         }
       ],
@@ -931,11 +946,16 @@
         {
           "event": "click",
           "capture": false,
-          "passive": false
+          "passive": true
         }
       ],
       "styles": [],
-      "slots": [],
+      "slots": [
+        {
+          "name": "",
+          "docs": "Default slot for the c-button elements"
+        }
+      ],
       "parts": [],
       "dependents": [],
       "dependencies": [],
@@ -1073,6 +1093,28 @@
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"default\" | \"small\"",
+          "mutable": false,
+          "attr": "size",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'default'",
+          "values": [
+            {
+              "value": "default",
+              "type": "string"
+            },
+            {
+              "value": "small",
+              "type": "string"
             }
           ],
           "optional": false,
@@ -2425,8 +2467,9 @@
           "mutable": false,
           "attr": "disabled",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Disable the switch",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -2441,7 +2484,7 @@
           "mutable": false,
           "attr": "id",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Id for the element",
           "docsTags": [],
           "values": [
             {
@@ -2457,7 +2500,7 @@
           "mutable": true,
           "attr": "value",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Value of the element",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -3129,14 +3172,24 @@
       "tag": "c-title",
       "readme": "# c-title\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "slot",
+          "text": "- Default slot"
+        }
+      ],
       "usage": {},
       "props": [],
       "methods": [],
       "events": [],
       "listeners": [],
       "styles": [],
-      "slots": [],
+      "slots": [
+        {
+          "name": "",
+          "docs": "Default slot"
+        }
+      ],
       "parts": [],
       "dependents": [
         "c-card-title"

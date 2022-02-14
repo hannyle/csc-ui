@@ -7,18 +7,17 @@
 
 ## Properties
 
-| Property  | Attribute | Description | Type      | Default     |
-| --------- | --------- | ----------- | --------- | ----------- |
-| `checked` | `checked` |             | `boolean` | `undefined` |
-| `color`   | `color`   |             | `string`  | `undefined` |
-| `label`   | `label`   |             | `string`  | `undefined` |
+| Property  | Attribute | Description            | Type      | Default |
+| --------- | --------- | ---------------------- | --------- | ------- |
+| `checked` | `checked` | Is the element checked | `boolean` | `false` |
+| `label`   | `label`   | Element label          | `string`  | `''`    |
 
 
 ## Events
 
-| Event         | Description | Type               |
-| ------------- | ----------- | ------------------ |
-| `changeValue` |             | `CustomEvent<any>` |
+| Event         | Description                                    | Type               |
+| ------------- | ---------------------------------------------- | ------------------ |
+| `changeValue` | Triggered when element is checked or unchecked | `CustomEvent<any>` |
 
 
 ----------------------------------------------

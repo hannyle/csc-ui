@@ -19,6 +19,8 @@ import { CIconButtonComponent } from './examples/c-icon-button/c-icon-button.com
 import { ViewerEventsComponent } from './viewer/viewer-events/viewer-events.component';
 import { CTitleComponent } from './examples/c-title/c-title.component';
 import { CTagComponent } from './examples/c-tag/c-tag.component';
+import { CAutocompleteComponent } from './examples/c-autocomplete/c-autocomplete.component';
+import { CCheckboxComponent } from './examples/c-checkbox/c-checkbox.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { CTagComponent } from './examples/c-tag/c-tag.component';
     ViewerEventsComponent,
     CTitleComponent,
     CTagComponent,
+    CAutocompleteComponent,
+    CCheckboxComponent,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HighlightModule],
   providers: [
