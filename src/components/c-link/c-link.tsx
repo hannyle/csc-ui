@@ -1,5 +1,7 @@
 import { Component, h, Prop } from '@stencil/core';
-
+/**
+ * @group Buttons
+ */
 @Component({
   tag: 'c-link',
   styleUrl: 'c-link.css',
@@ -18,5 +20,4 @@ export class CLink {
       </a>
     );
   }
-
 }

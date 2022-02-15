@@ -2,6 +2,7 @@ import { Component, Host, h, Prop, getAssetPath } from '@stencil/core';
 
 export type CardBackground = 'puhti' | 'mahti' | 'allas';
 /**
+ * @group Containers
  * @slot - Card contents
  */
 @Component({

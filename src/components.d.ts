@@ -278,14 +278,11 @@ export namespace Components {
     }
     interface CTabButton {
         "active": boolean;
+        "color": string;
         "disabled": boolean;
         "hostId": string;
+        "icon": string;
         "label": string;
-        "value": number | string;
-    }
-    interface CTabButtons {
-        "centered": boolean;
-        "value": number | string;
     }
     interface CTabs {
         /**
@@ -548,12 +545,6 @@ declare global {
         prototype: HTMLCTabButtonElement;
         new (): HTMLCTabButtonElement;
     };
-    interface HTMLCTabButtonsElement extends Components.CTabButtons, HTMLStencilElement {
-    }
-    var HTMLCTabButtonsElement: {
-        prototype: HTMLCTabButtonsElement;
-        new (): HTMLCTabButtonsElement;
-    };
     interface HTMLCTabsElement extends Components.CTabs, HTMLStencilElement {
     }
     var HTMLCTabsElement: {
@@ -625,7 +616,6 @@ declare global {
         "c-switch": HTMLCSwitchElement;
         "c-tab": HTMLCTabElement;
         "c-tab-button": HTMLCTabButtonElement;
-        "c-tab-buttons": HTMLCTabButtonsElement;
         "c-tabs": HTMLCTabsElement;
         "c-tag": HTMLCTagElement;
         "c-text-field": HTMLCTextFieldElement;
@@ -776,7 +766,7 @@ declare namespace LocalJSX {
         /**
           * Emit changes to the parent
          */
-        "onChangeValue"?: (event: CustomEvent<number | string>) => void;
+        "onChangeValue"?: (event: CustomEvent<any>) => void;
         /**
           * Size of the buttons
          */
@@ -934,16 +924,11 @@ declare namespace LocalJSX {
     }
     interface CTabButton {
         "active"?: boolean;
+        "color"?: string;
         "disabled"?: boolean;
         "hostId"?: string;
+        "icon"?: string;
         "label"?: string;
-        "onChangeValue"?: (event: CustomEvent<any>) => void;
-        "onTabChange"?: (event: CustomEvent<any>) => void;
-        "value"?: number | string;
-    }
-    interface CTabButtons {
-        "centered"?: boolean;
-        "value"?: number | string;
     }
     interface CTabs {
         /**
@@ -1040,7 +1025,6 @@ declare namespace LocalJSX {
         "c-switch": CSwitch;
         "c-tab": CTab;
         "c-tab-button": CTabButton;
-        "c-tab-buttons": CTabButtons;
         "c-tabs": CTabs;
         "c-tag": CTag;
         "c-text-field": CTextField;
@@ -1087,7 +1071,6 @@ declare module "@stencil/core" {
             "c-switch": LocalJSX.CSwitch & JSXBase.HTMLAttributes<HTMLCSwitchElement>;
             "c-tab": LocalJSX.CTab & JSXBase.HTMLAttributes<HTMLCTabElement>;
             "c-tab-button": LocalJSX.CTabButton & JSXBase.HTMLAttributes<HTMLCTabButtonElement>;
-            "c-tab-buttons": LocalJSX.CTabButtons & JSXBase.HTMLAttributes<HTMLCTabButtonsElement>;
             "c-tabs": LocalJSX.CTabs & JSXBase.HTMLAttributes<HTMLCTabsElement>;
             "c-tag": LocalJSX.CTag & JSXBase.HTMLAttributes<HTMLCTagElement>;
             "c-text-field": LocalJSX.CTextField & JSXBase.HTMLAttributes<HTMLCTextFieldElement>;

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2022-02-14T20:43:27",
+  "timestamp": "2022-02-15T10:09:05",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.13.0",
@@ -524,6 +524,10 @@
       "docs": "",
       "docsTags": [
         {
+          "name": "group",
+          "text": "Containers"
+        },
+        {
           "name": "slot",
           "text": "- Card contents"
         }
@@ -806,7 +810,12 @@
       "tag": "c-container",
       "readme": "# c-container\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Layout"
+        }
+      ],
       "usage": {},
       "props": [
         {
@@ -934,7 +943,7 @@
       "events": [
         {
           "event": "changeValue",
-          "detail": "number | string",
+          "detail": "any",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -1153,7 +1162,12 @@
       "tag": "c-link",
       "readme": "# c-link\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Buttons"
+        }
+      ],
       "usage": {},
       "props": [
         {
@@ -1262,7 +1276,12 @@
       "tag": "c-main",
       "readme": "# c-main\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Layout"
+        }
+      ],
       "usage": {},
       "props": [],
       "methods": [],
@@ -1827,7 +1846,12 @@
       "tag": "c-row",
       "readme": "# c-row\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Layout"
+        }
+      ],
       "usage": {},
       "props": [
         {
@@ -1927,7 +1951,8 @@
         "c-autocomplete",
         "c-consent",
         "c-paginationrow",
-        "c-sidenavigationitem"
+        "c-sidenavigationitem",
+        "c-tab-button"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -1941,6 +1966,9 @@
           "c-row"
         ],
         "c-sidenavigationitem": [
+          "c-row"
+        ],
+        "c-tab-button": [
           "c-row"
         ]
       }
@@ -2359,7 +2387,12 @@
       "tag": "c-spacer",
       "readme": "# c-spacer\n\n\n",
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Layout"
+        }
+      ],
       "usage": {},
       "props": [],
       "methods": [],
@@ -2370,7 +2403,8 @@
       "parts": [],
       "dependents": [
         "c-accordion-item",
-        "c-card-actions"
+        "c-card-actions",
+        "c-tab-button"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -2378,6 +2412,9 @@
           "c-spacer"
         ],
         "c-card-actions": [
+          "c-spacer"
+        ],
+        "c-tab-button": [
           "c-spacer"
         ]
       }
@@ -2658,6 +2695,22 @@
           "required": false
         },
         {
+          "name": "color",
+          "type": "string",
+          "mutable": false,
+          "attr": "color",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "disabled",
           "type": "boolean",
           "mutable": false,
@@ -2690,6 +2743,22 @@
           "required": false
         },
         {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "label",
           "type": "string",
           "mutable": false,
@@ -2704,137 +2773,25 @@
           ],
           "optional": false,
           "required": false
-        },
-        {
-          "name": "value",
-          "type": "number | string",
-          "mutable": false,
-          "attr": "value",
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        }
-      ],
-      "methods": [],
-      "events": [
-        {
-          "event": "changeValue",
-          "detail": "any",
-          "bubbles": true,
-          "cancelable": true,
-          "composed": true,
-          "docs": "",
-          "docsTags": []
-        },
-        {
-          "event": "tabChange",
-          "detail": "any",
-          "bubbles": true,
-          "cancelable": true,
-          "composed": true,
-          "docs": "",
-          "docsTags": []
-        }
-      ],
-      "listeners": [
-        {
-          "event": "click",
-          "capture": false,
-          "passive": false
-        },
-        {
-          "event": "keydown",
-          "capture": true,
-          "passive": false
-        },
-        {
-          "event": "keyup",
-          "capture": true,
-          "passive": false
-        }
-      ],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {}
-    },
-    {
-      "filePath": "./src/components/c-tab-buttons/c-tab-buttons.tsx",
-      "encapsulation": "none",
-      "tag": "c-tab-buttons",
-      "readme": "# c-tab-buttons\n\n\n",
-      "docs": "",
-      "docsTags": [],
-      "usage": {},
-      "props": [
-        {
-          "name": "centered",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "centered",
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "value",
-          "type": "number | string",
-          "mutable": false,
-          "attr": "value",
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
         }
       ],
       "methods": [],
       "events": [],
-      "listeners": [
-        {
-          "event": "changeValue",
-          "capture": false,
-          "passive": false
-        },
-        {
-          "event": "keyup",
-          "capture": true,
-          "passive": false
-        }
-      ],
+      "listeners": [],
       "styles": [],
       "slots": [],
       "parts": [],
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {}
+      "dependencies": [
+        "c-row",
+        "c-spacer"
+      ],
+      "dependencyGraph": {
+        "c-tab-button": [
+          "c-row",
+          "c-spacer"
+        ]
+      }
     },
     {
       "filePath": "./src/components/c-tabs/c-tabs.tsx",
