@@ -1,5 +1,8 @@
 import { Component, h, Prop } from '@stencil/core';
 
+/**
+ * @group Layout
+ */
 @Component({
   tag: 'c-row',
   styleUrl: 'row.scss',
