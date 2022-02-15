@@ -65,12 +65,12 @@ export class TextField {
     }
   }
 
-  private _setBlur() {
+  private _setBlur = () => {
     this.blurred = true;
     if (this.validateOnBlur) {
       this._runValidate(true);
     }
-  }
+  };
 
   private _handleChange = (event) => {
     this.value = event.target.value;
@@ -95,13 +95,13 @@ export class TextField {
     }
   }
 
-  private _focus() {
+  private _focus = () => {
     if (this.rows > 1) {
       this.textAreaReference.focus();
     } else {
       this.inputReference.focus();
     }
-  }
+  };
 
   private _validationIcon = (
     <svg

@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { ConnectableObservable, Subscription } from 'rxjs';
 import { ComponentData } from 'src/interfaces/documentation';
-import docs from '../../../../docs.json';
 import { ComponentDataService } from './services/component-data.service';
 import { parseComponents } from './utils/utils';
+import docs from '../../../../docs.json';
 
 interface ComponentGroup {
   name: string;
@@ -16,7 +15,6 @@ interface ComponentGroup {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  _routeSubscription: Subscription;
   selectedComponent = {};
   components = [];
   groups = [];
@@ -27,8 +25,19 @@ export class AppComponent {
     this.groupedComponents = this.getGroupedComponents();
   }
 
-  getGroupedComponents(): ComponentGroup[] {
+  filterComponents(event: Event) {
+    const query = (event.target as HTMLInputElement).value;
+
+    this.groupedComponents = this.getGroupedComponents(query);
+  }
+
+  getGroupedComponents(query = null): ComponentGroup[] {
     return this.components
+      .filter((component) => {
+        if (!query) return component;
+
+        return component.tag.includes(query);
+      })
       .reduce((groups: ComponentGroup[], component) => {
         const groupName = (
           component.docsTags.find((docsTag) => docsTag.name === 'group')?.text || 'ungrouped'
