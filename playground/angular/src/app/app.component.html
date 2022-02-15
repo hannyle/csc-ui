@@ -9,7 +9,7 @@
   <c-row class="no-margin no-wrap">
     <c-sidenavigation class="autoheight" *ngIf="components.length">
       <div *ngFor="let group of groupedComponents">
-        <p class="subheader">{{ group.name }}</p>
+        <p class="subheader" *ngIf="group.name !== 'ungrouped'">{{ group.name }}</p>
         <c-sidenavigationitem
           *ngFor="let item of group.components"
           [routerLink]="['/' + item.tag]"

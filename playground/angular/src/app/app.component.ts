@@ -1,8 +1,14 @@
 import { Component } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { ConnectableObservable, Subscription } from 'rxjs';
+import { ComponentData } from 'src/interfaces/documentation';
 import docs from '../../../../docs.json';
 import { ComponentDataService } from './services/component-data.service';
 import { parseComponents } from './utils/utils';
+
+interface ComponentGroup {
+  name: string;
+  components: ComponentData[];
+}
 
 @Component({
   selector: 'app-root',
@@ -14,37 +20,32 @@ export class AppComponent {
   selectedComponent = {};
   components = [];
   groups = [];
-  groupedComponents = [];
+  groupedComponents: ComponentGroup[] = [];
 
   constructor(public componentDataService: ComponentDataService) {
     this.components = parseComponents(docs);
-
-    const groups = this.getGroups();
-    this.groupedComponents = groups.map((group) => ({
-      name: group,
-      components: [
-        ...this.components.filter((component) => {
-          if (group === '') {
-            return !component.docsTags.some((tag) => tag.name === 'group');
-          }
-          return component.docsTags.some((tag) => tag.name === 'group' && tag.text === group);
-        }),
-      ],
-    }));
+    this.groupedComponents = this.getGroupedComponents();
   }
 
-  getGroups() {
-    const groups = this.components.reduce((items, component) => {
-      const group = component.docsTags.find((docsTag) => docsTag.name === 'group')?.text;
-      if (group) {
-        items.push(group);
-      }
+  getGroupedComponents(): ComponentGroup[] {
+    return this.components
+      .reduce((groups: ComponentGroup[], component) => {
+        const groupName = (
+          component.docsTags.find((docsTag) => docsTag.name === 'group')?.text || 'ungrouped'
+        ).toLowerCase();
+        const group = groups.find((group) => group.name === groupName);
 
-      return items;
-    }, []);
-    groups.push('');
+        if (!group) {
+          groups.push({ name: groupName, components: [component] });
 
-    return [...new Set(groups)];
+          return groups;
+        }
+
+        group.components.push(component);
+
+        return groups;
+      }, [] as ComponentGroup[])
+      .sort((a, b) => a.name.localeCompare(b.name));
   }
 
   showElement(tag) {
