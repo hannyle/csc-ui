@@ -7,22 +7,22 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type                                 | Default     |
-| ---------- | ---------- | ----------- | ------------------------------------ | ----------- |
-| `dense`    | `dense`    |             | `boolean`                            | `undefined` |
-| `items`    | --         |             | `{ name: string; value: string; }[]` | `[]`        |
-| `label`    | `label`    |             | `string`                             | `undefined` |
-| `name`     | `name`     |             | `string`                             | `undefined` |
-| `query`    | `query`    |             | `any`                                | `null`      |
-| `required` | `required` |             | `boolean`                            | `null`      |
-| `value`    | `value`    |             | `any`                                | `null`      |
+| Property   | Attribute  | Description              | Type                                 | Default     |
+| ---------- | ---------- | ------------------------ | ------------------------------------ | ----------- |
+| `dense`    | `dense`    | Dense variant            | `boolean`                            | `undefined` |
+| `items`    | --         | Items to be selected     | `{ name: string; value: string; }[]` | `[]`        |
+| `label`    | `label`    | Element label            | `string`                             | `undefined` |
+| `query`    | `query`    | Search string            | `string`                             | `null`      |
+| `required` | `required` | Show required validation | `boolean`                            | `null`      |
+| `value`    | --         | Selected item            | `{ name: string; value: string; }`   | `null`      |
 
 
 ## Events
 
-| Event         | Description | Type               |
-| ------------- | ----------- | ------------------ |
-| `changeValue` |             | `CustomEvent<any>` |
+| Event         | Description                        | Type               |
+| ------------- | ---------------------------------- | ------------------ |
+| `changeQuery` | Triggered when text is typed       | `CustomEvent<any>` |
+| `changeValue` | Triggered when an item is selected | `CustomEvent<any>` |
 
 
 ## Dependencies

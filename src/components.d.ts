@@ -13,16 +13,33 @@ export namespace Components {
         "value": boolean;
     }
     interface CAutocomplete {
+        /**
+          * Dense variant
+         */
         "dense": boolean;
+        /**
+          * Items to be selected
+         */
         "items": {
     name: string;
     value: string;
   }[];
+        /**
+          * Element label
+         */
         "label": string;
-        "name": string;
-        "query": any;
+        /**
+          * Search string
+         */
+        "query": string;
+        /**
+          * Show required validation
+         */
         "required": boolean;
-        "value": any;
+        /**
+          * Selected item
+         */
+        "value": { name: string; value: string };
     }
     interface CButton {
         /**
@@ -92,8 +109,13 @@ export namespace Components {
     interface CCardTitle {
     }
     interface CCheckbox {
+        /**
+          * Is the element checked
+         */
         "checked": boolean;
-        "color": string;
+        /**
+          * Element label
+         */
         "label": string;
     }
     interface CConsent {
@@ -620,17 +642,41 @@ declare namespace LocalJSX {
         "value"?: boolean;
     }
     interface CAutocomplete {
+        /**
+          * Dense variant
+         */
         "dense"?: boolean;
+        /**
+          * Items to be selected
+         */
         "items"?: {
     name: string;
     value: string;
   }[];
+        /**
+          * Element label
+         */
         "label"?: string;
-        "name"?: string;
+        /**
+          * Triggered when text is typed
+         */
+        "onChangeQuery"?: (event: CustomEvent<any>) => void;
+        /**
+          * Triggered when an item is selected
+         */
         "onChangeValue"?: (event: CustomEvent<any>) => void;
-        "query"?: any;
+        /**
+          * Search string
+         */
+        "query"?: string;
+        /**
+          * Show required validation
+         */
         "required"?: boolean;
-        "value"?: any;
+        /**
+          * Selected item
+         */
+        "value"?: { name: string; value: string };
     }
     interface CButton {
         /**
@@ -700,9 +746,17 @@ declare namespace LocalJSX {
     interface CCardTitle {
     }
     interface CCheckbox {
+        /**
+          * Is the element checked
+         */
         "checked"?: boolean;
-        "color"?: string;
+        /**
+          * Element label
+         */
         "label"?: string;
+        /**
+          * Triggered when element is checked or unchecked
+         */
         "onChangeValue"?: (event: CustomEvent<any>) => void;
     }
     interface CConsent {

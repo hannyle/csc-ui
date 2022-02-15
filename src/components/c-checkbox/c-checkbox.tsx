@@ -16,9 +16,17 @@ import {
   shadow: true,
 })
 export class CCheckbox {
-  @Prop() label: string;
-  @Prop() color: string;
-  @Prop({ mutable: true }) checked: boolean;
+  /**
+   * Element label
+   */
+  @Prop() label: string = '';
+  /**
+   * Is the element checked
+   */
+  @Prop({ mutable: true }) checked: boolean = false;
+  /**
+   * Triggered when element is checked or unchecked
+   */
   @Event() changeValue: EventEmitter;
 
   @Listen('keydown')
@@ -29,13 +37,13 @@ export class CCheckbox {
     }
   }
 
-  toggleState() {
+  private toggleState() {
     this.checked = !this.checked;
     this.changeValue.emit(this.checked);
   }
 
   render() {
-    const classes = `c-checkbox__background csc-bg-color ${this.color}`;
+    const classes = `c-checkbox__background csc-bg-color`;
     return (
       <Host>
         <div class="c-checkbox-row" onClick={() => this.toggleState()}>

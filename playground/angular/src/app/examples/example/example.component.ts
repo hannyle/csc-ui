@@ -22,6 +22,8 @@ export class ExampleComponent implements AfterViewInit, AfterContentChecked {
   @Input() title: string;
   @Input() subtitle: string;
   @Input() flex: string;
+  @Input() raw: string;
+  @Input() script: string;
   @ViewChild('example') example;
   code = '';
   allowedAttributes = [];
@@ -44,12 +46,13 @@ export class ExampleComponent implements AfterViewInit, AfterContentChecked {
 
   ngAfterViewInit(): void {
     this.code = prettier.format(
-      sanitizeHtml(this.example.nativeElement.innerHTML, {
-        allowedTags: false,
-        allowedAttributes: {
-          '*': this.allowedAttributes,
-        },
-      }),
+      this.raw ||
+        sanitizeHtml(this.example.nativeElement.innerHTML, {
+          allowedTags: false,
+          allowedAttributes: {
+            '*': this.allowedAttributes,
+          },
+        }),
       {
         parser: 'angular',
         plugins: [parser],

@@ -25,19 +25,43 @@ export interface SelectItem {
   shadow: true,
 })
 export class Autocomplete {
+  /**
+   * Element label
+   */
   @Prop() label: string;
-  @Prop() name: string;
-  @Prop({ mutable: true }) query: any = null;
-  @Prop({ mutable: true }) value: any = null;
+  /**
+   * Search string
+   */
+  @Prop({ mutable: true }) query: string = null;
+  /**
+   * Selected item
+   */
+  @Prop({ mutable: true }) value: { name: string; value: string } = null;
+  /**
+   * Dense variant
+   */
   @Prop() dense: boolean;
+  /**
+   * Show required validation
+   */
   @Prop() required: boolean = null;
+  /**
+   * Items to be selected
+   */
   @Prop() items: {
     name: string;
     value: string;
   }[] = [];
 
+  /**
+   * Triggered when text is typed
+   */
+  @Event() changeQuery: EventEmitter;
+  /**
+   * Triggered when an item is selected
+   */
   @Event() changeValue: EventEmitter;
-  valueChangedHandler(item: any) {
+  private valueChangedHandler(item: any) {
     function isItem(element) {
       return element === item;
     }
@@ -50,11 +74,11 @@ export class Autocomplete {
     this.currentIndex = null;
   }
 
-  @Element() host: HTMLElement;
+  @Element() host: HTMLCAutocompleteElement;
   @State() menuVisible: boolean = false;
   @State() currentIndex: number = null;
-  outerWrapperClasses = ['outer-wrapper'];
-  validationClasses = ['validation-message'];
+  private outerWrapperClasses = ['outer-wrapper'];
+  private validationClasses = ['validation-message'];
   @Listen('keydown')
   handleKeyDown(ev: any) {
     if (ev.key === 'Tab') {
@@ -105,8 +129,7 @@ export class Autocomplete {
     }
   }
 
-  current = null;
-  validationIcon = (
+  private validationIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
@@ -119,23 +142,23 @@ export class Autocomplete {
     </svg>
   );
 
-  showMenu() {
+  private showMenu = () => {
     if (this.menuVisible) {
       this.currentIndex = null;
     }
     this.menuVisible = !this.menuVisible;
-  }
+  };
 
-  handleChange(event) {
+  private handleChange(event) {
     this.menuVisible = true;
     this.query = event.target.value;
+    this.changeQuery.emit(this.query);
   }
 
-  select(item) {
+  private select(item) {
     this.query = item.name;
     this.value = item;
     this.valueChangedHandler(item);
-    // this.menuVisible = false;
   }
 
   componentDidLoad() {
@@ -149,7 +172,7 @@ export class Autocomplete {
     });
   }
 
-  getListItem = (item) => {
+  private getListItem = (item) => {
     let classes = '';
     if (this.dense) {
       classes = 'dense';
@@ -194,7 +217,7 @@ export class Autocomplete {
     if (this.dense) classes = `${classes} c-autocomplete-dense`;
     const labelBlock = (
       <div class={borderLabel}>
-        <label class="top-span" htmlFor={this.name}>
+        <label class="top-span">
           {this.label}
           {this.required ? '*' : ''}
         </label>
@@ -207,54 +230,10 @@ export class Autocomplete {
 
     return (
       <Host>
-        {/* <label id="c-autocomplete-label">
-          { this.label }
-          { this.required ? <span class="required"> *</span> : '' }
-        </label>
-        <div class="c-autocomplete">
-          <div
-            class={ classes }
-            onClick={() => this.showMenu()}
-            role="button"
-            aria-labelledby="c-autocomplete-label"
-          >
-            <c-row class="no-wrap">
-              <div class="c-autocomplete-current">
-                <input
-                  value={this.query}
-                  ref={el => this.current = el as HTMLElement}
-                  aria-autocomplete="list"
-                  aria-controls="c-menu-parent"
-                  aria-haspopup="true"
-                  onInput={(event) => this.handleChange(event)}
-                />
-              </div>
-              <svg
-                width="22"
-                height="22"
-                fill="#222"
-                viewBox="0 0 24 24"
-                class={ this.menuVisible ? 'c-autocomplete-icon rotated' : 'c-autocomplete-icon'}
-              >
-                <path d={ mdiChevronDown } />
-              </svg>
-            </c-row>
-          </div>
-          <input
-            type="hidden"
-            value={ this.value.value }
-            name={ this.name }
-          />
-          <div id="c-menu-parent" class="c-menu-parent" aria-expanded={this.menuVisible}>
-            { this.menuVisible ? <ul class="c-menu">
-              {this.items.map(item => this.getListItem(item))}
-            </ul> : ''}
-          </div>
-        </div> */}
         <div
           class={this.outerWrapperClasses.join(' ')}
           tabindex="0"
-          onClick={() => this.showMenu()}
+          onClick={this.showMenu}
           role="button"
           aria-labelledby="c-select-label"
         >
@@ -263,14 +242,14 @@ export class Autocomplete {
             role="button"
             aria-labelledby="c-autocomplete-label"
           >
-            <c-row class="no-wrap">
+            <c-row wrap={false}>
               <div class="c-autocomplete-current">
                 <input
                   value={this.query}
-                  ref={(el) => (this.current = el as HTMLElement)}
                   aria-autocomplete="list"
                   aria-controls="c-menu-parent"
                   aria-haspopup="true"
+                  type="text"
                   onInput={(event) => this.handleChange(event)}
                 />
               </div>
@@ -289,7 +268,7 @@ export class Autocomplete {
               </svg>
             </c-row>
           </div>
-          <input type="hidden" value={this.value.value} name={this.name} />
+          <input type="hidden" value={this.value?.value} />
           <div
             id="c-menu-parent"
             class="c-menu-parent"
@@ -305,7 +284,7 @@ export class Autocomplete {
           </div>
           <div class="border-wrapper">
             <div class="border-left"></div>
-            {this.label ? labelBlock : null}
+            {this.label && labelBlock}
             <div class="border-right"></div>
           </div>
         </div>

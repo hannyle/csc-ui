@@ -22,6 +22,8 @@ import { ViewerAttributesComponent } from './viewer/viewer-attributes/viewer-att
 import { ViewerComponent } from './viewer/viewer.component';
 import { ViewerEventsComponent } from './viewer/viewer-events/viewer-events.component';
 import { ViewerSlotsComponent } from './viewer/viewer-slots/viewer-slots.component';
+import { CAutocompleteComponent } from './examples/c-autocomplete/c-autocomplete.component';
+import { CCheckboxComponent } from './examples/c-checkbox/c-checkbox.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { ViewerSlotsComponent } from './viewer/viewer-slots/viewer-slots.compone
     ViewerComponent,
     ViewerEventsComponent,
     ViewerSlotsComponent,
+    CCheckboxComponent,
+    CAutocompleteComponent,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HighlightModule],
   providers: [

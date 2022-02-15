@@ -1,4 +1,4 @@
-@import "../../global/app.css";
+@import '../../global/app.css';
 
 :host {
   display: block;
@@ -43,7 +43,7 @@
 .accordion-content-wrapper {
   overflow: hidden;
   transition: max-height 0.2s ease-out;
-  max-height: 800px;
+  max-height: 1800px;
 }
 
 .hidden {
