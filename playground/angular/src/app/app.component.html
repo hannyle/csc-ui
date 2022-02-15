@@ -26,13 +26,13 @@
           routerLinkActive="active"
           [active]="componentDataService.activeComponent?.tag === item?.tag"
         >
-          <div slot="main">{{ item.tag }}</div>
+          <div slot="main" class="text-capitalize">{{ item.name }}</div>
           <div slot="subnavitem">
             <c-subnavigationitem
               *ngFor="let child of item.children"
               (click)="showElement(child.tag)"
             >
-              {{ child.tag }}
+              {{ child.name }}
             </c-subnavigationitem>
           </div>
         </c-sidenavigationitem>

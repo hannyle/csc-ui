@@ -1,5 +1,6 @@
 <div class="viewer">
-  <h1>{{ componentData?.tag }}</h1>
+  <h1 class="text-capitalize mb-0 text-primary">{{ componentData?.name }}</h1>
+  <p class="mb-0 fs-6 text-black-50">{{ componentData?.tag }}</p>
 
   <ul class="nav nav-tabs mt-3">
     <li class="nav-item" *ngFor="let tab of tabs">

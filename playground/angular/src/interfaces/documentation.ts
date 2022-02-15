@@ -1,4 +1,5 @@
 export interface ComponentData {
+  name?: string;
   filePath: string;
   encapsulation: string;
   tag: string;

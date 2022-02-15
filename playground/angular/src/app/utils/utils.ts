@@ -1,10 +1,15 @@
 export function parseComponents(docs) {
-  const parentComponents = docs.components.filter(
+  const components = docs.components.map((component) => ({
+    ...component,
+    name: component.tag.replace(/^c-/, '').replaceAll('-', ' '),
+  }));
+
+  const parentComponents = components.filter(
     (component) => !component.docsTags.some((docsTag) => docsTag.name === 'parent'),
   );
 
   return parentComponents.map((item) => {
-    const children = docs.components
+    const children = components
       .filter((component) =>
         component.docsTags.some(
           (docsTag) => docsTag.name === 'parent' && docsTag.text === item.tag,
