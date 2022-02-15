@@ -9,20 +9,20 @@
 
 | Property         | Attribute          | Description | Type      | Default            |
 | ---------------- | ------------------ | ----------- | --------- | ------------------ |
-| `autofocus`      | `autofocus`        |             | `boolean` | `undefined`        |
-| `disabled`       | `disabled`         |             | `boolean` | `undefined`        |
-| `form`           | `form`             |             | `boolean` | `undefined`        |
+| `autofocus`      | `autofocus`        |             | `boolean` | `false`            |
+| `disabled`       | `disabled`         |             | `boolean` | `false`            |
+| `form`           | `form`             |             | `boolean` | `false`            |
 | `hostId`         | `id`               |             | `string`  | `undefined`        |
 | `label`          | `label`            |             | `string`  | `undefined`        |
 | `max`            | `max`              |             | `number`  | `null`             |
 | `min`            | `min`              |             | `number`  | `null`             |
 | `name`           | `name`             |             | `string`  | `undefined`        |
-| `number`         | `number`           |             | `boolean` | `undefined`        |
+| `number`         | `number`           |             | `boolean` | `false`            |
 | `placeholder`    | `placeholder`      |             | `string`  | `undefined`        |
-| `readonly`       | `readonly`         |             | `boolean` | `undefined`        |
+| `readonly`       | `readonly`         |             | `boolean` | `false`            |
 | `required`       | `required`         |             | `boolean` | `null`             |
 | `rows`           | `rows`             |             | `number`  | `1`                |
-| `shadow`         | `shadow`           |             | `boolean` | `undefined`        |
+| `shadow`         | `shadow`           |             | `boolean` | `false`            |
 | `step`           | `step`             |             | `number`  | `null`             |
 | `type`           | `type`             |             | `string`  | `undefined`        |
 | `valid`          | `valid`            |             | `boolean` | `true`             |

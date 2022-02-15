@@ -33,7 +33,7 @@ export class ExampleComponent implements AfterViewInit, AfterContentChecked {
 
         return items;
       },
-      ['class'],
+      ['class', 'style', 'slot'],
     );
     this.allowedAttributes = [...new Set(attrs)];
   }
@@ -59,7 +59,7 @@ export class ExampleComponent implements AfterViewInit, AfterContentChecked {
         singleQuote: true,
         bracketSpacing: true,
         bracketSameLine: false,
-        printWidth: 100,
+        printWidth: 50,
         htmlWhitespaceSensitivity: 'ignore',
       },
     );

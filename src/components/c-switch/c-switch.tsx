@@ -7,6 +7,7 @@ import {
   Event,
   EventEmitter,
 } from '@stencil/core';
+
 /**
  * @group Form
  */
@@ -35,7 +36,7 @@ export class Switch {
   /**
    * Emit inner value change to parent
    */
-  @Event() changeValue: EventEmitter;
+  @Event() changeValue: EventEmitter<boolean>;
 
   componentDidLoad() {
     const slotted = this.host.childNodes;
@@ -43,12 +44,12 @@ export class Switch {
     this.hasLabel = slotted && slotted.length > 0;
   }
 
-  private _valueChangedHandler(event: Event) {
+  private _valueChangedHandler = (event: Event) => {
     const value = (event.currentTarget as HTMLInputElement).checked;
 
     this.value = value;
     this.changeValue.emit(value);
-  }
+  };
 
   render() {
     const classes = {
@@ -67,7 +68,7 @@ export class Switch {
             role="switch"
             disabled={this.hostDisabled}
             checked={this.value}
-            onInput={(e) => this._valueChangedHandler(e)}
+            onInput={this._valueChangedHandler}
           />
           <span class="c-switch__slider"></span>
         </div>

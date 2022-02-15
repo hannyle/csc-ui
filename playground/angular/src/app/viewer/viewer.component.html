@@ -39,5 +39,15 @@
         </div>
       </div>
     </div>
+
+    <div *ngIf="activeTab === 'Events'">
+      <app-viewer-events [data]="componentData"></app-viewer-events>
+
+      <div *ngFor="let child of componentData?.children">
+        <div *ngIf="child?.events.length">
+          <app-viewer-events [data]="child"></app-viewer-events>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

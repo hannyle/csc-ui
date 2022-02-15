@@ -7,10 +7,25 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type      | Default     |
-| -------- | --------- | ----------- | --------- | ----------- |
-| `active` | `active`  |             | `boolean` | `undefined` |
-| `hostId` | `id`      |             | `string`  | `undefined` |
+| Property | Attribute | Description                           | Type               | Default     |
+| -------- | --------- | ------------------------------------- | ------------------ | ----------- |
+| `active` | `active`  | Mark tab as active                    | `boolean`          | `undefined` |
+| `hostId` | `id`      | Id of the tab                         | `string`           | `undefined` |
+| `value`  | `value`   | Value for the tab - for use in c-tabs | `number \| string` | `undefined` |
+
+
+## Events
+
+| Event       | Description                | Type               |
+| ----------- | -------------------------- | ------------------ |
+| `tabChange` | Emit changes to the parent | `CustomEvent<any>` |
+
+
+## Slots
+
+| Slot | Description  |
+| ---- | ------------ |
+|      | Default slot |
 
 
 ----------------------------------------------

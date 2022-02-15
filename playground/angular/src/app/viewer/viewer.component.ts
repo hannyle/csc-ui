@@ -78,6 +78,15 @@ export class ViewerComponent implements OnInit, OnDestroy {
               tab: 'slots',
             },
           },
+          {
+            label: 'Events',
+            enabled:
+              !!this.componentData?.events?.length ||
+              !!this.componentData?.children?.some((child) => child.events?.length),
+            query: {
+              tab: 'events',
+            },
+          },
         ];
       }),
     );

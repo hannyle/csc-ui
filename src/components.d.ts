@@ -25,7 +25,13 @@ export namespace Components {
         "value": any;
     }
     interface CButton {
+        /**
+          * Dense variant
+         */
         "dense": boolean;
+        /**
+          * Disable the button
+         */
         "disabled": boolean;
         /**
           * Fit width to containing element
@@ -35,19 +41,39 @@ export namespace Components {
           * Light button background
          */
         "ghost": boolean;
+        /**
+          * Id of the button
+         */
         "hostId": string;
-        "icon": string;
+        /**
+          * Name of the icon to be displayed in the button
+          * @deprecated Please use the icon slot instead
+         */
+        "icon": 'plus' | 'minus' | 'account' | 'edit';
+        /**
+          * Display loader on the button
+         */
         "loading": boolean;
+        /**
+          * Remove the default border radius
+         */
         "noRadius": boolean;
         /**
           * Outlined button style
          */
         "outlined": boolean;
+        /**
+          * Secondary variant
+         */
         "secondary": boolean;
         /**
           * Transparent button background
          */
         "text": boolean;
+        /**
+          * Value for the button - for use in the c-content-switcher
+         */
+        "value"?: number | string;
     }
     interface CCard {
         /**
@@ -81,18 +107,17 @@ export namespace Components {
          */
         "hostDisabled": boolean;
         /**
-          * Always require a value
-          * @type {boolean}
-          * @memberof ContentSwitcher
+          * Always require a selection
          */
         "mandatory": boolean;
         /**
-          * Always require a value
-          * @type {boolean}
-          * @memberof ContentSwitcher
+          * Size of the buttons
          */
         "size": 'default' | 'small';
-        "value": number;
+        /**
+          * Value of the content switcher
+         */
+        "value": number | string;
     }
     interface CCscLogo {
     }
@@ -104,6 +129,7 @@ export namespace Components {
         "ghost": boolean;
         "icon": string;
         "outlined": boolean;
+        "size": 'default' | 'small';
         "text": boolean;
     }
     interface CLink {
@@ -201,25 +227,62 @@ export namespace Components {
         "href": string;
     }
     interface CSwitch {
+        /**
+          * Disable the switch
+         */
         "hostDisabled": boolean;
+        /**
+          * Id for the element
+         */
         "hostId": string;
+        /**
+          * Value of the element
+         */
         "value": boolean;
     }
     interface CTab {
+        /**
+          * Mark tab as active
+         */
         "active": boolean;
+        /**
+          * Id of the tab
+         */
         "hostId": string;
+        /**
+          * Value for the tab - for use in c-tabs
+         */
+        "value"?: number | string;
     }
     interface CTabButton {
         "active": boolean;
-        "color": string;
         "disabled": boolean;
         "hostId": string;
-        "icon": string;
         "label": string;
+        "value": number | string;
+    }
+    interface CTabButtons {
+        "centered": boolean;
+        "value": number | string;
+    }
+    interface CTabs {
+        /**
+          * Currently active tab
+         */
+        "value": number | string;
     }
     interface CTag {
+        /**
+          * Mark tag as active
+         */
         "active": boolean;
+        /**
+          * Mark tag as closeable
+         */
         "closeable": boolean;
+        /**
+          * Stretch to fill the container
+         */
         "fit": boolean;
     }
     interface CTextField {
@@ -463,6 +526,18 @@ declare global {
         prototype: HTMLCTabButtonElement;
         new (): HTMLCTabButtonElement;
     };
+    interface HTMLCTabButtonsElement extends Components.CTabButtons, HTMLStencilElement {
+    }
+    var HTMLCTabButtonsElement: {
+        prototype: HTMLCTabButtonsElement;
+        new (): HTMLCTabButtonsElement;
+    };
+    interface HTMLCTabsElement extends Components.CTabs, HTMLStencilElement {
+    }
+    var HTMLCTabsElement: {
+        prototype: HTMLCTabsElement;
+        new (): HTMLCTabsElement;
+    };
     interface HTMLCTagElement extends Components.CTag, HTMLStencilElement {
     }
     var HTMLCTagElement: {
@@ -528,6 +603,8 @@ declare global {
         "c-switch": HTMLCSwitchElement;
         "c-tab": HTMLCTabElement;
         "c-tab-button": HTMLCTabButtonElement;
+        "c-tab-buttons": HTMLCTabButtonsElement;
+        "c-tabs": HTMLCTabsElement;
         "c-tag": HTMLCTagElement;
         "c-text-field": HTMLCTextFieldElement;
         "c-title": HTMLCTitleElement;
@@ -556,7 +633,13 @@ declare namespace LocalJSX {
         "value"?: any;
     }
     interface CButton {
+        /**
+          * Dense variant
+         */
         "dense"?: boolean;
+        /**
+          * Disable the button
+         */
         "disabled"?: boolean;
         /**
           * Fit width to containing element
@@ -566,19 +649,39 @@ declare namespace LocalJSX {
           * Light button background
          */
         "ghost"?: boolean;
+        /**
+          * Id of the button
+         */
         "hostId"?: string;
-        "icon"?: string;
+        /**
+          * Name of the icon to be displayed in the button
+          * @deprecated Please use the icon slot instead
+         */
+        "icon"?: 'plus' | 'minus' | 'account' | 'edit';
+        /**
+          * Display loader on the button
+         */
         "loading"?: boolean;
+        /**
+          * Remove the default border radius
+         */
         "noRadius"?: boolean;
         /**
           * Outlined button style
          */
         "outlined"?: boolean;
+        /**
+          * Secondary variant
+         */
         "secondary"?: boolean;
         /**
           * Transparent button background
          */
         "text"?: boolean;
+        /**
+          * Value for the button - for use in the c-content-switcher
+         */
+        "value"?: number | string;
     }
     interface CCard {
         /**
@@ -613,19 +716,21 @@ declare namespace LocalJSX {
          */
         "hostDisabled"?: boolean;
         /**
-          * Always require a value
-          * @type {boolean}
-          * @memberof ContentSwitcher
+          * Always require a selection
          */
         "mandatory"?: boolean;
-        "onChangeValue"?: (event: CustomEvent<any>) => void;
         /**
-          * Always require a value
-          * @type {boolean}
-          * @memberof ContentSwitcher
+          * Emit changes to the parent
+         */
+        "onChangeValue"?: (event: CustomEvent<number | string>) => void;
+        /**
+          * Size of the buttons
          */
         "size"?: 'default' | 'small';
-        "value": number;
+        /**
+          * Value of the content switcher
+         */
+        "value": number | string;
     }
     interface CCscLogo {
     }
@@ -637,6 +742,7 @@ declare namespace LocalJSX {
         "ghost"?: boolean;
         "icon"?: string;
         "outlined"?: boolean;
+        "size"?: 'default' | 'small';
         "text"?: boolean;
     }
     interface CLink {
@@ -736,26 +842,77 @@ declare namespace LocalJSX {
         "href"?: string;
     }
     interface CSwitch {
+        /**
+          * Disable the switch
+         */
         "hostDisabled"?: boolean;
+        /**
+          * Id for the element
+         */
         "hostId"?: string;
-        "onChangeValue"?: (event: CustomEvent<any>) => void;
+        /**
+          * Emit inner value change to parent
+         */
+        "onChangeValue"?: (event: CustomEvent<boolean>) => void;
+        /**
+          * Value of the element
+         */
         "value"?: boolean;
     }
     interface CTab {
+        /**
+          * Mark tab as active
+         */
         "active"?: boolean;
+        /**
+          * Id of the tab
+         */
         "hostId"?: string;
+        /**
+          * Emit changes to the parent
+          * @private
+         */
+        "onTabChange"?: (event: CustomEvent<any>) => void;
+        /**
+          * Value for the tab - for use in c-tabs
+         */
+        "value"?: number | string;
     }
     interface CTabButton {
         "active"?: boolean;
-        "color"?: string;
         "disabled"?: boolean;
         "hostId"?: string;
-        "icon"?: string;
         "label"?: string;
+        "onChangeValue"?: (event: CustomEvent<any>) => void;
+        "onTabChange"?: (event: CustomEvent<any>) => void;
+        "value"?: number | string;
+    }
+    interface CTabButtons {
+        "centered"?: boolean;
+        "value"?: number | string;
+    }
+    interface CTabs {
+        /**
+          * Emit changes to the parent
+         */
+        "onChangeValue"?: (event: CustomEvent<any>) => void;
+        /**
+          * Currently active tab
+         */
+        "value": number | string;
     }
     interface CTag {
+        /**
+          * Mark tag as active
+         */
         "active"?: boolean;
+        /**
+          * Mark tag as closeable
+         */
         "closeable"?: boolean;
+        /**
+          * Stretch to fill the container
+         */
         "fit"?: boolean;
     }
     interface CTextField {
@@ -829,6 +986,8 @@ declare namespace LocalJSX {
         "c-switch": CSwitch;
         "c-tab": CTab;
         "c-tab-button": CTabButton;
+        "c-tab-buttons": CTabButtons;
+        "c-tabs": CTabs;
         "c-tag": CTag;
         "c-text-field": CTextField;
         "c-title": CTitle;
@@ -874,6 +1033,8 @@ declare module "@stencil/core" {
             "c-switch": LocalJSX.CSwitch & JSXBase.HTMLAttributes<HTMLCSwitchElement>;
             "c-tab": LocalJSX.CTab & JSXBase.HTMLAttributes<HTMLCTabElement>;
             "c-tab-button": LocalJSX.CTabButton & JSXBase.HTMLAttributes<HTMLCTabButtonElement>;
+            "c-tab-buttons": LocalJSX.CTabButtons & JSXBase.HTMLAttributes<HTMLCTabButtonsElement>;
+            "c-tabs": LocalJSX.CTabs & JSXBase.HTMLAttributes<HTMLCTabsElement>;
             "c-tag": LocalJSX.CTag & JSXBase.HTMLAttributes<HTMLCTagElement>;
             "c-text-field": LocalJSX.CTextField & JSXBase.HTMLAttributes<HTMLCTextFieldElement>;
             "c-title": LocalJSX.CTitle & JSXBase.HTMLAttributes<HTMLCTitleElement>;

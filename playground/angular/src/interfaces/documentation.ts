@@ -8,7 +8,7 @@ export interface ComponentData {
   usage: Usage;
   props: any[];
   methods: any[];
-  events: Event[];
+  events: EventItem[];
   listeners: Listener[];
   styles: any[];
   slots: any[];
@@ -25,4 +25,14 @@ export interface Listener {
   event: string;
   capture: boolean;
   passive: boolean;
+}
+
+export interface EventItem {
+  event: string;
+  detail: any;
+  bubbles: boolean;
+  cancelable: boolean;
+  composed: boolean;
+  docs: string;
+  docsTags: any[];
 }
