@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property | Attribute | Description                           | Type               | Default     |
-| -------- | --------- | ------------------------------------- | ------------------ | ----------- |
-| `active` | `active`  | Mark tab as active                    | `boolean`          | `undefined` |
-| `hostId` | `id`      | Id of the tab                         | `string`           | `undefined` |
-| `value`  | `value`   | Value for the tab - for use in c-tabs | `number \| string` | `undefined` |
+| Property   | Attribute  | Description                           | Type               | Default     |
+| ---------- | ---------- | ------------------------------------- | ------------------ | ----------- |
+| `active`   | `active`   | Mark tab as active                    | `boolean`          | `false`     |
+| `disabled` | `disabled` | Mark tab as disabled                  | `boolean`          | `false`     |
+| `hostId`   | `id`       | Id of the tab                         | `string`           | `undefined` |
+| `value`    | `value`    | Value for the tab - for use in c-tabs | `number \| string` | `undefined` |
 
 
 ## Events

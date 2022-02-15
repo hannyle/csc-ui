@@ -30,6 +30,7 @@
           <div slot="subnavitem">
             <c-subnavigationitem
               *ngFor="let child of item.children"
+              class="text-capitalize"
               (click)="showElement(child.tag)"
             >
               {{ child.name }}

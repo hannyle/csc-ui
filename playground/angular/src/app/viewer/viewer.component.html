@@ -2,21 +2,22 @@
   <h1 class="text-capitalize mb-0 text-primary">{{ componentData?.name }}</h1>
   <p class="mb-0 fs-6 text-black-50">{{ componentData?.tag }}</p>
 
-  <ul class="nav nav-tabs mt-3">
-    <li class="nav-item" *ngFor="let tab of tabs">
-      <a
-        class="nav-link"
-        aria-current="page"
-        [routerLink]="[]"
+  <div class="border-bottom">
+    <c-tabs [value]="activeTab">
+      <c-tab
+        *ngFor="let tab of tabs"
+        [routerLink]="tab.enabled ? [] : null"
         [queryParams]="tab.query"
-        [class]="{ active: activeTab === tab.label, disabled: !tab.enabled }"
+        [active]="activeTab === tab.label"
+        [disabled]="!tab.enabled"
+        [value]="tab.label"
       >
         {{ tab.label }}
-      </a>
-    </li>
-  </ul>
+      </c-tab>
+    </c-tabs>
+  </div>
 
-  <div class="pt-5">
+  <div class="pt-3">
     <div [hidden]="activeTab !== 'Examples'">
       <ng-container appDynamicComponent></ng-container>
     </div>

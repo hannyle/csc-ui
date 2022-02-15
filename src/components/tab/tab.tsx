@@ -6,14 +6,19 @@ import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
  */
 @Component({
   tag: 'c-tab',
-  styleUrl: 'tab.css',
+  styleUrl: 'tab.scss',
   shadow: true,
 })
 export class Tab {
   /**
    * Mark tab as active
    */
-  @Prop() active: boolean;
+  @Prop() active = false;
+
+  /**
+   * Mark tab as disabled
+   */
+  @Prop() disabled = false;
 
   /**
    * Id of the tab
@@ -34,17 +39,27 @@ export class Tab {
   @Event() tabChange: EventEmitter;
 
   private _onClick = () => {
+    console.log('disabled', this.disabled);
+
+    if (this.disabled) return;
+
     this.tabChange.emit(this.value);
   };
 
   render() {
+    const classes = {
+      'c-tab': true,
+      'c-tab--active': this.active,
+      'c-tab--disabled': this.disabled,
+    };
+
     return (
-      <Host tabindex="0" role="button">
-        <div
-          id={this.hostId}
-          class={this.active ? 'c-tab active' : 'c-tab'}
-          onClick={this._onClick}
-        >
+      <Host
+        tabindex="0"
+        role="button"
+        aria-disabled={this.disabled ? 'true' : 'false'}
+      >
+        <div id={this.hostId} class={classes} onClick={this._onClick}>
           <slot></slot>
         </div>
       </Host>
