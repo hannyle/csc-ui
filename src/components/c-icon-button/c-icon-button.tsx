@@ -1,6 +1,9 @@
 import { Component, h, Prop } from '@stencil/core';
+import { createRipple } from '../../utils/utils';
+
 /**
  * @group Buttons
+ * @slot - Default slot for the icon
  */
 @Component({
   tag: 'c-icon-button',
@@ -8,19 +11,43 @@ import { Component, h, Prop } from '@stencil/core';
   shadow: true,
 })
 export class CIconButton {
-  @Prop() icon: string;
+  /**
+   * Show a badge on top of the icon
+   */
   @Prop() badge: string;
-  @Prop() text: boolean;
-  @Prop() outlined: boolean;
-  @Prop() ghost: boolean;
-  @Prop() disabled: boolean;
+
+  /**
+   * Text variant of the button
+   */
+  @Prop() text = false;
+
+  /**
+   * Outlined variant of the button
+   */
+  @Prop() outlined = false;
+
+  /**
+   * Ghost variant of the button
+   */
+  @Prop() ghost = false;
+
+  /**
+   * Disable the button
+   */
+  @Prop() disabled = false;
+
+  /**
+   * Size of the button
+   */
   @Prop() size: 'default' | 'small' = 'default';
 
-  renderBadge() {
+  private _container?: HTMLDivElement;
+
+  private _renderBadge() {
     return <div class="icon-button-badge">{this.badge}</div>;
   }
 
-  outerClasses() {
+  private _outerClasses() {
     return {
       'icon-button': true,
       disabled: !!this.disabled,
@@ -31,31 +58,21 @@ export class CIconButton {
     };
   }
 
-  innerClasses() {
-    return {
-      'inner-container': true,
-      ripple: !this.disabled,
-    };
-  }
-
-  cssClasses(classes) {
-    return Object.keys(classes)
-      .filter((key) => classes[key])
-      .join(' ');
-  }
-
-  button() {
-    return (
-      <button class={this.cssClasses(this.outerClasses())}>
-        <div class={this.cssClasses(this.innerClasses())}>
-          <slot></slot>
-        </div>
-        {this.badge ? this.renderBadge() : ''}
-      </button>
-    );
-  }
+  private _onClick = (event) => {
+    createRipple(event, this._container);
+  };
 
   render() {
-    return this.button();
+    return (
+      <button class={this._outerClasses()} onClick={this._onClick}>
+        <div
+          class="inner-container"
+          ref={(el) => (this._container = el as HTMLDivElement)}
+        >
+          <slot></slot>
+        </div>
+        {this.badge && this._renderBadge()}
+      </button>
+    );
   }
 }

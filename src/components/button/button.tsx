@@ -1,5 +1,6 @@
 import { Component, Prop, h } from '@stencil/core';
 import { mdiPlus, mdiMinus, mdiAccount, mdiPencil } from '@mdi/js';
+import { createRipple } from '../../utils/utils';
 
 /**
  * @group Buttons
@@ -75,6 +76,17 @@ export class Button {
    */
   @Prop({ attribute: 'id' }) hostId: string;
 
+  /**
+   * Size of the button
+   */
+  @Prop() size: 'default' | 'small' | 'large' = 'default';
+
+  private _container?: HTMLDivElement;
+
+  private _onClick = (event) => {
+    createRipple(event, this._container);
+  };
+
   render() {
     const SPINNER_SMALL: SVGImageElement = (
       <svg
@@ -107,8 +119,10 @@ export class Button {
     const buttonClasses = {
       'border-radius': !this.noRadius,
       'csc-bg-color': !this.disabled,
-      'csc-button-disabled': !!this.disabled,
-      'csc-button-ghost': !!this.ghost,
+      'csc-button--disabled': !!this.disabled,
+      'csc-button--ghost': !!this.ghost,
+      'csc-button--small': this.size === 'small',
+      'csc-button--large': this.size === 'large',
       'csc-button': true,
       'csc-button-text': !!this.text,
       fit: !!this.fit,
@@ -120,7 +134,6 @@ export class Button {
       'csc-button-padding': !this.dense,
       'hide-text': this.loading,
       dense: !!this.dense,
-      ripple: !this.disabled,
     };
 
     const hostClasses = {
@@ -134,8 +147,12 @@ export class Button {
         tabindex="0"
         role="button"
         disabled={this.disabled}
+        onClick={this._onClick}
       >
-        <div class={buttonClasses}>
+        <div
+          class={buttonClasses}
+          ref={(el) => (this._container = el as HTMLDivElement)}
+        >
           {this.loading ? (
             <div
               class={

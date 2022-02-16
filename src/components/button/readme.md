@@ -19,6 +19,7 @@
 | `noRadius`  | `no-radius` | Remove the default border radius                                                                                                         | `boolean`                                  | `false`     |
 | `outlined`  | `outlined`  | Outlined button style                                                                                                                    | `boolean`                                  | `false`     |
 | `secondary` | `secondary` | Secondary variant                                                                                                                        | `boolean`                                  | `false`     |
+| `size`      | `size`      | Size of the button                                                                                                                       | `"default" \| "large" \| "small"`          | `'default'` |
 | `text`      | `text`      | Transparent button background                                                                                                            | `boolean`                                  | `false`     |
 | `value`     | `value`     | Value for the button - for use in the c-content-switcher                                                                                 | `number \| string`                         | `undefined` |
 

@@ -18,6 +18,10 @@
   outline: 1px black solid;
 }
 
+slot {
+  pointer-events: none;
+}
+
 .c-tab {
   transition: all 0.5s ease;
   display: block;
@@ -27,6 +31,8 @@
   font-weight: 600;
   text-align: center;
   box-shadow: inset 0 0 0 transparent;
+  overflow: hidden;
+  position: relative;
 
   &:hover {
     background: #d8e8ea;

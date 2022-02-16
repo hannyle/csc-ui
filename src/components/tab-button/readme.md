@@ -5,30 +5,23 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type      | Default     |
-| ---------- | ---------- | ----------- | --------- | ----------- |
-| `active`   | `active`   |             | `boolean` | `undefined` |
-| `color`    | `color`    |             | `string`  | `undefined` |
-| `disabled` | `disabled` |             | `boolean` | `undefined` |
-| `hostId`   | `id`       |             | `string`  | `undefined` |
-| `icon`     | `icon`     |             | `string`  | `undefined` |
-| `label`    | `label`    |             | `string`  | `undefined` |
+| Property   | Attribute  | Description         | Type               | Default     |
+| ---------- | ---------- | ------------------- | ------------------ | ----------- |
+| `active`   | `active`   | Mark as active      | `boolean`          | `false`     |
+| `disabled` | `disabled` | Disable button      | `boolean`          | `false`     |
+| `hostId`   | `id`       | Id of the button    | `string`           | `undefined` |
+| `label`    | `label`    | Label of the button | `string`           | `undefined` |
+| `value`    | `value`    | Value of the button | `number \| string` | `undefined` |
 
 
-## Dependencies
+## Events
 
-### Depends on
+| Event         | Description                     | Type                            |
+| ------------- | ------------------------------- | ------------------------------- |
+| `changeValue` | Emit value change to the parent | `CustomEvent<number \| string>` |
+| `focusTab`    | Emit tab focus to the parent    | `CustomEvent<any>`              |
+| `tabChange`   | Emit tab change to parent       | `CustomEvent<any>`              |
 
-- [c-row](../row)
-- [c-spacer](../spacer)
-
-### Graph
-```mermaid
-graph TD;
-  c-tab-button --> c-row
-  c-tab-button --> c-spacer
-  style c-tab-button fill:#f9f,stroke:#333,stroke-width:4px
-```
 
 ----------------------------------------------
 

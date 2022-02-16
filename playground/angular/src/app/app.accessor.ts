@@ -1,9 +1,4 @@
-import {
-  Directive,
-  forwardRef,
-  HostBinding,
-  HostListener,
-} from '@angular/core';
+import { Directive, ElementRef, forwardRef, HostBinding, HostListener } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 @Directive({
   selector: '[cControl]',
@@ -21,6 +16,16 @@ export class CControl implements ControlValueAccessor {
   lastValue: any;
   private onChange = (value: any) => {};
   private onTouched = () => {};
+
+  constructor(private stencilElement: ElementRef<Element>) {
+    const { nativeElement } = this.stencilElement;
+    if (!nativeElement.tagName.toLowerCase().startsWith('c-')) {
+      console.error(
+        'cControl ControlValueAccessor falsely used on non csc-ui component',
+        nativeElement,
+      );
+    }
+  }
 
   writeValue(value: any) {
     this.hostValue = this.lastValue = value == null ? '' : value;

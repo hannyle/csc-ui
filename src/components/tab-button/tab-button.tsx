@@ -1,103 +1,154 @@
-import { Component, Prop, h } from '@stencil/core';
 import {
-  mdiPlus,
-  mdiMinus,
-  mdiAccount,
-  mdiPencil,
-  mdiFileCode,
-  mdiServerSecurity,
-  mdiNas,
-  mdiChip,
-} from '@mdi/js';
+  Component,
+  Prop,
+  h,
+  Event,
+  Element,
+  EventEmitter,
+  Listen,
+} from '@stencil/core';
+import ripple from 'ripple-effects';
+import { createRipple } from '../../utils/utils';
+
 /**
  * @group Tabs
  */
 @Component({
   tag: 'c-tab-button',
-  styleUrl: 'tab-button.css',
+  styleUrl: 'tab-button.scss',
   shadow: true,
 })
-export class Tab {
-  @Prop() disabled: boolean;
-  @Prop() color: string;
-  @Prop() active: boolean;
-  @Prop() icon: string;
+export class TabButton {
+  /**
+   * Disable button
+   */
+  @Prop() disabled = false;
+
+  /**
+   * Mark as active
+   */
+  @Prop() active = false;
+
+  /**
+   * Label of the button
+   */
   @Prop() label: string;
+
+  /**
+   * Id of the button
+   */
   @Prop({ attribute: 'id' }) hostId: string;
 
+  /**
+   * Value of the button
+   */
+  @Prop() value: number | string;
+
+  /**
+   * Emit tab change to parent
+   * @private
+   */
+  @Event() tabChange: EventEmitter;
+
+  /**
+   * Emit value change to the parent
+   */
+  @Event({
+    bubbles: true,
+    composed: true,
+    cancelable: true,
+  })
+  changeValue: EventEmitter<number | string>;
+
+  /**
+   * Emit tab focus to the parent
+   * @private
+   */
+  @Event() focusTab: EventEmitter;
+
+  @Element() el: HTMLCTabButtonElement;
+
+  private _container?: HTMLDivElement;
+  private _button?: HTMLDivElement;
+
+  @Listen('click', { passive: true })
+  onTabClick(event) {
+    if (this.active) return;
+
+    createRipple(event, this._container);
+
+    this.changeValue.emit(this.value);
+  }
+
+  @Listen('keydown', { capture: true })
+  handleKeyDown(ev: KeyboardEvent) {
+    if (this.active) return;
+
+    if (['Space'].includes(ev.code)) {
+      ev.preventDefault();
+    }
+  }
+
+  @Listen('keyup', { capture: true })
+  handleKeyUp(ev: KeyboardEvent) {
+    if (this.active) return;
+
+    if (['Space'].includes(ev.code)) {
+      ev.preventDefault();
+      this.changeValue.emit(this.value);
+    }
+  }
+
+  private _onFocus = () => {
+    this.focusTab.emit(this.value);
+  };
+
+  componentDidLoad() {
+    ripple(this._button, {
+      background: 'currentColor',
+      opacity: 0.4,
+    });
+
+    ripple(this._container, {
+      background: 'currentColor',
+      opacity: 0.4,
+    });
+  }
+
   render() {
-    let classes,
-      subClasses = '',
-      svg,
-      selectedIcon;
-    if (this.disabled) {
-      classes = 'c-tab-button c-tab-button-disabled';
-    } else {
-      classes = `c-tab-button ${this.color}`;
-    }
+    // const classes = {
+    //   'c-tab-button': true,
+    //   active: !this.disabled && this.active,
+    //   disabled: this.disabled,
+    // };
 
-    if (this.icon) {
-      const icons = {
-        plus: mdiPlus,
-        minus: mdiMinus,
-        account: mdiAccount,
-        edit: mdiPencil,
-        code: mdiFileCode,
-        server: mdiServerSecurity,
-        storage: mdiNas,
-        cpu: mdiChip,
-      };
-      selectedIcon = icons[this.icon];
+    const classes = {
+      'c-tab-button': true,
+      'c-tab-button--active': !this.disabled && this.active,
+      'c-tab-button--disabled': this.disabled,
+    };
 
-      svg = (
-        <svg
-          width="38"
-          height="38"
-          fill={this.disabled ? '#8C8C8C' : 'rgba(255,255,255,0.4)'}
-          viewBox="0 0 24 24"
-        >
-          <path d={selectedIcon} />
-        </svg>
-      );
-    }
-
-    if (!this.disabled) {
-      if (this.active) {
-        subClasses = 'c-tab-button-active ripple';
-      } else {
-        subClasses = 'ripple';
-      }
-    }
-    subClasses = `${subClasses} c-tab-button-padding`;
-
+    // const subClasses = 'ripple c-tab-button-padding';
+    // TODO: uusiks? outlinelle 4px tilaa ulkopuolelle?
     return (
       <div
         id={this.hostId}
-        class="c-tab-button-wrapper"
+        class={classes}
         tabindex="0"
         role="button"
-        style={{ width: '500px;' }}
+        onFocus={this._onFocus}
       >
-        <div class={classes}>
-          <div class={subClasses}>
-            <c-row>
-              {this.label}
-              <c-spacer></c-spacer>
-              <div class="icon-wrapper">
-                <slot name="icon"></slot>
-                {this.icon ? svg : null}
-              </div>
-            </c-row>
-          </div>
-        </div>
         <div
-          class={
-            this.active
-              ? `c-tab-button-description c-tab-button-description-active ${this.color}`
-              : `c-tab-button-description ${this.color}`
-          }
+          class="c-tab-button__content"
+          ref={(el) => (this._container = el as HTMLDivElement)}
         >
-          <slot></slot>
+          <div class="c-tab-button__header">
+            {this.label}
+            <slot name="icon"></slot>
+          </div>
+          <div class="c-tab-button__description">
+            <slot></slot>
+          </div>
         </div>
       </div>
     );

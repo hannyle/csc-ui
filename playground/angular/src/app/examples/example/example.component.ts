@@ -29,7 +29,7 @@ export class ExampleComponent implements AfterViewInit, AfterContentChecked {
   allowedAttributes = [];
 
   constructor(private cdref: ChangeDetectorRef) {
-    const attrs = docs.components.reduce(
+    const attrs = docs.components?.reduce(
       (items, component) => {
         items.push(...component.props.map((prop) => prop.attr || prop.name));
 

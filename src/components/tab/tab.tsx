@@ -1,4 +1,5 @@
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
+import { createRipple } from '../../utils/utils';
 /**
  * @group Tabs
  * @parent c-tabs
@@ -38,10 +39,12 @@ export class Tab {
    */
   @Event() tabChange: EventEmitter;
 
-  private _onClick = () => {
-    console.log('disabled', this.disabled);
+  private _container?: HTMLDivElement;
 
+  private _onClick = (event) => {
     if (this.disabled) return;
+
+    createRipple(event, this._container);
 
     this.tabChange.emit(this.value);
   };
@@ -59,7 +62,12 @@ export class Tab {
         role="button"
         aria-disabled={this.disabled ? 'true' : 'false'}
       >
-        <div id={this.hostId} class={classes} onClick={this._onClick}>
+        <div
+          id={this.hostId}
+          class={classes}
+          onClick={this._onClick}
+          ref={(el) => (this._container = el as HTMLDivElement)}
+        >
           <slot></slot>
         </div>
       </Host>

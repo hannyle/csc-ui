@@ -8,6 +8,8 @@ button {
   padding: 0;
   background: transparent;
   border-radius: 2px;
+  position: relative;
+  overflow: hidden;
 
   &:focus {
     outline: none;
@@ -42,25 +44,35 @@ button {
 
 .csc-button {
   --c-radius: 4px;
+  --c-height: 44px;
+  --c-padding: 0 16px;
+  --c-font-size: 16px;
+  --c-background-color: var(--current-color);
+  --c-color: #fff;
+  --c-hover-background: var(--csc-primary-hover);
 
-  background-color: var(--current-color);
+  background-color: var(--c-background-color);
   position: relative;
   cursor: pointer;
   box-shadow: none;
   outline: none;
   transition: all 0.3s;
-  color: white;
+  color: var(--c-color);
   margin: 0;
   text-decoration: none;
   display: inline-block;
   text-align: center;
-  font-size: 16px;
+  font-size: var(--c-font-size);
   font-weight: 700;
   line-height: 18px;
   user-select: none;
 
+  * {
+    pointer-events: none;
+  }
+
   svg {
-    fill: #fff;
+    fill: var(--c-color);
 
     &.button-icon {
       margin-right: 16px;
@@ -70,19 +82,46 @@ button {
     }
   }
 
+  &--small {
+    --c-height: 28px;
+    --c-padding: 0 12px;
+    --c-font-size: 14px;
+  }
+
+  &--large {
+    --c-height: 52px;
+    --c-padding: 0 24px;
+    --c-font-size: 18px;
+  }
+
   &.border-radius {
     border-radius: var(--c-radius);
   }
 
   &:hover {
-    background-color: var(--csc-primary-hover);
+    background-color: var(--c-hover-background);
   }
 
   &.outlined {
-    box-shadow: inset 0 0 0 2px var(--current-color);
+    --c-color: var(--csc-primary);
+    box-shadow: inset 0 0 0 2px var(--c-color);
+    background-color: transparent !important;
+    transition: background 0.5s;
 
-    svg {
-      fill: var(--current-color);
+    &:hover {
+      --c-hover-background: var(--csc-lightest-grey);
+    }
+
+    .spinner__circle {
+      stroke: var(--c-color) !important;
+    }
+
+    // svg {
+    //   fill: var(--current-color);
+    // }
+
+    &.csc-button--disabled svg {
+      fill: #8c8c8c !important;
     }
   }
 
@@ -94,47 +133,29 @@ button {
     flex-grow: 1;
   }
 
-  &-disabled.grouped:not(.outlined) {
-    background: var(--csc-light-grey) !important;
-    color: var(--csc-dark-grey) !important;
-    box-shadow: none;
-  }
+  &--disabled {
+    --c-color: var(--csc-mid-grey);
+    --c-background-color: var(--csc-light-grey);
+    --c-hover-background: var(--csc-light-grey);
 
-  &-disabled.grouped {
-    box-shadow: none !important;
-    border: solid 1px var(--csc-light-grey);
-  }
-}
+    cursor: default !important;
 
-.outlined {
-  background-color: transparent !important;
-  transition: background 0.5s;
-  color: var(--current-color);
+    &.outlined {
+      --c-background-color: transparent;
+      --c-hover-background: transparent;
+      --c-color: var(--csc-mid-grey);
+    }
 
-  &:hover {
-    background-color: #d8e8ea !important;
-  }
+    &.grouped {
+      box-shadow: none !important;
+      border: solid 1px var(--csc-light-grey);
 
-  .spinner__circle {
-    stroke: var(--current-color) !important;
-  }
-
-  svg {
-    fill: var(--current-color);
-  }
-
-  &.csc-button-disabled svg {
-    fill: #8c8c8c !important;
-  }
-}
-
-.secondary {
-  background-color: #d0dced !important;
-  color: #025b96;
-
-  &:hover {
-    background-color: #025b96 !important;
-    color: #ffffff;
+      &:not(.outlined) {
+        background: var(--csc-light-grey) !important;
+        color: var(--csc-dark-grey) !important;
+        box-shadow: none;
+      }
+    }
   }
 }
 
@@ -150,49 +171,13 @@ button {
   transform-origin: 50% 50%;
 }
 
-.csc-button-disabled {
-  background: #e8e8e8 !important;
-  color: #8c8c8c;
-  box-shadow: inset 0 0 0 2px #e8e8e8;
-  cursor: default !important;
-
-  &.outlined {
-    background-color: transparent !important;
-    box-shadow: inset 0 0 0 2px #8c8c8c;
-
-    &:hover {
-      background-color: transparent !important;
-    }
-  }
-
-  svg {
-    fill: #8c8c8c;
-  }
-}
-
 .csc-button-padding {
-  padding: 13px 30px;
-}
-
-.ripple {
-  transition: background 0.5s;
-  background-position: center;
-
-  &:hover {
-    background: rgba(255, 255, 255, 0)
-      radial-gradient(circle, transparent 1%, rgba(255, 255, 255, 0.15) 1%)
-      center/15000%;
-  }
-
-  &:active {
-    background-color: rgba(255, 255, 255, 0.25);
-    background-size: 100%;
-    transition: background 0s;
-  }
-}
-
-.dense {
-  padding: 10px !important;
+  display: flex;
+  height: var(--c-height);
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: var(--c-padding);
 }
 
 .fit {
@@ -214,7 +199,9 @@ button {
 .spinner_wrapper {
   width: 100%;
   position: absolute;
-  padding-top: 7px;
+  height: var(--c-height);
+  display: grid;
+  place-content: center;
 
   &.dense_spinner {
     padding-top: 7px;
@@ -229,8 +216,7 @@ button {
   animation: 2s linear infinite svg-animation;
   max-width: 30px;
   position: relative;
-  margin-left: auto;
-  margin-right: auto;
+  height: calc(var(--c-height) - 12px);
 }
 
 @keyframes svg-animation {

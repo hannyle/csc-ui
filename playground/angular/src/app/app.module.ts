@@ -24,6 +24,7 @@ import { ViewerEventsComponent } from './viewer/viewer-events/viewer-events.comp
 import { ViewerSlotsComponent } from './viewer/viewer-slots/viewer-slots.component';
 import { CAutocompleteComponent } from './examples/c-autocomplete/c-autocomplete.component';
 import { CCheckboxComponent } from './examples/c-checkbox/c-checkbox.component';
+import { CTabButtonsComponent } from './examples/c-tab-buttons/c-tab-buttons.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { CCheckboxComponent } from './examples/c-checkbox/c-checkbox.component';
     ViewerSlotsComponent,
     CCheckboxComponent,
     CAutocompleteComponent,
+    CTabButtonsComponent,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HighlightModule],
   providers: [
