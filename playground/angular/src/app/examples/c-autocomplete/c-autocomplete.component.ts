@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import countries from '../countries.json';
 
 @Component({
   selector: 'app-c-autocomplete',
@@ -8,13 +9,25 @@ import { Component, OnInit } from '@angular/core';
 export class CAutocompleteComponent implements OnInit {
   examples = [
     `<c-autocomplete
-  label="Basic autocomplete"
+  label="Countries"
   cControl
   [items]="filteredItems"
   [query]="query"
   (changeQuery)="changeQuery($event)"
+  [itemsPerPage]="10"
   [(ngModel)]="value"
-></c-autocomplete>`,
+></c-autocomplete>
+
+<c-button [disabled]="!value" (click)="addTag()">Add</c-button>
+
+<c-tag
+  *ngFor="let tag of addedTags; let i = index"
+  closeable
+  (click)="removeTag(i)"
+  (keyup.enter)="removeTag(i)"
+>
+  {{ tag.name }}
+</c-tag>`,
   ];
 
   scripts = [
@@ -22,18 +35,21 @@ export class CAutocompleteComponent implements OnInit {
 value = null;
 items = [
   {
-    value: 'first',
-    name: 'First',
+    value: 'Afganistan',
+    name: 'Afganistan',
   },
   {
-    value: 'second',
-    name: 'Second',
+    value: 'Aland Islands',
+    name: 'Aland Islands',
   },
   {
-    value: 'third',
-    name: 'Third',
+    value: 'Albania',
+    name: 'Albania',
   },
+  ...
 ];
+
+addedTags = [];
 
 get filteredItems() {
   if (!this.query) return this.items;
@@ -44,24 +60,27 @@ get filteredItems() {
 
 changeQuery(event) {
   this.query = event.detail;
+}
+
+addTag() {
+  if (!!this.value) this.addedTags.push(this.value);
+}
+
+removeTag(index) {
+  this.addedTags.splice(index, 1);
 }`,
   ];
   query: any;
   value = null;
-  items = [
-    {
-      value: 'first',
-      name: 'First',
-    },
-    {
-      value: 'second',
-      name: 'Second',
-    },
-    {
-      value: 'third',
-      name: 'Third',
-    },
-  ];
+  items = Object.keys(countries)
+    .map((key) => countries[key].english)
+    .sort()
+    .map((item) => ({
+      value: item,
+      name: item,
+    }));
+
+  addedTags = [];
 
   get filteredItems() {
     if (!this.query) return this.items;
@@ -70,6 +89,14 @@ changeQuery(event) {
 
   changeQuery(event) {
     this.query = event.detail;
+  }
+
+  addTag() {
+    if (!!this.value) this.addedTags.push(this.value);
+  }
+
+  removeTag(index) {
+    this.addedTags.splice(index, 1);
   }
 
   constructor() {}

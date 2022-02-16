@@ -15,6 +15,13 @@
 | `wrap`    | `wrap`    | Flex wrap                    | `boolean`                                         | `true`    |
 
 
+## Slots
+
+| Slot | Description                                     |
+| ---- | ----------------------------------------------- |
+|      | Should contain items to be displayed in the row |
+
+
 ## Dependencies
 
 ### Used by

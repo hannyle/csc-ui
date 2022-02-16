@@ -1,7 +1,10 @@
 import { Component, h, Prop } from '@stencil/core';
 
 /**
+ * Generic flex row component
+ *
  * @group Layout
+ * @slot - Should contain items to be displayed in the row
  */
 @Component({
   tag: 'c-row',

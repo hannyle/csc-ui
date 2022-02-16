@@ -6,7 +6,7 @@
 }
 
 .accordion-header {
-  height: 46px;
+  min-height: 46px;
   user-select: none;
   background: #d8e8ea;
   display: flex;

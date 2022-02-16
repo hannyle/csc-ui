@@ -53,6 +53,8 @@ export class Autocomplete {
     value: string;
   }[] = [];
 
+  @Prop() itemsPerPage: number;
+
   /**
    * Triggered when text is typed
    */
@@ -153,6 +155,7 @@ export class Autocomplete {
     this.menuVisible = true;
     this.query = event.target.value;
     this.changeQuery.emit(this.query);
+    this.changeValue.emit(null);
   }
 
   private select(item) {
@@ -170,6 +173,15 @@ export class Autocomplete {
         _this.currentIndex = null;
       }
     });
+  }
+
+  private _setItemsPerPage() {
+    if (this.itemsPerPage > 0 && this.items.length > this.itemsPerPage) {
+      this._itemsPerPageStyle = {
+        'max-height': 47 * this.itemsPerPage + 'px',
+        'overflow-y': 'auto',
+      };
+    }
   }
 
   private getListItem = (item) => {
@@ -194,7 +206,10 @@ export class Autocomplete {
     );
   };
 
+  private _itemsPerPageStyle = {};
+
   render() {
+    this._setItemsPerPage();
     let borderLabel = 'border-label';
     if (this.query !== '') {
       borderLabel += ' value-set';
@@ -205,10 +220,10 @@ export class Autocomplete {
       this.validationClasses.push('show');
     } else {
       this.outerWrapperClasses = this.outerWrapperClasses.filter(
-        (c) => c !== 'required'
+        (c) => c !== 'required',
       );
       this.validationClasses = this.validationClasses.filter(
-        (c) => c !== 'show'
+        (c) => c !== 'show',
       );
     }
 
@@ -275,9 +290,9 @@ export class Autocomplete {
             aria-expanded={this.menuVisible}
           >
             {this.menuVisible ? (
-              <ul class="c-menu">
+              <div class="c-menu" style={this._itemsPerPageStyle}>
                 {this.items.map((item) => this.getListItem(item))}
-              </ul>
+              </div>
             ) : (
               ''
             )}

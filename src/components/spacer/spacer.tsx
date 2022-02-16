@@ -1,5 +1,6 @@
 import { Component, Host, h } from '@stencil/core';
 /**
+ * Spacer component for flex containers
  * @group Layout
  */
 @Component({
@@ -9,10 +10,6 @@ import { Component, Host, h } from '@stencil/core';
 })
 export class Spacer {
   render() {
-    return (
-      <Host>
-        <slot></slot>
-      </Host>
-    );
+    return <Host></Host>;
   }
 }

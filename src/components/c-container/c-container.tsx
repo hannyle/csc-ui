@@ -1,5 +1,6 @@
 import { Component, Host, h, Prop } from '@stencil/core';
 /**
+ * Container component for holding current page content
  * @group Layout
  */
 @Component({

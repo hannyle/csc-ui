@@ -24,6 +24,7 @@ export namespace Components {
     name: string;
     value: string;
   }[];
+        "itemsPerPage": number;
         /**
           * Element label
          */
@@ -706,6 +707,7 @@ declare namespace LocalJSX {
     name: string;
     value: string;
   }[];
+        "itemsPerPage"?: number;
         /**
           * Element label
          */

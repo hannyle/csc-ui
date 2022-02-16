@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import countries from './countries.json';
+import countries from '../countries.json';
 
 interface PaginationObject {
   itemCount: number;

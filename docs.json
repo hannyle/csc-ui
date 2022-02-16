@@ -1,5 +1,5 @@
 {
-  "timestamp": "2022-02-16T12:18:07",
+  "timestamp": "2022-02-16T13:32:55",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.13.0",
@@ -143,6 +143,22 @@
           "values": [
             {
               "type": "{ name: string; value: string; }[]"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "itemsPerPage",
+          "type": "number",
+          "mutable": false,
+          "attr": "items-per-page",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
             }
           ],
           "optional": false,
@@ -965,7 +981,7 @@
       "encapsulation": "shadow",
       "tag": "c-container",
       "readme": "# c-container\n\n\n",
-      "docs": "",
+      "docs": "Container component for holding current page content",
       "docsTags": [
         {
           "name": "group",
@@ -1030,7 +1046,7 @@
       "encapsulation": "shadow",
       "tag": "c-flex",
       "readme": "# c-flex\n",
-      "docs": "Element fills the remaining space within a flex container",
+      "docs": "Component which fills the remaining space within a flex container",
       "docsTags": [
         {
           "name": "group",
@@ -1318,11 +1334,15 @@
       "encapsulation": "shadow",
       "tag": "c-main",
       "readme": "# c-main\n\n\n",
-      "docs": "",
+      "docs": "Wrapper component for the whole page",
       "docsTags": [
         {
           "name": "group",
           "text": "Layout"
+        },
+        {
+          "name": "slot",
+          "text": "- Contents of the page"
         }
       ],
       "usage": {},
@@ -1331,7 +1351,12 @@
       "events": [],
       "listeners": [],
       "styles": [],
-      "slots": [],
+      "slots": [
+        {
+          "name": "",
+          "docs": "Contents of the page"
+        }
+      ],
       "parts": [],
       "dependents": [],
       "dependencies": [],
@@ -1869,11 +1894,15 @@
       "encapsulation": "shadow",
       "tag": "c-row",
       "readme": "# c-row\n\n\n",
-      "docs": "",
+      "docs": "Generic flex row component",
       "docsTags": [
         {
           "name": "group",
           "text": "Layout"
+        },
+        {
+          "name": "slot",
+          "text": "- Should contain items to be displayed in the row"
         }
       ],
       "usage": {},
@@ -1973,7 +2002,12 @@
       "events": [],
       "listeners": [],
       "styles": [],
-      "slots": [],
+      "slots": [
+        {
+          "name": "",
+          "docs": "Should contain items to be displayed in the row"
+        }
+      ],
       "parts": [],
       "dependents": [
         "c-autocomplete",
@@ -2410,7 +2444,7 @@
       "encapsulation": "shadow",
       "tag": "c-spacer",
       "readme": "# c-spacer\n\n\n",
-      "docs": "",
+      "docs": "Spacer component for flex containers",
       "docsTags": [
         {
           "name": "group",
