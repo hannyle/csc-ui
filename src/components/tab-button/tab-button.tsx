@@ -7,7 +7,6 @@ import {
   EventEmitter,
   Listen,
 } from '@stencil/core';
-import ripple from 'ripple-effects';
 import { createRipple } from '../../utils/utils';
 
 /**
@@ -69,7 +68,6 @@ export class TabButton {
   @Element() el: HTMLCTabButtonElement;
 
   private _container?: HTMLDivElement;
-  private _button?: HTMLDivElement;
 
   @Listen('click', { passive: true })
   onTabClick(event) {
@@ -102,18 +100,6 @@ export class TabButton {
   private _onFocus = () => {
     this.focusTab.emit(this.value);
   };
-
-  componentDidLoad() {
-    ripple(this._button, {
-      background: 'currentColor',
-      opacity: 0.4,
-    });
-
-    ripple(this._container, {
-      background: 'currentColor',
-      opacity: 0.4,
-    });
-  }
 
   render() {
     // const classes = {
