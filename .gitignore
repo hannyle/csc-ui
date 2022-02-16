@@ -2,3 +2,6 @@ www/*
 dist/*
 node_modules/*
 .vscode/*
+
+# Automatically generated files
+docs.json
