@@ -9,7 +9,7 @@ import { createRipple } from '../../utils/utils';
  */
 @Component({
   tag: 'c-button',
-  styleUrl: 'button.scss',
+  styleUrl: 'c-button.scss',
   shadow: true,
 })
 export class Button {
@@ -34,11 +34,6 @@ export class Button {
   @Prop() loading = false;
 
   /**
-   * Dense variant
-   */
-  @Prop() dense = false;
-
-  /**
    * Fit width to containing element
    */
   @Prop() fit = false;
@@ -47,11 +42,6 @@ export class Button {
    * Remove the default border radius
    */
   @Prop() noRadius = false;
-
-  /**
-   * Secondary variant
-   */
-  @Prop() secondary = false;
 
   /**
    * Disable the button
@@ -117,23 +107,20 @@ export class Button {
     }
 
     const buttonClasses = {
-      'border-radius': !this.noRadius,
-      'csc-bg-color': !this.disabled,
-      'csc-button--disabled': !!this.disabled,
-      'csc-button--ghost': !!this.ghost,
-      'csc-button--small': this.size === 'small',
-      'csc-button--large': this.size === 'large',
-      'csc-button': true,
-      'csc-button-text': !!this.text,
-      fit: !!this.fit,
-      outlined: !!this.outlined,
-      secondary: !!this.secondary,
+      'c-button': true,
+      'c-button--disabled': !!this.disabled,
+      'c-button--ghost': !!this.ghost,
+      'c-button--small': this.size === 'small',
+      'c-button--large': this.size === 'large',
+      'c-button--text': !!this.text,
+      'c-button--fitted': !!this.fit,
+      'c-button--outlined': !!this.outlined,
+      'c-button--no-radius': !!this.noRadius,
     };
 
     const innerClasses = {
-      'csc-button-padding': !this.dense,
+      'c-button-padding': true,
       'hide-text': this.loading,
-      dense: !!this.dense,
     };
 
     const hostClasses = {
@@ -153,17 +140,7 @@ export class Button {
           class={buttonClasses}
           ref={(el) => (this._container = el as HTMLDivElement)}
         >
-          {this.loading ? (
-            <div
-              class={
-                this.dense ? 'spinner_wrapper dense_spinner' : 'spinner_wrapper'
-              }
-            >
-              {SPINNER_SMALL}
-            </div>
-          ) : (
-            ''
-          )}
+          {this.loading && <div class="spinner_wrapper">{SPINNER_SMALL}</div>}
           <div class={innerClasses}>
             <slot name="icon"></slot>
             {svg}
