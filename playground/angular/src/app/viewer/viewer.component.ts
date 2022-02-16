@@ -1,8 +1,9 @@
 import { Component, ComponentRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { map, Observable, Subscription } from 'rxjs';
 import { ComponentData } from 'src/interfaces/documentation';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { DynamicComponentDirective } from '../directives/dynamic-component.directive';
 
 @Component({
@@ -21,7 +22,15 @@ export class ViewerComponent implements OnInit, OnDestroy {
   tabs = [];
   activeTab = 'Examples';
 
-  constructor(private _activatedRoute: ActivatedRoute, private _sanitizer: DomSanitizer) {}
+  constructor(
+    private _activatedRoute: ActivatedRoute,
+    private _sanitizer: DomSanitizer,
+    private _breakpointObserver: BreakpointObserver,
+  ) {}
+
+  isMobile$: Observable<boolean> = this._breakpointObserver
+    .observe([Breakpoints.Small, Breakpoints.HandsetPortrait])
+    .pipe(map((obs) => obs.matches));
 
   get usage() {
     return Object.values(this.componentData.usage).map((item) =>
