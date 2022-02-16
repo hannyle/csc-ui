@@ -10,7 +10,7 @@ import {
 import { createRipple } from '../../utils/utils';
 
 /**
- * @group Tabs
+ * @group Content Switchers
  */
 @Component({
   tag: 'c-tab-button',

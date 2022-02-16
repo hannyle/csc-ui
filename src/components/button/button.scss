@@ -7,7 +7,7 @@ button {
   border: none;
   padding: 0;
   background: transparent;
-  border-radius: 2px;
+  border-radius: 0;
   position: relative;
   overflow: hidden;
 
@@ -128,7 +128,7 @@ button {
   &.grouped {
     border-radius: 0;
     white-space: nowrap;
-    border: solid 1px var(--current-color);
+    border: none;
     box-shadow: none;
     flex-grow: 1;
   }
@@ -148,7 +148,6 @@ button {
 
     &.grouped {
       box-shadow: none !important;
-      border: solid 1px var(--csc-light-grey);
 
       &:not(.outlined) {
         background: var(--csc-light-grey) !important;

@@ -21,7 +21,8 @@ import docs from '../../../../../../docs.json';
 export class ExampleComponent implements AfterViewInit, AfterContentChecked {
   @Input() title: string;
   @Input() subtitle: string;
-  @Input() flex: string;
+  @Input() cols: string;
+  @Input() rows: string;
   @Input() raw: string;
   @Input() script: string;
   @ViewChild('example') example;

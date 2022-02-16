@@ -23,7 +23,7 @@ export class CCheckbox {
   /**
    * Is the element checked
    */
-  @Prop({ mutable: true }) checked: boolean = false;
+  @Prop({ mutable: true }) value: boolean = false;
   /**
    * Triggered when element is checked or unchecked
    */
@@ -38,8 +38,8 @@ export class CCheckbox {
   }
 
   private toggleState() {
-    this.checked = !this.checked;
-    this.changeValue.emit(this.checked);
+    this.value = !this.value;
+    this.changeValue.emit(this.value);
   }
 
   render() {
@@ -49,10 +49,10 @@ export class CCheckbox {
         <div class="c-checkbox-row" onClick={() => this.toggleState()}>
           <div
             role="checkbox"
-            aria-checked={this.checked}
+            aria-checked={this.value}
             tabindex="0"
             aria-labelledby="c-checkbox-label"
-            class={this.checked ? 'active c-checkbox' : 'c-checkbox'}
+            class={this.value ? 'active c-checkbox' : 'c-checkbox'}
           >
             <div class={classes}>
               <svg class="c-checkbox__checkmark" viewBox="0 0 24 24">

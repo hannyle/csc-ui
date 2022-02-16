@@ -6,12 +6,14 @@ import {
   Event,
   EventEmitter,
   Listen,
-} from "@stencil/core";
-import { v4 as uuid } from "uuid";
-
+} from '@stencil/core';
+import { v4 as uuid } from 'uuid';
+/**
+ * @group Content Switchers
+ */
 @Component({
-  tag: "c-accordion-item",
-  styleUrl: "c-accordion.css",
+  tag: 'c-accordion-item',
+  styleUrl: 'c-accordion.css',
   shadow: true,
 })
 export class CAccordion {
@@ -20,9 +22,9 @@ export class CAccordion {
   @Prop({ mutable: true }) value = false;
   @Event() changeValue: EventEmitter;
 
-  @Listen("keydown", { capture: true })
+  @Listen('keydown', { capture: true })
   handleKeyDown(ev: any) {
-    if (ev.key === "Enter" || ev.code === "Space") {
+    if (ev.key === 'Enter' || ev.code === 'Space') {
       this.value = true;
       this.changeValue.emit(true);
     }
@@ -109,8 +111,8 @@ export class CAccordion {
         <div
           class={
             this.value
-              ? "accordion-content-wrapper"
-              : "accordion-content-wrapper hidden"
+              ? 'accordion-content-wrapper'
+              : 'accordion-content-wrapper hidden'
           }
         >
           {this.value ? (
@@ -122,7 +124,7 @@ export class CAccordion {
               <slot></slot>
             </div>
           ) : (
-            ""
+            ''
           )}
         </div>
       </Host>

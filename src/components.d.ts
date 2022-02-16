@@ -96,6 +96,24 @@ export namespace Components {
          */
         "value"?: number | string;
     }
+    interface CButtonGroup {
+        /**
+          * Disable the content switcher
+         */
+        "hostDisabled": boolean;
+        /**
+          * Always require a selection
+         */
+        "mandatory": boolean;
+        /**
+          * Size of the buttons
+         */
+        "size": 'default' | 'small';
+        /**
+          * Value of the content switcher
+         */
+        "value": number | string;
+    }
     interface CCard {
         /**
           * Card background image for login pages of specific services
@@ -114,36 +132,18 @@ export namespace Components {
     }
     interface CCheckbox {
         /**
-          * Is the element checked
-         */
-        "checked": boolean;
-        /**
           * Element label
          */
         "label": string;
+        /**
+          * Is the element checked
+         */
+        "value": boolean;
     }
     interface CConsent {
     }
     interface CContainer {
         "width": number;
-    }
-    interface CContentSwitcher {
-        /**
-          * Disable the content switcher
-         */
-        "hostDisabled": boolean;
-        /**
-          * Always require a selection
-         */
-        "mandatory": boolean;
-        /**
-          * Size of the buttons
-         */
-        "size": 'default' | 'small';
-        /**
-          * Value of the content switcher
-         */
-        "value": number | string;
     }
     interface CCscLogo {
     }
@@ -220,12 +220,6 @@ export namespace Components {
     startFrom?: number;
     endTo?: number;
   };
-    }
-    interface CPaginationrow {
-        "items": any[];
-        "itemsPerPage": number;
-        "itemsTotal": number;
-        "pageNumber": number;
     }
     interface CProgressbar {
         "color": string;
@@ -421,6 +415,12 @@ declare global {
         prototype: HTMLCButtonElement;
         new (): HTMLCButtonElement;
     };
+    interface HTMLCButtonGroupElement extends Components.CButtonGroup, HTMLStencilElement {
+    }
+    var HTMLCButtonGroupElement: {
+        prototype: HTMLCButtonGroupElement;
+        new (): HTMLCButtonGroupElement;
+    };
     interface HTMLCCardElement extends Components.CCard, HTMLStencilElement {
     }
     var HTMLCCardElement: {
@@ -462,12 +462,6 @@ declare global {
     var HTMLCContainerElement: {
         prototype: HTMLCContainerElement;
         new (): HTMLCContainerElement;
-    };
-    interface HTMLCContentSwitcherElement extends Components.CContentSwitcher, HTMLStencilElement {
-    }
-    var HTMLCContentSwitcherElement: {
-        prototype: HTMLCContentSwitcherElement;
-        new (): HTMLCContentSwitcherElement;
     };
     interface HTMLCCscLogoElement extends Components.CCscLogo, HTMLStencilElement {
     }
@@ -540,12 +534,6 @@ declare global {
     var HTMLCPaginationElement: {
         prototype: HTMLCPaginationElement;
         new (): HTMLCPaginationElement;
-    };
-    interface HTMLCPaginationrowElement extends Components.CPaginationrow, HTMLStencilElement {
-    }
-    var HTMLCPaginationrowElement: {
-        prototype: HTMLCPaginationrowElement;
-        new (): HTMLCPaginationrowElement;
     };
     interface HTMLCProgressbarElement extends Components.CProgressbar, HTMLStencilElement {
     }
@@ -659,6 +647,7 @@ declare global {
         "c-accordion-item": HTMLCAccordionItemElement;
         "c-autocomplete": HTMLCAutocompleteElement;
         "c-button": HTMLCButtonElement;
+        "c-button-group": HTMLCButtonGroupElement;
         "c-card": HTMLCCardElement;
         "c-card-actions": HTMLCCardActionsElement;
         "c-card-content": HTMLCCardContentElement;
@@ -666,7 +655,6 @@ declare global {
         "c-checkbox": HTMLCCheckboxElement;
         "c-consent": HTMLCConsentElement;
         "c-container": HTMLCContainerElement;
-        "c-content-switcher": HTMLCContentSwitcherElement;
         "c-csc-logo": HTMLCCscLogoElement;
         "c-flex": HTMLCFlexElement;
         "c-icon-button": HTMLCIconButtonElement;
@@ -679,7 +667,6 @@ declare global {
         "c-navigationbutton": HTMLCNavigationbuttonElement;
         "c-notification": HTMLCNotificationElement;
         "c-pagination": HTMLCPaginationElement;
-        "c-paginationrow": HTMLCPaginationrowElement;
         "c-progressbar": HTMLCProgressbarElement;
         "c-radio": HTMLCRadioElement;
         "c-row": HTMLCRowElement;
@@ -799,6 +786,28 @@ declare namespace LocalJSX {
          */
         "value"?: number | string;
     }
+    interface CButtonGroup {
+        /**
+          * Disable the content switcher
+         */
+        "hostDisabled"?: boolean;
+        /**
+          * Always require a selection
+         */
+        "mandatory"?: boolean;
+        /**
+          * Emit changes to the parent
+         */
+        "onChangeValue"?: (event: CustomEvent<number | string>) => void;
+        /**
+          * Size of the buttons
+         */
+        "size"?: 'default' | 'small';
+        /**
+          * Value of the content switcher
+         */
+        "value": number | string;
+    }
     interface CCard {
         /**
           * Card background image for login pages of specific services
@@ -817,10 +826,6 @@ declare namespace LocalJSX {
     }
     interface CCheckbox {
         /**
-          * Is the element checked
-         */
-        "checked"?: boolean;
-        /**
           * Element label
          */
         "label"?: string;
@@ -828,33 +833,15 @@ declare namespace LocalJSX {
           * Triggered when element is checked or unchecked
          */
         "onChangeValue"?: (event: CustomEvent<any>) => void;
+        /**
+          * Is the element checked
+         */
+        "value"?: boolean;
     }
     interface CConsent {
     }
     interface CContainer {
         "width"?: number;
-    }
-    interface CContentSwitcher {
-        /**
-          * Disable the content switcher
-         */
-        "hostDisabled"?: boolean;
-        /**
-          * Always require a selection
-         */
-        "mandatory"?: boolean;
-        /**
-          * Emit changes to the parent
-         */
-        "onChangeValue"?: (event: CustomEvent<any>) => void;
-        /**
-          * Size of the buttons
-         */
-        "size"?: 'default' | 'small';
-        /**
-          * Value of the content switcher
-         */
-        "value": number | string;
     }
     interface CCscLogo {
     }
@@ -942,12 +929,6 @@ declare namespace LocalJSX {
     startFrom?: number;
     endTo?: number;
   };
-    }
-    interface CPaginationrow {
-        "items"?: any[];
-        "itemsPerPage"?: number;
-        "itemsTotal"?: number;
-        "pageNumber"?: number;
     }
     interface CProgressbar {
         "color"?: string;
@@ -1157,6 +1138,7 @@ declare namespace LocalJSX {
         "c-accordion-item": CAccordionItem;
         "c-autocomplete": CAutocomplete;
         "c-button": CButton;
+        "c-button-group": CButtonGroup;
         "c-card": CCard;
         "c-card-actions": CCardActions;
         "c-card-content": CCardContent;
@@ -1164,7 +1146,6 @@ declare namespace LocalJSX {
         "c-checkbox": CCheckbox;
         "c-consent": CConsent;
         "c-container": CContainer;
-        "c-content-switcher": CContentSwitcher;
         "c-csc-logo": CCscLogo;
         "c-flex": CFlex;
         "c-icon-button": CIconButton;
@@ -1177,7 +1158,6 @@ declare namespace LocalJSX {
         "c-navigationbutton": CNavigationbutton;
         "c-notification": CNotification;
         "c-pagination": CPagination;
-        "c-paginationrow": CPaginationrow;
         "c-progressbar": CProgressbar;
         "c-radio": CRadio;
         "c-row": CRow;
@@ -1205,6 +1185,7 @@ declare module "@stencil/core" {
             "c-accordion-item": LocalJSX.CAccordionItem & JSXBase.HTMLAttributes<HTMLCAccordionItemElement>;
             "c-autocomplete": LocalJSX.CAutocomplete & JSXBase.HTMLAttributes<HTMLCAutocompleteElement>;
             "c-button": LocalJSX.CButton & JSXBase.HTMLAttributes<HTMLCButtonElement>;
+            "c-button-group": LocalJSX.CButtonGroup & JSXBase.HTMLAttributes<HTMLCButtonGroupElement>;
             "c-card": LocalJSX.CCard & JSXBase.HTMLAttributes<HTMLCCardElement>;
             "c-card-actions": LocalJSX.CCardActions & JSXBase.HTMLAttributes<HTMLCCardActionsElement>;
             "c-card-content": LocalJSX.CCardContent & JSXBase.HTMLAttributes<HTMLCCardContentElement>;
@@ -1212,7 +1193,6 @@ declare module "@stencil/core" {
             "c-checkbox": LocalJSX.CCheckbox & JSXBase.HTMLAttributes<HTMLCCheckboxElement>;
             "c-consent": LocalJSX.CConsent & JSXBase.HTMLAttributes<HTMLCConsentElement>;
             "c-container": LocalJSX.CContainer & JSXBase.HTMLAttributes<HTMLCContainerElement>;
-            "c-content-switcher": LocalJSX.CContentSwitcher & JSXBase.HTMLAttributes<HTMLCContentSwitcherElement>;
             "c-csc-logo": LocalJSX.CCscLogo & JSXBase.HTMLAttributes<HTMLCCscLogoElement>;
             "c-flex": LocalJSX.CFlex & JSXBase.HTMLAttributes<HTMLCFlexElement>;
             "c-icon-button": LocalJSX.CIconButton & JSXBase.HTMLAttributes<HTMLCIconButtonElement>;
@@ -1225,7 +1205,6 @@ declare module "@stencil/core" {
             "c-navigationbutton": LocalJSX.CNavigationbutton & JSXBase.HTMLAttributes<HTMLCNavigationbuttonElement>;
             "c-notification": LocalJSX.CNotification & JSXBase.HTMLAttributes<HTMLCNotificationElement>;
             "c-pagination": LocalJSX.CPagination & JSXBase.HTMLAttributes<HTMLCPaginationElement>;
-            "c-paginationrow": LocalJSX.CPaginationrow & JSXBase.HTMLAttributes<HTMLCPaginationrowElement>;
             "c-progressbar": LocalJSX.CProgressbar & JSXBase.HTMLAttributes<HTMLCProgressbarElement>;
             "c-radio": LocalJSX.CRadio & JSXBase.HTMLAttributes<HTMLCRadioElement>;
             "c-row": LocalJSX.CRow & JSXBase.HTMLAttributes<HTMLCRowElement>;

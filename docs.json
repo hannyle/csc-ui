@@ -1,0 +1,3648 @@
+{
+  "timestamp": "2022-02-16T12:18:07",
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "2.13.0",
+    "typescriptVersion": "4.3.5"
+  },
+  "components": [
+    {
+      "filePath": "./src/components/c-accordion/c-accordion.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-accordion-item",
+      "readme": "# c-accordion-item\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Content Switchers"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "heading",
+          "type": "string",
+          "mutable": false,
+          "attr": "heading",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "boolean",
+          "mutable": true,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "changeValue",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "",
+          "docsTags": []
+        }
+      ],
+      "listeners": [
+        {
+          "event": "keydown",
+          "capture": true,
+          "passive": false
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "c-spacer"
+      ],
+      "dependencyGraph": {
+        "c-accordion-item": [
+          "c-spacer"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/autocomplete/autocomplete.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-autocomplete",
+      "readme": "# c-autocomplete\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Form"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "dense",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "dense",
+          "reflectToAttr": false,
+          "docs": "Dense variant",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "items",
+          "type": "{ name: string; value: string; }[]",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "Items to be selected",
+          "docsTags": [],
+          "default": "[]",
+          "values": [
+            {
+              "type": "{ name: string; value: string; }[]"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Element label",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "mutable": true,
+          "attr": "query",
+          "reflectToAttr": false,
+          "docs": "Search string",
+          "docsTags": [],
+          "default": "null",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": false,
+          "docs": "Show required validation",
+          "docsTags": [],
+          "default": "null",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "{ name: string; value: string; }",
+          "mutable": true,
+          "reflectToAttr": false,
+          "docs": "Selected item",
+          "docsTags": [],
+          "default": "null",
+          "values": [
+            {
+              "type": "{ name: string; value: string; }"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "changeQuery",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Triggered when text is typed",
+          "docsTags": []
+        },
+        {
+          "event": "changeValue",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Triggered when an item is selected",
+          "docsTags": []
+        }
+      ],
+      "listeners": [
+        {
+          "event": "keydown",
+          "capture": false,
+          "passive": false
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "c-row"
+      ],
+      "dependencyGraph": {
+        "c-autocomplete": [
+          "c-row"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/button/button.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-button",
+      "readme": "# c-button\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Buttons"
+        },
+        {
+          "name": "slot",
+          "text": "- Button text"
+        },
+        {
+          "name": "slot",
+          "text": "icon - Icon"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "dense",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "dense",
+          "reflectToAttr": false,
+          "docs": "Dense variant",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": true,
+          "docs": "Disable the button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "fit",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "fit",
+          "reflectToAttr": false,
+          "docs": "Fit width to containing element",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "ghost",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "ghost",
+          "reflectToAttr": false,
+          "docs": "Light button background",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "hostId",
+          "type": "string",
+          "mutable": false,
+          "attr": "id",
+          "reflectToAttr": false,
+          "docs": "Id of the button",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "\"account\" | \"edit\" | \"minus\" | \"plus\"",
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Name of the icon to be displayed in the button",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Please use the icon slot instead"
+            }
+          ],
+          "deprecation": "Please use the icon slot instead",
+          "values": [
+            {
+              "value": "account",
+              "type": "string"
+            },
+            {
+              "value": "edit",
+              "type": "string"
+            },
+            {
+              "value": "minus",
+              "type": "string"
+            },
+            {
+              "value": "plus",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "loading",
+          "reflectToAttr": false,
+          "docs": "Display loader on the button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "noRadius",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "no-radius",
+          "reflectToAttr": false,
+          "docs": "Remove the default border radius",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "outlined",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "outlined",
+          "reflectToAttr": false,
+          "docs": "Outlined button style",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "secondary",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "secondary",
+          "reflectToAttr": false,
+          "docs": "Secondary variant",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"default\" | \"large\" | \"small\"",
+          "mutable": false,
+          "attr": "size",
+          "reflectToAttr": false,
+          "docs": "Size of the button",
+          "docsTags": [],
+          "default": "'default'",
+          "values": [
+            {
+              "value": "default",
+              "type": "string"
+            },
+            {
+              "value": "large",
+              "type": "string"
+            },
+            {
+              "value": "small",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "text",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "text",
+          "reflectToAttr": false,
+          "docs": "Transparent button background",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "number | string",
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "Value for the button\n- for use in the c-content-switcher",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [
+        {
+          "name": "",
+          "docs": "Button text"
+        },
+        {
+          "name": "icon",
+          "docs": "Icon"
+        }
+      ],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/c-button-group/c-button-group.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-button-group",
+      "readme": "# c-content-switcher\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Content Switchers"
+        },
+        {
+          "name": "slot",
+          "text": "- Default slot for the c-button elements"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "hostDisabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disable the content switcher",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "mandatory",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "mandatory",
+          "reflectToAttr": false,
+          "docs": "Always require a selection",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"default\" | \"small\"",
+          "mutable": false,
+          "attr": "size",
+          "reflectToAttr": false,
+          "docs": "Size of the buttons",
+          "docsTags": [],
+          "default": "'default'",
+          "values": [
+            {
+              "value": "default",
+              "type": "string"
+            },
+            {
+              "value": "small",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "number | string",
+          "mutable": true,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "Value of the content switcher",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": true
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "changeValue",
+          "detail": "number | string",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Emit changes to the parent",
+          "docsTags": []
+        }
+      ],
+      "listeners": [
+        {
+          "event": "click",
+          "capture": false,
+          "passive": true
+        }
+      ],
+      "styles": [],
+      "slots": [
+        {
+          "name": "",
+          "docs": "Default slot for the c-button elements"
+        }
+      ],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/card/card.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-card",
+      "readme": "# c-card\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Containers"
+        },
+        {
+          "name": "slot",
+          "text": "- Card contents"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "background",
+          "type": "\"allas\" | \"mahti\" | \"puhti\"",
+          "mutable": false,
+          "attr": "background",
+          "reflectToAttr": false,
+          "docs": "Card background image for login pages of specific services",
+          "docsTags": [],
+          "values": [
+            {
+              "value": "allas",
+              "type": "string"
+            },
+            {
+              "value": "mahti",
+              "type": "string"
+            },
+            {
+              "value": "puhti",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [
+        {
+          "name": "",
+          "docs": "Card contents"
+        }
+      ],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/c-card-actions/c-card-actions.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-card-actions",
+      "readme": "# c-card-actions\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "parent",
+          "text": "c-card"
+        },
+        {
+          "name": "slot",
+          "text": "- Card actions"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "right",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "right",
+          "reflectToAttr": false,
+          "docs": "Align actions to the right",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [
+        {
+          "name": "",
+          "docs": "Card actions"
+        }
+      ],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "c-spacer"
+      ],
+      "dependencyGraph": {
+        "c-card-actions": [
+          "c-spacer"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/c-card-content/c-card-content.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-card-content",
+      "readme": "# c-card-content\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "parent",
+          "text": "c-card"
+        },
+        {
+          "name": "slot",
+          "text": "- Card contents"
+        }
+      ],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [
+        {
+          "name": "",
+          "docs": "Card contents"
+        }
+      ],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/c-card-title/c-card-title.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-card-title",
+      "readme": "# c-card-title\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "parent",
+          "text": "c-card"
+        },
+        {
+          "name": "slot",
+          "text": "- Card title text"
+        }
+      ],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [
+        {
+          "name": "",
+          "docs": "Card title text"
+        }
+      ],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "c-title"
+      ],
+      "dependencyGraph": {
+        "c-card-title": [
+          "c-title"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/c-checkbox/c-checkbox.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-checkbox",
+      "readme": "# c-checkbox\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Form"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Element label",
+          "docsTags": [],
+          "default": "''",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "boolean",
+          "mutable": true,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "Is the element checked",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "changeValue",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Triggered when element is checked or unchecked",
+          "docsTags": []
+        }
+      ],
+      "listeners": [
+        {
+          "event": "keydown",
+          "capture": false,
+          "passive": false
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/c-consent/c-consent.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-consent",
+      "readme": "# c-consent\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "c-row"
+      ],
+      "dependencyGraph": {
+        "c-consent": [
+          "c-row"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/c-container/c-container.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-container",
+      "readme": "# c-container\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Layout"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "width",
+          "type": "number",
+          "mutable": false,
+          "attr": "width",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/c-csc-logo/c-csc-logo.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-csc-logo",
+      "readme": "# c-csc-logo\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "parent",
+          "text": "c-toolbar"
+        }
+      ],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/c-flex/c-flex.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-flex",
+      "readme": "# c-flex\n",
+      "docs": "Element fills the remaining space within a flex container",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Layout"
+        }
+      ],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/c-icon-button/c-icon-button.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-icon-button",
+      "readme": "# c-icon-button\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Buttons"
+        },
+        {
+          "name": "slot",
+          "text": "- Default slot for the icon"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "badge",
+          "type": "string",
+          "mutable": false,
+          "attr": "badge",
+          "reflectToAttr": false,
+          "docs": "Show a badge on top of the icon",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disable the button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "ghost",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "ghost",
+          "reflectToAttr": false,
+          "docs": "Ghost variant of the button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "outlined",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "outlined",
+          "reflectToAttr": false,
+          "docs": "Outlined variant of the button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"default\" | \"small\"",
+          "mutable": false,
+          "attr": "size",
+          "reflectToAttr": false,
+          "docs": "Size of the button",
+          "docsTags": [],
+          "default": "'default'",
+          "values": [
+            {
+              "value": "default",
+              "type": "string"
+            },
+            {
+              "value": "small",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "text",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "text",
+          "reflectToAttr": false,
+          "docs": "Text variant of the button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [
+        {
+          "name": "",
+          "docs": "Default slot for the icon"
+        }
+      ],
+      "parts": [],
+      "dependents": [
+        "c-pagination",
+        "c-tab-buttons"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "c-pagination": [
+          "c-icon-button"
+        ],
+        "c-tab-buttons": [
+          "c-icon-button"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/c-link/c-link.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-link",
+      "readme": "# c-link\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Buttons"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "href",
+          "type": "string",
+          "mutable": false,
+          "attr": "href",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "target",
+          "type": "string",
+          "mutable": false,
+          "attr": "target",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "underline",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "underline",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/c-loader/c-loader.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-loader",
+      "readme": "# c-loader\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Indicators"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "contentdelay",
+          "type": "number",
+          "mutable": false,
+          "attr": "contentdelay",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/c-main/c-main.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-main",
+      "readme": "# c-main\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Layout"
+        }
+      ],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/c-menu/c-menu.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-menu",
+      "readme": "# c-menu\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Navigation"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "items",
+          "type": "any[]",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "[\n    // { name: 'Default 1', action: () => alert('action') },\n  ]",
+          "values": [
+            {
+              "type": "any[]"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "nohover",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "nohover",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "simple",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "simple",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "small",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "small",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [
+        {
+          "event": "keydown",
+          "capture": true,
+          "passive": false
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "c-pagination"
+      ],
+      "dependencies": [
+        "c-menu-item"
+      ],
+      "dependencyGraph": {
+        "c-menu": [
+          "c-menu-item"
+        ],
+        "c-pagination": [
+          "c-menu"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/c-menu-item/c-menu-item.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-menu-item",
+      "readme": "# c-menu-item\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "parent",
+          "text": "c-menu"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "active",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "active",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "small",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "small",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "c-menu"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "c-menu": [
+          "c-menu-item"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/c-modal/c-modal.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-modal",
+      "readme": "# c-modal\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "value",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/c-navigationbutton/c-navigationbutton.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-navigationbutton",
+      "readme": "# c-navigationbutton\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "parent",
+          "text": "c-toolbar"
+        }
+      ],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/c-notification/c-notification.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-notification",
+      "readme": "# c-notification\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "notification",
+          "type": "any",
+          "mutable": true,
+          "attr": "notification",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "{}",
+          "values": [
+            {
+              "type": "any"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "position",
+          "type": "string",
+          "mutable": false,
+          "attr": "position",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'fixed'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/c-pagination/c-pagination.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-pagination",
+      "readme": "# c-pagination\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "itemsPerPageOptions",
+          "type": "number[]",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "Items per page options",
+          "docsTags": [],
+          "default": "[5, 25, 50, 100]",
+          "values": [
+            {
+              "type": "number[]"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "{ itemCount: number; currentPage?: number; totalVisible?: number; itemsPerPage?: number; startFrom?: number; endTo?: number; }",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "Object containing values that are needed for pagination.\n\nNote! startFrom and endTo are assigned automatically to the object based on other values",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "{ itemCount: number; currentPage?: number; totalVisible?: number; itemsPerPage?: number; startFrom?: number; endTo?: number; }"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "changeValue",
+          "detail": "{ itemCount: number; currentPage?: number; totalVisible?: number; itemsPerPage?: number; startFrom?: number; endTo?: number; }",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Triggered when values are changed",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "c-menu",
+        "c-icon-button",
+        "c-row",
+        "c-spacer"
+      ],
+      "dependencyGraph": {
+        "c-pagination": [
+          "c-menu",
+          "c-icon-button",
+          "c-row",
+          "c-spacer"
+        ],
+        "c-menu": [
+          "c-menu-item"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/c-progressbar/c-progressbar.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-progressbar",
+      "readme": "# c-progressbar\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Indicators"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "color",
+          "type": "string",
+          "mutable": false,
+          "attr": "color",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "number",
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/c-radio/c-radio.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-radio",
+      "readme": "# c-radio\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Form"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "color",
+          "type": "string",
+          "mutable": false,
+          "attr": "color",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "''",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "items",
+          "type": "any[]",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "[\n    { label: 'default 1', value: 0 },\n    { label: 'default 2', value: 1 },\n    { label: 'default 3', value: 2 },\n  ]",
+          "values": [
+            {
+              "type": "any[]"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "selected",
+          "type": "object",
+          "mutable": true,
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "object"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "changeValue",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "",
+          "docsTags": []
+        }
+      ],
+      "listeners": [
+        {
+          "event": "keydown",
+          "capture": false,
+          "passive": false
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/row/row.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-row",
+      "readme": "# c-row\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Layout"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "align",
+          "type": "\"center\" | \"end\" | \"start\"",
+          "mutable": false,
+          "attr": "align",
+          "reflectToAttr": false,
+          "docs": "Align items vertically",
+          "docsTags": [],
+          "default": "'start'",
+          "values": [
+            {
+              "value": "center",
+              "type": "string"
+            },
+            {
+              "value": "end",
+              "type": "string"
+            },
+            {
+              "value": "start",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "gap",
+          "type": "number",
+          "mutable": false,
+          "attr": "gap",
+          "reflectToAttr": false,
+          "docs": "Gap between items in px",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "justify",
+          "type": "\"center\" | \"end\" | \"space-between\" | \"start\"",
+          "mutable": false,
+          "attr": "justify",
+          "reflectToAttr": false,
+          "docs": "Justify content horizontally",
+          "docsTags": [],
+          "default": "'start'",
+          "values": [
+            {
+              "value": "center",
+              "type": "string"
+            },
+            {
+              "value": "end",
+              "type": "string"
+            },
+            {
+              "value": "space-between",
+              "type": "string"
+            },
+            {
+              "value": "start",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "wrap",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "wrap",
+          "reflectToAttr": false,
+          "docs": "Flex wrap",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "c-autocomplete",
+        "c-consent",
+        "c-pagination",
+        "c-sidenavigationitem"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "c-autocomplete": [
+          "c-row"
+        ],
+        "c-consent": [
+          "c-row"
+        ],
+        "c-pagination": [
+          "c-row"
+        ],
+        "c-sidenavigationitem": [
+          "c-row"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/select/select.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-select",
+      "readme": "# c-select\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Form"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "dense",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "dense",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "hostId",
+          "type": "string",
+          "mutable": false,
+          "attr": "id",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "items",
+          "type": "any[]",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "[\n    { name: 'Default 1', value: 'default1' },\n    { name: 'Default 2', value: 'default2' },\n    { name: 'Default 3', value: 'default3' },\n  ]",
+          "values": [
+            {
+              "type": "any[]"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "itemsPerPage",
+          "type": "number",
+          "mutable": false,
+          "attr": "items-per-page",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "labelRight",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "label-right",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "mutable": false,
+          "attr": "placeholder",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "''",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "null",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "shadow",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "shadow",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "showNone",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "show-none",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "null",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "validate",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "validate",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "validateOnBlur",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "validate-on-blur",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "any",
+          "mutable": true,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "null",
+          "values": [
+            {
+              "type": "any"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "changeValue",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "",
+          "docsTags": []
+        }
+      ],
+      "listeners": [
+        {
+          "event": "keydown",
+          "capture": true,
+          "passive": false
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/c-sidenavigation/c-sidenavigation.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-sidenavigation",
+      "readme": "# c-sidenavigation\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Navigation"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "menuVisible",
+          "type": "boolean",
+          "mutable": true,
+          "attr": "menu-visible",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "mobile",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "mobile",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/c-sidenavigationitem/c-sidenavigationitem.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-sidenavigationitem",
+      "readme": "# c-sidenavigationitem\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "parent",
+          "text": "c-sidenavigation"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "active",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "active",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "href",
+          "type": "string",
+          "mutable": false,
+          "attr": "href",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "subItems",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "sub-items",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "c-row"
+      ],
+      "dependencyGraph": {
+        "c-sidenavigationitem": [
+          "c-row"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/spacer/spacer.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-spacer",
+      "readme": "# c-spacer\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Layout"
+        }
+      ],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "c-accordion-item",
+        "c-card-actions",
+        "c-pagination"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "c-accordion-item": [
+          "c-spacer"
+        ],
+        "c-card-actions": [
+          "c-spacer"
+        ],
+        "c-pagination": [
+          "c-spacer"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/c-subnavigationitem/c-subnavigationitem.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-subnavigationitem",
+      "readme": "# c-subnavigationitem\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "parent",
+          "text": "c-sidenavigation"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "active",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "active",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "href",
+          "type": "string",
+          "mutable": false,
+          "attr": "href",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/c-switch/c-switch.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-switch",
+      "readme": "# c-switch\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Form"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "hostDisabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disable the switch",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "hostId",
+          "type": "string",
+          "mutable": false,
+          "attr": "id",
+          "reflectToAttr": false,
+          "docs": "Id for the element",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "boolean",
+          "mutable": true,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "Value of the element",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "changeValue",
+          "detail": "boolean",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Emit inner value change to parent",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/tab/tab.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-tab",
+      "readme": "# c-tab\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Tabs"
+        },
+        {
+          "name": "parent",
+          "text": "c-tabs"
+        },
+        {
+          "name": "slot",
+          "text": "- Default slot"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "active",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "active",
+          "reflectToAttr": false,
+          "docs": "Mark tab as active",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Mark tab as disabled",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "hostId",
+          "type": "string",
+          "mutable": false,
+          "attr": "id",
+          "reflectToAttr": false,
+          "docs": "Id of the tab",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "number | string",
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "Value for the tab\n- for use in c-tabs",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "tabChange",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Emit changes to the parent",
+          "docsTags": [
+            {
+              "name": "private"
+            }
+          ]
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [
+        {
+          "name": "",
+          "docs": "Default slot"
+        }
+      ],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/tab-button/tab-button.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-tab-button",
+      "readme": "# c-tab\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Content Switchers"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "active",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "active",
+          "reflectToAttr": false,
+          "docs": "Mark as active",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disable button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "hostId",
+          "type": "string",
+          "mutable": false,
+          "attr": "id",
+          "reflectToAttr": false,
+          "docs": "Id of the button",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label of the button",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "number | string",
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "Value of the button",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "changeValue",
+          "detail": "number | string",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Emit value change to the parent",
+          "docsTags": []
+        },
+        {
+          "event": "focusTab",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Emit tab focus to the parent",
+          "docsTags": [
+            {
+              "name": "private"
+            }
+          ]
+        },
+        {
+          "event": "tabChange",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Emit tab change to parent",
+          "docsTags": [
+            {
+              "name": "private"
+            }
+          ]
+        }
+      ],
+      "listeners": [
+        {
+          "event": "click",
+          "capture": false,
+          "passive": true
+        },
+        {
+          "event": "keydown",
+          "capture": true,
+          "passive": false
+        },
+        {
+          "event": "keyup",
+          "capture": true,
+          "passive": false
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/c-tab-buttons/c-tab-buttons.tsx",
+      "encapsulation": "none",
+      "tag": "c-tab-buttons",
+      "readme": "# c-tab-buttons\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "value",
+          "type": "number | string",
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "Value of the tab buttons",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [
+        {
+          "event": "changeValue",
+          "capture": false,
+          "passive": false
+        },
+        {
+          "event": "focusTab",
+          "capture": false,
+          "passive": true
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "c-icon-button"
+      ],
+      "dependencyGraph": {
+        "c-tab-buttons": [
+          "c-icon-button"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/c-tabs/c-tabs.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-tabs",
+      "readme": "# c-tabs\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Content Switchers"
+        },
+        {
+          "name": "slot",
+          "text": "- Default slot"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "value",
+          "type": "number | string",
+          "mutable": true,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "Currently active tab",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": true
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "changeValue",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Emit changes to the parent",
+          "docsTags": []
+        }
+      ],
+      "listeners": [
+        {
+          "event": "tabChange",
+          "capture": false,
+          "passive": true
+        }
+      ],
+      "styles": [],
+      "slots": [
+        {
+          "name": "",
+          "docs": "Default slot"
+        }
+      ],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/c-tag/c-tag.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-tag",
+      "readme": "# c-tag\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Buttons"
+        },
+        {
+          "name": "slot",
+          "text": "- Default slot"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "active",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "active",
+          "reflectToAttr": false,
+          "docs": "Mark tag as active",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "closeable",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "closeable",
+          "reflectToAttr": false,
+          "docs": "Mark tag as closeable",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "fit",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "fit",
+          "reflectToAttr": false,
+          "docs": "Stretch to fill the container",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [
+        {
+          "name": "",
+          "docs": "Default slot"
+        }
+      ],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/text-field/text-field.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-text-field",
+      "readme": "# c-text-field\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Form"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "autofocus",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "autofocus",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "form",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "form",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "hostId",
+          "type": "string",
+          "mutable": false,
+          "attr": "id",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "mutable": false,
+          "attr": "max",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "null",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "min",
+          "type": "number",
+          "mutable": false,
+          "attr": "min",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "null",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "number",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "number",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "mutable": false,
+          "attr": "placeholder",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "readonly",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "null",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "rows",
+          "type": "number",
+          "mutable": false,
+          "attr": "rows",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "1",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "shadow",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "shadow",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "step",
+          "type": "number",
+          "mutable": false,
+          "attr": "step",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "null",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "mutable": false,
+          "attr": "type",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "valid",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "valid",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "validate",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "validate",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "validateOnBlur",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "validate-on-blur",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "validation",
+          "type": "string",
+          "mutable": false,
+          "attr": "validation",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "'Required field'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "mutable": true,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "changeValue",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/title/title.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-title",
+      "readme": "# c-title\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "slot",
+          "text": "- Default slot"
+        }
+      ],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [
+        {
+          "name": "",
+          "docs": "Default slot"
+        }
+      ],
+      "parts": [],
+      "dependents": [
+        "c-card-title"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "c-card-title": [
+          "c-title"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/toggle/toggle.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-toggle",
+      "readme": "# c-toggle\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Buttons"
+        }
+      ],
+      "usage": {},
+      "props": [
+        {
+          "name": "active",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "active",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "mutable": false,
+          "attr": "color",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "mutable": false,
+          "attr": "description",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "fit",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "fit",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "fixed",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "fixed",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "subtitle",
+          "type": "string",
+          "mutable": false,
+          "attr": "subtitle",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/c-toolbar/c-toolbar.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-toolbar",
+      "readme": "# c-toolbar\n\n\n",
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "group",
+          "text": "Navigation"
+        }
+      ],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    }
+  ]
+}

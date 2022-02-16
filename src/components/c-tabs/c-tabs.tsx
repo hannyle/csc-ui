@@ -9,7 +9,7 @@ import {
 } from '@stencil/core';
 
 /**
- * @group Tabs
+ * @group Content Switchers
  * @slot - Default slot
  */
 @Component({

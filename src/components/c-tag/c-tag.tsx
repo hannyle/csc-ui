@@ -1,6 +1,7 @@
 import { Component, Host, h, Prop } from '@stencil/core';
 
 /**
+ * @group Buttons
  * @slot - Default slot
  */
 @Component({

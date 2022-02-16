@@ -8,7 +8,7 @@ import { CControl } from './app.accessor';
 import { AppComponent } from './app.component';
 import { CButtonComponent } from './examples/c-button/c-button.component';
 import { CCardComponent } from './examples/c-card/c-card.component';
-import { CContentSwitcherComponent } from './examples/c-content-switcher/c-content-switcher.component';
+import { CButtonGroupComponent } from './examples/c-button-group/c-button-group.component';
 import { CIconButtonComponent } from './examples/c-icon-button/c-icon-button.component';
 import { CSwitchComponent } from './examples/c-switch/c-switch.component';
 import { CTabComponent } from './examples/c-tab/c-tab.component';
@@ -32,7 +32,7 @@ import { CPaginationComponent } from './examples/c-pagination/c-pagination.compo
     AppComponent,
     CButtonComponent,
     CCardComponent,
-    CContentSwitcherComponent,
+    CButtonGroupComponent,
     CControl,
     CIconButtonComponent,
     CSwitchComponent,

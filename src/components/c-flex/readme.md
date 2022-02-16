@@ -1,7 +1,5 @@
 # c-flex
 
-Jorma on silakka
-
 <!-- Auto Generated Below -->
 
 

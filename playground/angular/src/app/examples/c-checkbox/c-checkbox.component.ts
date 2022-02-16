@@ -3,13 +3,15 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-c-checkbox',
   templateUrl: './c-checkbox.component.html',
-  styleUrls: ['./c-checkbox.component.scss']
+  styleUrls: ['./c-checkbox.component.scss'],
 })
 export class CCheckboxComponent implements OnInit {
+  template = `<c-checkbox cControl [(ngModel)]="value" label="Example checkbox"></c-checkbox>
 
-  constructor() { }
+  <p>Checkbox is {{ value ? 'checked' : 'not checked' }}</p>`;
+  value = false;
 
-  ngOnInit(): void {
-  }
+  constructor() {}
 
+  ngOnInit(): void {}
 }

@@ -8,8 +8,14 @@ pre {
   margin-bottom: 0;
 }
 
-.flex {
+.cols {
   display: flex;
   align-items: center;
+  gap: 8px;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
   gap: 8px;
 }

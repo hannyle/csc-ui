@@ -10,15 +10,15 @@ import {
 } from '@stencil/core';
 
 /**
- * @group Tabs
+ * @group Content Switchers
  * @slot - Default slot for the c-button elements
  */
 @Component({
-  tag: 'c-content-switcher',
-  styleUrl: 'c-content-switcher.scss',
+  tag: 'c-button-group',
+  styleUrl: 'c-button-group.scss',
   shadow: true,
 })
-export class ContentSwitcher {
+export class ButtonGroup {
   /**
    * Value of the content switcher
    */
@@ -39,8 +39,8 @@ export class ContentSwitcher {
   /**
    * Emit changes to the parent
    */
-  @Event() changeValue: EventEmitter;
-  @Element() el: HTMLCContentSwitcherElement;
+  @Event() changeValue: EventEmitter<number | string>;
+  @Element() el: HTMLCButtonGroupElement;
 
   @Watch('value')
   watchPropHandler(value: string | number) {
@@ -54,7 +54,7 @@ export class ContentSwitcher {
   @Listen('click', { passive: true })
   onHandleClickEvent(ev) {
     const clickStack = ev.composedPath();
-    const switcher = clickStack.find((e) => e.tagName === 'C-CONTENT-SWITCHER');
+    const switcher = clickStack.find((e) => e.tagName === 'C-BUTTON-GROUP');
     const button = clickStack.find((e) => e.tagName === 'C-BUTTON');
 
     if (!button || !switcher) return;
@@ -97,7 +97,7 @@ export class ContentSwitcher {
       button.noRadius = true;
       button.fit = true;
       button.disabled = this.hostDisabled;
-      button.dense = this.size === 'small';
+      button.size = this.size;
 
       if (
         (!this._isString(this.value) && index !== +this.value) ||
@@ -118,8 +118,8 @@ export class ContentSwitcher {
 
   render() {
     const classes = {
-      'c-content-switcher': true,
-      'c-content-switcher--disabled': this.hostDisabled,
+      'c-button-group': true,
+      'c-button-group--disabled': this.hostDisabled,
     };
 
     return (

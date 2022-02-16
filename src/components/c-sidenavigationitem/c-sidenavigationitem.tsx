@@ -34,18 +34,34 @@ export class CSidenavigationitem {
     const classes = this.active && 'active';
 
     return (
-      <Host class={classes} onClick={() => this.redirect()}>
-        <div class="styleMain">
-          <c-row align="center">
-            <div class="middle">{this.getChevron()}</div>
-            <slot name="main"></slot>
-          </c-row>
-        </div>
-        <div
-          aria-expanded={this.active}
-          class={this.active ? 'subnavactive' : 'subnavitem'}
-        >
-          {this.active ? <slot name="subnavitem"></slot> : ''}
+      // <Host class={classes} onClick={() => this.redirect()}>
+      //   <div class="styleMain">
+      //     <c-row align="center">
+      //       <div class="middle">{this.getChevron()}</div>
+      //       <slot name="main"></slot>
+      //     </c-row>
+      //   </div>
+      //   <div
+      //     aria-expanded={this.active}
+      //     class={this.active ? 'subnavactive' : 'subnavitem'}
+      //   >
+      //     {this.active ? <slot name="subnavitem"></slot> : ''}
+      //   </div>
+      // </Host>
+      <Host onClick={() => this.redirect()}>
+        <div class={classes}>
+          <div class="styleMain">
+            <c-row align="center">
+              <div class="middle">{this.getChevron()}</div>
+              <slot name="main"></slot>
+            </c-row>
+          </div>
+          <div
+            aria-expanded={this.active}
+            class={this.active ? 'subnavactive' : 'subnavitem'}
+          >
+            {this.active ? <slot name="subnavitem"></slot> : ''}
+          </div>
         </div>
       </Host>
     );

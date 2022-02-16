@@ -17,16 +17,25 @@
 | `text`     | `text`     | Text variant of the button      | `boolean`              | `false`     |
 
 
+## Slots
+
+| Slot | Description               |
+| ---- | ------------------------- |
+|      | Default slot for the icon |
+
+
 ## Dependencies
 
 ### Used by
 
  - [c-pagination](../c-pagination)
+ - [c-tab-buttons](../c-tab-buttons)
 
 ### Graph
 ```mermaid
 graph TD;
   c-pagination --> c-icon-button
+  c-tab-buttons --> c-icon-button
   style c-icon-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -20,7 +20,6 @@
 ### Used by
 
  - [c-pagination](../c-pagination)
- - [c-paginationrow](../c-paginationrow)
 
 ### Depends on
 
@@ -31,7 +30,6 @@
 graph TD;
   c-menu --> c-menu-item
   c-pagination --> c-menu
-  c-paginationrow --> c-menu
   style c-menu fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
