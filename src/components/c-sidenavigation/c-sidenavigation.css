@@ -1,14 +1,14 @@
 :host::-webkit-scrollbar {
   width: 12px;
-  background: #D8E8EA;
+  background: #d8e8ea;
 }
 :host::-webkit-scrollbar-track {
   border-radius: 10px;
 }
 :host::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.3); 
+  background: rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  border: solid 3px #D8E8EA;
+  border: solid 3px #d8e8ea;
 }
 
 :host(.autoheight) {
@@ -59,17 +59,17 @@
   max-width: 260px;
   transform: translateX(0%);
   position: fixed;
-  right:0;
+  right: 0;
   /* height: 100%; */
 }
 .mobile.c-sidenavigation {
-  /* height: calc(100% - 0px); */
+  overflow-y: scroll;
   z-index: 999;
   height: calc(100% - 100px);
 }
 
 .c-overlay {
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   position: fixed;
   z-index: 998;
   top: 0;
@@ -80,10 +80,10 @@
 
 @keyframes fadeIn {
   0% {
-    background: rgba(0,0,0,0);
+    background: rgba(0, 0, 0, 0);
   }
   100% {
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
   }
 }
 

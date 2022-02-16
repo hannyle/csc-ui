@@ -3,11 +3,11 @@
     <c-csc-logo></c-csc-logo>
     CSC Design System
     <c-spacer></c-spacer>
-    <c-navigationbutton></c-navigationbutton>
+    <c-navigationbutton *ngIf="isMobile$ | async"></c-navigationbutton>
   </c-toolbar>
 
   <c-row class="no-margin no-wrap">
-    <c-sidenavigation class="autoheight" *ngIf="components.length">
+    <c-sidenavigation class="autoheight" *ngIf="components.length" [mobile]="isMobile$ | async">
       <c-text-field
         class="mb-4 me-4"
         placeholder="Search for a component"

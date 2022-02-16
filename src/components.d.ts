@@ -84,6 +84,10 @@ export namespace Components {
          */
         "secondary": boolean;
         /**
+          * Size of the button
+         */
+        "size": 'default' | 'small' | 'large';
+        /**
           * Transparent button background
          */
         "text": boolean;
@@ -146,12 +150,29 @@ export namespace Components {
     interface CFlex {
     }
     interface CIconButton {
+        /**
+          * Show a badge on top of the icon
+         */
         "badge": string;
+        /**
+          * Disable the button
+         */
         "disabled": boolean;
+        /**
+          * Ghost variant of the button
+         */
         "ghost": boolean;
-        "icon": string;
+        /**
+          * Outlined variant of the button
+         */
         "outlined": boolean;
+        /**
+          * Size of the button
+         */
         "size": 'default' | 'small';
+        /**
+          * Text variant of the button
+         */
         "text": boolean;
     }
     interface CLink {
@@ -183,6 +204,23 @@ export namespace Components {
         "notification": any;
         "position": string;
     }
+    interface CPagination {
+        /**
+          * Items per page options
+         */
+        "itemsPerPageOptions": number[];
+        /**
+          * Object containing values that are needed for pagination.  Note! startFrom and endTo are assigned automatically to the object based on other values
+         */
+        "value": {
+    itemCount: number;
+    currentPage?: number;
+    totalVisible?: number;
+    itemsPerPage?: number;
+    startFrom?: number;
+    endTo?: number;
+  };
+    }
     interface CPaginationrow {
         "items": any[];
         "itemsPerPage": number;
@@ -211,7 +249,7 @@ export namespace Components {
         /**
           * Justify content horizontally
          */
-        "justify": 'start' | 'center' | 'end';
+        "justify": 'start' | 'center' | 'end' | 'space-between';
         /**
           * Flex wrap
          */
@@ -268,6 +306,10 @@ export namespace Components {
          */
         "active": boolean;
         /**
+          * Mark tab as disabled
+         */
+        "disabled": boolean;
+        /**
           * Id of the tab
          */
         "hostId": string;
@@ -277,12 +319,32 @@ export namespace Components {
         "value"?: number | string;
     }
     interface CTabButton {
+        /**
+          * Mark as active
+         */
         "active": boolean;
-        "color": string;
+        /**
+          * Disable button
+         */
         "disabled": boolean;
+        /**
+          * Id of the button
+         */
         "hostId": string;
-        "icon": string;
+        /**
+          * Label of the button
+         */
         "label": string;
+        /**
+          * Value of the button
+         */
+        "value": number | string;
+    }
+    interface CTabButtons {
+        /**
+          * Value of the tab buttons
+         */
+        "value": number | string;
     }
     interface CTabs {
         /**
@@ -473,6 +535,12 @@ declare global {
         prototype: HTMLCNotificationElement;
         new (): HTMLCNotificationElement;
     };
+    interface HTMLCPaginationElement extends Components.CPagination, HTMLStencilElement {
+    }
+    var HTMLCPaginationElement: {
+        prototype: HTMLCPaginationElement;
+        new (): HTMLCPaginationElement;
+    };
     interface HTMLCPaginationrowElement extends Components.CPaginationrow, HTMLStencilElement {
     }
     var HTMLCPaginationrowElement: {
@@ -545,6 +613,12 @@ declare global {
         prototype: HTMLCTabButtonElement;
         new (): HTMLCTabButtonElement;
     };
+    interface HTMLCTabButtonsElement extends Components.CTabButtons, HTMLStencilElement {
+    }
+    var HTMLCTabButtonsElement: {
+        prototype: HTMLCTabButtonsElement;
+        new (): HTMLCTabButtonsElement;
+    };
     interface HTMLCTabsElement extends Components.CTabs, HTMLStencilElement {
     }
     var HTMLCTabsElement: {
@@ -604,6 +678,7 @@ declare global {
         "c-modal": HTMLCModalElement;
         "c-navigationbutton": HTMLCNavigationbuttonElement;
         "c-notification": HTMLCNotificationElement;
+        "c-pagination": HTMLCPaginationElement;
         "c-paginationrow": HTMLCPaginationrowElement;
         "c-progressbar": HTMLCProgressbarElement;
         "c-radio": HTMLCRadioElement;
@@ -616,6 +691,7 @@ declare global {
         "c-switch": HTMLCSwitchElement;
         "c-tab": HTMLCTabElement;
         "c-tab-button": HTMLCTabButtonElement;
+        "c-tab-buttons": HTMLCTabButtonsElement;
         "c-tabs": HTMLCTabsElement;
         "c-tag": HTMLCTagElement;
         "c-text-field": HTMLCTextFieldElement;
@@ -711,6 +787,10 @@ declare namespace LocalJSX {
          */
         "secondary"?: boolean;
         /**
+          * Size of the button
+         */
+        "size"?: 'default' | 'small' | 'large';
+        /**
           * Transparent button background
          */
         "text"?: boolean;
@@ -781,12 +861,29 @@ declare namespace LocalJSX {
     interface CFlex {
     }
     interface CIconButton {
+        /**
+          * Show a badge on top of the icon
+         */
         "badge"?: string;
+        /**
+          * Disable the button
+         */
         "disabled"?: boolean;
+        /**
+          * Ghost variant of the button
+         */
         "ghost"?: boolean;
-        "icon"?: string;
+        /**
+          * Outlined variant of the button
+         */
         "outlined"?: boolean;
+        /**
+          * Size of the button
+         */
         "size"?: 'default' | 'small';
+        /**
+          * Text variant of the button
+         */
         "text"?: boolean;
     }
     interface CLink {
@@ -818,6 +915,34 @@ declare namespace LocalJSX {
         "notification"?: any;
         "position"?: string;
     }
+    interface CPagination {
+        /**
+          * Items per page options
+         */
+        "itemsPerPageOptions"?: number[];
+        /**
+          * Triggered when values are changed
+         */
+        "onChangeValue"?: (event: CustomEvent<{
+    itemCount: number;
+    currentPage?: number;
+    totalVisible?: number;
+    itemsPerPage?: number;
+    startFrom?: number;
+    endTo?: number;
+  }>) => void;
+        /**
+          * Object containing values that are needed for pagination.  Note! startFrom and endTo are assigned automatically to the object based on other values
+         */
+        "value"?: {
+    itemCount: number;
+    currentPage?: number;
+    totalVisible?: number;
+    itemsPerPage?: number;
+    startFrom?: number;
+    endTo?: number;
+  };
+    }
     interface CPaginationrow {
         "items"?: any[];
         "itemsPerPage"?: number;
@@ -847,7 +972,7 @@ declare namespace LocalJSX {
         /**
           * Justify content horizontally
          */
-        "justify"?: 'start' | 'center' | 'end';
+        "justify"?: 'start' | 'center' | 'end' | 'space-between';
         /**
           * Flex wrap
          */
@@ -909,6 +1034,10 @@ declare namespace LocalJSX {
          */
         "active"?: boolean;
         /**
+          * Mark tab as disabled
+         */
+        "disabled"?: boolean;
+        /**
           * Id of the tab
          */
         "hostId"?: string;
@@ -923,12 +1052,46 @@ declare namespace LocalJSX {
         "value"?: number | string;
     }
     interface CTabButton {
+        /**
+          * Mark as active
+         */
         "active"?: boolean;
-        "color"?: string;
+        /**
+          * Disable button
+         */
         "disabled"?: boolean;
+        /**
+          * Id of the button
+         */
         "hostId"?: string;
-        "icon"?: string;
+        /**
+          * Label of the button
+         */
         "label"?: string;
+        /**
+          * Emit value change to the parent
+         */
+        "onChangeValue"?: (event: CustomEvent<number | string>) => void;
+        /**
+          * Emit tab focus to the parent
+          * @private
+         */
+        "onFocusTab"?: (event: CustomEvent<any>) => void;
+        /**
+          * Emit tab change to parent
+          * @private
+         */
+        "onTabChange"?: (event: CustomEvent<any>) => void;
+        /**
+          * Value of the button
+         */
+        "value"?: number | string;
+    }
+    interface CTabButtons {
+        /**
+          * Value of the tab buttons
+         */
+        "value"?: number | string;
     }
     interface CTabs {
         /**
@@ -1013,6 +1176,7 @@ declare namespace LocalJSX {
         "c-modal": CModal;
         "c-navigationbutton": CNavigationbutton;
         "c-notification": CNotification;
+        "c-pagination": CPagination;
         "c-paginationrow": CPaginationrow;
         "c-progressbar": CProgressbar;
         "c-radio": CRadio;
@@ -1025,6 +1189,7 @@ declare namespace LocalJSX {
         "c-switch": CSwitch;
         "c-tab": CTab;
         "c-tab-button": CTabButton;
+        "c-tab-buttons": CTabButtons;
         "c-tabs": CTabs;
         "c-tag": CTag;
         "c-text-field": CTextField;
@@ -1059,6 +1224,7 @@ declare module "@stencil/core" {
             "c-modal": LocalJSX.CModal & JSXBase.HTMLAttributes<HTMLCModalElement>;
             "c-navigationbutton": LocalJSX.CNavigationbutton & JSXBase.HTMLAttributes<HTMLCNavigationbuttonElement>;
             "c-notification": LocalJSX.CNotification & JSXBase.HTMLAttributes<HTMLCNotificationElement>;
+            "c-pagination": LocalJSX.CPagination & JSXBase.HTMLAttributes<HTMLCPaginationElement>;
             "c-paginationrow": LocalJSX.CPaginationrow & JSXBase.HTMLAttributes<HTMLCPaginationrowElement>;
             "c-progressbar": LocalJSX.CProgressbar & JSXBase.HTMLAttributes<HTMLCProgressbarElement>;
             "c-radio": LocalJSX.CRadio & JSXBase.HTMLAttributes<HTMLCRadioElement>;
@@ -1071,6 +1237,7 @@ declare module "@stencil/core" {
             "c-switch": LocalJSX.CSwitch & JSXBase.HTMLAttributes<HTMLCSwitchElement>;
             "c-tab": LocalJSX.CTab & JSXBase.HTMLAttributes<HTMLCTabElement>;
             "c-tab-button": LocalJSX.CTabButton & JSXBase.HTMLAttributes<HTMLCTabButtonElement>;
+            "c-tab-buttons": LocalJSX.CTabButtons & JSXBase.HTMLAttributes<HTMLCTabButtonsElement>;
             "c-tabs": LocalJSX.CTabs & JSXBase.HTMLAttributes<HTMLCTabsElement>;
             "c-tag": LocalJSX.CTag & JSXBase.HTMLAttributes<HTMLCTagElement>;
             "c-text-field": LocalJSX.CTextField & JSXBase.HTMLAttributes<HTMLCTextFieldElement>;

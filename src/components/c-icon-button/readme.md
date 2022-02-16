@@ -17,25 +17,16 @@
 | `text`     | `text`     | Text variant of the button      | `boolean`              | `false`     |
 
 
-## Slots
-
-| Slot | Description               |
-| ---- | ------------------------- |
-|      | Default slot for the icon |
-
-
 ## Dependencies
 
 ### Used by
 
- - [c-tab-buttons](../c-tab-buttons)
- - [kakka-swiper](../swiper)
+ - [c-pagination](../c-pagination)
 
 ### Graph
 ```mermaid
 graph TD;
-  c-tab-buttons --> c-icon-button
-  kakka-swiper --> c-icon-button
+  c-pagination --> c-icon-button
   style c-icon-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

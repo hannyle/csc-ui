@@ -1,5 +1,5 @@
 {
-  "timestamp": "2022-02-15T10:09:05",
+  "timestamp": "2022-02-16T10:34:33",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.13.0",
@@ -1152,9 +1152,15 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "dependents": [],
+      "dependents": [
+        "c-pagination"
+      ],
       "dependencies": [],
-      "dependencyGraph": {}
+      "dependencyGraph": {
+        "c-pagination": [
+          "c-icon-button"
+        ]
+      }
     },
     {
       "filePath": "./src/components/c-link/c-link.tsx",
@@ -1389,6 +1395,7 @@
       "slots": [],
       "parts": [],
       "dependents": [
+        "c-pagination",
         "c-paginationrow"
       ],
       "dependencies": [
@@ -1397,6 +1404,9 @@
       "dependencyGraph": {
         "c-menu": [
           "c-menu-item"
+        ],
+        "c-pagination": [
+          "c-menu"
         ],
         "c-paginationrow": [
           "c-menu"
@@ -1582,6 +1592,82 @@
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/c-pagination/c-pagination.tsx",
+      "encapsulation": "shadow",
+      "tag": "c-pagination",
+      "readme": "# c-pagination\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "itemsPerPageOptions",
+          "type": "number[]",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "Items per page options",
+          "docsTags": [],
+          "default": "[5, 25, 50, 100]",
+          "values": [
+            {
+              "type": "number[]"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "{ itemCount: number; currentPage?: number; totalVisible?: number; itemsPerPage?: number; startFrom?: number; endTo?: number; }",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "Object containing values that are needed for pagination.\n\nNote! startFrom and endTo are assigned automatically to the object based on other values",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "{ itemCount: number; currentPage?: number; totalVisible?: number; itemsPerPage?: number; startFrom?: number; endTo?: number; }"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "changeValue",
+          "detail": "{ itemCount: number; currentPage?: number; totalVisible?: number; itemsPerPage?: number; startFrom?: number; endTo?: number; }",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Triggered when values are changed",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "c-menu",
+        "c-icon-button",
+        "c-row",
+        "c-spacer"
+      ],
+      "dependencyGraph": {
+        "c-pagination": [
+          "c-menu",
+          "c-icon-button",
+          "c-row",
+          "c-spacer"
+        ],
+        "c-menu": [
+          "c-menu-item"
+        ]
+      }
     },
     {
       "filePath": "./src/components/c-paginationrow/c-paginationrow.tsx",
@@ -1899,7 +1985,7 @@
         },
         {
           "name": "justify",
-          "type": "\"center\" | \"end\" | \"start\"",
+          "type": "\"center\" | \"end\" | \"space-between\" | \"start\"",
           "mutable": false,
           "attr": "justify",
           "reflectToAttr": false,
@@ -1913,6 +1999,10 @@
             },
             {
               "value": "end",
+              "type": "string"
+            },
+            {
+              "value": "space-between",
               "type": "string"
             },
             {
@@ -1950,6 +2040,7 @@
       "dependents": [
         "c-autocomplete",
         "c-consent",
+        "c-pagination",
         "c-paginationrow",
         "c-sidenavigationitem",
         "c-tab-button"
@@ -1960,6 +2051,9 @@
           "c-row"
         ],
         "c-consent": [
+          "c-row"
+        ],
+        "c-pagination": [
           "c-row"
         ],
         "c-paginationrow": [
@@ -2404,6 +2498,7 @@
       "dependents": [
         "c-accordion-item",
         "c-card-actions",
+        "c-pagination",
         "c-tab-button"
       ],
       "dependencies": [],
@@ -2412,6 +2507,9 @@
           "c-spacer"
         ],
         "c-card-actions": [
+          "c-spacer"
+        ],
+        "c-pagination": [
           "c-spacer"
         ],
         "c-tab-button": [
@@ -2591,6 +2689,24 @@
           "reflectToAttr": false,
           "docs": "Mark tab as active",
           "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Mark tab as disabled",
+          "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"

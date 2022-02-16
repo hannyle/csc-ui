@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { ComponentData } from 'src/interfaces/documentation';
 import { ComponentDataService } from './services/component-data.service';
 import { parseComponents } from './utils/utils';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import docs from '../../../../docs.json';
+import { map, Observable } from 'rxjs';
 
 interface ComponentGroup {
   name: string;
@@ -20,10 +22,17 @@ export class AppComponent {
   groups = [];
   groupedComponents: ComponentGroup[] = [];
 
-  constructor(public componentDataService: ComponentDataService) {
+  constructor(
+    public componentDataService: ComponentDataService,
+    private _breakpointObserver: BreakpointObserver,
+  ) {
     this.components = parseComponents(docs);
     this.groupedComponents = this.getGroupedComponents();
   }
+
+  isMobile$: Observable<boolean> = this._breakpointObserver
+    .observe([Breakpoints.Small, Breakpoints.HandsetPortrait])
+    .pipe(map((obs) => obs.matches));
 
   filterComponents(event: Event) {
     const query = (event.target as HTMLInputElement).value;

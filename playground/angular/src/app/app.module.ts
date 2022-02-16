@@ -25,6 +25,7 @@ import { ViewerSlotsComponent } from './viewer/viewer-slots/viewer-slots.compone
 import { CAutocompleteComponent } from './examples/c-autocomplete/c-autocomplete.component';
 import { CCheckboxComponent } from './examples/c-checkbox/c-checkbox.component';
 import { CTabButtonsComponent } from './examples/c-tab-buttons/c-tab-buttons.component';
+import { CPaginationComponent } from './examples/c-pagination/c-pagination.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { CTabButtonsComponent } from './examples/c-tab-buttons/c-tab-buttons.com
     CCheckboxComponent,
     CAutocompleteComponent,
     CTabButtonsComponent,
+    CPaginationComponent,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HighlightModule],
   providers: [

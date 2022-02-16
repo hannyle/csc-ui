@@ -24,7 +24,7 @@ export class Row {
   /**
    * Justify content horizontally
    */
-  @Prop() justify: 'start' | 'center' | 'end' = 'start';
+  @Prop() justify: 'start' | 'center' | 'end' | 'space-between' = 'start';
 
   render() {
     const classes = {
