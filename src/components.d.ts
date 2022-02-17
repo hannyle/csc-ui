@@ -217,7 +217,7 @@ export namespace Components {
     interface CProgressbar {
         /**
           * Color of the bar (valid css color)
-          * @default --csc-primary
+          * @default var(--csc-primary)
          */
         "color": string;
         /**
@@ -935,7 +935,7 @@ declare namespace LocalJSX {
     interface CProgressbar {
         /**
           * Color of the bar (valid css color)
-          * @default --csc-primary
+          * @default var(--csc-primary)
          */
         "color"?: string;
         /**

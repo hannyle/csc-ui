@@ -10,7 +10,7 @@ import {
 } from '@stencil/core';
 
 /**
- * @group Content Switchers
+ * @group Buttons
  * @slot - Default slot for the c-button elements
  */
 @Component({

@@ -1,5 +1,8 @@
 import { Component, Host, h, Prop } from '@stencil/core';
 
+/**
+ * @group Popups
+ */
 @Component({
   tag: 'c-modal',
   styleUrl: 'c-modal.css',
@@ -16,7 +19,8 @@ export class CModal {
         </div>
         <div class="c-overlay c-fadeIn"></div>
       </Host>
-    ) : '';
+    ) : (
+      ''
+    );
   }
-
 }

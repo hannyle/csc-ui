@@ -1,4 +1,5 @@
 import { Component, Host, h, Prop } from '@stencil/core';
+
 /**
  * @group Indicators
  */
@@ -16,7 +17,7 @@ export class CProgressbar {
   /**
    * Color of the bar (valid css color)
    *
-   * @default --csc-primary
+   * @default var(--csc-primary)
    */
   @Prop() color: string;
 
