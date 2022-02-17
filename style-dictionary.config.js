@@ -4,6 +4,7 @@ module.exports = {
     scss: {
       transformGroup: 'scss',
       buildPath: 'build/',
+      prefix: 'csc',
       files: [
         {
           destination: 'variables.scss',
@@ -14,10 +15,14 @@ module.exports = {
     css: {
       transformGroup: 'css',
       buildPath: 'build/',
+      prefix: 'csc',
       files: [
         {
           format: 'css/variables',
           destination: 'variables.css',
+          options: {
+            selector: ':host',
+          },
         },
       ],
     },
