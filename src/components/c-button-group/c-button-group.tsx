@@ -106,7 +106,7 @@ export class ButtonGroup {
         button.outlined = true;
       }
 
-      const buttonElement = button.shadowRoot.querySelector('.csc-button');
+      const buttonElement = button.shadowRoot.querySelector('.c-button');
 
       buttonElement.classList.add('grouped');
     });

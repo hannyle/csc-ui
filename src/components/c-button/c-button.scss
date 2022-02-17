@@ -3,11 +3,17 @@
 }
 
 button {
+  --c-radius: 4px;
+
+  &.no-radius {
+    --c-radius: 0;
+  }
+
   display: flex;
   border: none;
   padding: 0;
   background: transparent;
-  border-radius: 0;
+  border-radius: var(--c-radius);
   position: relative;
   overflow: hidden;
 
@@ -43,7 +49,6 @@ button {
 }
 
 .c-button {
-  --c-radius: 4px;
   --c-height: 44px;
   --c-padding: 0 16px;
   --c-font-size: 16px;
@@ -153,7 +158,6 @@ button {
       box-shadow: none !important;
 
       &:not(.outlined) {
-        background: var(--csc-light-grey) !important;
         color: var(--csc-dark-grey) !important;
         box-shadow: none;
       }

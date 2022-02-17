@@ -44,10 +44,6 @@ export namespace Components {
     }
     interface CButton {
         /**
-          * Dense variant
-         */
-        "dense": boolean;
-        /**
           * Disable the button
          */
         "disabled": boolean;
@@ -80,10 +76,6 @@ export namespace Components {
           * Outlined button style
          */
         "outlined": boolean;
-        /**
-          * Secondary variant
-         */
-        "secondary": boolean;
         /**
           * Size of the button
          */
@@ -735,10 +727,6 @@ declare namespace LocalJSX {
     }
     interface CButton {
         /**
-          * Dense variant
-         */
-        "dense"?: boolean;
-        /**
           * Disable the button
          */
         "disabled"?: boolean;
@@ -771,10 +759,6 @@ declare namespace LocalJSX {
           * Outlined button style
          */
         "outlined"?: boolean;
-        /**
-          * Secondary variant
-         */
-        "secondary"?: boolean;
         /**
           * Size of the button
          */
