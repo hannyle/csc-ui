@@ -7,10 +7,38 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { CardBackground } from "./components/card/card";
 export namespace Components {
+    interface CAccordion {
+        /**
+          * Allow expanding multiple items
+         */
+        "multiple": boolean;
+        /**
+          * Show an outline around expanded items
+         */
+        "outlined": boolean;
+        /**
+          * Value of the content switcher
+         */
+        "value": number | string | (number | string)[];
+    }
     interface CAccordionItem {
+        /**
+          * Expansion status of the item
+         */
+        "expanded": boolean;
+        /**
+          * Heading of the accordion item
+         */
         "heading": string;
-        "icon": string;
-        "value": boolean;
+        /**
+          * Icon
+          * @deprecated Please use the icon slot instead
+         */
+        "icon": 'enabled' | 'disabled' | 'bell' | 'pending';
+        /**
+          * Value of the accordion item
+         */
+        "value": number | string;
     }
     interface CAutocomplete {
         /**
@@ -406,6 +434,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLCAccordionElement extends Components.CAccordion, HTMLStencilElement {
+    }
+    var HTMLCAccordionElement: {
+        prototype: HTMLCAccordionElement;
+        new (): HTMLCAccordionElement;
+    };
     interface HTMLCAccordionItemElement extends Components.CAccordionItem, HTMLStencilElement {
     }
     var HTMLCAccordionItemElement: {
@@ -653,6 +687,7 @@ declare global {
         new (): HTMLCToolbarElement;
     };
     interface HTMLElementTagNameMap {
+        "c-accordion": HTMLCAccordionElement;
         "c-accordion-item": HTMLCAccordionItemElement;
         "c-autocomplete": HTMLCAutocompleteElement;
         "c-button": HTMLCButtonElement;
@@ -697,11 +732,47 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface CAccordion {
+        /**
+          * Allow expanding multiple items
+         */
+        "multiple"?: boolean;
+        /**
+          * Emit changes to the parent
+         */
+        "onChangeValue"?: (event: CustomEvent<number | string>) => void;
+        /**
+          * Show an outline around expanded items
+         */
+        "outlined"?: boolean;
+        /**
+          * Value of the content switcher
+         */
+        "value": number | string | (number | string)[];
+    }
     interface CAccordionItem {
+        /**
+          * Expansion status of the item
+         */
+        "expanded"?: boolean;
+        /**
+          * Heading of the accordion item
+         */
         "heading"?: string;
-        "icon"?: string;
-        "onChangeValue"?: (event: CustomEvent<any>) => void;
-        "value"?: boolean;
+        /**
+          * Icon
+          * @deprecated Please use the icon slot instead
+         */
+        "icon"?: 'enabled' | 'disabled' | 'bell' | 'pending';
+        /**
+          * Emit changes to the c-accordion
+          * @private
+         */
+        "onItemChange"?: (event: CustomEvent<any>) => void;
+        /**
+          * Value of the accordion item
+         */
+        "value"?: number | string;
     }
     interface CAutocomplete {
         /**
@@ -1153,6 +1224,7 @@ declare namespace LocalJSX {
     interface CToolbar {
     }
     interface IntrinsicElements {
+        "c-accordion": CAccordion;
         "c-accordion-item": CAccordionItem;
         "c-autocomplete": CAutocomplete;
         "c-button": CButton;
@@ -1200,6 +1272,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "c-accordion": LocalJSX.CAccordion & JSXBase.HTMLAttributes<HTMLCAccordionElement>;
             "c-accordion-item": LocalJSX.CAccordionItem & JSXBase.HTMLAttributes<HTMLCAccordionItemElement>;
             "c-autocomplete": LocalJSX.CAutocomplete & JSXBase.HTMLAttributes<HTMLCAutocompleteElement>;
             "c-button": LocalJSX.CButton & JSXBase.HTMLAttributes<HTMLCButtonElement>;

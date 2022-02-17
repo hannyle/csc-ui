@@ -9,7 +9,7 @@
 
 ### Used by
 
- - [c-accordion-item](../c-accordion)
+ - [c-accordion-item](../c-accordion-item)
  - [c-card-actions](../c-card-actions)
  - [c-pagination](../c-pagination)
 
