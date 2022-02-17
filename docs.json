@@ -1,5 +1,5 @@
 {
-  "timestamp": "2022-02-16T13:32:55",
+  "timestamp": "2022-02-17T06:26:08",
   "compiler": {
     "name": "@stencil/core",
     "version": "2.13.0",
@@ -273,7 +273,7 @@
       }
     },
     {
-      "filePath": "./src/components/button/button.tsx",
+      "filePath": "./src/components/c-button/c-button.tsx",
       "encapsulation": "shadow",
       "tag": "c-button",
       "readme": "# c-button\n\n\n",
@@ -294,23 +294,6 @@
       ],
       "usage": {},
       "props": [
-        {
-          "name": "dense",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "dense",
-          "reflectToAttr": false,
-          "docs": "Dense variant",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
         {
           "name": "disabled",
           "type": "boolean",
@@ -454,23 +437,6 @@
           "attr": "outlined",
           "reflectToAttr": false,
           "docs": "Outlined button style",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "secondary",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "secondary",
-          "reflectToAttr": false,
-          "docs": "Secondary variant",
           "docsTags": [],
           "default": "false",
           "values": [

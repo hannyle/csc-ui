@@ -125,6 +125,7 @@ export class Button {
 
     const hostClasses = {
       fit: !!this.fit,
+      'no-radius': !!this.noRadius,
     };
 
     return (
