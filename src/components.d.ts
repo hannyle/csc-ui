@@ -52,6 +52,9 @@ export namespace Components {
     name: string;
     value: string;
   }[];
+        /**
+          * Items per page before adding scroll
+         */
         "itemsPerPage": number;
         /**
           * Element label
@@ -207,9 +210,21 @@ export namespace Components {
     interface CMain {
     }
     interface CMenu {
-        "items": any[];
+        /**
+          * Menu items
+         */
+        "items": { name: string; action: Function }[];
+        /**
+          * No hover background
+         */
         "nohover": boolean;
+        /**
+          * Simple variant without chevron and background, E.g. when a button is the activator
+         */
         "simple": boolean;
+        /**
+          * Small variant
+         */
         "small": boolean;
     }
     interface CMenuItem {
@@ -226,6 +241,10 @@ export namespace Components {
         "position": string;
     }
     interface CPagination {
+        /**
+          * Hide range indicator
+         */
+        "hideRange": boolean;
         /**
           * Items per page options
          */
@@ -421,14 +440,6 @@ export namespace Components {
         "value": string;
     }
     interface CTitle {
-    }
-    interface CToggle {
-        "active": boolean;
-        "color": string;
-        "description": string;
-        "fit": boolean;
-        "fixed": boolean;
-        "subtitle": string;
     }
     interface CToolbar {
     }
@@ -674,12 +685,6 @@ declare global {
         prototype: HTMLCTitleElement;
         new (): HTMLCTitleElement;
     };
-    interface HTMLCToggleElement extends Components.CToggle, HTMLStencilElement {
-    }
-    var HTMLCToggleElement: {
-        prototype: HTMLCToggleElement;
-        new (): HTMLCToggleElement;
-    };
     interface HTMLCToolbarElement extends Components.CToolbar, HTMLStencilElement {
     }
     var HTMLCToolbarElement: {
@@ -727,7 +732,6 @@ declare global {
         "c-tag": HTMLCTagElement;
         "c-text-field": HTMLCTextFieldElement;
         "c-title": HTMLCTitleElement;
-        "c-toggle": HTMLCToggleElement;
         "c-toolbar": HTMLCToolbarElement;
     }
 }
@@ -786,6 +790,9 @@ declare namespace LocalJSX {
     name: string;
     value: string;
   }[];
+        /**
+          * Items per page before adding scroll
+         */
         "itemsPerPage"?: number;
         /**
           * Element label
@@ -957,9 +964,21 @@ declare namespace LocalJSX {
     interface CMain {
     }
     interface CMenu {
-        "items"?: any[];
+        /**
+          * Menu items
+         */
+        "items"?: { name: string; action: Function }[];
+        /**
+          * No hover background
+         */
         "nohover"?: boolean;
+        /**
+          * Simple variant without chevron and background, E.g. when a button is the activator
+         */
         "simple"?: boolean;
+        /**
+          * Small variant
+         */
         "small"?: boolean;
     }
     interface CMenuItem {
@@ -976,6 +995,10 @@ declare namespace LocalJSX {
         "position"?: string;
     }
     interface CPagination {
+        /**
+          * Hide range indicator
+         */
+        "hideRange"?: boolean;
         /**
           * Items per page options
          */
@@ -1213,14 +1236,6 @@ declare namespace LocalJSX {
     }
     interface CTitle {
     }
-    interface CToggle {
-        "active"?: boolean;
-        "color"?: string;
-        "description"?: string;
-        "fit"?: boolean;
-        "fixed"?: boolean;
-        "subtitle"?: string;
-    }
     interface CToolbar {
     }
     interface IntrinsicElements {
@@ -1264,7 +1279,6 @@ declare namespace LocalJSX {
         "c-tag": CTag;
         "c-text-field": CTextField;
         "c-title": CTitle;
-        "c-toggle": CToggle;
         "c-toolbar": CToolbar;
     }
 }
@@ -1312,7 +1326,6 @@ declare module "@stencil/core" {
             "c-tag": LocalJSX.CTag & JSXBase.HTMLAttributes<HTMLCTagElement>;
             "c-text-field": LocalJSX.CTextField & JSXBase.HTMLAttributes<HTMLCTextFieldElement>;
             "c-title": LocalJSX.CTitle & JSXBase.HTMLAttributes<HTMLCTitleElement>;
-            "c-toggle": LocalJSX.CToggle & JSXBase.HTMLAttributes<HTMLCToggleElement>;
             "c-toolbar": LocalJSX.CToolbar & JSXBase.HTMLAttributes<HTMLCToolbarElement>;
         }
     }

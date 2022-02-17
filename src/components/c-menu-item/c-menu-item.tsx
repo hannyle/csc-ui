@@ -1,6 +1,6 @@
 import { Component, Host, h, Prop } from '@stencil/core';
 /**
- * @parent c-menu
+ * @parent none
  */
 
 @Component({

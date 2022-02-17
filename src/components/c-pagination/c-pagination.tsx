@@ -23,7 +23,7 @@ export interface PaginationObject {
 
 @Component({
   tag: 'c-pagination',
-  styleUrl: 'c-pagination.css',
+  styleUrl: 'c-pagination.scss',
   shadow: true,
 })
 export class CPagination {
@@ -54,6 +54,10 @@ export class CPagination {
     startFrom?: number;
     endTo?: number;
   }>;
+  /**
+   * Hide range indicator
+   */
+  @Prop() hideRange: boolean = false;
   /**
    * Items per page options
    */
@@ -92,8 +96,8 @@ export class CPagination {
       },
     }));
     return (
-      <c-menu items={itemsPerPageOptions}>
-        <div slot="activator">
+      <c-menu items={itemsPerPageOptions} nohover>
+        <div>
           <span class="items-per-page">{this._itemsPerPage} per page</span>
         </div>
       </c-menu>
@@ -124,6 +128,7 @@ export class CPagination {
   }
 
   private _getRange() {
+    if (this.hideRange) return;
     const start =
       this._currentPage * this._itemsPerPage - this._itemsPerPage + 1;
     return [

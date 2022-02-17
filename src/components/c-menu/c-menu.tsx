@@ -2,6 +2,7 @@ import { Component, Host, h, State, Prop, Listen } from '@stencil/core';
 import { mdiChevronDown } from '@mdi/js';
 /**
  * @group Navigation
+ * @slot - Menu title / activator element (simple variant)
  */
 @Component({
   tag: 'c-menu',
@@ -9,15 +10,24 @@ import { mdiChevronDown } from '@mdi/js';
   shadow: true,
 })
 export class CMenu {
-  current = null;
   @State() currentIndex: number = null;
   @State() menuVisible: boolean = false;
+  /**
+   * Simple variant without chevron and background, E.g. when a button is the activator
+   */
   @Prop() simple: boolean = false;
+  /**
+   * Small variant
+   */
   @Prop() small: boolean = false;
+  /**
+   * No hover background
+   */
   @Prop() nohover: boolean = false;
-  @Prop() items: any[] = [
-    // { name: 'Default 1', action: () => alert('action') },
-  ];
+  /**
+   * Menu items
+   */
+  @Prop() items: { name: string; action: Function }[] = [];
 
   @Listen('keydown', { capture: true })
   handleKeyDown(ev: any) {
@@ -60,18 +70,18 @@ export class CMenu {
     }
   }
 
-  showMenu() {
+  private _showMenu() {
     if (this.menuVisible) {
       this.currentIndex = null;
     }
     this.menuVisible = !this.menuVisible;
   }
 
-  hideMenu() {
+  private _hideMenu() {
     this.menuVisible = false;
   }
 
-  getListItem = (item) => {
+  private _getListItem = (item) => {
     return (
       <c-menu-item
         onClick={item.action}
@@ -102,20 +112,16 @@ export class CMenu {
         tabindex="0"
         role="button"
         class={hostClasses.join(' ')}
-        onBlur={() => this.hideMenu()}
+        onBlur={() => this._hideMenu()}
       >
         {this.simple ? (
-          <div class="simple" onClick={() => this.showMenu()}>
-            <slot name="activator"></slot>
+          <div class="simple" onClick={() => this._showMenu()}>
+            <slot></slot>
           </div>
         ) : (
-          <div
-            onClick={() => this.showMenu()}
-            ref={(el) => (this.current = el as HTMLElement)}
-            class="full-width"
-          >
+          <div onClick={() => this._showMenu()} class="full-width">
             <div class={this.small ? 'c-select-row small' : 'c-select-row'}>
-              <slot name="activator"></slot>
+              <slot></slot>
               <svg
                 width={this.small ? '16' : '22'}
                 height={this.small ? '16' : '22'}
@@ -130,8 +136,8 @@ export class CMenu {
           </div>
         )}
         {this.menuVisible ? (
-          <div class="c-menu-list" onClick={() => this.hideMenu()}>
-            {this.items.map((item) => this.getListItem(item))}
+          <div class="c-menu-list" onClick={() => this._hideMenu()}>
+            {this.items.map((item) => this._getListItem(item))}
           </div>
         ) : (
           ''

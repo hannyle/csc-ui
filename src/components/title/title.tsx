@@ -1,6 +1,7 @@
 import { Component, Host, h } from '@stencil/core';
 
 /**
+ * @parent None
  * @slot - Default slot
  */
 
