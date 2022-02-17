@@ -63,7 +63,13 @@
 
 .svg {
   align-self: center;
-  fill: #006778;
+  fill: #fff;
+  transition: transform 0.3s ease;
+}
+
+:host(.active) .svg {
+  fill: var(--csc-primary);
+  transform: rotate(90deg);
 }
 
 .svg.hidden {

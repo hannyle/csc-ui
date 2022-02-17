@@ -4,13 +4,14 @@ import { Component, Host, h, Prop } from '@stencil/core';
  */
 @Component({
   tag: 'c-subnavigationitem',
-  styleUrl: 'c-subnavigationitem.css',
+  styleUrl: 'c-subnavigationitem.scss',
   shadow: true,
 })
 export class CSubnavigationitem {
   @Prop() active: boolean;
   @Prop() href: string;
-  redirect() {
+  redirect(event) {
+    event.stopPropagation();
     const sidenav = document.querySelector('c-sidenavigation');
     sidenav.menuVisible = false;
     if (this.href) {
@@ -20,7 +21,7 @@ export class CSubnavigationitem {
   render() {
     const classes = this.active && 'active';
     return (
-      <Host onClick={() => this.redirect()} class={classes}>
+      <Host onClick={(e) => this.redirect(e)} class={classes}>
         <slot></slot>
       </Host>
     );

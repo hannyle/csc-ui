@@ -10,9 +10,10 @@ export class ViewerResolverService implements Resolve<any> {
   constructor(private _componentDataService: ComponentDataService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    this._componentDataService.activeComponent = parseComponents(docs).find(
+    const activeComponent = parseComponents(docs).find(
       (component) => component.tag === route.params['tag'],
     );
-    return this._componentDataService.activeComponent;
+    this._componentDataService.setActiveComponent(activeComponent);
+    return activeComponent;
   }
 }

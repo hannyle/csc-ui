@@ -17,29 +17,39 @@
       >
         <i class="mdi mdi-magnify" style="margin-left: 12px" slot="pre"></i>
       </c-text-field>
+      <c-sidenavigationitem
+        *ngFor="let group of groupedComponents | menuGroups"
+        [active]="group.visible"
+        [class.active]="group.visible"
+        (click)="group.visible = !group.visible"
+        (keyup.enter)="group.visible = !group.visible"
+      >
+        <div slot="main" class="text-capitalize">{{ group.name }}</div>
+        <div slot="subnavitem">
+          <c-subnavigationitem
+            *ngFor="let item of group.components"
+            class="text-capitalize"
+            [routerLink]="['/' + item.tag]"
+            routerLinkActive="active"
+            [active]="activeComponent?.tag === item?.tag"
+          >
+            {{ item.name }}
+          </c-subnavigationitem>
+        </div>
+      </c-sidenavigationitem>
 
-      <div *ngFor="let group of groupedComponents" [class.mb-4]="group.name !== 'ungrouped'">
-        <p class="subheader" *ngIf="group.name !== 'ungrouped'">{{ group.name }}</p>
+      <div *ngFor="let group of groupedComponents | menuGroups: false">
         <c-sidenavigationitem
           *ngFor="let item of group.components"
+          class="text-capitalize"
           [routerLink]="['/' + item.tag]"
           routerLinkActive="active"
-          [active]="componentDataService.activeComponent?.tag === item?.tag"
+          [active]="activeComponent?.tag === item?.tag"
         >
           <div slot="main" class="text-capitalize">{{ item.name }}</div>
-          <div slot="subnavitem">
-            <c-subnavigationitem
-              *ngFor="let child of item.children"
-              class="text-capitalize"
-              (click)="showElement(child.tag)"
-            >
-              {{ child.name }}
-            </c-subnavigationitem>
-          </div>
         </c-sidenavigationitem>
       </div>
     </c-sidenavigation>
-
     <c-flex class="container-height">
       <c-container>
         <router-outlet></router-outlet>

@@ -5,7 +5,7 @@
   font-weight: 450;
   /*height: 46px;*/
   line-height: 46px;
-  padding-left: 38px;
+  padding-left: 42px;
   user-select: none;
   transition: background-color 0.2s ease-in;
   display: flex;
@@ -13,13 +13,13 @@
   background-color: transparent;
 }
 
-:host(:HOVER) {
-  background-color: #F0F6F7;
+:host(:hover) {
+  background-color: #f0f6f7;
   color: #006778;
 }
 
 :host(.active) {
-  background-color:#F0F6F7;
+  background-color: #f0f6f7;
 }
 
 ::slotted(span) {
