@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property              | Attribute | Description                                                                                                                                        | Type                                                                                                                             | Default            |
-| --------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
-| `itemsPerPageOptions` | --        | Items per page options                                                                                                                             | `number[]`                                                                                                                       | `[5, 25, 50, 100]` |
-| `value`               | --        | Object containing values that are needed for pagination.  Note! startFrom and endTo are assigned automatically to the object based on other values | `{ itemCount: number; currentPage?: number; totalVisible?: number; itemsPerPage?: number; startFrom?: number; endTo?: number; }` | `undefined`        |
+| Property              | Attribute    | Description                                                                                                                                        | Type                                                                                                                             | Default            |
+| --------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
+| `hideRange`           | `hide-range` | Hide range indicator                                                                                                                               | `boolean`                                                                                                                        | `false`            |
+| `itemsPerPageOptions` | --           | Items per page options                                                                                                                             | `number[]`                                                                                                                       | `[5, 25, 50, 100]` |
+| `value`               | --           | Object containing values that are needed for pagination.  Note! startFrom and endTo are assigned automatically to the object based on other values | `{ itemCount: number; currentPage?: number; totalVisible?: number; itemsPerPage?: number; startFrom?: number; endTo?: number; }` | `undefined`        |
 
 
 ## Events

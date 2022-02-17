@@ -29,6 +29,7 @@ import { CPaginationComponent } from './examples/c-pagination/c-pagination.compo
 import { MenuGroupsPipe } from './pipes/menu-groups.pipe';
 import { CProgressBarComponent } from './examples/c-progress-bar/c-progress-bar.component';
 import { CAccordionComponent } from './examples/c-accordion/c-accordion.component';
+import { CMenuComponent } from './examples/c-menu/c-menu.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { CAccordionComponent } from './examples/c-accordion/c-accordion.componen
     MenuGroupsPipe,
     CProgressBarComponent,
     CAccordionComponent,
+    CMenuComponent,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HighlightModule],
   providers: [

@@ -53,6 +53,9 @@ export class Autocomplete {
     value: string;
   }[] = [];
 
+  /**
+   * Items per page before adding scroll
+   */
   @Prop() itemsPerPage: number;
 
   /**
