@@ -17,6 +17,9 @@ export interface PaginationObject {
   startFrom?: number;
   endTo?: number;
 }
+/**
+ * @group Content Switchers
+ */
 
 @Component({
   tag: 'c-pagination',
@@ -174,7 +177,7 @@ export class CPagination {
         <svg width="16" height="16" viewBox="0 0 24 24">
           <path d={mdiDotsHorizontal} />
         </svg>
-      </c-icon-button>
+      </c-icon-button>,
     );
   }
 

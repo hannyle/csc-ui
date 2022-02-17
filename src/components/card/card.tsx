@@ -2,7 +2,6 @@ import { Component, Host, h, Prop, getAssetPath } from '@stencil/core';
 
 export type CardBackground = 'puhti' | 'mahti' | 'allas';
 /**
- * @group Containers
  * @slot - Card contents
  */
 @Component({
@@ -23,7 +22,7 @@ export class Card {
 
     if (this.allowedBackgrounds.includes(this.background)) {
       style['background-image'] = `url(${getAssetPath(
-        `./assets/${this.background}.gif`
+        `./assets/${this.background}.gif`,
       )}`;
       style['background-size'] = 'cover';
       style['background-position-y'] = 'bottom';
