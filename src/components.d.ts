@@ -44,10 +44,6 @@ export namespace Components {
     }
     interface CButton {
         /**
-          * Dense variant
-         */
-        "dense": boolean;
-        /**
           * Disable the button
          */
         "disabled": boolean;
@@ -80,10 +76,6 @@ export namespace Components {
           * Outlined button style
          */
         "outlined": boolean;
-        /**
-          * Secondary variant
-         */
-        "secondary": boolean;
         /**
           * Size of the button
          */
@@ -223,7 +215,18 @@ export namespace Components {
   };
     }
     interface CProgressbar {
+        /**
+          * Color of the bar (valid css color)
+          * @default --csc-primary
+         */
         "color": string;
+        /**
+          * Indeterminate state of the progress bar
+         */
+        "indeterminate": boolean;
+        /**
+          * Progress bar value in percentage (0 to 100)
+         */
         "value": number;
     }
     interface CRadio {
@@ -735,10 +738,6 @@ declare namespace LocalJSX {
     }
     interface CButton {
         /**
-          * Dense variant
-         */
-        "dense"?: boolean;
-        /**
           * Disable the button
          */
         "disabled"?: boolean;
@@ -771,10 +770,6 @@ declare namespace LocalJSX {
           * Outlined button style
          */
         "outlined"?: boolean;
-        /**
-          * Secondary variant
-         */
-        "secondary"?: boolean;
         /**
           * Size of the button
          */
@@ -933,7 +928,18 @@ declare namespace LocalJSX {
   };
     }
     interface CProgressbar {
+        /**
+          * Color of the bar (valid css color)
+          * @default --csc-primary
+         */
         "color"?: string;
+        /**
+          * Indeterminate state of the progress bar
+         */
+        "indeterminate"?: boolean;
+        /**
+          * Progress bar value in percentage (0 to 100)
+         */
         "value"?: number;
     }
     interface CRadio {

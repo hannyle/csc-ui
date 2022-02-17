@@ -4,22 +4,55 @@ import { Component, Host, h, Prop } from '@stencil/core';
  */
 @Component({
   tag: 'c-progressbar',
-  styleUrl: 'c-progressbar.css',
+  styleUrl: 'c-progressbar.scss',
   shadow: true,
 })
 export class CProgressbar {
-  @Prop() value: number;
+  /**
+   * Progress bar value in percentage (0 to 100)
+   */
+  @Prop() value = 0;
+
+  /**
+   * Color of the bar (valid css color)
+   *
+   * @default --csc-primary
+   */
   @Prop() color: string;
 
+  /**
+   * Indeterminate state of the progress bar
+   */
+  @Prop() indeterminate = false;
+
+  private _getSafeValue() {
+    if (this.value >= 0 && this.value <= 100) return this.value;
+
+    if (this.value < 0) return 0;
+
+    return 100;
+  }
+
   render() {
-    const color = this.color ? this.color : '#008675';
-    const style = { width: `${this.value}%`, 'background-color': color };
+    const style = {
+      '--value': `${this._getSafeValue()}%`,
+      '--bar-color': this.color ? this.color : null,
+    };
+    const classes = {
+      'c-progress': true,
+      'c-progress--indeterminate': this.indeterminate,
+    };
+
     return (
       <Host>
-        <div class="c-progress-bar-container">
-          <div class="c-progress-bar" style={style}></div>
+        <div class={classes} style={style}>
+          <div class="c-progress__bar"></div>
         </div>
-        <div class="c-progress-bar-percentage">{this.value} %</div>
+        {this.indeterminate ? (
+          ''
+        ) : (
+          <div class="c-progress__percentage">{this._getSafeValue()} %</div>
+        )}
       </Host>
     );
   }

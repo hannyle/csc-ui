@@ -1,0 +1,14 @@
+<app-example title="Basic usage" [raw]="examples[0]" [script]="scripts[0]" rows>
+  <c-progressbar value="50"></c-progressbar>
+  <c-progressbar [value]="progress"></c-progressbar>
+</app-example>
+
+<app-example title="Custom colors" rows>
+  <c-progressbar value="75" color="hotpink"></c-progressbar>
+  <c-progressbar value="75" color="#16c1dd"></c-progressbar>
+</app-example>
+
+<app-example title="Indeterminate state" rows>
+  <c-progressbar indeterminate></c-progressbar>
+  <c-progressbar indeterminate color="#16c1dd"></c-progressbar>
+</app-example>
