@@ -1,17 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-c-progressbar',
-  templateUrl: './c-progressbar.component.html',
-  styleUrls: ['./c-progressbar.component.scss'],
+  selector: 'app-c-progress-bar',
+  templateUrl: './c-progress-bar.component.html',
+  styleUrls: ['./c-progress-bar.component.scss'],
 })
-export class CProgressbarComponent implements OnInit, OnDestroy {
+export class CProgressBarComponent implements OnInit, OnDestroy {
   progress = 0;
   interval = null;
   examples = [
     `
-<c-progressbar value="50"></c-progressbar>
-<c-progressbar [value]="progress"></c-progressbar>
+<c-progress-bar value="50"></c-progress-bar>
+<c-progress-bar [value]="progress"></c-progress-bar>
   `,
   ];
 

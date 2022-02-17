@@ -4,11 +4,11 @@ import { Component, Host, h, Prop } from '@stencil/core';
  * @group Indicators
  */
 @Component({
-  tag: 'c-progressbar',
-  styleUrl: 'c-progressbar.scss',
+  tag: 'c-progress-bar',
+  styleUrl: 'c-progress-bar.scss',
   shadow: true,
 })
-export class CProgressbar {
+export class CProgressBar {
   /**
    * Progress bar value in percentage (0 to 100)
    */

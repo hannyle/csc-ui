@@ -27,7 +27,7 @@ import { CCheckboxComponent } from './examples/c-checkbox/c-checkbox.component';
 import { CTabButtonsComponent } from './examples/c-tab-buttons/c-tab-buttons.component';
 import { CPaginationComponent } from './examples/c-pagination/c-pagination.component';
 import { MenuGroupsPipe } from './pipes/menu-groups.pipe';
-import { CProgressbarComponent } from './examples/c-progressbar/c-progressbar.component';
+import { CProgressBarComponent } from './examples/c-progress-bar/c-progress-bar.component';
 import { CAccordionComponent } from './examples/c-accordion/c-accordion.component';
 
 @NgModule({
@@ -55,7 +55,7 @@ import { CAccordionComponent } from './examples/c-accordion/c-accordion.componen
     CTabButtonsComponent,
     CPaginationComponent,
     MenuGroupsPipe,
-    CProgressbarComponent,
+    CProgressBarComponent,
     CAccordionComponent,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HighlightModule],
