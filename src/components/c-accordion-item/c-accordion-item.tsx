@@ -92,61 +92,55 @@ export class CAccordionItem {
   }
 
   render() {
+    const headerClasses = {
+      'c-accordion-item__header': true,
+      'c-accordion-item__header--expanded': this.expanded,
+    };
+
+    const indicatorClasses = {
+      'c-accordion-item__indicator': true,
+      'c-accordion-item__indicator--expanded': this.expanded,
+    };
+
     return (
-      <Host>
+      <Host class="c-accordion-item">
         <div
-          class="accordion-header"
+          class={headerClasses}
           tabindex="0"
           aria-expanded={this.expanded}
           onClick={() => this._toggle()}
-          id={`c-accordion-${this._uniqueId}`}
+          id={`c-accordion-item--${this._uniqueId}`}
         >
-          <div class="icon-wrapper">
+          <div class="c-accordion-item__icon">
             {!!this.icon ? this._getIcon() : <slot name="icon"></slot>}
           </div>
 
-          <h4>{this.heading}</h4>
-          <c-spacer></c-spacer>
-          {
+          <div class="c-accordion-item__title">{this.heading}</div>
+
+          <div class={indicatorClasses}>
             <svg
               width="24"
               height="24"
               viewBox="0 0 24 24"
               fill="none"
+              class={this.expanded && 'expanded'}
               xmlns="http://www.w3.org/2000/svg"
             >
-              {!this.expanded ? (
-                <path
-                  fill="#006778"
-                  d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-                />
-              ) : (
-                <path
-                  fill="#006778"
-                  d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
-                />
-              )}
+              <path
+                fill="#006778"
+                d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+              />
             </svg>
-          }
+          </div>
         </div>
-        <div
-          class={
-            this.expanded
-              ? 'accordion-content-wrapper'
-              : 'accordion-content-wrapper hidden'
-          }
-        >
-          {this.expanded ? (
-            <div
-              class="accordion-content"
-              role="region"
-              aria-labelledby={`c-accordion-${this._uniqueId}`}
-            >
-              <slot></slot>
-            </div>
-          ) : (
-            ''
-          )}
+        <div class="c-accordion-item__content-wrapper">
+          <div
+            class="c-accordion-item__content"
+            role="region"
+            aria-labelledby={`c-accordion-${this._uniqueId}`}
+          >
+            <slot></slot>
+          </div>
         </div>
       </Host>
     );

@@ -28,6 +28,7 @@ export class ExampleComponent implements AfterViewInit, AfterContentChecked {
   @ViewChild('example') example;
   code = '';
   allowedAttributes = [];
+  showCode = false;
 
   constructor(private cdref: ChangeDetectorRef) {
     const attrs = docs.components?.reduce(

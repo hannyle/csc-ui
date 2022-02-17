@@ -242,7 +242,7 @@ export namespace Components {
     endTo?: number;
   };
     }
-    interface CProgressbar {
+    interface CProgressBar {
         /**
           * Color of the bar (valid css color)
           * @default var(--csc-primary)
@@ -578,11 +578,11 @@ declare global {
         prototype: HTMLCPaginationElement;
         new (): HTMLCPaginationElement;
     };
-    interface HTMLCProgressbarElement extends Components.CProgressbar, HTMLStencilElement {
+    interface HTMLCProgressBarElement extends Components.CProgressBar, HTMLStencilElement {
     }
-    var HTMLCProgressbarElement: {
-        prototype: HTMLCProgressbarElement;
-        new (): HTMLCProgressbarElement;
+    var HTMLCProgressBarElement: {
+        prototype: HTMLCProgressBarElement;
+        new (): HTMLCProgressBarElement;
     };
     interface HTMLCRadioElement extends Components.CRadio, HTMLStencilElement {
     }
@@ -711,7 +711,7 @@ declare global {
         "c-navigationbutton": HTMLCNavigationbuttonElement;
         "c-notification": HTMLCNotificationElement;
         "c-pagination": HTMLCPaginationElement;
-        "c-progressbar": HTMLCProgressbarElement;
+        "c-progress-bar": HTMLCProgressBarElement;
         "c-radio": HTMLCRadioElement;
         "c-row": HTMLCRowElement;
         "c-select": HTMLCSelectElement;
@@ -1003,7 +1003,7 @@ declare namespace LocalJSX {
     endTo?: number;
   };
     }
-    interface CProgressbar {
+    interface CProgressBar {
         /**
           * Color of the bar (valid css color)
           * @default var(--csc-primary)
@@ -1248,7 +1248,7 @@ declare namespace LocalJSX {
         "c-navigationbutton": CNavigationbutton;
         "c-notification": CNotification;
         "c-pagination": CPagination;
-        "c-progressbar": CProgressbar;
+        "c-progress-bar": CProgressBar;
         "c-radio": CRadio;
         "c-row": CRow;
         "c-select": CSelect;
@@ -1296,7 +1296,7 @@ declare module "@stencil/core" {
             "c-navigationbutton": LocalJSX.CNavigationbutton & JSXBase.HTMLAttributes<HTMLCNavigationbuttonElement>;
             "c-notification": LocalJSX.CNotification & JSXBase.HTMLAttributes<HTMLCNotificationElement>;
             "c-pagination": LocalJSX.CPagination & JSXBase.HTMLAttributes<HTMLCPaginationElement>;
-            "c-progressbar": LocalJSX.CProgressbar & JSXBase.HTMLAttributes<HTMLCProgressbarElement>;
+            "c-progress-bar": LocalJSX.CProgressBar & JSXBase.HTMLAttributes<HTMLCProgressBarElement>;
             "c-radio": LocalJSX.CRadio & JSXBase.HTMLAttributes<HTMLCRadioElement>;
             "c-row": LocalJSX.CRow & JSXBase.HTMLAttributes<HTMLCRowElement>;
             "c-select": LocalJSX.CSelect & JSXBase.HTMLAttributes<HTMLCSelectElement>;

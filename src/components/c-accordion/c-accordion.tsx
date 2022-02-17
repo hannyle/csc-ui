@@ -51,8 +51,6 @@ export class CAccordion {
   ) {
     const { value, expanded } = event.detail;
 
-    console.log({ value, expanded });
-
     if (this.multiple && Array.isArray(this.value)) {
       if (expanded) {
         this.value.push(value);
@@ -70,16 +68,59 @@ export class CAccordion {
     return Array.from(this.el.childNodes) as HTMLCAccordionItemElement[];
   }
 
-  private _handleItemExpansion() {
+  private _handleItemExpansion(animate = true) {
     for (const item of this.items) {
       item.expanded = Array.isArray(this.value)
         ? this.value.includes(item.value)
         : item.value === this.value;
+
+      const wrapper: HTMLDivElement = item.shadowRoot.querySelector(
+        '.c-accordion-item__content-wrapper',
+      );
+
+      wrapper.classList[animate ? 'add' : 'remove']('animate');
+
+      if (item.expanded) this._expandItem(wrapper);
+      else this._collapseItem(wrapper);
     }
   }
 
-  componentWillLoad() {
-    this._handleItemExpansion();
+  private _collapseItem(item) {
+    if (item.dataset.collapsed === 'true') return;
+
+    const sectionHeight = item.scrollHeight;
+
+    const elementTransition = item.style.transition;
+    item.style.transition = '';
+
+    requestAnimationFrame(function () {
+      item.style.height = sectionHeight + 'px';
+      item.style.transition = elementTransition;
+
+      requestAnimationFrame(function () {
+        item.style.height = '0px';
+      });
+    });
+
+    item.setAttribute('data-collapsed', 'true');
+  }
+
+  private _expandItem(item) {
+    if (item.dataset.collapsed === 'false') return;
+
+    var sectionHeight = item.scrollHeight;
+
+    item.style.height = sectionHeight + 'px';
+
+    setTimeout(() => {
+      item.style.height = null;
+    }, 200);
+
+    item.setAttribute('data-collapsed', 'false');
+  }
+
+  componentDidRender() {
+    this._handleItemExpansion(false);
   }
 
   render() {
