@@ -263,9 +263,14 @@ export namespace Components {
         "mobile": boolean;
     }
     interface CSidenavigationitem {
+        /**
+          * Indicate active state
+         */
         "active": boolean;
+        /**
+          * Hyperlink url
+         */
         "href": string;
-        "subItems": boolean;
     }
     interface CSpacer {
     }
@@ -967,9 +972,14 @@ declare namespace LocalJSX {
         "mobile"?: boolean;
     }
     interface CSidenavigationitem {
+        /**
+          * Indicate active state
+         */
         "active"?: boolean;
+        /**
+          * Hyperlink url
+         */
         "href"?: string;
-        "subItems"?: boolean;
     }
     interface CSpacer {
     }

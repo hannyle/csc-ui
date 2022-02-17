@@ -26,6 +26,7 @@ import { CAutocompleteComponent } from './examples/c-autocomplete/c-autocomplete
 import { CCheckboxComponent } from './examples/c-checkbox/c-checkbox.component';
 import { CTabButtonsComponent } from './examples/c-tab-buttons/c-tab-buttons.component';
 import { CPaginationComponent } from './examples/c-pagination/c-pagination.component';
+import { MenuGroupsPipe } from './pipes/menu-groups.pipe';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { CPaginationComponent } from './examples/c-pagination/c-pagination.compo
     CAutocompleteComponent,
     CTabButtonsComponent,
     CPaginationComponent,
+    MenuGroupsPipe,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HighlightModule],
   providers: [

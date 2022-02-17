@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import countries from '../countries.json';
 
 interface PaginationObject {
@@ -15,7 +15,7 @@ interface PaginationObject {
   templateUrl: './c-pagination.component.html',
   styleUrls: ['./c-pagination.component.scss'],
 })
-export class CPaginationComponent implements OnInit {
+export class CPaginationComponent {
   template = `<div>
   <c-tag *ngFor="let country of countries | slice: options.startFrom:options.endTo">
     {{ country }}
@@ -64,8 +64,4 @@ options: PaginationObject = {
   };
 
   constructor() {}
-
-  ngOnInit(): void {
-    console.log(this.countries);
-  }
 }
