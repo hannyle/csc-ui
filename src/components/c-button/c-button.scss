@@ -111,6 +111,13 @@ button {
     --c-background-color: var(--csc-primary-ghost);
     --c-color: var(--csc-primary);
     --c-hover-background: var(--csc-primary-ghost-hover);
+
+    &#{$this} {
+      &--disabled {
+        --c-background-color: var(--csc-lightest-grey);
+        --c-hover-background: var(--csc-lightest-grey);
+      }
+    }
   }
 
   &--text {
@@ -179,6 +186,26 @@ button {
     box-shadow: none;
     flex-grow: 1;
   }
+
+  &--description {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  &__content {
+    display: flex;
+    height: var(--c-height);
+    align-items: center;
+    justify-content: center;
+    padding: var(--c-padding);
+  }
+
+  &__description {
+    font-weight: 400;
+    font-size: 12px;
+    padding: 0 12px 12px;
+  }
 }
 
 .spinner__circle {
@@ -191,15 +218,6 @@ button {
   stroke-dashoffset: 280;
   stroke-width: 10px;
   transform-origin: 50% 50%;
-}
-
-.c-button-padding {
-  display: flex;
-  height: var(--c-height);
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: var(--c-padding);
 }
 
 .fit {

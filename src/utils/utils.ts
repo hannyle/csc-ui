@@ -5,8 +5,6 @@ export function format(first: string, middle: string, last: string): string {
 }
 
 export function createRipple(event, element) {
-  console.log('ripple click', element);
-
   let rippleElement = element.querySelector('.md-ripple');
 
   if (!rippleElement) {
@@ -29,8 +27,6 @@ export function createRipple(event, element) {
   rippleElement.style.left = x - d / 2 + 'px';
 
   rippleElement.classList.add('animate');
-
-  // console.log({ x, y, d });
 
   setTimeout(() => {
     rippleElement.remove();

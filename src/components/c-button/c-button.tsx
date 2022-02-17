@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h, Element, Host } from '@stencil/core';
 import { mdiPlus, mdiMinus, mdiAccount, mdiPencil } from '@mdi/js';
 import { createRipple } from '../../utils/utils';
 
@@ -6,6 +6,7 @@ import { createRipple } from '../../utils/utils';
  * @group Buttons
  * @slot - Button text
  * @slot icon - Icon
+ * @slot description - Additional description to be shown below the button text
  */
 @Component({
   tag: 'c-button',
@@ -71,11 +72,23 @@ export class Button {
    */
   @Prop() size: 'default' | 'small' | 'large' = 'default';
 
+  @Element() hostElement: HTMLCButtonElement;
+
   private _container?: HTMLDivElement;
 
   private _onClick = (event) => {
     createRipple(event, this._container);
   };
+
+  private _containerhasDescriptionSlot: boolean;
+
+  componentWillLoad() {
+    this._containerhasDescriptionSlot = !!this.hostElement.querySelector(
+      '[slot="description"]',
+    );
+
+    console.log(this._containerhasDescriptionSlot);
+  }
 
   render() {
     const SPINNER_SMALL: SVGImageElement = (
@@ -108,18 +121,19 @@ export class Button {
 
     const buttonClasses = {
       'c-button': true,
+      'c-button--description': this._containerhasDescriptionSlot,
       'c-button--disabled': !!this.disabled,
-      'c-button--ghost': !!this.ghost,
-      'c-button--small': this.size === 'small',
-      'c-button--large': this.size === 'large',
-      'c-button--text': !!this.text,
       'c-button--fitted': !!this.fit,
-      'c-button--outlined': !!this.outlined,
+      'c-button--ghost': !!this.ghost,
+      'c-button--large': this.size === 'large',
       'c-button--no-radius': !!this.noRadius,
+      'c-button--outlined': !!this.outlined,
+      'c-button--small': this.size === 'small',
+      'c-button--text': !!this.text,
     };
 
     const innerClasses = {
-      'c-button-padding': true,
+      'c-button__content': true,
       'hide-text': this.loading,
     };
 
@@ -128,27 +142,38 @@ export class Button {
       'no-radius': !!this.noRadius,
     };
 
+    const descriptionSlotClasses = {
+      'c-button__description': this._containerhasDescriptionSlot,
+    };
+
     return (
-      <button
-        id={this.hostId}
-        class={hostClasses}
-        tabindex="0"
-        role="button"
-        disabled={this.disabled}
-        onClick={this._onClick}
-      >
-        <div
-          class={buttonClasses}
-          ref={(el) => (this._container = el as HTMLDivElement)}
+      <Host>
+        <button
+          id={this.hostId}
+          class={hostClasses}
+          tabindex="0"
+          role="button"
+          disabled={this.disabled}
+          onClick={this._onClick}
         >
-          {this.loading && <div class="spinner_wrapper">{SPINNER_SMALL}</div>}
-          <div class={innerClasses}>
-            <slot name="icon"></slot>
-            {svg}
-            <slot></slot>
+          <div
+            class={buttonClasses}
+            ref={(el) => (this._container = el as HTMLDivElement)}
+          >
+            {this.loading && <div class="spinner_wrapper">{SPINNER_SMALL}</div>}
+            <div class={innerClasses}>
+              <slot name="icon"></slot>
+              {svg}
+              <slot></slot>
+            </div>
+            {this._containerhasDescriptionSlot && !this.loading && (
+              <div class={descriptionSlotClasses}>
+                <slot name="description"></slot>
+              </div>
+            )}
           </div>
-        </div>
-      </button>
+        </button>
+      </Host>
     );
   }
 }

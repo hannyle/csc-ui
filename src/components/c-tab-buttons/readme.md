@@ -12,6 +12,13 @@
 | `value`  | `value`   | Value of the tab buttons | `number \| string` | `undefined` |
 
 
+## Slots
+
+| Slot | Description                                |
+| ---- | ------------------------------------------ |
+|      | Default slot for the c-tab-button elements |
+
+
 ## Dependencies
 
 ### Depends on

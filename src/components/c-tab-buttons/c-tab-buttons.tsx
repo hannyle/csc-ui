@@ -2,6 +2,10 @@ import { Component, h, Listen, Prop, State } from '@stencil/core';
 import Swiper, { Navigation, SwiperOptions } from 'swiper';
 import { mdiChevronLeft, mdiChevronRight } from '@mdi/js';
 
+/**
+ * @group Content Switchers
+ * @slot - Default slot for the c-tab-button elements
+ */
 @Component({
   tag: 'c-tab-buttons',
   styleUrl: 'c-tab-buttons.scss',
@@ -11,7 +15,7 @@ export class TabButtons {
   /**
    * Value of the tab buttons
    */
-  @Prop() value: number | string;
+  @Prop({ reflect: true, mutable: true }) value: number | string;
 
   @State() isBeginning = true;
   @State() isEnd = false;
@@ -23,6 +27,8 @@ export class TabButtons {
 
   @Listen('changeValue')
   onTabClick(event: MouseEvent) {
+    this.value = event.detail;
+
     this.slotItems.forEach((child) => {
       child.active = child.value === event.detail;
     });
@@ -41,6 +47,8 @@ export class TabButtons {
   }
 
   componentDidLoad() {
+    console.log('🤡🤡🤡', this.value);
+
     this._options = {
       modules: [Navigation],
       breakpointsBase: 'container',

@@ -24,10 +24,11 @@
 
 ## Slots
 
-| Slot     | Description |
-| -------- | ----------- |
-|          | Button text |
-| `"icon"` | Icon        |
+| Slot            | Description                                              |
+| --------------- | -------------------------------------------------------- |
+|                 | Button text                                              |
+| `"description"` | Additional description to be shown below the button text |
+| `"icon"`        | Icon                                                     |
 
 
 ----------------------------------------------
