@@ -1,0 +1,10 @@
+<app-example title="Basic usage">
+  <c-radio
+    cControl
+    label="Example radio buttons"
+    [items]="items"
+    [(ngModel)]="selectedItem"
+  ></c-radio>
+
+  <p style="margin-top: 16px">Selected item: {{ selectedItem.label }}</p>
+</app-example>

@@ -30,6 +30,7 @@ import { MenuGroupsPipe } from './pipes/menu-groups.pipe';
 import { CProgressBarComponent } from './examples/c-progress-bar/c-progress-bar.component';
 import { CAccordionComponent } from './examples/c-accordion/c-accordion.component';
 import { CMenuComponent } from './examples/c-menu/c-menu.component';
+import { CRadioComponent } from './examples/c-radio/c-radio.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { CMenuComponent } from './examples/c-menu/c-menu.component';
     CProgressBarComponent,
     CAccordionComponent,
     CMenuComponent,
+    CRadioComponent,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HighlightModule],
   providers: [

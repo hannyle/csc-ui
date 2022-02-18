@@ -277,10 +277,22 @@ export namespace Components {
         "value": number;
     }
     interface CRadio {
+        /**
+          * Color of the radio group
+         */
         "color": string;
-        "items": any[];
+        /**
+          * Radio group items
+         */
+        "items": { label: string; value: number | string }[];
+        /**
+          * Label of the radio group
+         */
         "label": string;
-        "selected": object;
+        /**
+          * Value of the radio group
+         */
+        "value": { label: string; value: number | string };
     }
     interface CRow {
         /**
@@ -1042,11 +1054,26 @@ declare namespace LocalJSX {
         "value"?: number;
     }
     interface CRadio {
+        /**
+          * Color of the radio group
+         */
         "color"?: string;
-        "items"?: any[];
+        /**
+          * Radio group items
+         */
+        "items"?: { label: string; value: number | string }[];
+        /**
+          * Label of the radio group
+         */
         "label"?: string;
+        /**
+          * Emit value change to the parent
+         */
         "onChangeValue"?: (event: CustomEvent<any>) => void;
-        "selected"?: object;
+        /**
+          * Value of the radio group
+         */
+        "value"?: { label: string; value: number | string };
     }
     interface CRow {
         /**
