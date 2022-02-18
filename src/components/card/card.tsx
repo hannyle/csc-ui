@@ -12,13 +12,19 @@ export type CardBackground = 'puhti' | 'mahti' | 'allas';
 })
 export class Card {
   /**
+   * Background color
+   */
+  @Prop() backgroundColor: string = 'white';
+  /**
    * Card background image for login pages of specific services
    */
   @Prop() background: CardBackground;
 
   allowedBackgrounds = ['puhti', 'mahti', 'allas'];
   render() {
-    const style = {};
+    const style = {
+      'background-color': this.backgroundColor,
+    };
 
     if (this.allowedBackgrounds.includes(this.background)) {
       style['background-image'] = `url(${getAssetPath(

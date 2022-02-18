@@ -143,6 +143,10 @@ export namespace Components {
           * Card background image for login pages of specific services
          */
         "background": CardBackground;
+        /**
+          * Background color
+         */
+        "backgroundColor": string;
     }
     interface CCardActions {
         /**
@@ -232,6 +236,13 @@ export namespace Components {
         "small": boolean;
     }
     interface CModal {
+        /**
+          * Not dismissed when touching outside or pressing esc key.
+         */
+        "persistent": boolean;
+        /**
+          * Is the modal visible
+         */
         "value": boolean;
     }
     interface CNavigationbutton {
@@ -905,6 +916,10 @@ declare namespace LocalJSX {
           * Card background image for login pages of specific services
          */
         "background"?: CardBackground;
+        /**
+          * Background color
+         */
+        "backgroundColor"?: string;
     }
     interface CCardActions {
         /**
@@ -998,6 +1013,17 @@ declare namespace LocalJSX {
         "small"?: boolean;
     }
     interface CModal {
+        /**
+          * Triggered when value is changed
+         */
+        "onChangeValue"?: (event: CustomEvent<boolean>) => void;
+        /**
+          * Not dismissed when touching outside or pressing esc key.
+         */
+        "persistent"?: boolean;
+        /**
+          * Is the modal visible
+         */
         "value"?: boolean;
     }
     interface CNavigationbutton {

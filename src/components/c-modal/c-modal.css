@@ -1,4 +1,4 @@
-:Host {
+.modal-wrapper {
   display: flex;
   position: absolute;
   align-items: center;
@@ -14,17 +14,20 @@
   display: block;
   position: fixed;
   z-index: 200000;
+  animation-name: zoom;
+  animation-duration: 0.2s;
+  animation-iteration-count: 1;
 }
 
 .c-modal.fullscreen {
   top: 0;
   bottom: 0;
-  left:0;
-  right:0;
+  left: 0;
+  right: 0;
 }
 
 .c-overlay {
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   position: fixed;
   z-index: 1998;
   top: 0;
@@ -35,10 +38,10 @@
 
 @keyframes fadeIn {
   0% {
-    background: rgba(0,0,0,0);
+    background: rgba(0, 0, 0, 0);
   }
   100% {
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -47,4 +50,13 @@
   animation-name: fadeIn;
   animation-duration: 0.5s;
   animation-iteration-count: 1;
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

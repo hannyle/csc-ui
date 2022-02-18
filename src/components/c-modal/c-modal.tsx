@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, h, Prop, Event, EventEmitter } from '@stencil/core';
 
 /**
  * @group Popups
@@ -9,18 +9,37 @@ import { Component, Host, h, Prop } from '@stencil/core';
   shadow: true,
 })
 export class CModal {
-  @Prop() value: boolean = false;
+  /**
+   * Is the modal visible
+   */
+  @Prop({ mutable: true }) value: boolean = false;
+  /**
+   * Not dismissed when touching outside or pressing esc key.
+   */
+  @Prop() persistent: boolean = true;
+  /**
+   * Triggered when value is changed
+   */
+  @Event() changeValue: EventEmitter<boolean>;
 
+  private _hideModal() {
+    if (this.persistent) return;
+    this.value = false;
+    this.changeValue.emit(this.value);
+  }
   render() {
-    return this.value ? (
-      <Host>
-        <div class="c-modal">
-          <slot></slot>
+    return (
+      this.value && (
+        <div class="modal-wrapper">
+          <div class="c-modal">
+            <slot></slot>
+          </div>
+          <div
+            class="c-overlay c-fadeIn"
+            onClick={() => this._hideModal()}
+          ></div>
         </div>
-        <div class="c-overlay c-fadeIn"></div>
-      </Host>
-    ) : (
-      ''
+      )
     );
   }
 }

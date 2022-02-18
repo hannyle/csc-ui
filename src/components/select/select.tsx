@@ -39,7 +39,7 @@ export class Select {
   @Prop() itemsPerPage: number;
   @Prop() placeholder = '';
   @Prop({ mutable: true }) value: any = null;
-  @Element() host: HTMLElement;
+  @Element() host: HTMLCSelectElement;
   @State() menuVisible: boolean = false;
   @State() currentIndex: number = null;
   @Prop() items: any[] = [
@@ -80,7 +80,7 @@ export class Select {
       }
       this.lastKeyPressTime = Date.now();
       const selectedItem = this.items.find((i) =>
-        i.name.toLowerCase().startsWith(this.searchString)
+        i.name.toLowerCase().startsWith(this.searchString),
       );
       function isItem(element) {
         return element === selectedItem;
@@ -212,7 +212,7 @@ export class Select {
     }
 
     let itemId = 'none';
-    if (item.value) {
+    if (typeof item?.value === 'string') {
       itemId = item.value.replace(/[^a-zA-Z0-9-_]/g, '');
     }
 
@@ -251,10 +251,10 @@ export class Select {
       this.validationClasses.push('show');
     } else {
       this.outerWrapperClasses = this.outerWrapperClasses.filter(
-        (c) => c !== 'required'
+        (c) => c !== 'required',
       );
       this.validationClasses = this.validationClasses.filter(
-        (c) => c !== 'show'
+        (c) => c !== 'show',
       );
     }
   }

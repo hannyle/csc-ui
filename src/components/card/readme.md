@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property     | Attribute    | Description                                                | Type                            | Default     |
-| ------------ | ------------ | ---------------------------------------------------------- | ------------------------------- | ----------- |
-| `background` | `background` | Card background image for login pages of specific services | `"allas" \| "mahti" \| "puhti"` | `undefined` |
+| Property          | Attribute          | Description                                                | Type                            | Default     |
+| ----------------- | ------------------ | ---------------------------------------------------------- | ------------------------------- | ----------- |
+| `background`      | `background`       | Card background image for login pages of specific services | `"allas" \| "mahti" \| "puhti"` | `undefined` |
+| `backgroundColor` | `background-color` | Background color                                           | `string`                        | `'white'`   |
 
 
 ## Slots

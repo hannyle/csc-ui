@@ -40,7 +40,8 @@ export class CControl implements ControlValueAccessor {
   }
 
   @HostListener('changeValue', ['$event.detail'])
-  _handleChangeValue(value: string) {
+  _handleChangeValue(value: any) {
+    this.writeValue(value);
     this.onChange(value);
   }
 }
