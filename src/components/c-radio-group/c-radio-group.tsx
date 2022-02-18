@@ -1,23 +1,15 @@
-import {
-  Component,
-  // Host,
-  h,
-  Prop,
-  Listen,
-  Event,
-  EventEmitter,
-} from '@stencil/core';
+import { Component, h, Prop, Listen, Event, EventEmitter } from '@stencil/core';
 import { createRipple } from '../../utils/utils';
 
 /**
  * @group Form
  */
 @Component({
-  tag: 'c-radio',
-  styleUrl: 'c-radio.scss',
+  tag: 'c-radio-group',
+  styleUrl: 'c-radio-group.scss',
   shadow: true,
 })
-export class CRadio {
+export class CRadioGroup {
   /**
    * Value of the radio group
    */
@@ -43,6 +35,11 @@ export class CRadio {
   ];
 
   /**
+   * Disable the radio group
+   */
+  @Prop() disabled = false;
+
+  /**
    * Emit value change to the parent
    */
   @Event() changeValue: EventEmitter;
@@ -57,13 +54,16 @@ export class CRadio {
   private _containers?: HTMLDivElement[] = [];
 
   private _select(event, item, index) {
-    console.log(event, item);
+    if (this.disabled) return;
+
     createRipple(event, this._containers[index]);
     this.value = item;
     this.changeValue.emit(item);
   }
 
   private _selectWithSpace(ev, item) {
+    if (this.disabled) return;
+
     if (ev.key === ' ') {
       this.value = item;
       this.changeValue.emit(item);
@@ -75,21 +75,28 @@ export class CRadio {
 
     const classes = {
       'c-radio': true,
+      'c-radio--disabled': this.disabled,
       'csc-bg-color': true,
       active: this.value === item,
     };
 
+    const wrapperClasses = {
+      'c-radio-wrapper': true,
+      'c-radio-wrapper--disabled': this.disabled,
+    };
+
     return (
       <div
-        class="c-radio-group"
+        class="c-radio-group__item"
         onClick={(event) => this._select(event, item, index)}
       >
         <div
-          class="c-radio-wrapper"
+          class={wrapperClasses}
           role="radio"
           tabindex="0"
           aria-labelledby={itemId}
           aria-checked={this.value === item}
+          aria-disabled={this.disabled}
           ref={(el) => (this._containers[index] = el as HTMLDivElement)}
           onKeyDown={(event) => this._selectWithSpace(event, item)}
         >
@@ -107,9 +114,9 @@ export class CRadio {
 
   render() {
     return (
-      <div>
-        {this.label ? <label id="c-radio-group-label">{this.label}</label> : ''}
-        <div role="radiogroup" aria-labelledby="c-radio-group-label">
+      <div class="c-radio-group">
+        {this.label && <label id="c-radio-group__label">{this.label}</label>}
+        <div role="radiogroup" aria-labelledby="c-radio-group__label">
           {this.items.map((item, index) => this._getRadioButton(item, index))}
         </div>
       </div>

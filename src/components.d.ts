@@ -287,11 +287,15 @@ export namespace Components {
          */
         "value": number;
     }
-    interface CRadio {
+    interface CRadioGroup {
         /**
           * Color of the radio group
          */
         "color": string;
+        /**
+          * Disable the radio group
+         */
+        "disabled": boolean;
         /**
           * Radio group items
          */
@@ -618,11 +622,11 @@ declare global {
         prototype: HTMLCProgressBarElement;
         new (): HTMLCProgressBarElement;
     };
-    interface HTMLCRadioElement extends Components.CRadio, HTMLStencilElement {
+    interface HTMLCRadioGroupElement extends Components.CRadioGroup, HTMLStencilElement {
     }
-    var HTMLCRadioElement: {
-        prototype: HTMLCRadioElement;
-        new (): HTMLCRadioElement;
+    var HTMLCRadioGroupElement: {
+        prototype: HTMLCRadioGroupElement;
+        new (): HTMLCRadioGroupElement;
     };
     interface HTMLCRowElement extends Components.CRow, HTMLStencilElement {
     }
@@ -740,7 +744,7 @@ declare global {
         "c-notification": HTMLCNotificationElement;
         "c-pagination": HTMLCPaginationElement;
         "c-progress-bar": HTMLCProgressBarElement;
-        "c-radio": HTMLCRadioElement;
+        "c-radio-group": HTMLCRadioGroupElement;
         "c-row": HTMLCRowElement;
         "c-select": HTMLCSelectElement;
         "c-sidenavigation": HTMLCSidenavigationElement;
@@ -1079,11 +1083,15 @@ declare namespace LocalJSX {
          */
         "value"?: number;
     }
-    interface CRadio {
+    interface CRadioGroup {
         /**
           * Color of the radio group
          */
         "color"?: string;
+        /**
+          * Disable the radio group
+         */
+        "disabled"?: boolean;
         /**
           * Radio group items
          */
@@ -1317,7 +1325,7 @@ declare namespace LocalJSX {
         "c-notification": CNotification;
         "c-pagination": CPagination;
         "c-progress-bar": CProgressBar;
-        "c-radio": CRadio;
+        "c-radio-group": CRadioGroup;
         "c-row": CRow;
         "c-select": CSelect;
         "c-sidenavigation": CSidenavigation;
@@ -1364,7 +1372,7 @@ declare module "@stencil/core" {
             "c-notification": LocalJSX.CNotification & JSXBase.HTMLAttributes<HTMLCNotificationElement>;
             "c-pagination": LocalJSX.CPagination & JSXBase.HTMLAttributes<HTMLCPaginationElement>;
             "c-progress-bar": LocalJSX.CProgressBar & JSXBase.HTMLAttributes<HTMLCProgressBarElement>;
-            "c-radio": LocalJSX.CRadio & JSXBase.HTMLAttributes<HTMLCRadioElement>;
+            "c-radio-group": LocalJSX.CRadioGroup & JSXBase.HTMLAttributes<HTMLCRadioGroupElement>;
             "c-row": LocalJSX.CRow & JSXBase.HTMLAttributes<HTMLCRowElement>;
             "c-select": LocalJSX.CSelect & JSXBase.HTMLAttributes<HTMLCSelectElement>;
             "c-sidenavigation": LocalJSX.CSidenavigation & JSXBase.HTMLAttributes<HTMLCSidenavigationElement>;

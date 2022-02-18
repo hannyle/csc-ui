@@ -31,7 +31,7 @@ import { CProgressBarComponent } from './examples/c-progress-bar/c-progress-bar.
 import { CAccordionComponent } from './examples/c-accordion/c-accordion.component';
 import { CMenuComponent } from './examples/c-menu/c-menu.component';
 import { CModalComponent } from './examples/c-modal/c-modal.component';
-import { CRadioComponent } from './examples/c-radio/c-radio.component';
+import { CRadioGroupComponent } from './examples/c-radio-group/c-radio-group.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +62,7 @@ import { CRadioComponent } from './examples/c-radio/c-radio.component';
     CAccordionComponent,
     CMenuComponent,
     CModalComponent,
-    CRadioComponent,
+    CRadioGroupComponent,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HighlightModule],
   providers: [

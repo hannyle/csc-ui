@@ -1,0 +1,22 @@
+<app-example title="Basic usage">
+  <c-radio-group
+    cControl
+    label="Example radio buttons"
+    [items]="items"
+    [(ngModel)]="selectedItem"
+  ></c-radio-group>
+
+  <p style="margin-top: 16px">Selected item: {{ selectedItem.label }}</p>
+</app-example>
+
+<app-example title="Disabled">
+  <c-radio-group
+    cControl
+    label="Disabled radio buttons"
+    [items]="items"
+    [(ngModel)]="selectedItem"
+    disabled
+  ></c-radio-group>
+
+  <p style="margin-top: 16px">Selected item: {{ selectedItem.label }}</p>
+</app-example>
