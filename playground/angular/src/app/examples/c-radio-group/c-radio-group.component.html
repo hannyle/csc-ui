@@ -1,4 +1,4 @@
-<app-example title="Basic usage">
+<app-example title="Basic usage" [raw]="raw.default" [script]="script">
   <c-radio-group
     cControl
     label="Example radio buttons"
@@ -9,7 +9,7 @@
   <p style="margin-top: 16px">Selected item: {{ selectedItem.label }}</p>
 </app-example>
 
-<app-example title="Disabled">
+<app-example title="Disabled" [raw]="raw.disabled" [script]="script">
   <c-radio-group
     cControl
     label="Disabled radio buttons"

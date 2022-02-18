@@ -8,8 +8,9 @@ import {
   Input,
 } from '@angular/core';
 import sanitizeHtml from 'sanitize-html';
-import prettier from 'prettier';
+import prettier, { Options } from 'prettier';
 import parser from 'prettier/parser-html';
+import babelParser from 'prettier/parser-babel';
 import docs from '../../../../../../docs.json';
 
 @Component({
@@ -27,6 +28,7 @@ export class ExampleComponent implements AfterViewInit, AfterContentChecked {
   @Input() script: string;
   @ViewChild('example') example;
   code = '';
+  scriptCode = '';
   allowedAttributes = [];
   showCode = false;
 
@@ -47,6 +49,19 @@ export class ExampleComponent implements AfterViewInit, AfterContentChecked {
   }
 
   ngAfterViewInit(): void {
+    const prettierConfig: Options = {
+      parser: 'angular',
+      plugins: [parser],
+      trailingComma: 'all',
+      tabWidth: 2,
+      semi: true,
+      singleQuote: true,
+      bracketSpacing: true,
+      bracketSameLine: false,
+      printWidth: 50,
+      htmlWhitespaceSensitivity: 'ignore',
+    };
+
     this.code = prettier.format(
       this.raw ||
         sanitizeHtml(this.example.nativeElement.innerHTML, {
@@ -55,23 +70,15 @@ export class ExampleComponent implements AfterViewInit, AfterContentChecked {
             '*': this.allowedAttributes,
           },
         }),
-      {
-        parser: 'angular',
-        plugins: [parser],
-        trailingComma: 'all',
-        tabWidth: 2,
-        semi: true,
-        singleQuote: true,
-        bracketSpacing: true,
-        bracketSameLine: false,
-        printWidth: 50,
-        htmlWhitespaceSensitivity: 'ignore',
-      },
+      prettierConfig,
     );
-    // console.warn(prettier);
-    // prettier.resolveConfig('../../../prettier.config.js').then(options => {
-    //   console.warn('jokke', options);
-    // });
-    // console.warn(this.code);
+
+    this.scriptCode = this.script
+      ? prettier.format(this.script, {
+          ...prettierConfig,
+          parser: 'babel',
+          plugins: [babelParser],
+        })
+      : null;
   }
 }

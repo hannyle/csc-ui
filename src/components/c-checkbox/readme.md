@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property | Attribute | Description            | Type      | Default |
-| -------- | --------- | ---------------------- | --------- | ------- |
-| `label`  | `label`   | Element label          | `string`  | `''`    |
-| `value`  | `value`   | Is the element checked | `boolean` | `false` |
+| Property   | Attribute  | Description            | Type      | Default |
+| ---------- | ---------- | ---------------------- | --------- | ------- |
+| `disabled` | `disabled` | Disable the checkbox   | `boolean` | `false` |
+| `label`    | `label`    | Element label          | `string`  | `''`    |
+| `value`    | `value`    | Is the element checked | `boolean` | `false` |
 
 
 ## Events

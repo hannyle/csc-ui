@@ -160,6 +160,10 @@ export namespace Components {
     }
     interface CCheckbox {
         /**
+          * Disable the checkbox
+         */
+        "disabled": boolean;
+        /**
           * Element label
          */
         "label": string;
@@ -936,6 +940,10 @@ declare namespace LocalJSX {
     interface CCardTitle {
     }
     interface CCheckbox {
+        /**
+          * Disable the checkbox
+         */
+        "disabled"?: boolean;
         /**
           * Element label
          */

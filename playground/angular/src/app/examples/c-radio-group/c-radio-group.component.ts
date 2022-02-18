@@ -35,6 +35,14 @@ export class CRadioGroupComponent implements OnInit {
     <p style="margin-top: 16px">Selected item: {{ selectedItem.label }}</p>`,
   };
 
+  script = `items = [
+    { label: 'Radio 1', value: 'one' },
+    { label: 'Radio 2', value: 'two' },
+    { label: 'Radio 3', value: 'three' },
+  ];
+
+  selectedItem = this.items[1];`;
+
   constructor() {}
 
   ngOnInit(): void {}
