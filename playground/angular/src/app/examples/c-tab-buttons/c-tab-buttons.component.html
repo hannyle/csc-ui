@@ -1,14 +1,15 @@
-<c-tab-buttons cControl [(ngModel)]="value">
-  <c-tab-button
-    *ngFor="let tab of tabs; let i = index"
-    icon="storage"
-    [label]="tab.label"
-    [value]="tab.value"
-  >
-    <i class="mdi mdi-server" slot="icon"></i>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    <span *ngIf="i % 2 === 0">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-  </c-tab-button>
-</c-tab-buttons>
-
-{{ value }}
+<app-example title="Usage" [raw]="example" [script]="script">
+  <c-tab-buttons [(ngModel)]="selectedTab" cControl ngDefaultControl>
+    <c-tab-button
+      *ngFor="let tab of tabs; let i = index"
+      icon="storage"
+      [label]="tab.label"
+      [value]="tab.value"
+    >
+      <i class="mdi mdi-server" slot="icon"></i>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      <span *ngIf="i % 2 === 0">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+    </c-tab-button>
+  </c-tab-buttons>
+  <p>Active tab: {{ selectedTab }}</p>
+</app-example>
