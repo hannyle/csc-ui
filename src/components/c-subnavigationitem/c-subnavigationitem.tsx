@@ -10,7 +10,7 @@ import { Component, Host, h, Prop } from '@stencil/core';
 export class CSubnavigationitem {
   @Prop() active: boolean;
   @Prop() href: string;
-  redirect(event) {
+  private _redirect(event) {
     event.stopPropagation();
     const sidenav = document.querySelector('c-sidenavigation');
     sidenav.menuVisible = false;
@@ -21,7 +21,7 @@ export class CSubnavigationitem {
   render() {
     const classes = this.active && 'active';
     return (
-      <Host onClick={(e) => this.redirect(e)} class={classes}>
+      <Host onClick={(e) => this._redirect(e)} class={classes}>
         <slot></slot>
       </Host>
     );
