@@ -13,10 +13,11 @@
         placeholder="Search for a component"
         shadow
         cControl
-        (changeValue)="filterComponents($event)"
+        (input)="filterComponents($event)"
       >
         <i class="mdi mdi-magnify" style="margin-left: 12px" slot="pre"></i>
       </c-text-field>
+
       <c-sidenavigationitem
         *ngFor="let group of groupedComponents | menuGroups"
         [active]="group.visible"
