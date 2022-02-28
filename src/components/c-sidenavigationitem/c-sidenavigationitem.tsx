@@ -48,7 +48,7 @@ export class CSidenavigationitem {
     const classes = this.active && 'active';
 
     return (
-      <Host onClick={() => this._redirect()}>
+      <Host tabindex="0" onClick={() => this._redirect()}>
         <div class={classes}>
           <div class="styleMain">
             <c-row align="center" gap={4}>

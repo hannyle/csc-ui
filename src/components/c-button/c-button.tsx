@@ -86,8 +86,6 @@ export class Button {
     this._containerhasDescriptionSlot = !!this.hostElement.querySelector(
       '[slot="description"]',
     );
-
-    console.log(this._containerhasDescriptionSlot);
   }
 
   render() {

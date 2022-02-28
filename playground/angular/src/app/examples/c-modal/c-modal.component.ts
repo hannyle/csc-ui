@@ -9,7 +9,7 @@ export class CModalComponent implements OnInit {
   templates = [
     `<c-button (click)="modal = true">Open modal</c-button>
 
-<c-modal [value]="modal">
+<c-modal cControl [(ngModel)]="modal">
   <c-card>
     <c-card-title>Modal</c-card-title>
     <c-card-content>
@@ -24,10 +24,11 @@ export class CModalComponent implements OnInit {
 </c-modal>`,
     `<c-button (click)="dismissableModal = true">Open dismissable modal</c-button>
 
-<c-modal [value]="dismissableModal" [persistent]="false">
+<c-modal cControl [(ngModel)]="dismissableModal" [persistent]="false">
   <c-card>
     <c-card-title>Dismissable</c-card-title>
     <c-card-content>
+      <p>This modal can be dismissed by clicking outside the content</p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
       labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
       laboris nisi ut aliquip ex ea commodo consequat.

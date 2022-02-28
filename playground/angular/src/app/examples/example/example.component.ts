@@ -73,12 +73,16 @@ export class ExampleComponent implements AfterViewInit, AfterContentChecked {
       prettierConfig,
     );
 
-    this.scriptCode = this.script
-      ? prettier.format(this.script, {
-          ...prettierConfig,
-          parser: 'babel',
-          plugins: [babelParser],
-        })
-      : null;
+    try {
+      this.scriptCode = this.script
+        ? prettier.format(this.script, {
+            ...prettierConfig,
+            parser: 'babel',
+            plugins: [babelParser],
+          })
+        : null;
+    } catch (error) {
+      this.scriptCode = this.script;
+    }
   }
 }

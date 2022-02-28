@@ -21,7 +21,6 @@
       <c-sidenavigationitem
         *ngFor="let group of groupedComponents | menuGroups"
         [active]="group.visible"
-        [class.active]="group.visible"
         (click)="group.visible = !group.visible"
         (keyup.enter)="group.visible = !group.visible"
       >
@@ -33,6 +32,7 @@
             [routerLink]="['/' + item.tag]"
             routerLinkActive="active"
             [active]="activeComponent?.tag === item?.tag"
+            (keyup.enter)="navigate($event, item.tag)"
           >
             {{ item.name }}
           </c-subnavigationitem>

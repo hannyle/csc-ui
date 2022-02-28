@@ -8,8 +8,15 @@ import { Component, Host, h, Prop } from '@stencil/core';
   shadow: true,
 })
 export class CSidenavigation {
+  /**
+   * Mobile version
+   */
   @Prop() mobile: boolean;
-  @Prop({ mutable: true }) menuVisible: boolean = false;
+
+  /**
+   * Mobile version menu visibility
+   */
+  @Prop({ mutable: true }) menuVisible: boolean = false; // eslint-disable-line
   componentDidLoad() {
     const _this = this;
 
@@ -37,10 +44,8 @@ export class CSidenavigation {
             <slot name="bottom"></slot>
           </div>
         </div>
-        {this.menuVisible && this.mobile === true ? (
+        {this.menuVisible && this.mobile === true && (
           <div class="c-overlay c-fadeIn"></div>
-        ) : (
-          ''
         )}
       </Host>
     );

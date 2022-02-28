@@ -5,6 +5,7 @@ import { parseComponents } from './utils/utils';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import docs from '../../../../docs.json';
 import { map, Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 interface ComponentGroup {
   name: string;
@@ -27,6 +28,7 @@ export class AppComponent implements OnInit {
   constructor(
     public componentDataService: ComponentDataService,
     private _breakpointObserver: BreakpointObserver,
+    private _router: Router,
   ) {
     this.components = parseComponents(docs);
     this.groupedComponents = this.getGroupedComponents();
@@ -46,6 +48,11 @@ export class AppComponent implements OnInit {
     const query = (event.target as HTMLInputElement).value;
 
     this.groupedComponents = this.getGroupedComponents(query, true);
+  }
+
+  navigate(event, tag) {
+    event.stopPropagation();
+    this._router.navigate([`/${tag}`]);
   }
 
   getGroupedComponents(query = null, visible = false): ComponentGroup[] {

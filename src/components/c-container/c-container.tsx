@@ -2,6 +2,7 @@ import { Component, Host, h, Prop } from '@stencil/core';
 /**
  * Container component for holding current page content
  * @group Layout
+ * @slot - Content to be centered within a page
  */
 @Component({
   tag: 'c-container',
@@ -9,6 +10,9 @@ import { Component, Host, h, Prop } from '@stencil/core';
   shadow: true,
 })
 export class CContainer {
+  /**
+   * Maximum width of container in pixels
+   */
   @Prop() width: number;
 
   render() {

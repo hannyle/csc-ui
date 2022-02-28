@@ -9,7 +9,7 @@
 
 | Property     | Attribute    | Description                                              | Type      | Default |
 | ------------ | ------------ | -------------------------------------------------------- | --------- | ------- |
-| `persistent` | `persistent` | Not dismissed when touching outside or pressing esc key. | `boolean` | `true`  |
+| `persistent` | `persistent` | Not dismissed when touching/clicking outside the content | `boolean` | `true`  |
 | `value`      | `value`      | Is the modal visible                                     | `boolean` | `false` |
 
 

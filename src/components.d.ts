@@ -175,6 +175,9 @@ export namespace Components {
     interface CConsent {
     }
     interface CContainer {
+        /**
+          * Maximum width of container in pixels
+         */
         "width": number;
     }
     interface CCscLogo {
@@ -208,11 +211,23 @@ export namespace Components {
         "text": boolean;
     }
     interface CLink {
+        /**
+          * Url of link
+         */
         "href": string;
+        /**
+          * regular target attribute of a hyperlink
+         */
         "target": string;
+        /**
+          * Display line under the link
+         */
         "underline": boolean;
     }
     interface CLoader {
+        /**
+          * Delay in seconds of showing the contents in the slot of the loader
+         */
         "contentdelay": number;
     }
     interface CMain {
@@ -241,7 +256,7 @@ export namespace Components {
     }
     interface CModal {
         /**
-          * Not dismissed when touching outside or pressing esc key.
+          * Not dismissed when touching/clicking outside the content
          */
         "persistent": boolean;
         /**
@@ -252,8 +267,19 @@ export namespace Components {
     interface CNavigationbutton {
     }
     interface CNotification {
-        "notification": any;
-        "position": string;
+        /**
+          * notification contents
+         */
+        "notification": {
+    name: string;
+    type: 'warning' | 'error' | 'success' | 'info';
+    delay?: number;
+    requiresClosing?: boolean;
+  };
+        /**
+          * Position of the notifications
+         */
+        "position": 'fixed' | 'absolute';
     }
     interface CPagination {
         /**
@@ -332,23 +358,67 @@ export namespace Components {
         "wrap": boolean;
     }
     interface CSelect {
+        /**
+          * Dense variant
+         */
         "dense": boolean;
+        /**
+          * Id of the element
+         */
         "hostId": string;
-        "items": any[];
+        /**
+          * selectable items
+         */
+        "items": { name: string; value: string | number }[];
+        /**
+          * Items per page before adding scroll
+         */
         "itemsPerPage": number;
+        /**
+          * Element label
+         */
         "label": string;
+        /**
+          * Label is aligned to the right
+         */
         "labelRight": boolean;
+        /**
+          * Input field name
+         */
         "name": string;
+        /**
+          * Placeholder text
+         */
         "placeholder": string;
+        /**
+          * Show required validation
+         */
         "required": boolean;
+        /**
+          * Shadow variant
+         */
         "shadow": boolean;
-        "showNone": boolean;
+        /**
+          * Run validation when changed to true
+         */
         "validate": boolean;
+        /**
+          * Show validation after touching the menu
+         */
         "validateOnBlur": boolean;
-        "value": any;
+        /**
+          * Selected item
+         */
+        "value": { name: string; value: string | number };
     }
     interface CSidenavigation {
+        /**
+          * Mobile version menu visibility
+         */
         "menuVisible": boolean;
+        /**
+          * Mobile version
+         */
         "mobile": boolean;
     }
     interface CSidenavigationitem {
@@ -364,7 +434,13 @@ export namespace Components {
     interface CSpacer {
     }
     interface CSubnavigationitem {
+        /**
+          * Active state
+         */
         "active": boolean;
+        /**
+          * Link url
+         */
         "href": string;
     }
     interface CSwitch {
@@ -960,6 +1036,9 @@ declare namespace LocalJSX {
     interface CConsent {
     }
     interface CContainer {
+        /**
+          * Maximum width of container in pixels
+         */
         "width"?: number;
     }
     interface CCscLogo {
@@ -993,11 +1072,23 @@ declare namespace LocalJSX {
         "text"?: boolean;
     }
     interface CLink {
+        /**
+          * Url of link
+         */
         "href"?: string;
+        /**
+          * regular target attribute of a hyperlink
+         */
         "target"?: string;
+        /**
+          * Display line under the link
+         */
         "underline"?: boolean;
     }
     interface CLoader {
+        /**
+          * Delay in seconds of showing the contents in the slot of the loader
+         */
         "contentdelay"?: number;
     }
     interface CMain {
@@ -1030,7 +1121,7 @@ declare namespace LocalJSX {
          */
         "onChangeValue"?: (event: CustomEvent<boolean>) => void;
         /**
-          * Not dismissed when touching outside or pressing esc key.
+          * Not dismissed when touching/clicking outside the content
          */
         "persistent"?: boolean;
         /**
@@ -1041,8 +1132,19 @@ declare namespace LocalJSX {
     interface CNavigationbutton {
     }
     interface CNotification {
-        "notification"?: any;
-        "position"?: string;
+        /**
+          * notification contents
+         */
+        "notification"?: {
+    name: string;
+    type: 'warning' | 'error' | 'success' | 'info';
+    delay?: number;
+    requiresClosing?: boolean;
+  };
+        /**
+          * Position of the notifications
+         */
+        "position"?: 'fixed' | 'absolute';
     }
     interface CPagination {
         /**
@@ -1136,24 +1238,71 @@ declare namespace LocalJSX {
         "wrap"?: boolean;
     }
     interface CSelect {
+        /**
+          * Dense variant
+         */
         "dense"?: boolean;
+        /**
+          * Id of the element
+         */
         "hostId"?: string;
-        "items"?: any[];
+        /**
+          * selectable items
+         */
+        "items"?: { name: string; value: string | number }[];
+        /**
+          * Items per page before adding scroll
+         */
         "itemsPerPage"?: number;
+        /**
+          * Element label
+         */
         "label"?: string;
+        /**
+          * Label is aligned to the right
+         */
         "labelRight"?: boolean;
+        /**
+          * Input field name
+         */
         "name"?: string;
+        /**
+          * Triggered when an item is selected
+         */
         "onChangeValue"?: (event: CustomEvent<any>) => void;
+        /**
+          * Placeholder text
+         */
         "placeholder"?: string;
+        /**
+          * Show required validation
+         */
         "required"?: boolean;
+        /**
+          * Shadow variant
+         */
         "shadow"?: boolean;
-        "showNone"?: boolean;
+        /**
+          * Run validation when changed to true
+         */
         "validate"?: boolean;
+        /**
+          * Show validation after touching the menu
+         */
         "validateOnBlur"?: boolean;
-        "value"?: any;
+        /**
+          * Selected item
+         */
+        "value"?: { name: string; value: string | number };
     }
     interface CSidenavigation {
+        /**
+          * Mobile version menu visibility
+         */
         "menuVisible"?: boolean;
+        /**
+          * Mobile version
+         */
         "mobile"?: boolean;
     }
     interface CSidenavigationitem {
@@ -1169,7 +1318,13 @@ declare namespace LocalJSX {
     interface CSpacer {
     }
     interface CSubnavigationitem {
+        /**
+          * Active state
+         */
         "active"?: boolean;
+        /**
+          * Link url
+         */
         "href"?: string;
     }
     interface CSwitch {

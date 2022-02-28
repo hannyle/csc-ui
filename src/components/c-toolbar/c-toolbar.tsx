@@ -1,6 +1,7 @@
 import { Component, Host, h } from '@stencil/core';
 /**
  * @group Navigation
+ * @slot - Content of toolbar
  */
 @Component({
   tag: 'c-toolbar',

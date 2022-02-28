@@ -20,49 +20,103 @@ import { mdiChevronDown } from '@mdi/js';
   shadow: true,
 })
 export class Select {
+  /**
+   * Run validation when changed to true
+   */
   @Prop() validate: boolean = false;
+
+  /**
+   * Id of the element
+   */
   @Prop({ attribute: 'id' }) hostId: string;
+
   @Watch('validate')
   validateChange(newValue: boolean) {
     if (newValue) {
-      this.runValidate();
+      this._runValidate();
     }
   }
+
+  /**
+   * Element label
+   */
   @Prop() label: string;
-  @Prop() dense: boolean;
-  @Prop() shadow: boolean;
-  @Prop() labelRight: boolean;
+
+  /**
+   * Dense variant
+   */
+  @Prop() dense: boolean = false;
+
+  /**
+   * Shadow variant
+   */
+  @Prop() shadow: boolean = false;
+
+  /**
+   * Label is aligned to the right
+   */
+  @Prop() labelRight: boolean = false;
+
+  /**
+   * Input field name
+   */
   @Prop() name: string;
+
+  /**
+   * Show required validation
+   */
   @Prop() required: boolean = null;
-  @Prop() showNone: boolean = null;
+
+  /**
+   * Show validation after touching the menu
+   */
   @Prop() validateOnBlur: boolean = false;
+
+  /**
+   * Items per page before adding scroll
+   */
   @Prop() itemsPerPage: number;
+
+  /**
+   * Placeholder text
+   */
   @Prop() placeholder = '';
-  @Prop({ mutable: true }) value: any = null;
+
+  /**
+   * Selected item
+   */
+  @Prop({ mutable: true }) value: { name: string; value: string | number } =
+    null;
+
+  /**
+   * selectable items
+   */
+  @Prop() items: { name: string; value: string | number }[] = [];
   @Element() host: HTMLCSelectElement;
   @State() menuVisible: boolean = false;
   @State() currentIndex: number = null;
-  @Prop() items: any[] = [
-    { name: 'Default 1', value: 'default1' },
-    { name: 'Default 2', value: 'default2' },
-    { name: 'Default 3', value: 'default3' },
-  ];
-  outerWrapperClasses = ['outer-wrapper'];
-  validationClasses = ['validation-message'];
+  @State() itemRefs: { value: string; ref: HTMLElement }[] = [];
 
+  private _outerWrapperClasses = ['outer-wrapper'];
+  private _validationClasses = ['validation-message'];
+
+  /**
+   * Triggered when an item is selected
+   */
   @Event() changeValue: EventEmitter;
-  valueChangedHandler(item: any) {
+  private _valueChangedHandler(item: any) {
     function isItem(element) {
       return element.value === item.value;
     }
     this.currentIndex = this.items.findIndex(isItem);
     this.changeValue.emit({ name: item.name, value: item.value });
-    // item.ref.scrollIntoView();
   }
 
-  scrollToElement() {
+  private _scrollToElement() {
     if (this.items.length > this.itemsPerPage) {
-      this.items[this.currentIndex].ref.scrollIntoView();
+      this.itemRefs
+        .find((item) => item.value === this.items[this.currentIndex].value)
+        ?.ref.scrollIntoView();
     }
   }
 
@@ -71,16 +125,16 @@ export class Select {
     const letterNumber = /^[0-9a-zA-Z]+$/;
     if (ev.key.match(letterNumber) && ev.key.length === 1) {
       if (
-        Date.now() - this.lastKeyPressTime > 3000 ||
-        this.searchString.length > 2
+        Date.now() - this._lastKeyPressTime > 3000 ||
+        this._searchString.length > 2
       ) {
-        this.searchString = ev.key;
+        this._searchString = ev.key;
       } else {
-        this.searchString = `${this.searchString}${ev.key}`;
+        this._searchString = `${this._searchString}${ev.key}`;
       }
-      this.lastKeyPressTime = Date.now();
+      this._lastKeyPressTime = Date.now();
       const selectedItem = this.items.find((i) =>
-        i.name.toLowerCase().startsWith(this.searchString),
+        i.name.toLowerCase().startsWith(this._searchString),
       );
       function isItem(element) {
         return element === selectedItem;
@@ -88,10 +142,10 @@ export class Select {
       if (selectedItem) {
         if (this.menuVisible) {
           this.currentIndex = this.items.findIndex(isItem);
-          this.scrollToElement();
+          this._scrollToElement();
         } else {
           this.value = selectedItem;
-          this.valueChangedHandler(selectedItem);
+          this._valueChangedHandler(selectedItem);
         }
       }
     }
@@ -107,7 +161,7 @@ export class Select {
       }
       const selectedItem = this.items[this.currentIndex];
       this.value = selectedItem;
-      this.valueChangedHandler(selectedItem);
+      this._valueChangedHandler(selectedItem);
     }
 
     if (ev.key === 'ArrowRight') {
@@ -119,7 +173,7 @@ export class Select {
       }
       const selectedItem = this.items[this.currentIndex];
       this.value = selectedItem;
-      this.valueChangedHandler(selectedItem);
+      this._valueChangedHandler(selectedItem);
     }
 
     if (ev.key === 'ArrowDown') {
@@ -133,7 +187,7 @@ export class Select {
           this.currentIndex = this.currentIndex + 1;
         }
         if (this.menuVisible) {
-          this.scrollToElement();
+          this._scrollToElement();
         }
       }
     }
@@ -144,7 +198,7 @@ export class Select {
       if (this.currentIndex !== null && this.currentIndex > 0) {
         this.currentIndex = this.currentIndex - 1;
         if (this.menuVisible) {
-          this.scrollToElement();
+          this._scrollToElement();
         }
       } else if (this.currentIndex === 0) {
         this.currentIndex = null;
@@ -167,37 +221,35 @@ export class Select {
       if (this.currentIndex !== null) {
         const selectedItem = this.items[this.currentIndex];
         this.value = selectedItem;
-        this.valueChangedHandler(selectedItem);
+        this._valueChangedHandler(selectedItem);
         this.menuVisible = false;
       }
     }
   }
 
-  current = null;
-  lastKeyPressTime = null;
-  searchString = '';
-  blurred = false;
+  private _lastKeyPressTime = null;
+  private _searchString = '';
+  private _blurred = false;
 
-  showMenu() {
+  private _showMenu() {
     if (this.menuVisible) {
       this.currentIndex = null;
     }
     this.menuVisible = !this.menuVisible;
   }
 
-  hideMenu() {
-    // this.currentIndex = null;
+  private _hideMenu() {
     this.menuVisible = false;
-    this.blurred = true;
+    this._blurred = true;
   }
 
-  select(item) {
+  private _select(item) {
     this.value = item;
-    this.valueChangedHandler(item);
+    this._valueChangedHandler(item);
     this.menuVisible = false;
   }
 
-  getListItem = (item) => {
+  private _getListItem = (item) => {
     let classes = '';
     if (this.dense) {
       classes = 'dense';
@@ -216,11 +268,15 @@ export class Select {
       itemId = item.value.replace(/[^a-zA-Z0-9-_]/g, '');
     }
 
+    itemId = `item_${itemId}`;
+
     return (
       <li
-        id={'item_' + itemId}
-        ref={(el) => (item.ref = el as HTMLElement)}
-        onClick={() => this.select(item)}
+        id={itemId}
+        ref={(el) =>
+          this.itemRefs.push({ value: item.value, ref: el as HTMLElement })
+        }
+        onClick={() => this._select(item)}
         class={classes}
       >
         {item.name}
@@ -228,7 +284,7 @@ export class Select {
     );
   };
 
-  validationIcon = (
+  private _validationIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
@@ -241,24 +297,25 @@ export class Select {
     </svg>
   );
 
-  runValidate() {
+  private _runValidate() {
     if (
       this.required &&
       !this.value &&
-      (this.blurred || !this.validateOnBlur)
+      (this._blurred || !this.validateOnBlur)
     ) {
-      this.outerWrapperClasses.push('required');
-      this.validationClasses.push('show');
+      this._outerWrapperClasses.push('required');
+      this._validationClasses.push('show');
     } else {
-      this.outerWrapperClasses = this.outerWrapperClasses.filter(
+      this._outerWrapperClasses = this._outerWrapperClasses.filter(
         (c) => c !== 'required',
       );
-      this.validationClasses = this.validationClasses.filter(
+      this._validationClasses = this._validationClasses.filter(
         (c) => c !== 'show',
       );
     }
   }
   render() {
+    this.itemRefs = [];
     let itemsPerPageStyle = {};
     if (
       this.itemsPerPage &&
@@ -271,11 +328,11 @@ export class Select {
       };
     }
     let borderLabel = 'border-label';
-    if (this.value !== '' || this.placeholder) {
+    if (!!this.value || this.placeholder) {
       borderLabel += ' value-set';
-      this.outerWrapperClasses.push('value-set');
+      this._outerWrapperClasses.push('value-set');
     }
-    this.runValidate();
+    this._runValidate();
 
     const labelBlock = (
       <div class={borderLabel}>
@@ -291,27 +348,23 @@ export class Select {
     );
 
     if (this.shadow) {
-      this.outerWrapperClasses.push('shadow');
+      this._outerWrapperClasses.push('shadow');
     }
     if (this.labelRight) {
-      this.outerWrapperClasses.push('label-right');
+      this._outerWrapperClasses.push('label-right');
     }
 
     return (
       <Host>
         <div
           id={this.hostId}
-          class={this.outerWrapperClasses.join(' ')}
+          class={this._outerWrapperClasses.join(' ')}
           tabindex="0"
           role="button"
-          onBlur={() => this.hideMenu()}
+          onBlur={() => this._hideMenu()}
           aria-labelledby="c-select-label"
         >
-          <div
-            onClick={() => this.showMenu()}
-            ref={(el) => (this.current = el as HTMLElement)}
-            class="full-width"
-          >
+          <div onClick={() => this._showMenu()} class="full-width">
             <div class="c-select-row">
               <slot name="pre"></slot>
               {this.items.length === 0 ? (
@@ -351,10 +404,7 @@ export class Select {
                 style={itemsPerPageStyle}
                 class={this.menuVisible ? 'c-menu' : 'c-menu c-menu-hide'}
               >
-                {this.showNone
-                  ? this.getListItem({ name: 'None', value: null })
-                  : null}
-                {this.items.map((item) => this.getListItem(item))}
+                {this.items.map((item) => this._getListItem(item))}
               </div>
             }
           </div>
@@ -364,8 +414,8 @@ export class Select {
             <div class="border-right"></div>
           </div>
         </div>
-        <div class={this.validationClasses.join(' ')}>
-          {this.validationIcon} Required field
+        <div class={this._validationClasses.join(' ')}>
+          {this._validationIcon} Required field
         </div>
       </Host>
     );

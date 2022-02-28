@@ -119,8 +119,20 @@ export class CAccordion {
     item.setAttribute('data-collapsed', 'false');
   }
 
+  private _addTransitionClasses() {
+    for (const item of this.items) {
+      const wrapper: HTMLDivElement = item.shadowRoot.querySelector(
+        '.c-accordion-item__content-wrapper',
+      );
+      setTimeout(() => {
+        wrapper.classList['add']('c-accordion-item__transition');
+      }, 200);
+    }
+  }
+
   componentDidRender() {
     this._handleItemExpansion(false);
+    this._addTransitionClasses();
   }
 
   render() {

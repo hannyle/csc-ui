@@ -1,15 +1,15 @@
-@import "../../global/app.css";
+@import '../../global/app.css';
 
 :host {
   display: block;
   cursor: text;
 }
 
-::slotted(*[slot="pre"]) {
+::slotted(*[slot='pre']) {
   padding-left: 0;
 }
 
-::slotted(*[slot="post"]) {
+::slotted(*[slot='post']) {
   padding-right: 0;
 }
 
@@ -213,7 +213,7 @@ label.hidden {
 
 .top-span {
   position: absolute;
-  margin-top: 11px;
+  margin-top: 9px;
   margin-left: 5px;
   font-size: 16px;
   color: rgba(0, 0, 0, 0.75);

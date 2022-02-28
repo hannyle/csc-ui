@@ -28,11 +28,7 @@ export class CRadioGroup {
   /**
    * Radio group items
    */
-  @Prop() items: { label: string; value: number | string }[] = [
-    { label: 'default 1', value: 0 },
-    { label: 'default 2', value: 1 },
-    { label: 'default 3', value: 2 },
-  ];
+  @Prop() items: { label: string; value: number | string }[] = [];
 
   /**
    * Disable the radio group

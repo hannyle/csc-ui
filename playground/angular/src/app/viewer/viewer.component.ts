@@ -1,6 +1,6 @@
 import { Component, ComponentRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map, Observable, Subscription } from 'rxjs';
 import { ComponentData } from 'src/interfaces/documentation';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -26,6 +26,7 @@ export class ViewerComponent implements OnInit, OnDestroy {
     private _activatedRoute: ActivatedRoute,
     private _sanitizer: DomSanitizer,
     private _breakpointObserver: BreakpointObserver,
+    private _router: Router,
   ) {}
 
   isMobile$: Observable<boolean> = this._breakpointObserver
@@ -44,6 +45,10 @@ export class ViewerComponent implements OnInit, OnDestroy {
 
   clearAndUpper(text) {
     return text.replace(/-/, '').toUpperCase();
+  }
+
+  navigate(queryParams) {
+    this._router.navigate([], { queryParams });
   }
 
   private async loadDynamicComponent(tag) {

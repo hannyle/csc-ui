@@ -9,10 +9,22 @@ import { Component, Host, h, Prop, Watch, State } from '@stencil/core';
   shadow: true,
 })
 export class CNotification {
-  @Prop({ mutable: true }) notification: any = {};
-  @Prop() position: string = 'fixed';
+  /**
+   * notification contents
+   */
+  @Prop() notification: {
+    name: string;
+    type: 'warning' | 'error' | 'success' | 'info';
+    delay?: number;
+    requiresClosing?: boolean;
+  } = null;
+  /**
+   * Position of the notifications
+   */
+  @Prop() position: 'fixed' | 'absolute';
   @Watch('notification')
   itemChange(newValue: any) {
+    if (!newValue.name) return;
     const timeStamp = Date.now();
     const item = { ...newValue, timeStamp };
     const oldItems = this.items.map((i) => ({ ...i, old: true }));
@@ -20,7 +32,7 @@ export class CNotification {
     setTimeout(
       () => {
         const toBeHidden = this.items.find((i) => i.timeStamp === timeStamp);
-        this.hideItem(toBeHidden, timeStamp);
+        this._hideItem(toBeHidden, timeStamp);
       },
       item.delay ? parseInt(item.delay, 10) * 1000 : 2000,
     );
@@ -28,7 +40,7 @@ export class CNotification {
 
   @State() items: any[] = [];
 
-  hideItem(item, timeStamp) {
+  private _hideItem(item, timeStamp) {
     const hiddenItem = item;
     hiddenItem.hide = true;
     const items = [];
@@ -39,10 +51,14 @@ export class CNotification {
       items.push(item);
     });
     this.items = items;
-    // this.items = [...this.items.filter(i => i.timeStamp !== timeStamp), hiddenItem];
+    setTimeout(() => {
+      this.items = this.items.filter(
+        (i) => i.timeStamp !== timeStamp || i.requiresClosing,
+      );
+    }, 1000);
   }
 
-  hide(item) {
+  private _hide(item) {
     const items = [];
     this.items.forEach((i) => {
       if (item === i) {
@@ -54,7 +70,7 @@ export class CNotification {
     this.items = items;
   }
 
-  getListItem = (item) => {
+  private _getListItem = (item) => {
     const classes = ['notification'];
     if (!item.requiresClosing && item.hide) {
       classes.push('hide');
@@ -70,7 +86,7 @@ export class CNotification {
       >
         {this[item.type]}
         <p>{item.name}</p>
-        <div class="closewrapper" onClick={() => this.hide(item)}>
+        <div class="closewrapper" onClick={() => this._hide(item)}>
           {this.close}
         </div>
       </div>
@@ -183,7 +199,7 @@ export class CNotification {
   render() {
     return (
       <Host class={this.position === 'absolute' ? 'absolute' : 'fixed'}>
-        {this.items.map((item) => this.getListItem(item))}
+        {this.items.map((item) => this._getListItem(item))}
       </Host>
     );
   }

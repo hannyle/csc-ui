@@ -32,7 +32,7 @@
   background-color: #d8e8ea44;
 }
 
-:host(.active) > div {
+:host > div.active {
   background-color: #d8e8ea;
   color: #006778;
 }
@@ -67,7 +67,7 @@
   transition: transform 0.3s ease;
 }
 
-:host(.active) .svg {
+:host > div.active .svg {
   fill: var(--csc-primary);
   transform: rotate(90deg);
 }

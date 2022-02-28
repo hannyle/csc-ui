@@ -8,7 +8,14 @@ import { Component, Host, h, Prop } from '@stencil/core';
   shadow: true,
 })
 export class CSubnavigationitem {
+  /**
+   * Active state
+   */
   @Prop() active: boolean;
+
+  /**
+   * Link url
+   */
   @Prop() href: string;
   private _redirect(event) {
     event.stopPropagation();
@@ -21,7 +28,7 @@ export class CSubnavigationitem {
   render() {
     const classes = this.active && 'active';
     return (
-      <Host onClick={(e) => this._redirect(e)} class={classes}>
+      <Host tabindex="0" onClick={(e) => this._redirect(e)} class={classes}>
         <slot></slot>
       </Host>
     );

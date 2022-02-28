@@ -29,22 +29,27 @@ export class Autocomplete {
    * Element label
    */
   @Prop() label: string;
+
   /**
    * Search string
    */
   @Prop({ mutable: true }) query: string = null;
+
   /**
    * Selected item
    */
   @Prop({ mutable: true }) value: { name: string; value: string } = null;
+
   /**
    * Dense variant
    */
   @Prop() dense: boolean;
+
   /**
    * Show required validation
    */
   @Prop() required: boolean = null;
+
   /**
    * Items to be selected
    */
@@ -62,6 +67,7 @@ export class Autocomplete {
    * Triggered when text is typed
    */
   @Event() changeQuery: EventEmitter;
+
   /**
    * Triggered when an item is selected
    */

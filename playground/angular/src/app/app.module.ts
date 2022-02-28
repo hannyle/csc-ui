@@ -32,6 +32,13 @@ import { CAccordionComponent } from './examples/c-accordion/c-accordion.componen
 import { CMenuComponent } from './examples/c-menu/c-menu.component';
 import { CModalComponent } from './examples/c-modal/c-modal.component';
 import { CRadioGroupComponent } from './examples/c-radio-group/c-radio-group.component';
+import { CConsentComponent } from './examples/c-consent/c-consent.component';
+import { CLoaderComponent } from './examples/c-loader/c-loader.component';
+import { CNotificationComponent } from './examples/c-notification/c-notification.component';
+import { CSelectComponent } from './examples/c-select/c-select.component';
+import { CToolbarComponent } from './examples/c-toolbar/c-toolbar.component';
+import { CSidenavigationComponent } from './examples/c-sidenavigation/c-sidenavigation.component';
+import { CLinkComponent } from './examples/c-link/c-link.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +69,14 @@ import { CRadioGroupComponent } from './examples/c-radio-group/c-radio-group.com
     CAccordionComponent,
     CMenuComponent,
     CModalComponent,
+    CConsentComponent,
+    CLoaderComponent,
+    CNotificationComponent,
+    CSelectComponent,
     CRadioGroupComponent,
+    CToolbarComponent,
+    CSidenavigationComponent,
+    CLinkComponent,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HighlightModule],
   providers: [

@@ -14,13 +14,14 @@
         [active]="activeTab === tab.label"
         [disabled]="!tab.enabled"
         [value]="tab.label"
+        (keyup.enter)="tab.enabled && navigate(tab.query)"
       >
         {{ tab.label }}
       </c-tab>
     </c-tabs>
   </div>
 
-  <div class="pt-3">
+  <div class="pt-4">
     <div [hidden]="activeTab !== 'Examples'">
       <ng-container appDynamicComponent></ng-container>
     </div>

@@ -1,12 +1,18 @@
 :host {
-  display: block;
+  display: flex;
+  align-items: center;
   position: fixed;
   z-index: 20000;
   bottom: 0;
-  left:0;
-  right:0;
-  background: #CCF4F0;
-  border: 1px #A3D7D8 solid;
-  color: #595959;
-  padding: 28px;
+  left: 0;
+  right: 0;
+  background: var(--csc-light-green-blue);
+  border-top: 1px var(--csc-primary) solid;
+  color: var(--csc-dark-grey);
+  min-height: 100px;
+}
+
+:host > c-row {
+  flex: 1;
+  margin: 24px;
 }

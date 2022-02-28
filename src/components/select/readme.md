@@ -7,29 +7,28 @@
 
 ## Properties
 
-| Property         | Attribute          | Description | Type      | Default                                                                                                                                           |
-| ---------------- | ------------------ | ----------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `dense`          | `dense`            |             | `boolean` | `undefined`                                                                                                                                       |
-| `hostId`         | `id`               |             | `string`  | `undefined`                                                                                                                                       |
-| `items`          | --                 |             | `any[]`   | `[     { name: 'Default 1', value: 'default1' },     { name: 'Default 2', value: 'default2' },     { name: 'Default 3', value: 'default3' },   ]` |
-| `itemsPerPage`   | `items-per-page`   |             | `number`  | `undefined`                                                                                                                                       |
-| `label`          | `label`            |             | `string`  | `undefined`                                                                                                                                       |
-| `labelRight`     | `label-right`      |             | `boolean` | `undefined`                                                                                                                                       |
-| `name`           | `name`             |             | `string`  | `undefined`                                                                                                                                       |
-| `placeholder`    | `placeholder`      |             | `string`  | `''`                                                                                                                                              |
-| `required`       | `required`         |             | `boolean` | `null`                                                                                                                                            |
-| `shadow`         | `shadow`           |             | `boolean` | `undefined`                                                                                                                                       |
-| `showNone`       | `show-none`        |             | `boolean` | `null`                                                                                                                                            |
-| `validate`       | `validate`         |             | `boolean` | `false`                                                                                                                                           |
-| `validateOnBlur` | `validate-on-blur` |             | `boolean` | `false`                                                                                                                                           |
-| `value`          | `value`            |             | `any`     | `null`                                                                                                                                            |
+| Property         | Attribute          | Description                             | Type                                           | Default     |
+| ---------------- | ------------------ | --------------------------------------- | ---------------------------------------------- | ----------- |
+| `dense`          | `dense`            | Dense variant                           | `boolean`                                      | `false`     |
+| `hostId`         | `id`               | Id of the element                       | `string`                                       | `undefined` |
+| `items`          | --                 | selectable items                        | `{ name: string; value: string \| number; }[]` | `[]`        |
+| `itemsPerPage`   | `items-per-page`   | Items per page before adding scroll     | `number`                                       | `undefined` |
+| `label`          | `label`            | Element label                           | `string`                                       | `undefined` |
+| `labelRight`     | `label-right`      | Label is aligned to the right           | `boolean`                                      | `false`     |
+| `name`           | `name`             | Input field name                        | `string`                                       | `undefined` |
+| `placeholder`    | `placeholder`      | Placeholder text                        | `string`                                       | `''`        |
+| `required`       | `required`         | Show required validation                | `boolean`                                      | `null`      |
+| `shadow`         | `shadow`           | Shadow variant                          | `boolean`                                      | `false`     |
+| `validate`       | `validate`         | Run validation when changed to true     | `boolean`                                      | `false`     |
+| `validateOnBlur` | `validate-on-blur` | Show validation after touching the menu | `boolean`                                      | `false`     |
+| `value`          | --                 | Selected item                           | `{ name: string; value: string \| number; }`   | `null`      |
 
 
 ## Events
 
-| Event         | Description | Type               |
-| ------------- | ----------- | ------------------ |
-| `changeValue` |             | `CustomEvent<any>` |
+| Event         | Description                        | Type               |
+| ------------- | ---------------------------------- | ------------------ |
+| `changeValue` | Triggered when an item is selected | `CustomEvent<any>` |
 
 
 ----------------------------------------------

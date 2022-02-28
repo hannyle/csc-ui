@@ -47,8 +47,11 @@
 
   &__content-wrapper {
     overflow: hidden;
-    transition: height 0.2s ease-out;
     height: auto;
+  }
+
+  &__transition {
+    transition: height 0.2s ease-out;
   }
 
   &__icon {

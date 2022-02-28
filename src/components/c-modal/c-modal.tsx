@@ -14,7 +14,7 @@ export class CModal {
    */
   @Prop({ mutable: true }) value: boolean = false;
   /**
-   * Not dismissed when touching outside or pressing esc key.
+   * Not dismissed when touching/clicking outside the content
    */
   @Prop() persistent: boolean = true;
   /**
