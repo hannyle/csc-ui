@@ -81,9 +81,14 @@ export class CRadioGroup {
       'c-radio-wrapper--disabled': this.disabled,
     };
 
+    const itemClasses = {
+      'c-radio-group__item': true,
+      'c-radio-group__item--disabled': this.disabled,
+    };
+
     return (
       <div
-        class="c-radio-group__item"
+        class={itemClasses}
         onClick={(event) => this._select(event, item, index)}
       >
         <div
@@ -101,7 +106,7 @@ export class CRadioGroup {
             <div class="c-radio-inner-circle"></div>
           </div>
         </div>
-        <label class="c-radio-label" id={itemId}>
+        <label class="c-radio__label" id={itemId}>
           {item.label}
         </label>
       </div>

@@ -6,13 +6,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./c-radio-group.component.scss'],
 })
 export class CRadioGroupComponent implements OnInit {
-  items = [
-    { label: 'Radio 1', value: 'one' },
-    { label: 'Radio 2', value: 'two' },
-    { label: 'Radio 3', value: 'three' },
-  ];
+  items = {
+    default: [
+      { label: 'Radio 1', value: 'one' },
+      { label: 'Radio 2', value: 'two' },
+      { label: 'Radio 3', value: 'three' },
+    ],
+    disabled: [
+      { label: 'Radio 1', value: 'one--disabled' },
+      { label: 'Radio 2', value: 'two--disabled' },
+      { label: 'Radio 3', value: 'three--disabled' },
+    ],
+  };
 
-  selectedItem = this.items[1];
+  selectedItem = this.items.default[1];
+  selectedItemDisabled = this.items.disabled[2];
 
   raw = {
     default: `<c-radio-group
@@ -35,13 +43,22 @@ export class CRadioGroupComponent implements OnInit {
     <p style="margin-top: 16px">Selected item: {{ selectedItem.label }}</p>`,
   };
 
-  script = `items = [
-    { label: 'Radio 1', value: 'one' },
-    { label: 'Radio 2', value: 'two' },
-    { label: 'Radio 3', value: 'three' },
-  ];
+  script = {
+    default: `items = [
+      { label: 'Radio 1', value: 'one' },
+      { label: 'Radio 2', value: 'two' },
+      { label: 'Radio 3', value: 'three' },
+    ];
 
-  selectedItem = this.items[1];`;
+    selectedItem = this.items[1];`,
+    disabled: `items = [
+      { label: 'Radio 1', value: 'one--disabled' },
+      { label: 'Radio 2', value: 'two--disabled' },
+      { label: 'Radio 3', value: 'three--disabled' },
+    ];
+
+    selectedItem = this.items[2];`,
+  };
 
   constructor() {}
 

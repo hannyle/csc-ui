@@ -11,16 +11,13 @@
   --c-cursor: pointer;
 
   &__item {
-    cursor: var(--c-pointer);
     display: flex;
     align-items: center;
-  }
+    cursor: var(--c-cursor);
 
-  &__label {
-    cursor: var(--c-pointer);
-    padding-left: 4px;
-    flex: 1;
-    user-select: none;
+    &--disabled {
+      --c-cursor: default;
+    }
   }
 }
 
@@ -34,6 +31,13 @@
   &--disabled {
     --c-color: var(--csc-light-grey);
     --c-cursor: default;
+  }
+
+  &__label {
+    cursor: var(--c-cursor);
+    padding-left: 4px;
+    flex: 1;
+    user-select: none;
   }
 
   &-wrapper {
@@ -58,10 +62,6 @@
 
     &:focus {
       background: var(--c-focus);
-    }
-
-    * {
-      pointer-events: none;
     }
   }
 
