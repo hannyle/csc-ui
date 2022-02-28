@@ -1,12 +1,4 @@
-import {
-  Component,
-  Host,
-  h,
-  Prop,
-  Event,
-  EventEmitter,
-  Listen,
-} from '@stencil/core';
+import { Component, h, Prop, Event, EventEmitter, Listen } from '@stencil/core';
 import { v4 as uuid } from 'uuid';
 
 /**
@@ -38,6 +30,13 @@ export class CAccordionItem {
    * Expansion status of the item
    */
   @Prop() expanded = false;
+
+  /**
+   * Show an outline around the expanded item
+   * @private
+   */
+  @Prop() outlined: boolean = false;
+
   /**
    * Emit changes to the c-accordion
    * @private
@@ -92,6 +91,12 @@ export class CAccordionItem {
   }
 
   render() {
+    const hostClasses = {
+      'c-accordion-item': true,
+      'c-accordion-item--expanded': this.expanded,
+      'c-accordion-item--outlined': this.outlined,
+    };
+
     const headerClasses = {
       'c-accordion-item__header': true,
       'c-accordion-item__header--expanded': this.expanded,
@@ -103,7 +108,7 @@ export class CAccordionItem {
     };
 
     return (
-      <Host class="c-accordion-item">
+      <div class={hostClasses}>
         <div
           class={headerClasses}
           tabindex="0"
@@ -142,7 +147,7 @@ export class CAccordionItem {
             <slot></slot>
           </div>
         </div>
-      </Host>
+      </div>
     );
   }
 }

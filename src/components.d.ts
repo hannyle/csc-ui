@@ -36,6 +36,11 @@ export namespace Components {
          */
         "icon": 'enabled' | 'disabled' | 'bell' | 'pending';
         /**
+          * Show an outline around the expanded item
+          * @private
+         */
+        "outlined": boolean;
+        /**
           * Value of the accordion item
          */
         "value": number | string;
@@ -880,6 +885,11 @@ declare namespace LocalJSX {
           * @private
          */
         "onItemChange"?: (event: CustomEvent<any>) => void;
+        /**
+          * Show an outline around the expanded item
+          * @private
+         */
+        "outlined"?: boolean;
         /**
           * Value of the accordion item
          */

@@ -1,5 +1,7 @@
+import { ComponentData } from 'src/interfaces/documentation';
+
 export function parseComponents(docs) {
-  const components = docs.components.map((component) => ({
+  const components: ComponentData[] = docs.components.map((component) => ({
     ...component,
     name: component.tag.replace(/^c-/, '').replaceAll('-', ' '),
   }));
@@ -17,6 +19,7 @@ export function parseComponents(docs) {
       )
       .map((child) => ({
         ...child,
+        props: child.props.filter((e) => e.docsTags.every((tag) => tag.name !== 'private')),
         events: child.events.filter((e) => e.docsTags.every((tag) => tag.name !== 'private')),
       }));
 

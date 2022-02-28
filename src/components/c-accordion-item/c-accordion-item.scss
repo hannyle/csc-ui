@@ -1,15 +1,28 @@
-@import '../../global/app.css';
-
-:host {
+.c-accordion-item {
+  --c-indicator-rotation: rotate(0deg);
+  --c-content-height: 0px;
   --c-min-height: 46px;
   --c-border-radius: 6px;
   --c-padding: 12px;
 
   display: block;
   margin-bottom: 8px;
-}
 
-.c-accordion-item {
+  &--expanded {
+    --c-content-height: auto;
+    --c-indicator-rotation: rotate(180deg);
+  }
+
+  &--outlined {
+    --c-min-height: 42px;
+    --c-border-radius: 4px;
+    --c-padding: 10px;
+
+    box-shadow: inset 0 0 0 2px var(--csc-primary-ghost);
+    border-radius: 6px;
+    padding: 2px;
+  }
+
   &__header {
     min-height: var(--c-min-height);
     user-select: none;
@@ -47,11 +60,7 @@
 
   &__content-wrapper {
     overflow: hidden;
-    height: auto;
-  }
-
-  &__transition {
-    transition: height 0.2s ease-out;
+    height: var(--c-content-height);
   }
 
   &__icon {
@@ -69,19 +78,13 @@
   }
 
   &__indicator {
-    --c-rotation: rotate(0deg);
-
     display: flex;
     align-items: center;
-
-    &--expanded {
-      --c-rotation: rotate(180deg);
-    }
 
     svg {
       width: 24px;
       height: 24px !important;
-      transform: var(--c-rotation);
+      transform: var(--c-indicator-rotation);
       transition: transform 0.3s ease-in-out;
     }
   }
