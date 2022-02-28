@@ -52,7 +52,7 @@ export class CRadioGroup {
   private _select(event, item, index) {
     if (this.disabled) return;
 
-    createRipple(event, this._containers[index]);
+    createRipple(event, this._containers[index], true);
     this.value = item;
     this.changeValue.emit(item);
   }

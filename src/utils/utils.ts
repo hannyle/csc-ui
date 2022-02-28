@@ -4,7 +4,7 @@ export function format(first: string, middle: string, last: string): string {
   );
 }
 
-export function createRipple(event, element) {
+export function createRipple(event, element, center = false) {
   let rippleElement = element.querySelector('.md-ripple');
 
   if (!rippleElement) {
@@ -16,6 +16,7 @@ export function createRipple(event, element) {
   rippleElement.classList.remove('animate');
 
   const d = Math.max(element.offsetWidth, element.offsetHeight);
+
   rippleElement.style.width = d + 'px';
   rippleElement.style.height = d + 'px';
 
@@ -23,8 +24,8 @@ export function createRipple(event, element) {
   const x = event.clientX - rect.left;
   const y = event.clientY - rect.top;
 
-  rippleElement.style.top = y - d / 2 + 'px';
-  rippleElement.style.left = x - d / 2 + 'px';
+  rippleElement.style.top = center ? 0 : y - d / 2 + 'px';
+  rippleElement.style.left = center ? 0 : x - d / 2 + 'px';
 
   rippleElement.classList.add('animate');
 

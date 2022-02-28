@@ -50,7 +50,7 @@ export class CCheckbox {
   private toggleState(event) {
     if (this.disabled) return;
 
-    createRipple(event, this._container);
+    createRipple(event, this._container, true);
     this.value = !this.value;
     this.changeValue.emit(this.value);
   }
