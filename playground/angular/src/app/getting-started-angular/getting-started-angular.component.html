@@ -15,8 +15,6 @@
   </div>
 
   <div class="pt-4">
-    <h3 class="text-capitalize mb-0 text-primary"></h3>
-
     <form [formGroup]="form">
       <c-card>
         <c-card-title>Usage in Angular forms</c-card-title>
@@ -48,6 +46,23 @@
         <c-card-actions right>
           <c-button [disabled]="!form.valid" (click)="onSubmit()">Submit</c-button>
         </c-card-actions>
+
+        <div class="p-4 pt-0">
+          <c-accordion [value]="showCode" multiple outlined>
+            <c-accordion-item value="template" heading="Template" class="mt-3 mb-0">
+              <i class="mdi mdi-xml" slot="icon"></i>
+              <pre class="d-flex flex-column m-0">
+                <code class="rounded" [highlight]="formUsage.template"></code>
+              </pre>
+            </c-accordion-item>
+            <c-accordion-item value="script" heading="Script" class="mt-3 mb-0">
+              <i class="mdi mdi-xml" slot="icon"></i>
+              <pre class="d-flex flex-column m-0">
+                <code class="rounded" [highlight]="formUsage.script"></code>
+              </pre>
+            </c-accordion-item>
+          </c-accordion>
+        </div>
       </c-card>
     </form>
   </div>

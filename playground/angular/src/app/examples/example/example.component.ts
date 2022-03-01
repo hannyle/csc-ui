@@ -7,10 +7,7 @@ import {
   ChangeDetectionStrategy,
   Input,
 } from '@angular/core';
-import sanitizeHtml from 'sanitize-html';
-import prettier, { Options } from 'prettier';
-import parser from 'prettier/parser-html';
-import babelParser from 'prettier/parser-babel';
+import { formatScript, formatTemplate } from 'src/app/utils/utils';
 import docs from '../../../../../../docs.json';
 
 @Component({
@@ -49,40 +46,10 @@ export class ExampleComponent implements AfterViewInit, AfterContentChecked {
   }
 
   ngAfterViewInit(): void {
-    const prettierConfig: Options = {
-      parser: 'angular',
-      plugins: [parser],
-      trailingComma: 'all',
-      tabWidth: 2,
-      semi: true,
-      singleQuote: true,
-      bracketSpacing: true,
-      bracketSameLine: false,
-      printWidth: 50,
-      htmlWhitespaceSensitivity: 'ignore',
-    };
+    this.code = this.raw
+      ? formatTemplate(this.raw, false)
+      : formatTemplate(this.example.nativeElement.innerHTML);
 
-    this.code = prettier.format(
-      this.raw ||
-        sanitizeHtml(this.example.nativeElement.innerHTML, {
-          allowedTags: false,
-          allowedAttributes: {
-            '*': this.allowedAttributes,
-          },
-        }),
-      prettierConfig,
-    );
-
-    try {
-      this.scriptCode = this.script
-        ? prettier.format(this.script, {
-            ...prettierConfig,
-            parser: 'babel',
-            plugins: [babelParser],
-          })
-        : null;
-    } catch (error) {
-      this.scriptCode = this.script;
-    }
+    this.scriptCode = formatScript(this.script);
   }
 }
