@@ -2,6 +2,7 @@ import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { CscUiAccessorModule } from 'csc-ui-accessor';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -38,7 +39,9 @@ import { CSelectComponent } from './examples/c-select/c-select.component';
 import { CToolbarComponent } from './examples/c-toolbar/c-toolbar.component';
 import { CSidenavigationComponent } from './examples/c-sidenavigation/c-sidenavigation.component';
 import { CLinkComponent } from './examples/c-link/c-link.component';
-import { CscUiAccessorModule } from 'csc-ui-accessor';
+import { GettingStartedComponent } from './getting-started/getting-started.component';
+import { GettingStartedAngularComponent } from './getting-started-angular/getting-started-angular.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,6 +78,8 @@ import { CscUiAccessorModule } from 'csc-ui-accessor';
     CToolbarComponent,
     CSidenavigationComponent,
     CLinkComponent,
+    GettingStartedComponent,
+    GettingStartedAngularComponent,
   ],
   imports: [
     BrowserModule,

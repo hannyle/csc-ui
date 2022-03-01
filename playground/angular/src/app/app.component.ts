@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
   groups = [];
   groupedComponents: ComponentGroup[] = [];
   activeComponent: ComponentData;
+  active = false;
 
   constructor(
     public componentDataService: ComponentDataService,

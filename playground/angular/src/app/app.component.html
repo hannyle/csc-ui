@@ -8,8 +8,41 @@
 
   <c-row class="no-margin no-wrap">
     <c-sidenavigation class="autoheight" *ngIf="components.length" [mobile]="isMobile$ | async">
+      <p class="text-white border-bottom">Usage</p>
+
+      <c-sidenavigationitem [active]="active" (click)="active = !active">
+        <div slot="main" class="text-capitalize">Getting Started</div>
+
+        <div slot="subnavitem">
+          <c-subnavigationitem
+            class="text-capitalize"
+            [routerLink]="['getting-started/angular']"
+            routerLinkActive="active"
+          >
+            <span class="mdi mdi-angular"></span>
+            Angular
+          </c-subnavigationitem>
+        </div>
+
+        <div slot="subnavitem">
+          <c-subnavigationitem class="text-capitalize">
+            <span class="mdi mdi-vuejs"></span>
+            Vue
+          </c-subnavigationitem>
+        </div>
+
+        <div slot="subnavitem">
+          <c-subnavigationitem class="text-capitalize">
+            <span class="mdi mdi-react"></span>
+            React
+          </c-subnavigationitem>
+        </div>
+      </c-sidenavigationitem>
+
+      <p class="text-white border-bottom mt-4">Components</p>
+
       <c-text-field
-        class="mb-4 me-4"
+        class="my-4 me-4"
         placeholder="Search for a component"
         shadow
         cControl

@@ -77,6 +77,11 @@ export class Button {
   private _container?: HTMLDivElement;
 
   private _onClick = (event) => {
+    if (this.disabled) {
+      event.preventDefault();
+      return;
+    }
+
     createRipple(event, this._container);
   };
 

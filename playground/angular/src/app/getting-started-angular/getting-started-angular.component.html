@@ -1,0 +1,54 @@
+<div class="getting-started">
+  <h1 class="text-capitalize mb-0 text-primary">Usage in Angular</h1>
+
+  <div class="pt-4">
+    <p>Install the Control Value Accessor</p>
+    <pre class="rounded"><code highlight="npm install csc-ui-accessor"></code></pre>
+  </div>
+  <div class="pt-4">
+    <p>
+      Add the CControl in the Angular
+      <code>AppModule</code>
+    </p>
+
+    <pre class="rounded"><code [highlight]="accessorUsage"></code></pre>
+  </div>
+
+  <div class="pt-4">
+    <h3 class="text-capitalize mb-0 text-primary"></h3>
+
+    <form [formGroup]="form">
+      <c-card>
+        <c-card-title>Usage in Angular forms</c-card-title>
+        <c-card-content>
+          <c-text-field
+            formControlName="username"
+            label="Username"
+            [valid]="(username.valid && (username.dirty || username.touched)) || username.pristine"
+            validation="Please enter your username"
+            cControl
+          ></c-text-field>
+
+          <c-text-field
+            formControlName="password"
+            label="Password"
+            type="password"
+            [valid]="(password.valid && (password.dirty || password.touched)) || password.pristine"
+            cControl
+          ></c-text-field>
+
+          <c-checkbox
+            formControlName="consent"
+            label="I agree to the terms and conditions"
+            [valid]="(consent.valid && (consent.dirty || consent.touched)) || consent.pristine"
+            cControl
+          ></c-checkbox>
+        </c-card-content>
+
+        <c-card-actions right>
+          <c-button [disabled]="!form.valid" (click)="onSubmit()">Submit</c-button>
+        </c-card-actions>
+      </c-card>
+    </form>
+  </div>
+</div>

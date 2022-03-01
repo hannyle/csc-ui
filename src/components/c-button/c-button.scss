@@ -160,6 +160,7 @@ button {
     --c-hover-background: var(--csc-light-grey);
 
     cursor: default !important;
+    pointer-events: none;
 
     &.outlined {
       --c-background-color: transparent;
