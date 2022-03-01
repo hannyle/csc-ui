@@ -16,38 +16,127 @@ import { mdiEye, mdiEyeOff } from '@mdi/js';
  */
 @Component({
   tag: 'c-text-field',
-  styleUrl: 'text-field.css',
+  styleUrl: 'c-text-field.scss',
   shadow: true,
 })
 export class TextField {
+  /**
+   * Manual validation
+   */
   @Prop() validate: boolean = false;
+
+  /**
+   * Id of the input
+   */
   @Prop({ attribute: 'id' }) hostId: string;
+
+  /**
+   * Numeric input
+   */
   @Prop() number = false;
+
+  /**
+   * Disable the input
+   */
   @Prop() disabled = false;
+
+  /**
+   * Mark as readonly
+   */
   @Prop() readonly = false;
+
+  /**
+   * Shadow variant of the input
+   */
   @Prop() shadow = false;
+
+  /**
+   * Auto focus the input
+   */
   @Prop() autofocus = false;
+
+  /**
+   * Set the validíty of the input
+   */
   @Prop() valid: boolean = true;
+
+  /**
+   * Custom validation message
+   */
   @Prop() validation: string = 'Required field';
+
+  /**
+   * Set the input as required
+   */
   @Prop() required: boolean = null;
+
+  /**
+   * Validate the input on blur
+   */
   @Prop() validateOnBlur: boolean = false;
+
+  /**
+   * Label of the input
+   */
   @Prop() label: string;
+
+  /**
+   * Name of the input
+   */
   @Prop() name: string;
+
+  /**
+   * Type of the input
+   */
   @Prop() type: string;
+
+  /**
+   * Step size on a numeric input
+   */
   @Prop() step: number = null;
+
+  /**
+   * Minimum value on a numeric input
+   */
   @Prop() min: number = null;
+
+  /**
+   * Maximum value on a numeric input
+   */
   @Prop() max: number = null;
+
+  /**
+   * Rows on the input
+   */
   @Prop() rows: number = 1;
+
+  /**
+   * Placeholder of the input
+   */
   @Prop() placeholder: string;
+
+  /**
+   * Value of the input
+   */
   @Prop({ mutable: true }) value: string;
+
+  /**
+   * Render a hidden input outside the shadow dom
+   */
   @Prop() form = false;
-  outerWrapperClasses = ['outer-wrapper'];
-  validationClasses = ['validation-message'];
+
+  /**
+   * Emit changes to the parent
+   */
   @Event() changeValue: EventEmitter;
+
   @State() tick = '';
-  blurred = false;
-  inputReference?: HTMLInputElement;
-  textAreaReference?: HTMLTextAreaElement;
+
+  private _outerWrapperClasses = ['outer-wrapper'];
+  private _validationClasses = ['validation-message'];
+  private _isBlurred = false;
+  private _inputReference?: HTMLInputElement;
+  private _textAreaReference?: HTMLTextAreaElement;
   private _originalType = '';
 
   @Element() hiddenEl!: HTMLCTextFieldElement;
@@ -72,7 +161,7 @@ export class TextField {
   }
 
   private _setBlur = () => {
-    this.blurred = true;
+    this._isBlurred = true;
     if (this.validateOnBlur) {
       this._runValidate(true);
     }
@@ -85,16 +174,18 @@ export class TextField {
   };
 
   private _runValidate(forceUpdate = false, extValidate = false) {
-    this.outerWrapperClasses = this.outerWrapperClasses.filter(
+    this._outerWrapperClasses = this._outerWrapperClasses.filter(
       (c) => c !== 'required',
     );
-    this.validationClasses = this.validationClasses.filter((c) => c !== 'show');
+    this._validationClasses = this._validationClasses.filter(
+      (c) => c !== 'show',
+    );
     if (
-      (this.blurred || !this.validateOnBlur || extValidate) &&
+      (this._isBlurred || !this.validateOnBlur || extValidate) &&
       ((this.required && !this.value) || !this.valid)
     ) {
-      this.outerWrapperClasses.push('required');
-      this.validationClasses.push('show');
+      this._outerWrapperClasses.push('required');
+      this._validationClasses.push('show');
       if (forceUpdate) {
         this.tick = 'force';
       }
@@ -103,9 +194,9 @@ export class TextField {
 
   private _focus = () => {
     if (this.rows > 1) {
-      this.textAreaReference.focus();
+      this._textAreaReference.focus();
     } else {
-      this.inputReference.focus();
+      this._inputReference.focus();
     }
   };
 
@@ -136,9 +227,9 @@ export class TextField {
       this._runValidate();
     }
     if (this.disabled) {
-      this.outerWrapperClasses.push('disabled');
+      this._outerWrapperClasses.push('disabled');
     } else {
-      this.outerWrapperClasses = this.outerWrapperClasses.filter(
+      this._outerWrapperClasses = this._outerWrapperClasses.filter(
         (c) => c !== 'disabled',
       );
     }
@@ -161,14 +252,17 @@ export class TextField {
     );
 
     let type = 'text';
+
     if (this.number) {
       type = 'number';
     }
+
     if (this.type) {
       type = this.type;
     }
+
     if (this.shadow) {
-      this.outerWrapperClasses.push('shadow');
+      this._outerWrapperClasses.push('shadow');
     }
 
     if (this.form) {
@@ -178,7 +272,7 @@ export class TextField {
     const textInput = (
       <input
         id={this.hostId}
-        ref={(el) => (this.inputReference = el as HTMLInputElement)}
+        ref={(el) => (this._inputReference = el as HTMLInputElement)}
         name={this.name}
         onBlur={this._setBlur}
         aria-labelledby="c-text-label"
@@ -197,7 +291,7 @@ export class TextField {
     const textArea = (
       <textarea
         id={this.hostId}
-        ref={(el) => (this.textAreaReference = el as HTMLTextAreaElement)}
+        ref={(el) => (this._textAreaReference = el as HTMLTextAreaElement)}
         name={this.name}
         onBlur={this._setBlur}
         rows={this.rows}
@@ -211,7 +305,7 @@ export class TextField {
     );
     return (
       <Host onClick={this._focus}>
-        <div class={this.outerWrapperClasses.join(' ')}>
+        <div class={this._outerWrapperClasses.join(' ')}>
           <div class="border-wrapper">
             <div class="border-left"></div>
             {this.label ? labelBlock : null}
@@ -236,7 +330,7 @@ export class TextField {
             </c-icon-button>
           )}
         </div>
-        <div class={this.validationClasses.join(' ')}>
+        <div class={this._validationClasses.join(' ')}>
           {this._validationIcon} {this.validation}
         </div>
       </Host>

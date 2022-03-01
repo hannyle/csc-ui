@@ -529,26 +529,89 @@ export namespace Components {
         "fit": boolean;
     }
     interface CTextField {
+        /**
+          * Auto focus the input
+         */
         "autofocus": boolean;
+        /**
+          * Disable the input
+         */
         "disabled": boolean;
+        /**
+          * Render a hidden input outside the shadow dom
+         */
         "form": boolean;
+        /**
+          * Id of the input
+         */
         "hostId": string;
+        /**
+          * Label of the input
+         */
         "label": string;
+        /**
+          * Maximum value on a numeric input
+         */
         "max": number;
+        /**
+          * Minimum value on a numeric input
+         */
         "min": number;
+        /**
+          * Name of the input
+         */
         "name": string;
+        /**
+          * Numeric input
+         */
         "number": boolean;
+        /**
+          * Placeholder of the input
+         */
         "placeholder": string;
+        /**
+          * Mark as readonly
+         */
         "readonly": boolean;
+        /**
+          * Set the input as required
+         */
         "required": boolean;
+        /**
+          * Rows on the input
+         */
         "rows": number;
+        /**
+          * Shadow variant of the input
+         */
         "shadow": boolean;
+        /**
+          * Step size on a numeric input
+         */
         "step": number;
+        /**
+          * Type of the input
+         */
         "type": string;
+        /**
+          * Set the validíty of the input
+         */
         "valid": boolean;
+        /**
+          * Manual validation
+         */
         "validate": boolean;
+        /**
+          * Validate the input on blur
+         */
         "validateOnBlur": boolean;
+        /**
+          * Custom validation message
+         */
         "validation": string;
+        /**
+          * Value of the input
+         */
         "value": string;
     }
     interface CTitle {
@@ -1445,27 +1508,93 @@ declare namespace LocalJSX {
         "fit"?: boolean;
     }
     interface CTextField {
+        /**
+          * Auto focus the input
+         */
         "autofocus"?: boolean;
+        /**
+          * Disable the input
+         */
         "disabled"?: boolean;
+        /**
+          * Render a hidden input outside the shadow dom
+         */
         "form"?: boolean;
+        /**
+          * Id of the input
+         */
         "hostId"?: string;
+        /**
+          * Label of the input
+         */
         "label"?: string;
+        /**
+          * Maximum value on a numeric input
+         */
         "max"?: number;
+        /**
+          * Minimum value on a numeric input
+         */
         "min"?: number;
+        /**
+          * Name of the input
+         */
         "name"?: string;
+        /**
+          * Numeric input
+         */
         "number"?: boolean;
+        /**
+          * Emit changes to the parent
+         */
         "onChangeValue"?: (event: CustomEvent<any>) => void;
+        /**
+          * Placeholder of the input
+         */
         "placeholder"?: string;
+        /**
+          * Mark as readonly
+         */
         "readonly"?: boolean;
+        /**
+          * Set the input as required
+         */
         "required"?: boolean;
+        /**
+          * Rows on the input
+         */
         "rows"?: number;
+        /**
+          * Shadow variant of the input
+         */
         "shadow"?: boolean;
+        /**
+          * Step size on a numeric input
+         */
         "step"?: number;
+        /**
+          * Type of the input
+         */
         "type"?: string;
+        /**
+          * Set the validíty of the input
+         */
         "valid"?: boolean;
+        /**
+          * Manual validation
+         */
         "validate"?: boolean;
+        /**
+          * Validate the input on blur
+         */
         "validateOnBlur"?: boolean;
+        /**
+          * Custom validation message
+         */
         "validation"?: string;
+        /**
+          * Value of the input
+         */
         "value"?: string;
     }
     interface CTitle {

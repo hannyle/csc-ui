@@ -30,7 +30,7 @@
 
  - [c-pagination](../c-pagination)
  - [c-swiper](../c-swiper)
- - [c-text-field](../text-field)
+ - [c-text-field](../c-text-field)
 
 ### Graph
 ```mermaid
