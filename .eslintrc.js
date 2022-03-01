@@ -4,6 +4,10 @@ module.exports = {
   },
   extends: ['plugin:@stencil/recommended'],
   rules: {
+    '@stencil/class-pattern': [
+      'error',
+      { pattern: '^C[A-Z]{1}', ignoreCase: false },
+    ],
     '@stencil/strict-boolean-conditions': 'off',
     '@stencil/decorators-style': [
       'error',
