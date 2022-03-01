@@ -6,7 +6,7 @@ import { Component, Host, h } from '@stencil/core';
  */
 @Component({
   tag: 'c-consent',
-  styleUrl: 'c-consent.css',
+  styleUrl: 'c-consent.scss',
   shadow: true,
 })
 export class CConsent {

@@ -21,7 +21,7 @@ export interface SelectItem {
  */
 @Component({
   tag: 'c-autocomplete',
-  styleUrl: 'autocomplete.css',
+  styleUrl: 'autocomplete.scss',
   shadow: true,
 })
 export class Autocomplete {

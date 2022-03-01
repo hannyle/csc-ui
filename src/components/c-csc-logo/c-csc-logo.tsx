@@ -4,7 +4,7 @@ import { Component, Host, h } from '@stencil/core';
  */
 @Component({
   tag: 'c-csc-logo',
-  styleUrl: 'c-csc-logo.css',
+  styleUrl: 'c-csc-logo.scss',
   shadow: true,
 })
 export class CCscLogo {

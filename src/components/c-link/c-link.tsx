@@ -6,7 +6,7 @@ import { Component, h, Prop } from '@stencil/core';
  */
 @Component({
   tag: 'c-link',
-  styleUrl: 'c-link.css',
+  styleUrl: 'c-link.scss',
   shadow: true,
 })
 export class CLink {

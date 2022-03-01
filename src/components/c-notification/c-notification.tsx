@@ -5,7 +5,7 @@ import { Component, Host, h, Prop, Watch, State } from '@stencil/core';
  */
 @Component({
   tag: 'c-notification',
-  styleUrl: 'c-notification.css',
+  styleUrl: 'c-notification.scss',
   shadow: true,
 })
 export class CNotification {

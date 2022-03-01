@@ -16,7 +16,7 @@
 
 ### Depends on
 
-- [c-title](../title)
+- [c-title](../c-title)
 
 ### Graph
 ```mermaid

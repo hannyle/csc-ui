@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-getting-started-angular',
   templateUrl: './getting-started-angular.component.html',
-  styleUrls: ['../getting-started/getting-started.component.scss'],
+  styleUrls: ['./getting-started-angular.component.scss'],
 })
 export class GettingStartedAngularComponent implements OnInit {
   accessorUsage = `import { NgModule } from '@angular/core';

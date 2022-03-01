@@ -23,7 +23,7 @@
 
 ### Depends on
 
-- [c-spacer](../spacer)
+- [c-spacer](../c-spacer)
 
 ### Graph
 ```mermaid

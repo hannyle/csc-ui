@@ -6,7 +6,7 @@ import { mdiChevronDown } from '@mdi/js';
  */
 @Component({
   tag: 'c-menu',
-  styleUrl: 'c-menu.css',
+  styleUrl: 'c-menu.scss',
   shadow: true,
 })
 export class CMenu {

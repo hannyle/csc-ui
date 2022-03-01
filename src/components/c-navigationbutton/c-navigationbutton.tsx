@@ -4,11 +4,11 @@ import { Component, Host, h } from '@stencil/core';
  */
 @Component({
   tag: 'c-navigationbutton',
-  styleUrl: 'c-navigationbutton.css',
+  styleUrl: 'c-navigationbutton.scss',
   shadow: true,
 })
 export class CNavigationbutton {
-  svg = (
+  private _svg = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="20"
@@ -51,6 +51,6 @@ export class CNavigationbutton {
     </svg>
   );
   render() {
-    return <Host>{this.svg}</Host>;
+    return <Host>{this._svg}</Host>;
   }
 }

@@ -4,7 +4,7 @@ import { Component, Host, h, Prop } from '@stencil/core';
  */
 @Component({
   tag: 'c-sidenavigation',
-  styleUrl: 'c-sidenavigation.css',
+  styleUrl: 'c-sidenavigation.scss',
   shadow: true,
 })
 export class CSidenavigation {

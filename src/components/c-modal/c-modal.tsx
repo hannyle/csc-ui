@@ -5,7 +5,7 @@ import { Component, h, Prop, Event, EventEmitter } from '@stencil/core';
  */
 @Component({
   tag: 'c-modal',
-  styleUrl: 'c-modal.css',
+  styleUrl: 'c-modal.scss',
   shadow: true,
 })
 export class CModal {

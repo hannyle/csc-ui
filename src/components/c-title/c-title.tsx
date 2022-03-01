@@ -1,20 +1,21 @@
 import { Component, Host, h } from '@stencil/core';
+
 /**
- * Component which fills the remaining space within a flex container
- *
- * @group Layout
- * @slot - Content
+ * @parent None
+ * @slot - Default slot
  */
+
 @Component({
-  tag: 'c-flex',
-  styleUrl: 'c-flex.scss',
+  tag: 'c-title',
+  styleUrl: 'c-title.scss',
   shadow: true,
 })
-export class CFlex {
+export class Title {
   render() {
     return (
       <Host>
         <slot></slot>
+        <div class="title-underline"></div>
       </Host>
     );
   }

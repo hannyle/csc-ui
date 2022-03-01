@@ -27,8 +27,8 @@
 
 - [c-menu](../c-menu)
 - [c-icon-button](../c-icon-button)
-- [c-row](../row)
-- [c-spacer](../spacer)
+- [c-row](../c-row)
+- [c-spacer](../c-spacer)
 
 ### Graph
 ```mermaid

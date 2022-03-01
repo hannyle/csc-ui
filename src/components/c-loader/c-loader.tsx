@@ -6,7 +6,7 @@ import { Component, Host, h, Prop } from '@stencil/core';
  */
 @Component({
   tag: 'c-loader',
-  styleUrl: 'c-loader.css',
+  styleUrl: 'c-loader.scss',
   shadow: true,
 })
 export class CLoader {

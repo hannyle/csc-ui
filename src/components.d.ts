@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { CardBackground } from "./components/card/card";
+import { CardBackground } from "./components/c-card/c-card";
 export namespace Components {
     interface CAccordion {
         /**
@@ -238,7 +238,13 @@ export namespace Components {
         "small": boolean;
     }
     interface CMenuItem {
+        /**
+          * Is the item the active selection
+         */
         "active": boolean;
+        /**
+          * Small variant
+         */
         "small": boolean;
     }
     interface CModal {
@@ -1163,7 +1169,13 @@ declare namespace LocalJSX {
         "small"?: boolean;
     }
     interface CMenuItem {
+        /**
+          * Is the item the active selection
+         */
         "active"?: boolean;
+        /**
+          * Small variant
+         */
         "small"?: boolean;
     }
     interface CModal {

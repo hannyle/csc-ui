@@ -17,7 +17,7 @@
 
 ### Depends on
 
-- [c-row](../row)
+- [c-row](../c-row)
 
 ### Graph
 ```mermaid

@@ -6,7 +6,7 @@ import { Component, Host, h, Prop } from '@stencil/core';
  */
 @Component({
   tag: 'c-tag',
-  styleUrl: 'c-tag.css',
+  styleUrl: 'c-tag.scss',
   shadow: true,
 })
 export class CTag {

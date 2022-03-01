@@ -10,7 +10,10 @@
     <c-sidenavigation class="autoheight" *ngIf="components.length" [mobile]="isMobile$ | async">
       <p class="text-white border-bottom">Usage</p>
 
-      <c-sidenavigationitem [active]="active" (click)="active = !active">
+      <c-sidenavigationitem
+        [active]="active.gettingStarted"
+        (click)="active.gettingStarted = !active.gettingStarted"
+      >
         <div slot="main" class="text-capitalize">Getting Started</div>
 
         <div slot="subnavitem">
@@ -35,6 +38,23 @@
           <c-subnavigationitem class="text-capitalize">
             <span class="mdi mdi-react"></span>
             React
+          </c-subnavigationitem>
+        </div>
+      </c-sidenavigationitem>
+
+      <c-sidenavigationitem
+        [active]="active.templates"
+        (click)="active.templates = !active.templates"
+      >
+        <div slot="main" class="text-capitalize">Templates</div>
+
+        <div slot="subnavitem">
+          <c-subnavigationitem
+            [routerLink]="['templates/basic-template']"
+            routerLinkActive="active"
+            class="text-capitalize"
+          >
+            Basic template
           </c-subnavigationitem>
         </div>
       </c-sidenavigationitem>
