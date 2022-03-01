@@ -125,24 +125,6 @@ export namespace Components {
          */
         "value"?: number | string;
     }
-    interface CButtonGroup {
-        /**
-          * Disable the content switcher
-         */
-        "hostDisabled": boolean;
-        /**
-          * Always require a selection
-         */
-        "mandatory": boolean;
-        /**
-          * Size of the buttons
-         */
-        "size": 'default' | 'small';
-        /**
-          * Value of the content switcher
-         */
-        "value": number | string;
-    }
     interface CCard {
         /**
           * Card background image for login pages of specific services
@@ -448,6 +430,34 @@ export namespace Components {
          */
         "href": string;
     }
+    interface CSwiper {
+        /**
+          * Value of the swiper
+         */
+        "value": number | string;
+    }
+    interface CSwiperTab {
+        /**
+          * Mark as active
+         */
+        "active": boolean;
+        /**
+          * Disable button
+         */
+        "disabled": boolean;
+        /**
+          * Id of the button
+         */
+        "hostId": string;
+        /**
+          * Label of the button
+         */
+        "label": string;
+        /**
+          * Value of the button
+         */
+        "value": number | string;
+    }
     interface CSwitch {
         /**
           * Disable the switch
@@ -480,31 +490,21 @@ export namespace Components {
          */
         "value"?: number | string;
     }
-    interface CTabButton {
-        /**
-          * Mark as active
-         */
-        "active": boolean;
-        /**
-          * Disable button
-         */
-        "disabled": boolean;
-        /**
-          * Id of the button
-         */
-        "hostId": string;
-        /**
-          * Label of the button
-         */
-        "label": string;
-        /**
-          * Value of the button
-         */
-        "value": number | string;
-    }
     interface CTabButtons {
         /**
-          * Value of the tab buttons
+          * Disable tab buttons
+         */
+        "hostDisabled": boolean;
+        /**
+          * Always require a selection
+         */
+        "mandatory": boolean;
+        /**
+          * Size of the buttons
+         */
+        "size": 'default' | 'small';
+        /**
+          * Value of tab buttons
          */
         "value": number | string;
     }
@@ -580,12 +580,6 @@ declare global {
     var HTMLCButtonElement: {
         prototype: HTMLCButtonElement;
         new (): HTMLCButtonElement;
-    };
-    interface HTMLCButtonGroupElement extends Components.CButtonGroup, HTMLStencilElement {
-    }
-    var HTMLCButtonGroupElement: {
-        prototype: HTMLCButtonGroupElement;
-        new (): HTMLCButtonGroupElement;
     };
     interface HTMLCCardElement extends Components.CCard, HTMLStencilElement {
     }
@@ -749,6 +743,18 @@ declare global {
         prototype: HTMLCSubnavigationitemElement;
         new (): HTMLCSubnavigationitemElement;
     };
+    interface HTMLCSwiperElement extends Components.CSwiper, HTMLStencilElement {
+    }
+    var HTMLCSwiperElement: {
+        prototype: HTMLCSwiperElement;
+        new (): HTMLCSwiperElement;
+    };
+    interface HTMLCSwiperTabElement extends Components.CSwiperTab, HTMLStencilElement {
+    }
+    var HTMLCSwiperTabElement: {
+        prototype: HTMLCSwiperTabElement;
+        new (): HTMLCSwiperTabElement;
+    };
     interface HTMLCSwitchElement extends Components.CSwitch, HTMLStencilElement {
     }
     var HTMLCSwitchElement: {
@@ -760,12 +766,6 @@ declare global {
     var HTMLCTabElement: {
         prototype: HTMLCTabElement;
         new (): HTMLCTabElement;
-    };
-    interface HTMLCTabButtonElement extends Components.CTabButton, HTMLStencilElement {
-    }
-    var HTMLCTabButtonElement: {
-        prototype: HTMLCTabButtonElement;
-        new (): HTMLCTabButtonElement;
     };
     interface HTMLCTabButtonsElement extends Components.CTabButtons, HTMLStencilElement {
     }
@@ -808,7 +808,6 @@ declare global {
         "c-accordion-item": HTMLCAccordionItemElement;
         "c-autocomplete": HTMLCAutocompleteElement;
         "c-button": HTMLCButtonElement;
-        "c-button-group": HTMLCButtonGroupElement;
         "c-card": HTMLCCardElement;
         "c-card-actions": HTMLCCardActionsElement;
         "c-card-content": HTMLCCardContentElement;
@@ -836,9 +835,10 @@ declare global {
         "c-sidenavigationitem": HTMLCSidenavigationitemElement;
         "c-spacer": HTMLCSpacerElement;
         "c-subnavigationitem": HTMLCSubnavigationitemElement;
+        "c-swiper": HTMLCSwiperElement;
+        "c-swiper-tab": HTMLCSwiperTabElement;
         "c-switch": HTMLCSwitchElement;
         "c-tab": HTMLCTabElement;
-        "c-tab-button": HTMLCTabButtonElement;
         "c-tab-buttons": HTMLCTabButtonsElement;
         "c-tabs": HTMLCTabsElement;
         "c-tag": HTMLCTagElement;
@@ -982,28 +982,6 @@ declare namespace LocalJSX {
           * Value for the button - for use in the c-content-switcher
          */
         "value"?: number | string;
-    }
-    interface CButtonGroup {
-        /**
-          * Disable the content switcher
-         */
-        "hostDisabled"?: boolean;
-        /**
-          * Always require a selection
-         */
-        "mandatory"?: boolean;
-        /**
-          * Emit changes to the parent
-         */
-        "onChangeValue"?: (event: CustomEvent<number | string>) => void;
-        /**
-          * Size of the buttons
-         */
-        "size"?: 'default' | 'small';
-        /**
-          * Value of the content switcher
-         */
-        "value": number | string;
     }
     interface CCard {
         /**
@@ -1337,6 +1315,48 @@ declare namespace LocalJSX {
          */
         "href"?: string;
     }
+    interface CSwiper {
+        /**
+          * Value of the swiper
+         */
+        "value"?: number | string;
+    }
+    interface CSwiperTab {
+        /**
+          * Mark as active
+         */
+        "active"?: boolean;
+        /**
+          * Disable button
+         */
+        "disabled"?: boolean;
+        /**
+          * Id of the button
+         */
+        "hostId"?: string;
+        /**
+          * Label of the button
+         */
+        "label"?: string;
+        /**
+          * Emit value change to the parent
+         */
+        "onChangeValue"?: (event: CustomEvent<number | string>) => void;
+        /**
+          * Emit tab focus to the parent
+          * @private
+         */
+        "onFocusTab"?: (event: CustomEvent<any>) => void;
+        /**
+          * Emit tab change to parent
+          * @private
+         */
+        "onTabChange"?: (event: CustomEvent<any>) => void;
+        /**
+          * Value of the button
+         */
+        "value"?: number | string;
+    }
     interface CSwitch {
         /**
           * Disable the switch
@@ -1378,47 +1398,27 @@ declare namespace LocalJSX {
          */
         "value"?: number | string;
     }
-    interface CTabButton {
+    interface CTabButtons {
         /**
-          * Mark as active
+          * Disable tab buttons
          */
-        "active"?: boolean;
+        "hostDisabled"?: boolean;
         /**
-          * Disable button
+          * Always require a selection
          */
-        "disabled"?: boolean;
+        "mandatory"?: boolean;
         /**
-          * Id of the button
-         */
-        "hostId"?: string;
-        /**
-          * Label of the button
-         */
-        "label"?: string;
-        /**
-          * Emit value change to the parent
+          * Emit changes to the parent
          */
         "onChangeValue"?: (event: CustomEvent<number | string>) => void;
         /**
-          * Emit tab focus to the parent
-          * @private
+          * Size of the buttons
          */
-        "onFocusTab"?: (event: CustomEvent<any>) => void;
+        "size"?: 'default' | 'small';
         /**
-          * Emit tab change to parent
-          * @private
+          * Value of tab buttons
          */
-        "onTabChange"?: (event: CustomEvent<any>) => void;
-        /**
-          * Value of the button
-         */
-        "value"?: number | string;
-    }
-    interface CTabButtons {
-        /**
-          * Value of the tab buttons
-         */
-        "value"?: number | string;
+        "value": number | string;
     }
     interface CTabs {
         /**
@@ -1477,7 +1477,6 @@ declare namespace LocalJSX {
         "c-accordion-item": CAccordionItem;
         "c-autocomplete": CAutocomplete;
         "c-button": CButton;
-        "c-button-group": CButtonGroup;
         "c-card": CCard;
         "c-card-actions": CCardActions;
         "c-card-content": CCardContent;
@@ -1505,9 +1504,10 @@ declare namespace LocalJSX {
         "c-sidenavigationitem": CSidenavigationitem;
         "c-spacer": CSpacer;
         "c-subnavigationitem": CSubnavigationitem;
+        "c-swiper": CSwiper;
+        "c-swiper-tab": CSwiperTab;
         "c-switch": CSwitch;
         "c-tab": CTab;
-        "c-tab-button": CTabButton;
         "c-tab-buttons": CTabButtons;
         "c-tabs": CTabs;
         "c-tag": CTag;
@@ -1524,7 +1524,6 @@ declare module "@stencil/core" {
             "c-accordion-item": LocalJSX.CAccordionItem & JSXBase.HTMLAttributes<HTMLCAccordionItemElement>;
             "c-autocomplete": LocalJSX.CAutocomplete & JSXBase.HTMLAttributes<HTMLCAutocompleteElement>;
             "c-button": LocalJSX.CButton & JSXBase.HTMLAttributes<HTMLCButtonElement>;
-            "c-button-group": LocalJSX.CButtonGroup & JSXBase.HTMLAttributes<HTMLCButtonGroupElement>;
             "c-card": LocalJSX.CCard & JSXBase.HTMLAttributes<HTMLCCardElement>;
             "c-card-actions": LocalJSX.CCardActions & JSXBase.HTMLAttributes<HTMLCCardActionsElement>;
             "c-card-content": LocalJSX.CCardContent & JSXBase.HTMLAttributes<HTMLCCardContentElement>;
@@ -1552,9 +1551,10 @@ declare module "@stencil/core" {
             "c-sidenavigationitem": LocalJSX.CSidenavigationitem & JSXBase.HTMLAttributes<HTMLCSidenavigationitemElement>;
             "c-spacer": LocalJSX.CSpacer & JSXBase.HTMLAttributes<HTMLCSpacerElement>;
             "c-subnavigationitem": LocalJSX.CSubnavigationitem & JSXBase.HTMLAttributes<HTMLCSubnavigationitemElement>;
+            "c-swiper": LocalJSX.CSwiper & JSXBase.HTMLAttributes<HTMLCSwiperElement>;
+            "c-swiper-tab": LocalJSX.CSwiperTab & JSXBase.HTMLAttributes<HTMLCSwiperTabElement>;
             "c-switch": LocalJSX.CSwitch & JSXBase.HTMLAttributes<HTMLCSwitchElement>;
             "c-tab": LocalJSX.CTab & JSXBase.HTMLAttributes<HTMLCTabElement>;
-            "c-tab-button": LocalJSX.CTabButton & JSXBase.HTMLAttributes<HTMLCTabButtonElement>;
             "c-tab-buttons": LocalJSX.CTabButtons & JSXBase.HTMLAttributes<HTMLCTabButtonsElement>;
             "c-tabs": LocalJSX.CTabs & JSXBase.HTMLAttributes<HTMLCTabsElement>;
             "c-tag": LocalJSX.CTag & JSXBase.HTMLAttributes<HTMLCTagElement>;

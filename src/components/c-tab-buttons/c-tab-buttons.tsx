@@ -1,142 +1,130 @@
-import { Component, h, Listen, Prop, State } from '@stencil/core';
-import Swiper, { Navigation, SwiperOptions } from 'swiper';
-import { mdiChevronLeft, mdiChevronRight } from '@mdi/js';
+import {
+  Component,
+  h,
+  Element,
+  Prop,
+  Event,
+  EventEmitter,
+  Watch,
+  Listen,
+} from '@stencil/core';
 
 /**
- * @group Content Switchers
- * @slot - Default slot for the c-tab-button elements
+ * @group Content Selectors
+ * @slot - Default slot for the c-button elements
  */
 @Component({
   tag: 'c-tab-buttons',
   styleUrl: 'c-tab-buttons.scss',
-  shadow: false,
+  shadow: true,
 })
-export class TabButtons {
+export class CTabButtons {
   /**
-   * Value of the tab buttons
+   * Value of tab buttons
    */
-  @Prop({ reflect: true, mutable: true }) value: number | string;
+  @Prop({ mutable: true }) value!: number | string;
+  /**
+   * Always require a selection
+   */
+  @Prop() mandatory: boolean = false;
+  /**
+   * Size of the buttons
+   */
+  @Prop() size: 'default' | 'small' = 'default';
+  /**
+   * Disable tab buttons
+   */
+  @Prop({ attribute: 'disabled' }) hostDisabled = false;
 
-  @State() isBeginning = true;
-  @State() isEnd = false;
+  /**
+   * Emit changes to the parent
+   */
+  @Event() changeValue: EventEmitter<number | string>;
+  @Element() el: HTMLCTabButtonsElement;
 
-  private _container?: HTMLDivElement;
-  private _wrapper?: HTMLDivElement;
-  private _swiper: any;
-  private _options: SwiperOptions;
+  @Watch('value')
+  watchPropHandler(value: string | number) {
+    if (value !== null) {
+      this.buttons[value].outlined = false;
+    }
 
-  @Listen('changeValue')
-  onTabClick(event: MouseEvent) {
-    this.value = event.detail;
+    this.changeValue.emit(value);
+  }
 
-    this.slotItems.forEach((child) => {
-      child.active = child.value === event.detail;
+  @Listen('click', { passive: true })
+  onHandleClickEvent(ev) {
+    const clickStack = ev.composedPath();
+    const switcher = clickStack.find((e) => e.tagName === 'C-TAB-BUTTONS');
+    const button = clickStack.find((e) => e.tagName === 'C-BUTTON');
+
+    if (!button || !switcher) return;
+
+    const { index } = button.dataset;
+
+    // Disable deselection if mandatory prop is set to true
+    if (
+      (this.mandatory &&
+        !this._isString(this.value) &&
+        +index === +this.value) ||
+      (this.mandatory &&
+        this._isString(this.value) &&
+        button.value === this.value)
+    ) {
+      return;
+    }
+
+    switcher.childNodes.forEach((btn: HTMLCButtonElement) => {
+      btn.outlined = true;
     });
+
+    this.value = this.value === +index ? null : +index;
   }
 
-  @Listen('focusTab', { passive: true })
-  onTabFocus(event: CustomEvent<number | string>) {
-    const index = (event.target as HTMLCTabButtonElement).dataset.index;
-
-    this._swiper.slideTo(index);
-    this._swiper.update();
+  get buttons() {
+    return Array.from(this.el.childNodes) as HTMLCButtonElement[];
   }
 
-  get slotItems() {
-    return Array.from(this._wrapper.children) as HTMLCTabButtonElement[];
+  get valueIsString() {
+    return Number.isNaN(+this.value);
   }
 
   componentDidLoad() {
-    console.log('🤡🤡🤡', this.value);
+    // use 0 as value if nothing is provided
+    this.value = this.value ?? 0;
 
-    this._options = {
-      modules: [Navigation],
-      breakpointsBase: 'container',
-      loop: false,
-      speed: 300,
-      slideToClickedSlide: true,
-      slidesPerView: 1,
-      spaceBetween: 16,
-      threshold: 4,
-      breakpoints: {
-        480: {
-          slidesPerView: 2,
-        },
-        720: {
-          slidesPerView: 3,
-        },
-        960: {
-          slidesPerView: 4,
-        },
-      },
-      navigation: {
-        nextEl: '.c-icon-button--next',
-        prevEl: '.c-icon-button--prev',
-      },
-      keyboard: true,
-    };
+    this.buttons.forEach((button: HTMLCButtonElement, index) => {
+      button.setAttribute('data-index', String(index));
+      button.noRadius = true;
+      button.fit = true;
+      button.disabled = this.hostDisabled;
+      button.size = this.size;
 
-    this._initSwiper();
+      if (
+        (!this._isString(this.value) && index !== +this.value) ||
+        (this._isString(this.value) && button.value !== this.value)
+      ) {
+        button.outlined = true;
+      }
+
+      const buttonElement = button.shadowRoot.querySelector('.c-button');
+
+      buttonElement.classList.add('grouped');
+    });
   }
 
-  private _initSwiper() {
-    console.log('🤡', this.value);
-
-    for (const [index, slide] of this.slotItems.entries()) {
-      slide.classList.add('swiper-slide');
-      slide.setAttribute('data-index', index.toString());
-      slide.value = slide.value ?? index;
-      slide.active = this.value === slide.value;
-      console.log(this.value, slide.value);
-    }
-
-    this._swiper = new Swiper(this._container, {
-      ...this._options,
-    });
-
-    this._swiper.on('activeIndexChange', ({ isBeginning, isEnd }) => {
-      this.isBeginning = isBeginning;
-      this.isEnd = isEnd;
-    });
+  private _isString(value) {
+    return Number.isNaN(+value);
   }
 
   render() {
-    return (
-      <div class="c-tab-buttons swiper">
-        <div
-          class="swiper-container"
-          ref={(el) => (this._container = el as HTMLDivElement)}
-        >
-          <div
-            class="swiper-wrapper"
-            ref={(el) => (this._wrapper = el as HTMLDivElement)}
-          >
-            <slot />
-          </div>
+    const classes = {
+      'c-tab-buttons': true,
+      'c-tab-buttons--disabled': this.hostDisabled,
+    };
 
-          <div class="c-tab-buttons__navigation">
-            <c-icon-button
-              class="c-icon-button--prev"
-              disabled={this.isBeginning}
-              size="small"
-              ghost
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24">
-                <path d={mdiChevronLeft} />
-              </svg>
-            </c-icon-button>
-            <c-icon-button
-              class="c-icon-button--next"
-              disabled={this.isEnd}
-              size="small"
-              ghost
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24">
-                <path d={mdiChevronRight} />
-              </svg>
-            </c-icon-button>
-          </div>
-        </div>
+    return (
+      <div class={classes}>
+        <slot></slot>
       </div>
     );
   }

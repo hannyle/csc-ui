@@ -10,11 +10,11 @@ import {
 import { createRipple } from '../../utils/utils';
 
 /**
- * @parent c-tab-buttons
+ * @parent c-swiper
  */
 @Component({
-  tag: 'c-tab-button',
-  styleUrl: 'tab-button.scss',
+  tag: 'c-swiper-tab',
+  styleUrl: 'c-swiper-tab.scss',
   shadow: true,
 })
 export class TabButton {
@@ -65,7 +65,7 @@ export class TabButton {
    */
   @Event() focusTab: EventEmitter;
 
-  @Element() el: HTMLCTabButtonElement;
+  @Element() el: HTMLCSwiperTabElement;
 
   private _container?: HTMLDivElement;
 
@@ -102,20 +102,12 @@ export class TabButton {
   };
 
   render() {
-    // const classes = {
-    //   'c-tab-button': true,
-    //   active: !this.disabled && this.active,
-    //   disabled: this.disabled,
-    // };
-
     const classes = {
-      'c-tab-button': true,
-      'c-tab-button--active': !this.disabled && this.active,
-      'c-tab-button--disabled': this.disabled,
+      'c-swiper-tab': true,
+      'c-swiper-tab--active': !this.disabled && this.active,
+      'c-swiper-tab--disabled': this.disabled,
     };
 
-    // const subClasses = 'ripple c-tab-button-padding';
-    // TODO: uusiks? outlinelle 4px tilaa ulkopuolelle?
     return (
       <div
         id={this.hostId}
@@ -125,14 +117,14 @@ export class TabButton {
         onFocus={this._onFocus}
       >
         <div
-          class="c-tab-button__content"
+          class="c-swiper-tab__content"
           ref={(el) => (this._container = el as HTMLDivElement)}
         >
-          <div class="c-tab-button__header">
+          <div class="c-swiper-tab__header">
             {this.label}
             <slot name="icon"></slot>
           </div>
-          <div class="c-tab-button__description">
+          <div class="c-swiper-tab__description">
             <slot></slot>
           </div>
         </div>

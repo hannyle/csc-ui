@@ -18,7 +18,7 @@ export interface PaginationObject {
   endTo?: number;
 }
 /**
- * @group Content Switchers
+ * @group Content Selectors
  */
 
 @Component({

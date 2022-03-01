@@ -1,4 +1,4 @@
-# c-tab-buttons
+# c-content-switcher
 
 
 
@@ -7,30 +7,27 @@
 
 ## Properties
 
-| Property | Attribute | Description              | Type               | Default     |
-| -------- | --------- | ------------------------ | ------------------ | ----------- |
-| `value`  | `value`   | Value of the tab buttons | `number \| string` | `undefined` |
+| Property             | Attribute   | Description                | Type                   | Default     |
+| -------------------- | ----------- | -------------------------- | ---------------------- | ----------- |
+| `hostDisabled`       | `disabled`  | Disable tab buttons        | `boolean`              | `false`     |
+| `mandatory`          | `mandatory` | Always require a selection | `boolean`              | `false`     |
+| `size`               | `size`      | Size of the buttons        | `"default" \| "small"` | `'default'` |
+| `value` _(required)_ | `value`     | Value of tab buttons       | `number \| string`     | `undefined` |
+
+
+## Events
+
+| Event         | Description                | Type                            |
+| ------------- | -------------------------- | ------------------------------- |
+| `changeValue` | Emit changes to the parent | `CustomEvent<number \| string>` |
 
 
 ## Slots
 
-| Slot | Description                                |
-| ---- | ------------------------------------------ |
-|      | Default slot for the c-tab-button elements |
+| Slot | Description                            |
+| ---- | -------------------------------------- |
+|      | Default slot for the c-button elements |
 
-
-## Dependencies
-
-### Depends on
-
-- [c-icon-button](../c-icon-button)
-
-### Graph
-```mermaid
-graph TD;
-  c-tab-buttons --> c-icon-button
-  style c-tab-buttons fill:#f9f,stroke:#333,stroke-width:4px
-```
 
 ----------------------------------------------
 

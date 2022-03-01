@@ -3,12 +3,11 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { CControl } from './app.accessor';
 
 import { AppComponent } from './app.component';
 import { CButtonComponent } from './examples/c-button/c-button.component';
 import { CCardComponent } from './examples/c-card/c-card.component';
-import { CButtonGroupComponent } from './examples/c-button-group/c-button-group.component';
+import { CTabButtonsComponent } from './examples/c-tab-buttons/c-tab-buttons.component';
 import { CIconButtonComponent } from './examples/c-icon-button/c-icon-button.component';
 import { CSwitchComponent } from './examples/c-switch/c-switch.component';
 import { CTabComponent } from './examples/c-tab/c-tab.component';
@@ -24,7 +23,7 @@ import { ViewerEventsComponent } from './viewer/viewer-events/viewer-events.comp
 import { ViewerSlotsComponent } from './viewer/viewer-slots/viewer-slots.component';
 import { CAutocompleteComponent } from './examples/c-autocomplete/c-autocomplete.component';
 import { CCheckboxComponent } from './examples/c-checkbox/c-checkbox.component';
-import { CTabButtonsComponent } from './examples/c-tab-buttons/c-tab-buttons.component';
+import { CSwiperComponent } from './examples/c-swiper/c-swiper.component';
 import { CPaginationComponent } from './examples/c-pagination/c-pagination.component';
 import { MenuGroupsPipe } from './pipes/menu-groups.pipe';
 import { CProgressBarComponent } from './examples/c-progress-bar/c-progress-bar.component';
@@ -39,14 +38,13 @@ import { CSelectComponent } from './examples/c-select/c-select.component';
 import { CToolbarComponent } from './examples/c-toolbar/c-toolbar.component';
 import { CSidenavigationComponent } from './examples/c-sidenavigation/c-sidenavigation.component';
 import { CLinkComponent } from './examples/c-link/c-link.component';
-
+import { CscUiAccessorModule } from 'csc-ui-accessor';
 @NgModule({
   declarations: [
     AppComponent,
     CButtonComponent,
     CCardComponent,
-    CButtonGroupComponent,
-    CControl,
+    CTabButtonsComponent,
     CIconButtonComponent,
     CSwitchComponent,
     CTabComponent,
@@ -62,7 +60,7 @@ import { CLinkComponent } from './examples/c-link/c-link.component';
     ViewerSlotsComponent,
     CCheckboxComponent,
     CAutocompleteComponent,
-    CTabButtonsComponent,
+    CSwiperComponent,
     CPaginationComponent,
     MenuGroupsPipe,
     CProgressBarComponent,
@@ -78,7 +76,14 @@ import { CLinkComponent } from './examples/c-link/c-link.component';
     CSidenavigationComponent,
     CLinkComponent,
   ],
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HighlightModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    HighlightModule,
+    CscUiAccessorModule,
+  ],
   providers: [
     {
       provide: HIGHLIGHT_OPTIONS,

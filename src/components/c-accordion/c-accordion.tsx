@@ -10,7 +10,7 @@ import {
 } from '@stencil/core';
 
 /**
- * @group Content Switchers
+ * @group Content Selectors
  */
 @Component({
   tag: 'c-accordion',

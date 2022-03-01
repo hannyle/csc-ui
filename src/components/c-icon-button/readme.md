@@ -29,13 +29,13 @@
 ### Used by
 
  - [c-pagination](../c-pagination)
- - [c-tab-buttons](../c-tab-buttons)
+ - [c-swiper](../c-swiper)
 
 ### Graph
 ```mermaid
 graph TD;
   c-pagination --> c-icon-button
-  c-tab-buttons --> c-icon-button
+  c-swiper --> c-icon-button
   style c-icon-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
