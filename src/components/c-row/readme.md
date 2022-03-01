@@ -26,7 +26,7 @@
 
 ### Used by
 
- - [c-autocomplete](../autocomplete)
+ - [c-autocomplete](../c-autocomplete)
  - [c-consent](../c-consent)
  - [c-pagination](../c-pagination)
  - [c-sidenavigationitem](../c-sidenavigationitem)
