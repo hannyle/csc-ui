@@ -39,6 +39,19 @@
 | `changeValue` |             | `CustomEvent<any>` |
 
 
+## Dependencies
+
+### Depends on
+
+- [c-icon-button](../c-icon-button)
+
+### Graph
+```mermaid
+graph TD;
+  c-text-field --> c-icon-button
+  style c-text-field fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

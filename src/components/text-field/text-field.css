@@ -87,6 +87,10 @@ textarea {
   caret-color: var(--current-color);
 }
 
+.outer-wrapper input::-ms-reveal {
+  display: none;
+}
+
 .outer-wrapper.shadow input,
 .outer-wrapper.shadow textarea {
   padding: 0px 0px 0px 14px;

@@ -9,6 +9,7 @@ import {
   Watch,
   Element,
 } from '@stencil/core';
+import { mdiEye, mdiEyeOff } from '@mdi/js';
 
 /**
  * @group Form
@@ -47,6 +48,7 @@ export class TextField {
   blurred = false;
   inputReference?: HTMLInputElement;
   textAreaReference?: HTMLTextAreaElement;
+  private _originalType = '';
 
   @Element() hiddenEl!: HTMLCTextFieldElement;
 
@@ -55,6 +57,10 @@ export class TextField {
     if (newValue) {
       this._runValidate(true, true);
     }
+  }
+
+  componentWillLoad() {
+    this._originalType = this.type;
   }
 
   componentDidLoad() {
@@ -102,6 +108,14 @@ export class TextField {
       this.inputReference.focus();
     }
   };
+
+  private _togglePasswordVisibility = () => {
+    this.type = this.type === 'password' ? 'text' : 'password';
+  };
+
+  get passwordIcon() {
+    return this.type === 'password' ? mdiEye : mdiEyeOff;
+  }
 
   private _validationIcon = (
     <svg
@@ -205,8 +219,22 @@ export class TextField {
           </div>
 
           <slot name="pre"></slot>
+
           {this.rows > 1 ? textArea : textInput}
+
           <slot name="post"></slot>
+
+          {this._originalType === 'password' && (
+            <c-icon-button
+              size="small"
+              text
+              onClick={this._togglePasswordVisibility}
+            >
+              <svg width="22" height="22" fill="#222" viewBox="0 0 24 24">
+                <path d={this.passwordIcon} />
+              </svg>
+            </c-icon-button>
+          )}
         </div>
         <div class={this.validationClasses.join(' ')}>
           {this._validationIcon} {this.validation}

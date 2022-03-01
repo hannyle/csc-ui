@@ -30,12 +30,14 @@
 
  - [c-pagination](../c-pagination)
  - [c-swiper](../c-swiper)
+ - [c-text-field](../text-field)
 
 ### Graph
 ```mermaid
 graph TD;
   c-pagination --> c-icon-button
   c-swiper --> c-icon-button
+  c-text-field --> c-icon-button
   style c-icon-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
