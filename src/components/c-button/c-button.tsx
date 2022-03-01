@@ -13,7 +13,7 @@ import { createRipple } from '../../utils/utils';
   styleUrl: 'c-button.scss',
   shadow: true,
 })
-export class Button {
+export class CButton {
   /**
    * Outlined button style
    */

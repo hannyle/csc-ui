@@ -19,7 +19,7 @@ import { mdiChevronDown } from '@mdi/js';
   styleUrl: 'c-select.scss',
   shadow: true,
 })
-export class Select {
+export class CSelect {
   /**
    * Run validation when changed to true
    */

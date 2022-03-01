@@ -24,7 +24,7 @@ export interface SelectItem {
   styleUrl: 'c-autocomplete.scss',
   shadow: true,
 })
-export class Autocomplete {
+export class CAutocomplete {
   /**
    * Element label
    */
@@ -90,7 +90,7 @@ export class Autocomplete {
   @State() currentIndex: number = null;
   private outerWrapperClasses = ['outer-wrapper'];
   private validationClasses = ['validation-message'];
-  @Listen('keydown')
+  @Listen('keydown', { passive: true })
   handleKeyDown(ev: any) {
     if (ev.key === 'Tab') {
       this.menuVisible = false;

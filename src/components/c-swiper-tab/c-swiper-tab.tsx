@@ -17,7 +17,7 @@ import { createRipple } from '../../utils/utils';
   styleUrl: 'c-swiper-tab.scss',
   shadow: true,
 })
-export class TabButton {
+export class CSwiperTab {
   /**
    * Disable button
    */

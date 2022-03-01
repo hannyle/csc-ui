@@ -10,7 +10,7 @@ import { Component, Host, h } from '@stencil/core';
   styleUrl: 'c-title.scss',
   shadow: true,
 })
-export class Title {
+export class CTitle {
   render() {
     return (
       <Host>

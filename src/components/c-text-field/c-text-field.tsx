@@ -19,7 +19,7 @@ import { mdiEye, mdiEyeOff } from '@mdi/js';
   styleUrl: 'c-text-field.scss',
   shadow: true,
 })
-export class TextField {
+export class CTextField {
   /**
    * Manual validation
    */

@@ -10,7 +10,7 @@ export type CardBackground = 'puhti' | 'mahti' | 'allas';
   shadow: true,
   assetsDirs: ['assets'],
 })
-export class Card {
+export class CCard {
   /**
    * Background color
    */

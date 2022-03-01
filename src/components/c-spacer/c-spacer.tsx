@@ -8,7 +8,7 @@ import { Component, Host, h } from '@stencil/core';
   styleUrl: 'c-spacer.scss',
   shadow: true,
 })
-export class Spacer {
+export class CSpacer {
   render() {
     return <Host></Host>;
   }

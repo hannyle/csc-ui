@@ -10,7 +10,7 @@ import { createRipple } from '../../utils/utils';
   styleUrl: 'c-tab.scss',
   shadow: true,
 })
-export class Tab {
+export class CTab {
   /**
    * Mark tab as active
    */

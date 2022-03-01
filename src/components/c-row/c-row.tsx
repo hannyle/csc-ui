@@ -11,7 +11,7 @@ import { Component, h, Prop } from '@stencil/core';
   styleUrl: 'c-row.scss',
   shadow: true,
 })
-export class Row {
+export class CRow {
   /**
    * Gap between items in px
    */

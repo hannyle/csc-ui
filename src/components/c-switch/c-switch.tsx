@@ -16,7 +16,7 @@ import {
   styleUrl: 'c-switch.scss',
   shadow: true,
 })
-export class Switch {
+export class CSwitch {
   /**
    * Disable the switch
    */
