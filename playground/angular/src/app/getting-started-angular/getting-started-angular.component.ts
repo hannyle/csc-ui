@@ -18,6 +18,16 @@ export class GettingStartedAngularComponent implements OnInit {
     export class AppModule { }
   `);
 
+  mainUsage =
+    formatScript(`import { applyPolyfills, defineCustomElements } from 'csc-ui/dist/loader';
+
+    // ...
+
+    applyPolyfills().then(() => {
+      defineCustomElements(window);
+    });
+  `);
+
   formUsage = {
     template: formatTemplate(
       `
@@ -57,39 +67,38 @@ export class GettingStartedAngularComponent implements OnInit {
     `,
       false,
     ),
-    script: formatScript(`
-      import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+    script: formatScript(`import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-      ...
+// ...
 
-      form: FormGroup;
+form: FormGroup;
 
-      constructor(private _formBuilder: FormBuilder) {}
+constructor(private _formBuilder: FormBuilder) {}
 
-      ngOnInit() {
-        this.form = this._formBuilder.group({
-          username: [null, [Validators.required]],
-          password: [null, [Validators.required]],
-          consent: [false, [Validators.requiredTrue]],
-        });
-      }
+ngOnInit() {
+  this.form = this._formBuilder.group({
+    username: [null, [Validators.required]],
+    password: [null, [Validators.required]],
+    consent: [false, [Validators.requiredTrue]],
+  });
+}
 
-      get consent() {
-        return this.form.get('consent');
-      }
+get consent() {
+  return this.form.get('consent');
+}
 
-      get password() {
-        return this.form.get('password');
-      }
+get password() {
+  return this.form.get('password');
+}
 
-      get username() {
-        return this.form.get('username');
-      }
+get username() {
+  return this.form.get('username');
+}
 
-      onSubmit() {
-        alert('Form submitted with the following data: ' + JSON.stringify(this.form.value, null, 2));
-      }
-    `),
+onSubmit() {
+  alert('Form submitted with the following data: ' + JSON.stringify(this.form.value, null, 2));
+}
+`),
   };
 
   showCode = [];

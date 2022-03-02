@@ -17,7 +17,7 @@ export namespace Components {
          */
         "outlined": boolean;
         /**
-          * Value of the content switcher
+          * Value of the accordion
          */
         "value": number | string | (number | string)[];
     }
@@ -168,6 +168,10 @@ export namespace Components {
         "width": number;
     }
     interface CCscLogo {
+        /**
+          * Logo width in pixels
+         */
+        "width": number;
     }
     interface CFlex {
     }
@@ -931,7 +935,7 @@ declare namespace LocalJSX {
          */
         "outlined"?: boolean;
         /**
-          * Value of the content switcher
+          * Value of the accordion
          */
         "value": number | string | (number | string)[];
     }
@@ -1099,6 +1103,10 @@ declare namespace LocalJSX {
         "width"?: number;
     }
     interface CCscLogo {
+        /**
+          * Logo width in pixels
+         */
+        "width"?: number;
     }
     interface CFlex {
     }

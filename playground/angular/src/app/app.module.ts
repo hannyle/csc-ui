@@ -41,6 +41,7 @@ import { CSidenavigationComponent } from './examples/c-sidenavigation/c-sidenavi
 import { CLinkComponent } from './examples/c-link/c-link.component';
 import { BasicTemplateComponent } from './basic-template/basic-template.component';
 import { GettingStartedAngularComponent } from './getting-started-angular/getting-started-angular.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { GettingStartedAngularComponent } from './getting-started-angular/gettin
     CLinkComponent,
     BasicTemplateComponent,
     GettingStartedAngularComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

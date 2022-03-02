@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivationEnd } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { ComponentData } from 'src/interfaces/documentation';
 
 @Injectable({

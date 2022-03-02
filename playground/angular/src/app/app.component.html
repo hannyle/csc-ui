@@ -3,16 +3,27 @@
     <c-csc-logo></c-csc-logo>
     CSC Design System
     <c-spacer></c-spacer>
+    <c-tag [active]="true">v {{ versionService.version }}</c-tag>
     <c-navigationbutton *ngIf="isMobile$ | async"></c-navigationbutton>
   </c-toolbar>
 
   <c-row class="no-margin no-wrap">
-    <c-sidenavigation class="autoheight" *ngIf="components.length" [mobile]="isMobile$ | async">
-      <p class="text-white border-bottom">Usage</p>
+    <c-sidenavigation
+      class="autoheight"
+      *ngIf="components.length"
+      [mobile]="isMobile$ | async"
+      [multiple]="false"
+    >
+      <c-sidenavigationitem [routerLink]="['']" [active]="url === '/'">
+        <div slot="main" class="text-capitalize">
+          <span class="mdi mdi-information-outline me-1"></span>
+          About
+        </div>
+      </c-sidenavigationitem>
 
       <c-sidenavigationitem
-        [active]="active.gettingStarted"
-        (click)="active.gettingStarted = !active.gettingStarted"
+        [active]="active === 'getting-started' || url?.startsWith('/getting-started')"
+        (click)="setActive('getting-started')"
       >
         <div slot="main" class="text-capitalize">Getting Started</div>
 
@@ -21,30 +32,32 @@
             class="text-capitalize"
             [routerLink]="['getting-started/angular']"
             routerLinkActive="active"
+            (click)="open()"
+            (keyup.enter)="open()"
           >
             <span class="mdi mdi-angular"></span>
             Angular
           </c-subnavigationitem>
         </div>
-
+        <!-- 
         <div slot="subnavitem">
-          <c-subnavigationitem class="text-capitalize">
+          <c-subnavigationitem class="text-capitalize" (click)="open()" (keyup.enter)="open()">
             <span class="mdi mdi-vuejs"></span>
             Vue
           </c-subnavigationitem>
         </div>
 
         <div slot="subnavitem">
-          <c-subnavigationitem class="text-capitalize">
+          <c-subnavigationitem class="text-capitalize" (click)="open()" (keyup.enter)="open()">
             <span class="mdi mdi-react"></span>
             React
           </c-subnavigationitem>
-        </div>
+        </div> -->
       </c-sidenavigationitem>
 
       <c-sidenavigationitem
-        [active]="active.templates"
-        (click)="active.templates = !active.templates"
+        [active]="active === 'templates' || url?.startsWith('/templates')"
+        (click)="setActive('templates')"
       >
         <div slot="main" class="text-capitalize">Templates</div>
 
@@ -53,6 +66,8 @@
             [routerLink]="['templates/basic-template']"
             routerLinkActive="active"
             class="text-capitalize"
+            (click)="open()"
+            (keyup.enter)="open()"
           >
             Basic template
           </c-subnavigationitem>
@@ -74,8 +89,8 @@
       <c-sidenavigationitem
         *ngFor="let group of groupedComponents | menuGroups"
         [active]="group.visible"
-        (click)="group.visible = !group.visible"
-        (keyup.enter)="group.visible = !group.visible"
+        (click)="open(group)"
+        (keyup.enter)="open(group)"
       >
         <div slot="main" class="text-capitalize">{{ group.name }}</div>
         <div slot="subnavitem">
@@ -99,6 +114,8 @@
           [routerLink]="['/' + item.tag]"
           routerLinkActive="active"
           [active]="activeComponent?.tag === item?.tag"
+          (click)="open(group)"
+          (keyup.enter)="open(group)"
         >
           <div slot="main" class="text-capitalize">{{ item.name }}</div>
         </c-sidenavigationitem>

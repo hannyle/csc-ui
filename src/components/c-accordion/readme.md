@@ -11,7 +11,7 @@
 | -------------------- | ---------- | ------------------------------------- | ------------------------------------------ | ----------- |
 | `multiple`           | `multiple` | Allow expanding multiple items        | `boolean`                                  | `false`     |
 | `outlined`           | `outlined` | Show an outline around expanded items | `boolean`                                  | `false`     |
-| `value` _(required)_ | `value`    | Value of the content switcher         | `(string \| number)[] \| number \| string` | `undefined` |
+| `value` _(required)_ | `value`    | Value of the accordion                | `(string \| number)[] \| number \| string` | `undefined` |
 
 
 ## Events

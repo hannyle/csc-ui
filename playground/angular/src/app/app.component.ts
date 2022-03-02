@@ -4,8 +4,9 @@ import { ComponentDataService } from './services/component-data.service';
 import { parseComponents } from './utils/utils';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import docs from '../../../../docs.json';
-import { map, Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { map, Observable, Subscription } from 'rxjs';
+import { NavigationEnd, Router } from '@angular/router';
+import { VersionService } from './services/version.service';
 
 interface ComponentGroup {
   name: string;
@@ -19,20 +20,20 @@ interface ComponentGroup {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  routeSubscription: Subscription;
   selectedComponent = {};
   components = [];
   groups = [];
   groupedComponents: ComponentGroup[] = [];
   activeComponent: ComponentData;
-  active = {
-    gettingStarted: false,
-    templates: false,
-  };
+  url = null;
+  active: string = null;
 
   constructor(
     public componentDataService: ComponentDataService,
     private _breakpointObserver: BreakpointObserver,
     private _router: Router,
+    public versionService: VersionService,
   ) {
     this.components = parseComponents(docs);
     this.groupedComponents = this.getGroupedComponents();
@@ -42,7 +43,13 @@ export class AppComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.url = event.url;
+      }
+    });
+  }
 
   isMobile$: Observable<boolean> = this._breakpointObserver
     .observe([Breakpoints.Small, Breakpoints.HandsetPortrait])
@@ -83,6 +90,23 @@ export class AppComponent implements OnInit {
         return groups;
       }, [] as ComponentGroup[])
       .sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  public open(item = {}) {
+    this._closeAll();
+    this.groupedComponents = this.groupedComponents.map((component) => ({
+      ...component,
+      visible: item === component,
+    }));
+  }
+
+  public setActive(value) {
+    // this.open({});
+    this.active = value;
+  }
+
+  private _closeAll() {
+    this.active = null;
   }
 
   private _openGroupOfActiveComponent() {

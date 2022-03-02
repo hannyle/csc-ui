@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h, Prop } from '@stencil/core';
 /**
  * @parent c-toolbar
  */
@@ -8,6 +8,11 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class CCscLogo {
+  /**
+   * Logo width in pixels
+   */
+  @Prop() width = 60;
+
   render() {
     const svg = (
       <svg viewBox="0 0 233.61 149.04">
@@ -40,6 +45,6 @@ export class CCscLogo {
         </g>
       </svg>
     );
-    return <Host>{svg}</Host>;
+    return <Host style={{ width: `${this.width}px` }}>{svg}</Host>;
   }
 }

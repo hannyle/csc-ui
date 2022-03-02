@@ -19,7 +19,7 @@ import {
 })
 export class CAccordion {
   /**
-   * Value of the content switcher
+   * Value of the accordion
    */
   @Prop({ mutable: true }) value!: number | string | (number | string)[];
 
