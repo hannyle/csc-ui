@@ -28,7 +28,7 @@ $theme-colors: (
   'dark': $dark,
 );
 
-$link-color: #006778;
+$link-color: $csc-cyan;
 $link-hover-color: #004b58;
 
 @import '~bootstrap/scss/bootstrap.scss';

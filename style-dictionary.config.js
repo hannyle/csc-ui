@@ -3,7 +3,7 @@ module.exports = {
   platforms: {
     scss: {
       transformGroup: 'scss',
-      buildPath: 'build/',
+      buildPath: 'src/styles/',
       prefix: 'csc',
       files: [
         {
@@ -14,7 +14,7 @@ module.exports = {
     },
     css: {
       transformGroup: 'css',
-      buildPath: 'build/',
+      buildPath: 'src/styles/',
       prefix: 'csc',
       files: [
         {

@@ -23,49 +23,43 @@
   flex-shrink: 2;
   flex-basis: 260px;
   max-width: 320px;
-  background: #006778;
+  background: var(--csc-primary);
 }
 
 .c-sidenavigation {
   display: flex;
   flex-flow: column wrap;
-  background: #006778;
+  background: var(--csc-primary);
   width: 100%;
   z-index: 8;
   position: relative;
   padding: 24px 0px 24px 24px;
   transition: transform 0.3s ease;
-}
-.c-sidenavigation > div {
-  width: 100%;
-  /* position: fixed; */
-  display: flex;
-  flex: 1;
-  flex-flow: column nowrap;
+
+  &.mobile {
+    max-width: 260px;
+    transform: translateX(0%);
+    position: fixed;
+    right: 0;
+    overflow-y: scroll;
+    z-index: 999;
+    height: calc(100% - 100px);
+
+    &.hideMenu {
+      transform: translateX(100%);
+    }
+  }
+
+  > div {
+    width: 100%;
+    display: flex;
+    flex: 1;
+    flex-flow: column nowrap;
+  }
 }
 
 .vertical-spacer {
   flex: 1;
-}
-
-/* .c-sidenavigation.hideMenu {
-  transform: translateX(-100%);
-} */
-
-.mobile.c-sidenavigation.hideMenu {
-  transform: translateX(100%);
-}
-.mobile.c-sidenavigation {
-  max-width: 260px;
-  transform: translateX(0%);
-  position: fixed;
-  right: 0;
-  /* height: 100%; */
-}
-.mobile.c-sidenavigation {
-  overflow-y: scroll;
-  z-index: 999;
-  height: calc(100% - 100px);
 }
 
 .c-overlay {

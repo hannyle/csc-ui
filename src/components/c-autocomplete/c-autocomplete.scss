@@ -21,7 +21,7 @@ label {
 } */
 
 /* .c-autocomplete-wrapper:focus-within {
-  border: 2px #006778 solid;
+  border: 2px var(--csc-primary) solid;
 } */
 
 .c-autocomplete-current {
@@ -136,7 +136,7 @@ label span.required {
 }
 
 .c-menu li.active {
-  background-color: #006778;
+  background-color: var(--csc-primary);
   color: #fff;
 }
 
@@ -173,7 +173,7 @@ label span.required {
 }
 
 .outer-wrapper:focus-within label.top-span {
-  color: var(--current-color);
+  color: var(--csc-primary);
 }
 
 .border-label label.top-span {
@@ -241,7 +241,7 @@ label span.required {
 }
 
 .outer-wrapper:focus-within div {
-  border-color: var(--current-color);
+  border-color: var(--csc-primary);
   border-width: 2px;
   /* margin-top:-1px; */
 }

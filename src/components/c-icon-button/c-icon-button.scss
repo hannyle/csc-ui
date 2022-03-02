@@ -28,11 +28,11 @@ button.icon-button {
 
   &.ghost {
     background: var(--csc-primary-ghost);
-    color: var(--current-color);
+    color: var(--csc-primary);
 
     ::slotted(*) {
-      color: var(--current-color);
-      fill: var(--current-color);
+      color: var(--csc-primary);
+      fill: var(--csc-primary);
     }
 
     &:hover {
@@ -43,11 +43,11 @@ button.icon-button {
 
   &.text {
     background: transparent;
-    color: var(--current-color);
+    color: var(--csc-primary);
 
     ::slotted(*) {
-      color: var(--current-color);
-      fill: var(--current-color);
+      color: var(--csc-primary);
+      fill: var(--csc-primary);
     }
 
     &:hover {
@@ -57,12 +57,12 @@ button.icon-button {
 
   &.outlined {
     background: transparent;
-    box-shadow: inset 0 0 0 2px var(--current-color);
-    color: var(--current-color);
+    box-shadow: inset 0 0 0 2px var(--csc-primary);
+    color: var(--csc-primary);
 
     ::slotted(*) {
-      color: var(--current-color);
-      fill: var(--current-color);
+      color: var(--csc-primary);
+      fill: var(--csc-primary);
     }
 
     &.disabled {

@@ -13,7 +13,8 @@
 :host(:focus) {
   outline: none;
 }
-:host(:focus-visible) { /* Some even *more* exciting button focus styles */ 
+
+:host(:focus-visible) {
   outline: 1px black solid;
 }
 
@@ -38,26 +39,26 @@ svg {
   padding-right: 20px;
   line-height: 30px;
   background: transparent;
-  color: #006778;
-  box-shadow: inset 0px 0px 0px 1.3px #006778;
+  color: var(--csc-primary);
+  box-shadow: inset 0px 0px 0px 1.3px var(--csc-primary);
   font-weight: 400;
   font-size: 14px;
   text-align: center;
-}
 
-.active.c-tag {
-  background: #006778;
-  color: #fff; 
-}
+  &:hover {
+    background: #d8e8ea;
+    color: var(--csc-primary);
+    box-shadow: inset 0px 0px 0px 1px var(--csc-primary);
+  }
 
-.c-tag:HOVER {
-  background: #D8E8EA;
-  color: #006778;
-  box-shadow: inset 0px 0px 0px 1px #006778;
-}
+  &.active {
+    background: var(--csc-primary);
+    color: #fff;
 
-.c-tag.active:HOVER {
-  background: #50978D;
-  color: #fff; 
-  box-shadow: none;
+    &:hover {
+      background: #50978d;
+      color: #fff;
+      box-shadow: none;
+    }
+  }
 }

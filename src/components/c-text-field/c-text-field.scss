@@ -75,7 +75,7 @@ textarea {
     max-width: calc(100% - 24px);
     min-width: 0;
     width: 100%;
-    caret-color: var(--current-color);
+    caret-color: var(--csc-primary);
 
     &::-ms-reveal {
       display: none;
@@ -99,7 +99,7 @@ textarea {
     max-width: calc(100% - 24px);
     min-width: 0;
     width: 100%;
-    caret-color: var(--current-color);
+    caret-color: var(--csc-primary);
   }
 
   &.shadow {
@@ -139,7 +139,7 @@ textarea {
       padding-right: 3px;
 
       &.top-span {
-        color: var(--current-color);
+        color: var(--csc-primary);
         margin-top: -12px;
         padding-left: 2px !important;
         padding-top: 0 !important;
@@ -148,7 +148,7 @@ textarea {
     }
 
     .border-wrapper div {
-      border-color: var(--current-color);
+      border-color: var(--csc-primary);
       border-width: 2px;
     }
   }

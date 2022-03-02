@@ -14,13 +14,13 @@
   white-space: nowrap;
 }
 
-:host(:HOVER) {
-  background: #D8E8EA;
-  color: #006778;
+:host(:hover) {
+  background: #d8e8ea;
+  color: var(--csc-primary);
 }
 
 :host(.active) {
-  background: #D8E8EA;
+  background: #d8e8ea;
 }
 
 :host(.small) {

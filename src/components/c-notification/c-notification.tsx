@@ -123,7 +123,7 @@ export class CNotification {
         data-name="Path 620"
         d="M2905,1403a8,8,0,1,0,8,8A8.024,8.024,0,0,0,2905,1403Zm0,4a1,1,0,1,1-1,1A.945.945,0,0,1,2905,1407Zm2,8h-4v-1h1v-3h-1v-1h3v4h1Z"
         transform="translate(-2897 -1403)"
-        fill="#006778"
+        fill="var(--csc-primary)"
         fill-rule="evenodd"
       />
     </svg>

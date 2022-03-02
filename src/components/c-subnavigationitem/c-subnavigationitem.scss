@@ -15,7 +15,7 @@
 
 :host(:hover) {
   background-color: #f0f6f7;
-  color: #006778;
+  color: var(--csc-primary);
 }
 
 :host(.active) {

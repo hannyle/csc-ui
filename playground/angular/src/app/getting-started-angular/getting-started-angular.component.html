@@ -47,16 +47,18 @@
           <c-button [disabled]="!form.valid" (click)="onSubmit()">Submit</c-button>
         </c-card-actions>
 
-        <div class="p-4 pt-0">
+        <hr />
+
+        <div class="px-4 py-3">
           <c-accordion [value]="showCode" multiple outlined>
             <c-accordion-item value="template" heading="Template" class="mt-3 mb-0">
-              <i class="mdi mdi-xml" slot="icon"></i>
+              <i class="mdi mdi-language-html5" slot="icon"></i>
               <pre class="d-flex flex-column m-0">
                 <code class="rounded" [highlight]="formUsage.template"></code>
               </pre>
             </c-accordion-item>
             <c-accordion-item value="script" heading="Script" class="mt-3 mb-0">
-              <i class="mdi mdi-xml" slot="icon"></i>
+              <i class="mdi mdi-language-typescript" slot="icon"></i>
               <pre class="d-flex flex-column m-0">
                 <code class="rounded" [highlight]="formUsage.script"></code>
               </pre>

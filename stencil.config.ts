@@ -43,7 +43,11 @@ export const config: Config = {
   ],
   plugins: [
     sass({
-      injectGlobalPaths: ['src/global/variables.scss'],
+      injectGlobalPaths: [
+        'src/styles/global.scss',
+        'src/styles/variables.css',
+        'src/styles/variables.scss',
+      ],
     }),
   ],
 };

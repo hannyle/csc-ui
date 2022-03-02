@@ -59,7 +59,6 @@ export class GettingStartedAngularComponent implements OnInit {
     ),
     script: formatScript(`
       import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-      import { formatScript } from 'src/app/utils/utils';
 
       ...
 

@@ -34,7 +34,7 @@
 
 :host > div.active {
   background-color: #d8e8ea;
-  color: #006778;
+  color: var(--csc-primary);
 }
 
 ::slotted(span) {
