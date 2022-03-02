@@ -1,11 +1,9 @@
-export function format(first: string, middle: string, last: string): string {
-  return (
-    (first || '') + (middle ? ` ${middle}` : '') + (last ? ` ${last}` : '')
-  );
-}
-
-export function createRipple(event, element, center = false) {
-  let rippleElement = element.querySelector('.md-ripple');
+export function createRipple(
+  event: MouseEvent,
+  element: HTMLElement,
+  center = false,
+) {
+  let rippleElement: HTMLElement = element.querySelector('.md-ripple');
 
   if (!rippleElement) {
     rippleElement = document.createElement('div');
@@ -20,12 +18,12 @@ export function createRipple(event, element, center = false) {
   rippleElement.style.width = d + 'px';
   rippleElement.style.height = d + 'px';
 
-  const rect = event.target.getBoundingClientRect();
+  const rect = (event.target as HTMLElement).getBoundingClientRect();
   const x = event.clientX - rect.left;
   const y = event.clientY - rect.top;
 
-  rippleElement.style.top = center ? 0 : y - d / 2 + 'px';
-  rippleElement.style.left = center ? 0 : x - d / 2 + 'px';
+  rippleElement.style.top = center ? '0' : y - d / 2 + 'px';
+  rippleElement.style.left = center ? '0' : x - d / 2 + 'px';
 
   rippleElement.classList.add('animate');
 
