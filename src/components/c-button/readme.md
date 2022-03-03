@@ -19,6 +19,7 @@
 | `outlined` | `outlined`  | Outlined button style                                                                                                                    | `boolean`                                  | `false`     |
 | `size`     | `size`      | Size of the button                                                                                                                       | `"default" \| "large" \| "small"`          | `'default'` |
 | `text`     | `text`      | Transparent button background                                                                                                            | `boolean`                                  | `false`     |
+| `type`     | `type`      | Button type                                                                                                                              | `"button" \| "submit"`                     | `'button'`  |
 | `value`    | `value`     | Value for the button - for use in the c-content-switcher                                                                                 | `number \| string`                         | `undefined` |
 
 

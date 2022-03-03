@@ -25,5 +25,14 @@
   },
   "primary-hover": {
     "value": "rgb(80, 151, 141)"
+  },
+  "primary-text-hover": {
+    "value": "rgb(0 103 120 / 15%);"
+  },
+  "light-grey-blue": {
+    "value": "rgb(204, 244, 240)"
+  },
+  "border-radius": {
+    "value": "4px"
   }
 }

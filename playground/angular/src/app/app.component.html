@@ -3,7 +3,7 @@
     <c-csc-logo></c-csc-logo>
     CSC Design System
     <c-spacer></c-spacer>
-    <c-tag [active]="true">v {{ versionService.version }}</c-tag>
+    <c-tag [active]="true" *ngIf="!(isMobile$ | async)">v {{ versionService.version }}</c-tag>
     <c-navigationbutton *ngIf="isMobile$ | async"></c-navigationbutton>
   </c-toolbar>
 
@@ -37,6 +37,18 @@
           >
             <span class="mdi mdi-angular"></span>
             Angular
+          </c-subnavigationitem>
+        </div>
+        <div slot="subnavitem">
+          <c-subnavigationitem
+            class="text-capitalize"
+            [routerLink]="['getting-started/html']"
+            routerLinkActive="active"
+            (click)="open()"
+            (keyup.enter)="open()"
+          >
+            <span class="mdi mdi-language-html5"></span>
+            HTML Page
           </c-subnavigationitem>
         </div>
         <!-- 

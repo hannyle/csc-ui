@@ -345,7 +345,8 @@ export class CTextField {
     let input = container.querySelector(
       'input.hidden-input',
     ) as HTMLInputElement | null;
-    if (input !== null) {
+
+    if (input === null) {
       input = container.ownerDocument.createElement('input');
       input.type = 'hidden';
       input.classList.add('hidden-input');

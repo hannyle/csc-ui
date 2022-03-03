@@ -42,6 +42,7 @@ import { CLinkComponent } from './examples/c-link/c-link.component';
 import { BasicTemplateComponent } from './basic-template/basic-template.component';
 import { GettingStartedAngularComponent } from './getting-started-angular/getting-started-angular.component';
 import { AboutComponent } from './about/about.component';
+import { GettingStartedHtmlComponent } from './getting-started-html/getting-started-html.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { AboutComponent } from './about/about.component';
     BasicTemplateComponent,
     GettingStartedAngularComponent,
     AboutComponent,
+    GettingStartedHtmlComponent,
   ],
   imports: [
     BrowserModule,

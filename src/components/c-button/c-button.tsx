@@ -45,6 +45,11 @@ export class CButton {
   @Prop() noRadius = false;
 
   /**
+   * Button type
+   */
+  @Prop() type: 'button' | 'submit' = 'button';
+
+  /**
    * Disable the button
    */
   @Prop({ reflect: true }) disabled = false;
@@ -83,7 +88,21 @@ export class CButton {
     }
 
     createRipple(event, this._container);
+
+    if (this.type === 'submit') {
+      this._closestElementComposed('form', this._container).submit();
+    }
   };
+
+  private _closestElementComposed(selector, base) {
+    function __closestFrom(el) {
+      const found = el.closest(selector);
+
+      return found ? found : __closestFrom(el.getRootNode().host);
+    }
+
+    return __closestFrom(base);
+  }
 
   private _containerhasDescriptionSlot: boolean;
 

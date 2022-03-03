@@ -121,6 +121,10 @@ export namespace Components {
          */
         "text": boolean;
         /**
+          * Button type
+         */
+        "type": 'button' | 'submit';
+        /**
           * Value for the button - for use in the c-content-switcher
          */
         "value"?: number | string;
@@ -1051,6 +1055,10 @@ declare namespace LocalJSX {
           * Transparent button background
          */
         "text"?: boolean;
+        /**
+          * Button type
+         */
+        "type"?: 'button' | 'submit';
         /**
           * Value for the button - for use in the c-content-switcher
          */
