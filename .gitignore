@@ -5,4 +5,4 @@ node_modules/*
 
 # Automatically generated files
 docs.json
-playground/angular/.firebase/
+documentation/angular/.firebase/
