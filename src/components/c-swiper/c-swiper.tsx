@@ -47,8 +47,6 @@ export class CSwiper {
   }
 
   componentDidLoad() {
-    console.log('🤡🤡🤡', this.value);
-
     this._options = {
       modules: [Navigation],
       breakpointsBase: 'container',
@@ -80,8 +78,6 @@ export class CSwiper {
   }
 
   private _initSwiper() {
-    console.log('🤡', this.value);
-
     for (const [index, slide] of this.slotItems.entries()) {
       slide.classList.add('swiper-slide');
       slide.setAttribute('data-index', index.toString());
