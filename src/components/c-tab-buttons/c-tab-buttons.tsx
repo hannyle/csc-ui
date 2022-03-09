@@ -44,44 +44,54 @@ export class CTabButtons {
 
   @Watch('value')
   watchPropHandler(value: string | number) {
+    this.el.childNodes.forEach((button: HTMLCButtonElement) => {
+      button.outlined = true;
+    });
+
     if (value !== null) {
-      this.buttons[value].outlined = false;
+      const button =
+        this.buttons.find((btn) => btn.value === value) || this.buttons[value];
+      if (button) button.outlined = false;
     }
 
-    this.changeValue.emit(value);
+    this.changeValue.emit(this.buttons[value]?.value ?? value);
   }
 
   @Listen('click', { passive: true })
   onHandleClickEvent(ev) {
+    if (this.hostDisabled) return;
+
     const clickStack = ev.composedPath();
-    const switcher = clickStack.find((e) => e.tagName === 'C-TAB-BUTTONS');
+    const tabs = clickStack.find((e) => e.tagName === 'C-TAB-BUTTONS');
     const button = clickStack.find((e) => e.tagName === 'C-BUTTON');
 
-    if (!button || !switcher) return;
+    if (!button || !tabs) return;
+
+    const valueIsString = this._isString(this.value);
 
     const { index } = button.dataset;
 
+    const isActiveAndString = valueIsString && button.value === this.value;
+    const isActiveAndNotString =
+      !valueIsString && (button.value ?? +index) === +this.value;
+
     // Disable deselection if mandatory prop is set to true
-    if (
-      (this.mandatory &&
-        !this._isString(this.value) &&
-        +index === +this.value) ||
-      (this.mandatory &&
-        this._isString(this.value) &&
-        button.value === this.value)
-    ) {
+    if (this.mandatory && (isActiveAndNotString || isActiveAndString)) {
       return;
     }
 
-    switcher.childNodes.forEach((btn: HTMLCButtonElement) => {
-      btn.outlined = true;
-    });
+    const nullValue = valueIsString ? '' : null;
 
-    this.value = this.value === +index ? null : +index;
+    this.value =
+      isActiveAndString || isActiveAndNotString
+        ? nullValue
+        : button.value ?? +index;
   }
 
   get buttons() {
-    return Array.from(this.el.childNodes) as HTMLCButtonElement[];
+    return Array.from(this.el.childNodes).filter(
+      (element: HTMLCButtonElement) => element.tagName === 'C-BUTTON',
+    ) as HTMLCButtonElement[];
   }
 
   get valueIsString() {
@@ -100,7 +110,8 @@ export class CTabButtons {
       button.size = this.size;
 
       if (
-        (!this._isString(this.value) && index !== +this.value) ||
+        (!this._isString(this.value) &&
+          (button.value ?? index) !== +this.value) ||
         (this._isString(this.value) && button.value !== this.value)
       ) {
         button.outlined = true;
