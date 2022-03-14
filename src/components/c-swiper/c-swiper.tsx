@@ -38,12 +38,16 @@ export class CSwiper {
   onTabFocus(event: CustomEvent<number | string>) {
     const index = (event.target as HTMLCSwiperTabElement).dataset.index;
 
-    this._swiper.slideTo(index);
-    this._swiper.update();
+    this._slideToTab(index);
   }
 
   get slotItems() {
     return Array.from(this._wrapper.children) as HTMLCSwiperTabElement[];
+  }
+
+  private _slideToTab(index) {
+    this._swiper.slideTo(index);
+    this._swiper.update();
   }
 
   componentDidLoad() {
@@ -83,7 +87,6 @@ export class CSwiper {
       slide.setAttribute('data-index', index.toString());
       slide.value = slide.value ?? index;
       slide.active = this.value === slide.value;
-      console.log(this.value, slide.value);
     }
 
     this._swiper = new Swiper(this._container, {
@@ -94,6 +97,8 @@ export class CSwiper {
       this.isBeginning = isBeginning;
       this.isEnd = isEnd;
     });
+
+    this._slideToTab(this.value);
   }
 
   render() {
