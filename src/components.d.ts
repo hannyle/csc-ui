@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { CardBackground } from "./components/c-card/c-card";
+import { CPaginationOptions } from "./components/c-pagination/c-pagination";
 export namespace Components {
     interface CAccordion {
         /**
@@ -284,6 +285,10 @@ export namespace Components {
     }
     interface CPagination {
         /**
+          * Hide details (per page dropdown and the 'x - y of n pages' text)
+         */
+        "hideDetails": boolean;
+        /**
           * Hide range indicator
          */
         "hideRange": boolean;
@@ -292,16 +297,13 @@ export namespace Components {
          */
         "itemsPerPageOptions": number[];
         /**
+          * Hide details (per page dropdown and the 'x - y of n pages' text)
+         */
+        "size": 'default' | 'small';
+        /**
           * Object containing values that are needed for pagination.  Note! startFrom and endTo are assigned automatically to the object based on other values
          */
-        "value": {
-    itemCount: number;
-    currentPage?: number;
-    totalVisible?: number;
-    itemsPerPage?: number;
-    startFrom?: number;
-    endTo?: number;
-  };
+        "value": CPaginationOptions;
     }
     interface CProgressBar {
         /**
@@ -1231,6 +1233,10 @@ declare namespace LocalJSX {
     }
     interface CPagination {
         /**
+          * Hide details (per page dropdown and the 'x - y of n pages' text)
+         */
+        "hideDetails"?: boolean;
+        /**
           * Hide range indicator
          */
         "hideRange"?: boolean;
@@ -1241,25 +1247,15 @@ declare namespace LocalJSX {
         /**
           * Triggered when values are changed
          */
-        "onChangeValue"?: (event: CustomEvent<{
-    itemCount: number;
-    currentPage?: number;
-    totalVisible?: number;
-    itemsPerPage?: number;
-    startFrom?: number;
-    endTo?: number;
-  }>) => void;
+        "onChangeValue"?: (event: CustomEvent<CPaginationOptions>) => void;
+        /**
+          * Hide details (per page dropdown and the 'x - y of n pages' text)
+         */
+        "size"?: 'default' | 'small';
         /**
           * Object containing values that are needed for pagination.  Note! startFrom and endTo are assigned automatically to the object based on other values
          */
-        "value"?: {
-    itemCount: number;
-    currentPage?: number;
-    totalVisible?: number;
-    itemsPerPage?: number;
-    startFrom?: number;
-    endTo?: number;
-  };
+        "value"?: CPaginationOptions;
     }
     interface CProgressBar {
         /**

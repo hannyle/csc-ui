@@ -6,6 +6,7 @@ import {
   Event,
   EventEmitter,
   State,
+  Watch,
 } from '@stencil/core';
 import { mdiChevronLeft, mdiChevronRight, mdiDotsHorizontal } from '@mdi/js';
 
@@ -63,18 +64,42 @@ export class CPagination {
 
   @State() tick = '';
 
-  componentDidLoad() {
-    this._currentPage = this.value.currentPage || 1;
-    this._itemsPerPage = this.value.itemsPerPage || 25;
-    this._totalVisible = this.value.totalVisible || 7;
+  @Watch('value')
+  valueHandler(value: CPaginationOptions, oldValue: CPaginationOptions) {
+    if (this._isEqual(value, oldValue)) return;
+
     this._setRange();
-    this.changeValue.emit(this.value);
+  }
+
+  private _isEqual(options1: CPaginationOptions, options2: CPaginationOptions) {
+    const keys1 = Object.keys(options1);
+    const keys2 = Object.keys(options2);
+
+    if (keys1.length !== keys2.length) {
+      return false;
+    }
+
+    for (let key of keys1) {
+      if (options1[key] !== options2[key]) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  componentDidLoad() {
+    this._setRange();
   }
 
   private _setRange() {
+    this._currentPage = this.value.currentPage || 1;
+    this._itemsPerPage = this.value.itemsPerPage || 25;
+    this._totalVisible = this.value.totalVisible || 7;
     this.value.startFrom =
       this._currentPage * this._itemsPerPage - this._itemsPerPage + 1;
     this.value.endTo = this._currentPage * this._itemsPerPage;
+    this.changeValue.emit(this.value);
   }
 
   private _buttons: any = [];
@@ -83,7 +108,6 @@ export class CPagination {
     this.value.currentPage = this._currentPage;
     this.value.itemsPerPage = this._itemsPerPage;
     this._setRange();
-    this.changeValue.emit(this.value);
   }
 
   private _getItemsPerPage() {

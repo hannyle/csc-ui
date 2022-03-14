@@ -115,7 +115,7 @@
       </c-sidenavigationitem>
 
       <c-sidenavigationitem
-        *ngFor="let item of (groupedComponents | menuGroups: false)[0].components"
+        *ngFor="let item of (groupedComponents | menuGroups: false)[0]?.components"
         class="text-capitalize"
         [routerLink]="['/' + item.tag]"
         routerLinkActive="active"
