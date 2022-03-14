@@ -32,8 +32,7 @@
             class="text-capitalize"
             [routerLink]="['getting-started/angular']"
             routerLinkActive="active"
-            (click)="open()"
-            (keyup.enter)="open()"
+            (keyup.enter)="navigate($event, 'getting-started/angular')"
           >
             <span class="mdi mdi-angular"></span>
             Angular
@@ -44,8 +43,7 @@
             class="text-capitalize"
             [routerLink]="['getting-started/html']"
             routerLinkActive="active"
-            (click)="open()"
-            (keyup.enter)="open()"
+            (keyup.enter)="navigate($event, 'getting-started/html')"
           >
             <span class="mdi mdi-language-html5"></span>
             HTML Page
@@ -78,6 +76,7 @@
             [routerLink]="['templates/basic-template']"
             routerLinkActive="active"
             class="text-capitalize"
+            (keyup.enter)="navigate($event, 'templates/basic-template')"
           >
             Basic template
           </c-subnavigationitem>
@@ -115,18 +114,16 @@
         </div>
       </c-sidenavigationitem>
 
-      <div *ngFor="let group of groupedComponents | menuGroups: false">
-        <c-sidenavigationitem
-          *ngFor="let item of group.components"
-          class="text-capitalize"
-          [routerLink]="['/' + item.tag]"
-          routerLinkActive="active"
-          [active]="activeComponent?.tag === item?.tag"
-          (keyup.enter)="navigate($event, item.tag)"
-        >
-          <div slot="main" class="text-capitalize">{{ item.name }}</div>
-        </c-sidenavigationitem>
-      </div>
+      <c-sidenavigationitem
+        *ngFor="let item of (groupedComponents | menuGroups: false)[0].components"
+        class="text-capitalize"
+        [routerLink]="['/' + item.tag]"
+        routerLinkActive="active"
+        [active]="activeComponent?.tag === item?.tag"
+        (keyup.enter)="navigate($event, item.tag)"
+      >
+        <div slot="main" class="text-capitalize">{{ item.name }}</div>
+      </c-sidenavigationitem>
     </c-sidenavigation>
     <c-flex class="container-height">
       <c-container>

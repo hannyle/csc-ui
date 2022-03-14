@@ -32,20 +32,22 @@ export class CSidenavigationitem {
    * @private
    */
   @Event() itemChange: EventEmitter;
-  private _redirect() {
-    this.itemChange.emit();
-    if (!this._slotHasContent) {
-      const sidenav = document.querySelector('c-sidenavigation');
-      sidenav.menuVisible = false;
-    }
-    if (this.href) {
-      window.location.href = this.href;
-    }
-  }
-
-  private _toggle(event) {
-    if (event.key === 'Enter') {
+  private _redirect(event: KeyboardEvent | PointerEvent) {
+    if (
+      (event instanceof KeyboardEvent && event?.key === 'Enter') ||
+      event instanceof PointerEvent
+    ) {
+      event.stopPropagation();
       this.itemChange.emit();
+
+      if (!this._slotHasContent) {
+        const sidenav = document.querySelector('c-sidenavigation');
+        sidenav.menuVisible = false;
+      }
+
+      if (this.href) {
+        window.location.href = this.href;
+      }
     }
   }
 
@@ -71,8 +73,8 @@ export class CSidenavigationitem {
     return (
       <Host
         tabindex="0"
-        onClick={() => this._redirect()}
-        onKeyUp={($event) => this._toggle($event)}
+        onClick={(e) => this._redirect(e)}
+        onKeyDown={(e) => this._redirect(e)}
       >
         <div class={classes}>
           <div class="styleMain">
