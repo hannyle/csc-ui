@@ -78,8 +78,6 @@
             [routerLink]="['templates/basic-template']"
             routerLinkActive="active"
             class="text-capitalize"
-            (click)="open()"
-            (keyup.enter)="open()"
           >
             Basic template
           </c-subnavigationitem>
@@ -101,8 +99,6 @@
       <c-sidenavigationitem
         *ngFor="let group of groupedComponents | menuGroups"
         [active]="group.visible"
-        (click)="open(group)"
-        (keyup.enter)="open(group)"
       >
         <div slot="main" class="text-capitalize">{{ group.name }}</div>
         <div slot="subnavitem">
@@ -126,8 +122,7 @@
           [routerLink]="['/' + item.tag]"
           routerLinkActive="active"
           [active]="activeComponent?.tag === item?.tag"
-          (click)="open(group)"
-          (keyup.enter)="open(group)"
+          (keyup.enter)="navigate($event, item.tag)"
         >
           <div slot="main" class="text-capitalize">{{ item.name }}</div>
         </c-sidenavigationitem>

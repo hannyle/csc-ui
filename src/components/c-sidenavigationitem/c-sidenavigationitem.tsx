@@ -1,5 +1,13 @@
 import { mdiChevronRight } from '@mdi/js';
-import { Component, Host, h, Prop, Element } from '@stencil/core';
+import {
+  Component,
+  Host,
+  h,
+  Prop,
+  Element,
+  Event,
+  EventEmitter,
+} from '@stencil/core';
 /**
  * @parent c-sidenavigation
  */
@@ -18,13 +26,26 @@ export class CSidenavigationitem {
    * Hyperlink url
    */
   @Prop() href: string;
+
+  /**
+   * Emit changes to the c-accordion
+   * @private
+   */
+  @Event() itemChange: EventEmitter;
   private _redirect() {
+    this.itemChange.emit();
     if (!this._slotHasContent) {
       const sidenav = document.querySelector('c-sidenavigation');
       sidenav.menuVisible = false;
     }
     if (this.href) {
       window.location.href = this.href;
+    }
+  }
+
+  private _toggle(event) {
+    if (event.key === 'Enter') {
+      this.itemChange.emit();
     }
   }
 
@@ -48,7 +69,11 @@ export class CSidenavigationitem {
     const classes = this.active && 'active';
 
     return (
-      <Host tabindex="0" onClick={() => this._redirect()}>
+      <Host
+        tabindex="0"
+        onClick={() => this._redirect()}
+        onKeyUp={($event) => this._toggle($event)}
+      >
         <div class={classes}>
           <div class="styleMain">
             <c-row align="center" gap={4}>

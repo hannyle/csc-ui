@@ -1397,6 +1397,11 @@ declare namespace LocalJSX {
           * Hyperlink url
          */
         "href"?: string;
+        /**
+          * Emit changes to the c-accordion
+          * @private
+         */
+        "onItemChange"?: (event: CustomEvent<any>) => void;
     }
     interface CSpacer {
     }
