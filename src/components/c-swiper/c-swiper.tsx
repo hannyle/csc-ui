@@ -98,7 +98,9 @@ export class CSwiper {
       this.isEnd = isEnd;
     });
 
-    this._slideToTab(this.value);
+    this._slideToTab(
+      this.slotItems?.findIndex((item) => item.value === this.value) || 0,
+    );
   }
 
   render() {
