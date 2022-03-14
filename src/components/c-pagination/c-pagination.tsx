@@ -9,7 +9,7 @@ import {
 } from '@stencil/core';
 import { mdiChevronLeft, mdiChevronRight, mdiDotsHorizontal } from '@mdi/js';
 
-export interface PaginationObject {
+export interface CPaginationOptions {
   itemCount: number;
   currentPage?: number;
   totalVisible?: number;
@@ -17,6 +17,7 @@ export interface PaginationObject {
   startFrom?: number;
   endTo?: number;
 }
+
 /**
  * @group Content Selectors
  */
@@ -32,28 +33,25 @@ export class CPagination {
    *
    * Note! startFrom and endTo are assigned automatically to the object based on other values
    */
-  @Prop() value: {
-    itemCount: number;
-    currentPage?: number;
-    totalVisible?: number;
-    itemsPerPage?: number;
-    startFrom?: number;
-    endTo?: number;
-  };
+  @Prop() value: CPaginationOptions;
+
+  /**
+   * Hide details (per page dropdown and the 'x - y of n pages' text)
+   */
+  @Prop() hideDetails = false;
+
+  /**
+   * Hide details (per page dropdown and the 'x - y of n pages' text)
+   */
+  @Prop() size: 'default' | 'small' = 'default';
+
   @State() private _currentPage;
   @State() private _itemsPerPage;
   @State() private _totalVisible;
   /**
    * Triggered when values are changed
    */
-  @Event() changeValue: EventEmitter<{
-    itemCount: number;
-    currentPage?: number;
-    totalVisible?: number;
-    itemsPerPage?: number;
-    startFrom?: number;
-    endTo?: number;
-  }>;
+  @Event() changeValue: EventEmitter<CPaginationOptions>;
   /**
    * Hide range indicator
    */
@@ -62,6 +60,7 @@ export class CPagination {
    * Items per page options
    */
   @Prop() itemsPerPageOptions: number[] = [5, 25, 50, 100];
+
   @State() tick = '';
 
   componentDidLoad() {
@@ -86,6 +85,7 @@ export class CPagination {
     this._setRange();
     this.changeValue.emit(this.value);
   }
+
   private _getItemsPerPage() {
     const itemsPerPageOptions = this.itemsPerPageOptions.map((i) => ({
       name: i.toString(),
@@ -95,6 +95,7 @@ export class CPagination {
         this._valueChangeHandler();
       },
     }));
+
     return (
       <c-menu items={itemsPerPageOptions} nohover>
         <div>
@@ -129,20 +130,21 @@ export class CPagination {
 
   private _getRange() {
     if (this.hideRange) return;
-    const start =
-      this._currentPage * this._itemsPerPage - this._itemsPerPage + 1;
-    return [
-      start,
-      '-',
-      this._currentPage * this._itemsPerPage,
-      'of',
-      this.value.itemCount,
-      'items',
-    ].join(' ');
+
+    const end = this._currentPage * this._itemsPerPage;
+    const start = end - this._itemsPerPage + 1;
+
+    return `${start} - ${end} of ${this.value.itemCount} items`;
   }
-  private _getArrowLeft() {
+
+  private _getArrowLeft(size) {
     return (
-      <c-icon-button size="small" text onClick={this._decreasePageNumber}>
+      <c-icon-button
+        disabled={this.value.currentPage <= 1}
+        size={size}
+        text
+        onClick={this._decreasePageNumber}
+      >
         <svg width="24" height="24" viewBox="0 0 24 24">
           <path d={mdiChevronLeft} />
         </svg>
@@ -150,9 +152,14 @@ export class CPagination {
     );
   }
 
-  private _getArrowRight() {
+  private _getArrowRight(size) {
     return (
-      <c-icon-button size="small" text onClick={this._increasePageNumber}>
+      <c-icon-button
+        disabled={this.value.currentPage >= this._getTotalPages()}
+        size={size}
+        text
+        onClick={this._increasePageNumber}
+      >
         <svg width="24" height="24" viewBox="0 0 24 24">
           <path d={mdiChevronRight} />
         </svg>
@@ -160,10 +167,10 @@ export class CPagination {
     );
   }
 
-  private _button(number) {
+  private _button(number, size) {
     return (
       <c-icon-button
-        size="small"
+        size={size}
         text={this._currentPage !== number}
         onClick={() => this._setPage(number)}
       >
@@ -172,13 +179,13 @@ export class CPagination {
     );
   }
 
-  private _addButton(number) {
-    this._buttons.push(this._button(number));
+  private _addButton(number, size) {
+    this._buttons.push(this._button(number, size));
   }
 
-  private _addSeparator() {
+  private _addSeparator(size) {
     this._buttons.push(
-      <c-icon-button size="small" text disabled>
+      <c-icon-button size={size} text disabled>
         <svg width="16" height="16" viewBox="0 0 24 24">
           <path d={mdiDotsHorizontal} />
         </svg>
@@ -186,14 +193,14 @@ export class CPagination {
     );
   }
 
-  private _addButtons(buttonStart, buttonCount) {
+  private _addButtons(buttonStart, buttonCount, size) {
     if (buttonStart > 1) {
-      this._addButton(1);
-      this._addSeparator();
+      this._addButton(1, size);
+      this._addSeparator(size);
     }
 
     for (let index = 1; index < buttonCount; index++) {
-      this._addButton(buttonStart + index);
+      this._addButton(buttonStart + index, size);
     }
 
     const allPagesVisible = this._getTotalPages() <= this._totalVisible;
@@ -203,11 +210,11 @@ export class CPagination {
         this._currentPage < this._getTotalPages() - this._totalVisible + 4) &&
       !allPagesVisible
     ) {
-      this._addSeparator();
+      this._addSeparator(size);
     }
   }
 
-  private _getPageButtons() {
+  private _getPageButtons(size) {
     this._buttons = [];
     let buttonStart = 0;
     let buttonCount = this._getTotalPages() + 1;
@@ -228,39 +235,50 @@ export class CPagination {
       }
     }
 
-    this._addButtons(buttonStart, buttonCount);
+    this._addButtons(buttonStart, buttonCount, size);
 
     if (morePagesThanVisible) {
-      this._buttons.push(this._button(this._getTotalPages()));
+      this._buttons.push(this._button(this._getTotalPages(), size));
     }
 
     return this._buttons;
   }
 
   render() {
+    const classes = {
+      'c-pagination': true,
+      'c-pagination--small': this.size === 'small',
+    };
+
+    const buttonsize = this.size === 'small' ? 'x-small' : 'small';
+
     return (
-      <Host>
+      <Host class={classes}>
         <c-row align="center" justify="space-between" wrap gap={16}>
+          {!this.hideDetails && (
+            <c-row
+              align="center"
+              justify="center"
+              wrap={false}
+              style={{ flex: 'auto' }}
+            >
+              {this._getItemsPerPage()}
+              <c-spacer></c-spacer>
+              <span class="range">{this._getRange()}</span>
+            </c-row>
+          )}
+
           <c-row
             align="center"
             justify="center"
             wrap={false}
-            style={{ flex: 'auto' }}
-          >
-            {this._getItemsPerPage()}
-            <c-spacer></c-spacer>
-            <span class="range">{this._getRange()}</span>
-          </c-row>
-          {/* <c-spacer></c-spacer> */}
-          <c-row
-            align="center"
-            justify="center"
-            wrap={false}
+            gap={this.size === 'small' ? 2 : 4}
             style={{ flex: '1' }}
+            class="c-pagination__buttons"
           >
-            {this._getArrowLeft()}
-            {this._getPageButtons()}
-            {this._getArrowRight()}
+            {this._getArrowLeft(buttonsize)}
+            {this._getPageButtons(buttonsize)}
+            {this._getArrowRight(buttonsize)}
           </c-row>
         </c-row>
       </Host>
