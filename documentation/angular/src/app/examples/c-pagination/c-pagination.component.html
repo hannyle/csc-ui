@@ -1,8 +1,16 @@
-<app-example title="Basic usage in Angular" [raw]="template" [script]="script">
+<app-example title="Programmatical changes (Angular)" [raw]="template" [script]="script">
   <div class="pb-4">
     <c-tag *ngFor="let country of countries | slice: options.startFrom:options.endTo">
       {{ country }}
     </c-tag>
   </div>
-  <c-pagination cControl [(ngModel)]="options"></c-pagination>
+  <c-pagination cControl [(ngModel)]="options" (changeValue)="updateView()"></c-pagination>
+
+  <div class="pt-3">
+    <p>Programmatically change pagination values:</p>
+    <c-row gap="8">
+      <c-button (click)="example1()">Page 2</c-button>
+      <c-button (click)="example2()">50 items per page</c-button>
+    </c-row>
+  </div>
 </app-example>

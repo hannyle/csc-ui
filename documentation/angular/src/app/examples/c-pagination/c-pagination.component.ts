@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import countries from '../countries.json';
 
-interface PaginationObject {
+interface CPaginationOptions {
   itemCount: number;
   currentPage?: number;
   totalVisible?: number;
@@ -16,12 +16,20 @@ interface PaginationObject {
   styleUrls: ['./c-pagination.component.scss'],
 })
 export class CPaginationComponent {
-  template = `<div>
+  template = `
   <c-tag *ngFor="let country of countries | slice: options.startFrom:options.endTo">
     {{ country }}
   </c-tag>
-</div>
-<c-pagination cControl [(ngModel)]="options"></c-pagination>`;
+
+  <c-pagination cControl [(ngModel)]="options" (changeValue)="updateView()"></c-pagination>
+
+<p>Programmatically change pagination values:</p>
+
+<c-row gap="8">
+  <c-button (click)="example1()">Page 2</c-button>
+  <c-button (click)="example2()">50 items per page</c-button>
+</c-row>
+`;
   script = `interface PaginationObject {
   itemCount: number;
   currentPage?: number;
@@ -53,15 +61,54 @@ options: PaginationObject = {
   itemsPerPage: 25,
   currentPage: 1,
 };
-`;
+
+/**
+ * Slice pipe requires manual update after pagination change
+ */
+updateView() {
+  this._changeDetectorRef.detectChanges();
+}
+
+// Options object needs to be fully replaced in order to trigger pagination change programmatically
+example1() {
+  this.options = { ...this.options, currentPage: 2 };
+}
+
+// Options object needs to be fully replaced in order to trigger pagination change programmatically
+example2() {
+  this.options = {
+    ...this.options,
+    itemsPerPage: 50,
+  };
+}`;
   countries = Object.keys(countries)
     .map((key) => countries[key].english)
     .sort();
-  options: PaginationObject = {
+  options: CPaginationOptions = {
     itemCount: this.countries.length,
     itemsPerPage: 25,
     currentPage: 1,
   };
 
-  constructor() {}
+  constructor(private _changeDetectorRef: ChangeDetectorRef) {}
+
+  /**
+   * Slice pipe requires manual update after pagination change
+   */
+  updateView() {
+    this._changeDetectorRef.detectChanges();
+  }
+
+  example1() {
+    // Options object needs to be fully replaced in order to trigger pagination change programmatically
+    this.options = { ...this.options, currentPage: 2 };
+  }
+
+  example2() {
+    // Options object needs to be fully replaced in order to trigger pagination change programmatically
+    this.options = {
+      ...this.options,
+      itemsPerPage: 50,
+    };
+  }
 }
