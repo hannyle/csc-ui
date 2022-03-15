@@ -2,6 +2,10 @@
   display: inline-flex;
 }
 
+::slotted([slot='icon']) {
+  margin-right: 8px;
+}
+
 button {
   --c-radius: 4px;
 

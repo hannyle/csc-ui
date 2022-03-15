@@ -10,13 +10,24 @@ import { Component, h, Prop } from '@stencil/core';
 })
 export class CCardActions {
   /**
-   * Align actions to the right
+   * Align the actions
    */
-  @Prop() right = false;
+  @Prop() align: 'start' | 'center' | 'end' = 'center';
+
+  /**
+   * Justify the actions
+   */
+  @Prop() justify: 'start' | 'center' | 'end' = 'start';
+
   render() {
+    const classes = {
+      'c-card-actions': true,
+      [`c-card-actions--align-${this.align}`]: true,
+      [`c-card-actions--justify-${this.justify}`]: true,
+    };
+
     return (
-      <div class="c-card-actions">
-        {this.right && <c-spacer></c-spacer>}
+      <div class={classes}>
         <slot></slot>
       </div>
     );

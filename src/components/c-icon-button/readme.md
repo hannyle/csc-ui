@@ -7,14 +7,14 @@
 
 ## Properties
 
-| Property   | Attribute  | Description                     | Type                   | Default     |
-| ---------- | ---------- | ------------------------------- | ---------------------- | ----------- |
-| `badge`    | `badge`    | Show a badge on top of the icon | `string`               | `undefined` |
-| `disabled` | `disabled` | Disable the button              | `boolean`              | `false`     |
-| `ghost`    | `ghost`    | Ghost variant of the button     | `boolean`              | `false`     |
-| `outlined` | `outlined` | Outlined variant of the button  | `boolean`              | `false`     |
-| `size`     | `size`     | Size of the button              | `"default" \| "small"` | `'default'` |
-| `text`     | `text`     | Text variant of the button      | `boolean`              | `false`     |
+| Property   | Attribute  | Description                     | Type                                | Default     |
+| ---------- | ---------- | ------------------------------- | ----------------------------------- | ----------- |
+| `badge`    | `badge`    | Show a badge on top of the icon | `string`                            | `undefined` |
+| `disabled` | `disabled` | Disable the button              | `boolean`                           | `false`     |
+| `ghost`    | `ghost`    | Ghost variant of the button     | `boolean`                           | `false`     |
+| `outlined` | `outlined` | Outlined variant of the button  | `boolean`                           | `false`     |
+| `size`     | `size`     | Size of the button              | `"default" \| "small" \| "x-small"` | `'default'` |
+| `text`     | `text`     | Text variant of the button      | `boolean`                           | `false`     |
 
 
 ## Slots

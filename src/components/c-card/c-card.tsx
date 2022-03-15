@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, getAssetPath } from '@stencil/core';
+import { Component, Element, Host, h, Prop, getAssetPath } from '@stencil/core';
 
 export type CardBackground = 'puhti' | 'mahti' | 'allas';
 /**
@@ -15,12 +15,16 @@ export class CCard {
    * Background color
    */
   @Prop() backgroundColor: string = 'white';
+
   /**
    * Card background image for login pages of specific services
    */
   @Prop() background: CardBackground;
 
+  @Element() host: HTMLCCardElement;
+
   private _allowedBackgrounds = ['puhti', 'mahti', 'allas'];
+
   render() {
     const style = {
       'background-color': this.backgroundColor,
@@ -35,7 +39,7 @@ export class CCard {
     }
 
     return (
-      <Host class="elevation-1" style={style}>
+      <Host style={style}>
         <slot></slot>
       </Host>
     );
