@@ -148,7 +148,11 @@ export namespace Components {
         /**
           * Justify the actions
          */
-        "justify": 'start' | 'center' | 'end';
+        "justify": | 'start'
+    | 'center'
+    | 'end'
+    | 'space-between'
+    | 'space-around';
     }
     interface CCardContent {
     }
@@ -360,9 +364,9 @@ export namespace Components {
          */
         "justify": 'start' | 'center' | 'end' | 'space-between';
         /**
-          * Flex wrap
+          * Disable flex wrap
          */
-        "wrap": boolean;
+        "nowrap": boolean;
     }
     interface CSelect {
         /**
@@ -566,6 +570,14 @@ export namespace Components {
          */
         "form": boolean;
         /**
+          * Hide the hint and error messages
+         */
+        "hideDetails": boolean;
+        /**
+          * Hint text for the input
+         */
+        "hint": string;
+        /**
           * Id of the input
          */
         "hostId": string;
@@ -587,6 +599,7 @@ export namespace Components {
         "name": string;
         /**
           * Numeric input
+          * @deprecated Use type="number" instead
          */
         "number": boolean;
         /**
@@ -1092,7 +1105,11 @@ declare namespace LocalJSX {
         /**
           * Justify the actions
          */
-        "justify"?: 'start' | 'center' | 'end';
+        "justify"?: | 'start'
+    | 'center'
+    | 'end'
+    | 'space-between'
+    | 'space-around';
     }
     interface CCardContent {
     }
@@ -1320,9 +1337,9 @@ declare namespace LocalJSX {
          */
         "justify"?: 'start' | 'center' | 'end' | 'space-between';
         /**
-          * Flex wrap
+          * Disable flex wrap
          */
-        "wrap"?: boolean;
+        "nowrap"?: boolean;
     }
     interface CSelect {
         /**
@@ -1566,6 +1583,14 @@ declare namespace LocalJSX {
          */
         "form"?: boolean;
         /**
+          * Hide the hint and error messages
+         */
+        "hideDetails"?: boolean;
+        /**
+          * Hint text for the input
+         */
+        "hint"?: string;
+        /**
           * Id of the input
          */
         "hostId"?: string;
@@ -1587,6 +1612,7 @@ declare namespace LocalJSX {
         "name"?: string;
         /**
           * Numeric input
+          * @deprecated Use type="number" instead
          */
         "number"?: boolean;
         /**
