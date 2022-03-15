@@ -59,7 +59,7 @@ export class GettingStartedAngularComponent implements OnInit {
             ></c-checkbox>
           </c-card-content>
 
-          <c-card-actions right>
+          <c-card-actions justify="end">
             <c-button [disabled]="!form.valid" (click)="onSubmit()">Submit</c-button>
           </c-card-actions>
         </c-card>

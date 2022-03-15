@@ -17,7 +17,12 @@ export class CCardActions {
   /**
    * Justify the actions
    */
-  @Prop() justify: 'start' | 'center' | 'end' = 'start';
+  @Prop() justify:
+    | 'start'
+    | 'center'
+    | 'end'
+    | 'space-between'
+    | 'space-around' = 'start';
 
   render() {
     const classes = {

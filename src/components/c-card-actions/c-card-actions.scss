@@ -34,5 +34,13 @@
     &-start {
       justify-content: flex-start;
     }
+
+    &-space-between {
+      justify-content: space-between;
+    }
+
+    &-space-around {
+      justify-content: space-around;
+    }
   }
 }

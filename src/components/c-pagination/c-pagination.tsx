@@ -278,13 +278,13 @@ export class CPagination {
 
     return (
       <Host class={classes}>
-        <c-row align="center" justify="space-between" wrap gap={16}>
+        <c-row align="center" justify="space-between" gap={16}>
           {!this.hideDetails && (
             <c-row
               align="center"
               justify="center"
-              wrap={false}
               style={{ flex: 'auto' }}
+              nowrap
             >
               {this._getItemsPerPage()}
               <c-spacer></c-spacer>
@@ -295,10 +295,10 @@ export class CPagination {
           <c-row
             align="center"
             justify="center"
-            wrap={false}
             gap={this.size === 'small' ? 2 : 4}
             style={{ flex: '1' }}
             class="c-pagination__buttons"
+            nowrap
           >
             {this._getArrowLeft(buttonsize)}
             {this._getPageButtons(buttonsize)}

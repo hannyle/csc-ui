@@ -12,20 +12,19 @@
         <c-card-title>Login example</c-card-title>
 
         <c-card-content>
-          <c-text-field label="Username" form name="username">
-            <i class="mdi mdi-abacus" slot="pre"></i>
-            <i class="mdi mdi-face" slot="post"></i>
-          </c-text-field>
+          <c-text-field label="Username" name="username" form hide-details></c-text-field>
+
           <c-text-field
-            placeholder="Esa"
             label="Password"
-            form
             name="password"
             type="password"
+            form
+            hide-details
           ></c-text-field>
         </c-card-content>
 
-        <c-card-actions right>
+        <c-card-actions justify="space-between">
+          <c-link href="#" underline>Forgot password?</c-link>
           <c-button type="submit">Login</c-button>
         </c-card-actions>
 

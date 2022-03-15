@@ -55,7 +55,7 @@ countries = [
   'Argentina',
   ...
 ];
-  
+
 options: PaginationObject = {
   itemCount: this.countries.length,
   itemsPerPage: 25,
