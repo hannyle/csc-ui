@@ -20,6 +20,7 @@ button {
   border-radius: var(--c-radius);
   position: relative;
   overflow: hidden;
+  margin: 0;
 
   &:focus {
     outline: none;
