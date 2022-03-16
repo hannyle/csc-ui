@@ -379,17 +379,19 @@ export class CSelect {
                 </div>
               )}
               <slot name="post"></slot>
-              <svg
-                width="22"
-                height="22"
-                fill="#222"
-                viewBox="0 0 24 24"
-                class={
-                  this.menuVisible ? 'c-select-icon rotated' : 'c-select-icon'
-                }
-              >
-                <path d={mdiChevronDown} />
-              </svg>
+              <div class="c-select-icon-wrapper">
+                <svg
+                  width="22px"
+                  height="22px"
+                  fill="#222"
+                  viewBox="0 0 24 24"
+                  class={
+                    this.menuVisible ? 'c-select-icon rotated' : 'c-select-icon'
+                  }
+                >
+                  <path d={mdiChevronDown} />
+                </svg>
+              </div>
             </div>
           </div>
 

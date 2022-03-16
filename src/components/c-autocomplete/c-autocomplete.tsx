@@ -266,7 +266,7 @@ export class CAutocomplete {
             role="button"
             aria-labelledby="c-autocomplete-label"
           >
-            <c-row nowrap>
+            <c-row align="center" nowrap>
               <div class="c-autocomplete-current">
                 <input
                   value={this.query}
