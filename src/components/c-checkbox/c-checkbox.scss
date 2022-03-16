@@ -12,6 +12,7 @@
   color: var(--c-color);
   overflow: hidden;
   position: relative;
+  transform: translateZ(0); // Safari overflow fix
 
   * {
     pointer-events: none;
