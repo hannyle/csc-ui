@@ -22,6 +22,7 @@ export class CCardActions {
     | 'center'
     | 'end'
     | 'space-between'
+    | 'stretch'
     | 'space-around' = 'start';
 
   render() {

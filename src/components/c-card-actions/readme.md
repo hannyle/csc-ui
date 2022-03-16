@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property  | Attribute | Description         | Type                                                                | Default    |
-| --------- | --------- | ------------------- | ------------------------------------------------------------------- | ---------- |
-| `align`   | `align`   | Align the actions   | `"center" \| "end" \| "start"`                                      | `'center'` |
-| `justify` | `justify` | Justify the actions | `"center" \| "end" \| "space-around" \| "space-between" \| "start"` | `'start'`  |
+| Property  | Attribute | Description         | Type                                                                             | Default    |
+| --------- | --------- | ------------------- | -------------------------------------------------------------------------------- | ---------- |
+| `align`   | `align`   | Align the actions   | `"center" \| "end" \| "start"`                                                   | `'center'` |
+| `justify` | `justify` | Justify the actions | `"center" \| "end" \| "space-around" \| "space-between" \| "start" \| "stretch"` | `'start'`  |
 
 
 ## Slots

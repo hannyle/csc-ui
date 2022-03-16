@@ -42,6 +42,11 @@ export class CPagination {
   @Prop() hideDetails = false;
 
   /**
+   * Hide page number buttons
+   */
+  @Prop() simple = false;
+
+  /**
    * Hide details (per page dropdown and the 'x - y of n pages' text)
    */
   @Prop() size: 'default' | 'small' = 'default';
@@ -97,8 +102,8 @@ export class CPagination {
     this._itemsPerPage = this.value.itemsPerPage || 25;
     this._totalVisible = this.value.totalVisible || 7;
     this.value.startFrom =
-      this._currentPage * this._itemsPerPage - this._itemsPerPage + 1;
-    this.value.endTo = this._currentPage * this._itemsPerPage;
+      this._currentPage * this._itemsPerPage - this._itemsPerPage;
+    this.value.endTo = this._currentPage * this._itemsPerPage - 1;
     this.changeValue.emit(this.value);
   }
 
@@ -278,7 +283,7 @@ export class CPagination {
 
     return (
       <Host class={classes}>
-        <c-row align="center" justify="space-between" gap={16}>
+        <c-row align="center" no-wrap={this.simple} gap={4}>
           {!this.hideDetails && (
             <c-row
               align="center"
@@ -288,20 +293,20 @@ export class CPagination {
             >
               {this._getItemsPerPage()}
               <c-spacer></c-spacer>
-              <span class="range">{this._getRange()}</span>
+              <span class={!this.simple && 'range'}>{this._getRange()}</span>
             </c-row>
           )}
-
           <c-row
             align="center"
-            justify="center"
+            justify={!this.simple ? 'center' : 'end'}
+            no-wrap={true}
             gap={this.size === 'small' ? 2 : 4}
             style={{ flex: '1' }}
             class="c-pagination__buttons"
             nowrap
           >
             {this._getArrowLeft(buttonsize)}
-            {this._getPageButtons(buttonsize)}
+            {!this.simple && this._getPageButtons(buttonsize)}
             {this._getArrowRight(buttonsize)}
           </c-row>
         </c-row>

@@ -35,6 +35,14 @@
       justify-content: flex-start;
     }
 
+    &-stretch {
+      justify-content: stretch;
+
+      ::slotted(*) {
+        flex: 1;
+      }
+    }
+
     &-space-between {
       justify-content: space-between;
     }

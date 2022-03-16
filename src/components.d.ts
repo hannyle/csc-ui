@@ -152,6 +152,7 @@ export namespace Components {
     | 'center'
     | 'end'
     | 'space-between'
+    | 'stretch'
     | 'space-around';
     }
     interface CCardContent {
@@ -304,6 +305,10 @@ export namespace Components {
           * Items per page options
          */
         "itemsPerPageOptions": number[];
+        /**
+          * Hide page number buttons
+         */
+        "simple": boolean;
         /**
           * Hide details (per page dropdown and the 'x - y of n pages' text)
          */
@@ -1109,6 +1114,7 @@ declare namespace LocalJSX {
     | 'center'
     | 'end'
     | 'space-between'
+    | 'stretch'
     | 'space-around';
     }
     interface CCardContent {
@@ -1273,6 +1279,10 @@ declare namespace LocalJSX {
           * Triggered when values are changed
          */
         "onChangeValue"?: (event: CustomEvent<CPaginationOptions>) => void;
+        /**
+          * Hide page number buttons
+         */
+        "simple"?: boolean;
         /**
           * Hide details (per page dropdown and the 'x - y of n pages' text)
          */

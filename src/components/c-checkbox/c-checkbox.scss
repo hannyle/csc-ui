@@ -18,7 +18,7 @@
   }
 
   &--disabled {
-    --c-color: var(--csc-light-grey);
+    --c-color: var(--csc-mid-grey);
     --c-hover: transparent;
   }
 }
@@ -32,6 +32,7 @@
 }
 
 .c-checkbox-row {
+  --c-color: var(--csc-grey);
   --c-cursor: pointer;
 
   cursor: var(--c-cursor);
@@ -40,14 +41,17 @@
 
   &--disabled {
     --c-cursor: default;
+    --c-color: var(--csc-mid-grey);
+    opacity: 0.75;
   }
-}
 
-#c-checkbox-label {
-  cursor: var(--c-cursor);
-  padding-left: 4px;
-  flex: 1;
-  user-select: none;
+  #c-checkbox-label {
+    cursor: var(--c-cursor);
+    color: var(--c-color);
+    padding-left: 4px;
+    flex: 1;
+    user-select: none;
+  }
 }
 
 .c-checkbox__background {

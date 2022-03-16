@@ -12,6 +12,7 @@
 | `hideDetails`         | `hide-details` | Hide details (per page dropdown and the 'x - y of n pages' text)                                                                                   | `boolean`              | `false`            |
 | `hideRange`           | `hide-range`   | Hide range indicator                                                                                                                               | `boolean`              | `false`            |
 | `itemsPerPageOptions` | --             | Items per page options                                                                                                                             | `number[]`             | `[5, 25, 50, 100]` |
+| `simple`              | `simple`       | Hide page number buttons                                                                                                                           | `boolean`              | `false`            |
 | `size`                | `size`         | Hide details (per page dropdown and the 'x - y of n pages' text)                                                                                   | `"default" \| "small"` | `'default'`        |
 | `value`               | --             | Object containing values that are needed for pagination.  Note! startFrom and endTo are assigned automatically to the object based on other values | `CPaginationOptions`   | `undefined`        |
 
