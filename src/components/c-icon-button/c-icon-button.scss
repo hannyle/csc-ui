@@ -13,13 +13,30 @@ button.icon-button {
   align-items: center;
   justify-content: center;
 
+  ::slotted(svg),
+  ::slotted(i),
+  ::slotted(span) {
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+  }
+
+  ::slotted(*) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   &--small {
     width: 32px;
     height: 32px;
 
-    ::slotted(svg) {
-      width: 22px;
-      height: 22px;
+    ::slotted(svg),
+    ::slotted(i),
+    ::slotted(span) {
+      width: 22px !important;
+      height: 22px !important;
+      font-size: 16px !important;
     }
   }
 
@@ -27,9 +44,12 @@ button.icon-button {
     width: 28px;
     height: 28px;
 
-    ::slotted(svg) {
-      width: 18px;
-      height: 18px;
+    ::slotted(svg),
+    ::slotted(i),
+    ::slotted(span) {
+      width: 18px !important;
+      height: 18px !important;
+      font-size: 14px !important;
     }
   }
 
@@ -47,8 +67,8 @@ button.icon-button {
     color: var(--csc-primary);
 
     ::slotted(*) {
-      color: var(--csc-primary);
-      fill: var(--csc-primary);
+      color: var(--csc-primary) !important;
+      fill: var(--csc-primary) !important;
     }
 
     &:hover {
@@ -62,8 +82,8 @@ button.icon-button {
     color: var(--csc-primary);
 
     ::slotted(*) {
-      color: var(--csc-primary);
-      fill: var(--csc-primary);
+      color: var(--csc-primary) !important;
+      fill: var(--csc-primary) !important;
     }
 
     &:hover {
@@ -77,8 +97,8 @@ button.icon-button {
     color: var(--csc-primary);
 
     ::slotted(*) {
-      color: var(--csc-primary);
-      fill: var(--csc-primary);
+      color: var(--csc-primary) !important;
+      fill: var(--csc-primary) !important;
     }
 
     &.disabled {
@@ -96,8 +116,8 @@ button.icon-button {
     pointer-events: none;
 
     ::slotted(*) {
-      color: var(--csc-mid-grey);
-      fill: var(--csc-mid-grey);
+      color: var(--csc-mid-grey) !important;
+      fill: var(--csc-mid-grey) !important;
     }
 
     &.text {
@@ -138,11 +158,6 @@ button.icon-button {
   font-size: 12px;
   border: 2px #fff solid;
   top: -4px;
-}
-
-svg {
-  width: 24px;
-  height: 24px;
 }
 
 .inner-container {

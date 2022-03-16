@@ -32,10 +32,10 @@ export class CSidenavigationitem {
    * @private
    */
   @Event() itemChange: EventEmitter;
-  private _redirect(event: KeyboardEvent | PointerEvent) {
+  private _redirect(event: KeyboardEvent | Event) {
     if (
       (event instanceof KeyboardEvent && event?.key === 'Enter') ||
-      event instanceof PointerEvent
+      !(event instanceof KeyboardEvent)
     ) {
       event.stopPropagation();
       this.itemChange.emit();
