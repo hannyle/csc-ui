@@ -58,7 +58,7 @@ export class CTab {
 
     return (
       <Host
-        tabindex="0"
+        tabindex={this.disabled ? -1 : 0}
         role="button"
         aria-disabled={this.disabled ? 'true' : 'false'}
       >
