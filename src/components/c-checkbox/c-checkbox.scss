@@ -3,6 +3,8 @@
 }
 
 .c-checkbox {
+  $this: &;
+
   --c-checkbox-color: var(--csc-primary);
 
   align-items: center;
@@ -11,7 +13,7 @@
   cursor: pointer;
   font-size: 16px;
   user-select: none;
-  gap: 8px;
+  gap: 4px;
 
   input {
     position: absolute;
@@ -31,8 +33,8 @@
 
   .ripple {
     position: relative;
-    height: 36px;
-    width: 36px;
+    height: 42px;
+    width: 42px;
     border-radius: 50%;
     overflow: hidden;
     transition: translateZ(0);
@@ -41,8 +43,8 @@
 
   .checkmark {
     position: absolute;
-    top: 9px;
-    left: 9px;
+    top: 12px;
+    left: 12px;
     height: 18px;
     width: 18px;
     background-color: transparent;
@@ -61,6 +63,47 @@
       border: solid white;
       border-width: 0 2px 2px 0;
       transform: rotate(45deg);
+    }
+  }
+
+  &__details {
+    line-height: 1;
+    padding: 0 12px;
+
+    &.active {
+      #{$this} {
+        &__message {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+      }
+    }
+  }
+
+  &__message {
+    font-size: 12px;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.5, 1);
+
+    &--hint {
+      color: var(--csc-mid-grey);
+    }
+
+    &--error {
+      color: var(--csc-error);
+    }
+
+    span {
+      align-items: center;
+      color: currentColor;
+      display: flex;
+      gap: 4px;
+      height: 16px;
+    }
+
+    svg {
+      fill: currentColor;
     }
   }
 

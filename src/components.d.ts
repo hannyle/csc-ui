@@ -169,9 +169,25 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Hide the hint and error messages
+         */
+        "hideDetails": boolean;
+        /**
+          * Hint text for the input
+         */
+        "hint": string;
+        /**
           * Element label
          */
         "label": string;
+        /**
+          * Set the validíty of the input
+         */
+        "valid": boolean;
+        /**
+          * Custom validation message
+         */
+        "validation": string;
         /**
           * Is the element checked
          */
@@ -1135,6 +1151,14 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Hide the hint and error messages
+         */
+        "hideDetails"?: boolean;
+        /**
+          * Hint text for the input
+         */
+        "hint"?: string;
+        /**
           * Element label
          */
         "label"?: string;
@@ -1142,6 +1166,14 @@ declare namespace LocalJSX {
           * Triggered when element is checked or unchecked
          */
         "onChangeValue"?: (event: CustomEvent<any>) => void;
+        /**
+          * Set the validíty of the input
+         */
+        "valid"?: boolean;
+        /**
+          * Custom validation message
+         */
+        "validation"?: string;
         /**
           * Is the element checked
          */

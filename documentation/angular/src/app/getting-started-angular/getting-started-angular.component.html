@@ -30,24 +30,27 @@
           <c-text-field
             formControlName="username"
             label="Username"
-            [valid]="(username.valid && !username.pristine) || username.pristine"
-            validation="Please enter your username"
+            [valid]="isValid('username')"
+            [validation]="errors('username')"
             cControl
           ></c-text-field>
 
           <c-text-field
             formControlName="password"
+            hint="Please do not use numbers in your password"
             label="Password"
             type="password"
-            [valid]="(password.valid && !password.pristine) || password.pristine"
+            [valid]="isValid('password')"
+            [validation]="errors('password')"
             cControl
           ></c-text-field>
 
           <c-checkbox
             formControlName="consent"
+            hint="Please agree to the terms and conditions"
             label="I agree to the terms and conditions"
-            [valid]="(consent.valid && !consent.pristine) || consent.pristine"
-            validation="You have to agree to continue"
+            [valid]="isValid('consent')"
+            [validation]="errors('consent')"
             cControl
           ></c-checkbox>
         </c-card-content>
