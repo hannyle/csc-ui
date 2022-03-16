@@ -30,7 +30,7 @@
           <c-text-field
             formControlName="username"
             label="Username"
-            [valid]="(username.valid && (username.dirty || username.touched)) || username.pristine"
+            [valid]="(username.valid && !username.pristine) || username.pristine"
             validation="Please enter your username"
             cControl
           ></c-text-field>
@@ -39,14 +39,15 @@
             formControlName="password"
             label="Password"
             type="password"
-            [valid]="(password.valid && (password.dirty || password.touched)) || password.pristine"
+            [valid]="(password.valid && !password.pristine) || password.pristine"
             cControl
           ></c-text-field>
 
           <c-checkbox
             formControlName="consent"
             label="I agree to the terms and conditions"
-            [valid]="(consent.valid && (consent.dirty || consent.touched)) || consent.pristine"
+            [valid]="(consent.valid && !consent.pristine) || consent.pristine"
+            validation="You have to agree to continue"
             cControl
           ></c-checkbox>
         </c-card-content>

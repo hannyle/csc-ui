@@ -187,7 +187,7 @@ export class CAutocomplete {
   private _setItemsPerPage() {
     if (this.itemsPerPage > 0 && this.items.length > this.itemsPerPage) {
       this._itemsPerPageStyle = {
-        'max-height': 47 * this.itemsPerPage + 'px',
+        'max-height': 49 * this.itemsPerPage + 'px',
         'overflow-y': 'auto',
       };
     }
@@ -277,19 +277,21 @@ export class CAutocomplete {
                   onInput={(event) => this.handleChange(event)}
                 />
               </div>
-              <svg
-                width="22"
-                height="22"
-                fill="#222"
-                viewBox="0 0 24 24"
-                class={
-                  this.menuVisible
-                    ? 'c-autocomplete-icon rotated'
-                    : 'c-autocomplete-icon'
-                }
-              >
-                <path d={mdiChevronDown} />
-              </svg>
+              <div class="c-autocomplete-icon-wrapper">
+                <svg
+                  width="22px"
+                  height="22px"
+                  fill="#222"
+                  viewBox="0 0 24 24"
+                  class={
+                    this.menuVisible
+                      ? 'c-autocomplete-icon rotated'
+                      : 'c-autocomplete-icon'
+                  }
+                >
+                  <path d={mdiChevronDown} />
+                </svg>
+              </div>
             </c-row>
           </div>
           <input type="hidden" value={this.value?.value} />
