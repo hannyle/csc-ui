@@ -94,7 +94,7 @@ export class CRadioGroup {
         <div
           class={wrapperClasses}
           role="radio"
-          tabindex="0"
+          tabindex={this.disabled ? -1 : 0}
           aria-labelledby={itemId}
           aria-checked={this.value === item}
           aria-disabled={this.disabled}
@@ -117,7 +117,11 @@ export class CRadioGroup {
     return (
       <div class="c-radio-group">
         {this.label && <label id="c-radio-group__label">{this.label}</label>}
-        <div role="radiogroup" aria-labelledby="c-radio-group__label">
+        <div
+          class="c-radio-group__items"
+          role="radiogroup"
+          aria-labelledby="c-radio-group__label"
+        >
           {this.items.map((item, index) => this._getRadioButton(item, index))}
         </div>
       </div>
