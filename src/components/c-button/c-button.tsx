@@ -173,7 +173,7 @@ export class CButton {
         <button
           id={this.hostId}
           class={hostClasses}
-          tabindex="0"
+          tabindex={this.disabled ? -1 : 0}
           role="button"
           disabled={this.disabled}
           onClick={this._onClick}

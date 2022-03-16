@@ -54,11 +54,18 @@ button.icon-button {
   }
 
   &:focus {
-    outline: none;
+    outline: 2px var(--csc-primary) solid;
+    outline-offset: 2px;
+  }
+
+  @supports selector(:focus-visible) {
+    &:focus {
+      outline: none;
+    }
   }
 
   &:focus-visible {
-    outline: 2px black solid;
+    outline: 2px var(--csc-primary) solid;
     outline-offset: 2px;
   }
 

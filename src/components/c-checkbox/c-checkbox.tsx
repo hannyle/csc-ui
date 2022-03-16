@@ -40,8 +40,8 @@ export class CCheckbox {
   private _container: HTMLDivElement;
 
   @Listen('keydown', { passive: true })
-  handleKeyDown(event: any) {
-    if (event.key === ' ') {
+  handleKeyDown(event: KeyboardEvent) {
+    if (['Space', 'Enter'].includes(event.code)) {
       event.preventDefault();
       this.toggleState(event);
     }
@@ -51,41 +51,41 @@ export class CCheckbox {
     if (this.disabled) return;
 
     createRipple(event, this._container, true);
+
     this.value = !this.value;
     this.changeValue.emit(this.value);
   }
 
   render() {
-    const classes = `c-checkbox__background csc-bg-color`;
     const wrapperClasses = {
       'c-checkbox': true,
       'c-checkbox--disabled': this.disabled,
-      active: this.value,
-    };
-    const baseClasses = {
-      'c-checkbox-row': true,
-      'c-checkbox-row--disabled': this.disabled,
     };
 
     return (
       <Host>
-        <div class={baseClasses} onClick={(event) => this.toggleState(event)}>
-          <div
-            role="checkbox"
+        <label
+          id="c-checkbox-label"
+          class={wrapperClasses}
+          tabindex={this.disabled ? -1 : 0}
+        >
+          <input
+            type="checkbox"
             aria-checked={this.value}
-            tabindex="0"
             aria-labelledby="c-checkbox-label"
-            class={wrapperClasses}
+            checked={this.value}
+            disabled={this.disabled}
+            tabindex="-1"
+            onChange={(event) => this.toggleState(event)}
+          />
+          <div
+            class="ripple"
             ref={(el) => (this._container = el as HTMLDivElement)}
           >
-            <div class={classes}>
-              <svg class="c-checkbox__checkmark" viewBox="0 0 24 24">
-                <path fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
-              </svg>
-            </div>
+            <span class="checkmark"></span>
           </div>
-          <label id="c-checkbox-label">{this.label}</label>
-        </div>
+          {this.label}
+        </label>
       </Host>
     );
   }
