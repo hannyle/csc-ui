@@ -72,6 +72,7 @@ export class CCheckbox {
           <input
             type="checkbox"
             aria-checked={this.value}
+            aria-disabled={this.disabled}
             aria-labelledby="c-checkbox-label"
             checked={this.value}
             disabled={this.disabled}

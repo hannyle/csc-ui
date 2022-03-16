@@ -1,4 +1,5 @@
-import { Component, h, Prop, Listen, Event, EventEmitter } from '@stencil/core';
+import { Component, h, Prop, Event, EventEmitter } from '@stencil/core';
+import { v4 as uuid } from 'uuid';
 import { createRipple } from '../../utils/utils';
 
 /**
@@ -40,14 +41,17 @@ export class CRadioGroup {
    */
   @Event() changeValue: EventEmitter;
 
-  @Listen('keydown', { passive: true })
-  handleKeyDown(ev: any) {
-    if (ev.key === ' ') {
-      ev.preventDefault();
+  private _containers?: HTMLDivElement[] = [];
+
+  private _uniqueId = uuid();
+
+  private _handleKeyDown(event: KeyboardEvent, item, index) {
+    if (['Space', 'Enter'].includes(event.code)) {
+      event.preventDefault();
+
+      this._select(event, item, index);
     }
   }
-
-  private _containers?: HTMLDivElement[] = [];
 
   private _select(event, item, index) {
     if (this.disabled) return;
@@ -57,59 +61,40 @@ export class CRadioGroup {
     this.changeValue.emit(item);
   }
 
-  private _selectWithSpace(ev, item) {
-    if (this.disabled) return;
-
-    if (ev.key === ' ') {
-      this.value = item;
-      this.changeValue.emit(item);
-    }
-  }
-
   private _getRadioButton = (item, index) => {
     const itemId = item.value.toString().replace(/[^a-zA-Z0-9-_]/g, '');
 
     const classes = {
       'c-radio': true,
       'c-radio--disabled': this.disabled,
-      'csc-bg-color': true,
-      active: this.value === item,
-    };
-
-    const wrapperClasses = {
-      'c-radio-wrapper': true,
-      'c-radio-wrapper--disabled': this.disabled,
-    };
-
-    const itemClasses = {
-      'c-radio-group__item': true,
-      'c-radio-group__item--disabled': this.disabled,
     };
 
     return (
-      <div
-        class={itemClasses}
-        onClick={(event) => this._select(event, item, index)}
+      <label
+        class={classes}
+        id={itemId}
+        tabindex={this.disabled ? -1 : 0}
+        onKeyDown={(event) => this._handleKeyDown(event, item, index)}
       >
-        <div
-          class={wrapperClasses}
-          role="radio"
-          tabindex={this.disabled ? -1 : 0}
-          aria-labelledby={itemId}
+        <input
+          type="radio"
           aria-checked={this.value === item}
           aria-disabled={this.disabled}
+          aria-labelledby={itemId}
+          disabled={this.disabled}
+          checked={this.value === item}
+          name={this._uniqueId}
+          tabindex="-1"
+          onChange={(event) => this._select(event, item, index)}
+        />
+        <span
+          class="ripple"
           ref={(el) => (this._containers[index] = el as HTMLDivElement)}
-          onKeyDown={(event) => this._selectWithSpace(event, item)}
         >
-          <div class={classes}>
-            <div class="c-radio-outer-circle"></div>
-            <div class="c-radio-inner-circle"></div>
-          </div>
-        </div>
-        <label class="c-radio__label" id={itemId}>
-          {item.label}
-        </label>
-      </div>
+          <span class="selection"></span>
+        </span>
+        {item.label}
+      </label>
     );
   };
 
