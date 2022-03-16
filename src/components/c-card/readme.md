@@ -11,6 +11,7 @@
 | ----------------- | ------------------ | ---------------------------------------------------------- | ------------------------------- | ----------- |
 | `background`      | `background`       | Card background image for login pages of specific services | `"allas" \| "mahti" \| "puhti"` | `undefined` |
 | `backgroundColor` | `background-color` | Background color                                           | `string`                        | `'white'`   |
+| `noPadding`       | `no-padding`       | Disable the top and bottom paddings                        | `boolean`                       | `false`     |
 
 
 ## Slots

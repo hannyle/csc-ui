@@ -12,14 +12,19 @@ export type CardBackground = 'puhti' | 'mahti' | 'allas';
 })
 export class CCard {
   /**
+   * Card background image for login pages of specific services
+   */
+  @Prop() background: CardBackground;
+
+  /**
    * Background color
    */
   @Prop() backgroundColor: string = 'white';
 
   /**
-   * Card background image for login pages of specific services
+   * Disable the top and bottom paddings
    */
-  @Prop() background: CardBackground;
+  @Prop() noPadding = false;
 
   @Element() host: HTMLCCardElement;
 
@@ -28,6 +33,11 @@ export class CCard {
   render() {
     const style = {
       'background-color': this.backgroundColor,
+    };
+
+    const hostClasses = {
+      'c-card': true,
+      'c-card--no-padding': this.noPadding,
     };
 
     if (this._allowedBackgrounds.includes(this.background)) {
@@ -39,7 +49,7 @@ export class CCard {
     }
 
     return (
-      <Host style={style}>
+      <Host class={hostClasses} style={style}>
         <slot></slot>
       </Host>
     );
