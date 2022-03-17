@@ -96,10 +96,27 @@ export class CSelect {
   @State() menuVisible: boolean = false;
   @State() currentIndex: number = null;
   @State() itemRefs: { value: string; ref: HTMLElement }[] = [];
+  private _direction = null;
 
   private _outerWrapperClasses = ['outer-wrapper'];
   private _validationClasses = ['validation-message'];
 
+  private _observer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          entry.target.scrollIntoView({
+            block: this._direction,
+            inline: 'nearest',
+          });
+          observer.unobserve(entry.target);
+        } else {
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 1 },
+  );
   /**
    * Triggered when an item is selected
    */
@@ -114,9 +131,13 @@ export class CSelect {
 
   private _scrollToElement() {
     if (this.items.length > this.itemsPerPage) {
-      this.itemRefs
-        .find((item) => item.value === this.items[this.currentIndex].value)
-        ?.ref.scrollIntoView();
+      const itemRef = this.itemRefs.find(
+        (item) => item.value === this.items[this.currentIndex].value,
+      )?.ref;
+
+      if (!!itemRef) {
+        this._observer.observe(itemRef);
+      }
     }
   }
 
@@ -155,6 +176,7 @@ export class CSelect {
     }
 
     if (ev.key === 'ArrowLeft') {
+      this._direction = 'start';
       ev.preventDefault();
       if (this.currentIndex !== null && this.currentIndex > 0) {
         this.currentIndex = this.currentIndex - 1;
@@ -162,9 +184,11 @@ export class CSelect {
       const selectedItem = this.items[this.currentIndex];
       this.value = selectedItem;
       this._valueChangedHandler(selectedItem);
+      this._scrollToElement();
     }
 
     if (ev.key === 'ArrowRight') {
+      this._direction = 'end';
       ev.preventDefault();
       if (this.currentIndex === null) {
         this.currentIndex = 0;
@@ -174,9 +198,11 @@ export class CSelect {
       const selectedItem = this.items[this.currentIndex];
       this.value = selectedItem;
       this._valueChangedHandler(selectedItem);
+      this._scrollToElement();
     }
 
     if (ev.key === 'ArrowDown') {
+      this._direction = 'end';
       ev.preventDefault();
       if (this.menuVisible === false) {
         this.menuVisible = true;
@@ -193,6 +219,7 @@ export class CSelect {
     }
 
     if (ev.key === 'ArrowUp') {
+      this._direction = 'start';
       ev.preventDefault();
       this.menuVisible = true;
       if (this.currentIndex !== null && this.currentIndex > 0) {
