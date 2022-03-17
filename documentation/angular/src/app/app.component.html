@@ -96,7 +96,10 @@
         <i class="mdi mdi-magnify" slot="pre"></i>
       </c-text-field>
 
-      <c-sidenavigationitem *ngFor="let group of groupedComponents | menuGroups">
+      <c-sidenavigationitem
+        *ngFor="let group of groupedComponents | menuGroups"
+        [active]="group.visible"
+      >
         <div slot="main" class="text-capitalize">{{ group.name }}</div>
         <div slot="subnavitem">
           <c-subnavigationitem
