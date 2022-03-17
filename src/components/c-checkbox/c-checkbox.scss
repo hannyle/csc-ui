@@ -115,6 +115,12 @@
     opacity: 0.75;
   }
 
+  &--error {
+    --c-checkbox-color: var(--csc-error);
+
+    color: var(--csc-error);
+  }
+
   &:focus {
     outline: none;
   }

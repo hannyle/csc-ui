@@ -151,6 +151,7 @@ export class CCheckbox {
     const wrapperClasses = {
       'c-checkbox': true,
       'c-checkbox--disabled': this.disabled,
+      'c-checkbox--error': this.messageOptions.type === 'error',
     };
 
     return (
