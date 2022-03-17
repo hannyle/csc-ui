@@ -70,6 +70,11 @@ export class CMenu {
     }
   }
 
+  @Listen('blur', { capture: true })
+  handleBlur() {
+    this._hideMenu();
+  }
+
   private _showMenu() {
     if (this.menuVisible) {
       this.currentIndex = null;
@@ -108,12 +113,7 @@ export class CMenu {
       hostClasses.push('nohover');
     }
     return (
-      <Host
-        tabindex="0"
-        role="button"
-        class={hostClasses.join(' ')}
-        onBlur={() => this._hideMenu()}
-      >
+      <Host tabindex="0" role="button" class={hostClasses.join(' ')}>
         {this.simple ? (
           <div class="simple" onClick={() => this._showMenu()}>
             <slot></slot>

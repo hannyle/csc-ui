@@ -73,6 +73,10 @@
   &.outer-wrapper:focus-within label.top-span {
     margin-top: -22px;
   }
+
+  &:focus-within {
+    outline: 2px var(--csc-primary) solid;
+  }
 }
 
 .c-select-current {
@@ -178,11 +182,11 @@ label {
     }
 
     &:hover {
-      background-color: #eee;
+      background-color: var(--csc-primary-text-hover);
     }
 
     &.active {
-      background-color: #eee;
+      background-color: var(--csc-primary-text-hover);
     }
 
     &.none {

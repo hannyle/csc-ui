@@ -299,7 +299,6 @@ export class CPagination {
           <c-row
             align="center"
             justify={!this.simple ? 'center' : 'end'}
-            no-wrap={true}
             gap={this.size === 'small' ? 2 : 4}
             style={{ flex: '1' }}
             class="c-pagination__buttons"

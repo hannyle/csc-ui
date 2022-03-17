@@ -139,12 +139,11 @@ label span.required {
   padding: 10px 14px;
 }
 .c-menu li:hover {
-  background-color: #eef2f8;
+  background-color: var(--csc-primary-text-hover);
 }
 
 .c-menu li.active {
-  background-color: var(--csc-primary);
-  color: #fff;
+  background-color: var(--csc-primary-text-hover);
 }
 
 .border-wrapper {

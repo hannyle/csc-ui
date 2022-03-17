@@ -47,6 +47,10 @@
   background: transparent !important;
 }
 
+svg {
+  box-sizing: content-box;
+}
+
 svg fill {
   fill: #595959;
 }
