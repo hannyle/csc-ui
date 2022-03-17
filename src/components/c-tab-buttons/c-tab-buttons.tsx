@@ -42,6 +42,8 @@ export class CTabButtons {
   @Event() changeValue: EventEmitter<number | string>;
   @Element() el: HTMLCTabButtonsElement;
 
+  private _isIndexBased: boolean;
+
   @Watch('value')
   watchPropHandler(value: string | number) {
     this.el.childNodes.forEach((button: HTMLCButtonElement) => {
@@ -67,25 +69,22 @@ export class CTabButtons {
 
     if (!button || !tabs) return;
 
-    const valueIsString = this._isString(this.value);
-
     const { index } = button.dataset;
 
-    const isActiveAndString = valueIsString && button.value === this.value;
-    const isActiveAndNotString =
-      !valueIsString && (button.value ?? +index) === +this.value;
+    const isActive =
+      this.value !== null &&
+      (this._isIndexBased
+        ? +index === +this.value
+        : button.value === this.value);
 
     // Disable deselection if mandatory prop is set to true
-    if (this.mandatory && (isActiveAndNotString || isActiveAndString)) {
+    if (this.mandatory && isActive) {
       return;
     }
 
-    const nullValue = valueIsString ? '' : null;
+    const nullValue = this._isIndexBased ? null : '';
 
-    this.value =
-      isActiveAndString || isActiveAndNotString
-        ? nullValue
-        : button.value ?? +index;
+    this.value = isActive ? nullValue : button.value ?? +index;
   }
 
   get buttons() {
@@ -94,13 +93,13 @@ export class CTabButtons {
     ) as HTMLCButtonElement[];
   }
 
-  get valueIsString() {
-    return Number.isNaN(+this.value);
-  }
-
   componentDidLoad() {
     // use 0 as value if nothing is provided
     this.value = this.value ?? 0;
+
+    this._isIndexBased = this.buttons.every(
+      (button) => typeof button.value === 'undefined',
+    );
 
     this.buttons.forEach((button: HTMLCButtonElement, index) => {
       button.setAttribute('data-index', String(index));
@@ -109,22 +108,18 @@ export class CTabButtons {
       button.disabled = this.hostDisabled;
       button.size = this.size;
 
-      if (
-        (!this._isString(this.value) &&
-          (button.value ?? index) !== +this.value) ||
-        (this._isString(this.value) && button.value !== this.value)
-      ) {
-        button.outlined = true;
-      }
+      const isActive =
+        this.value !== null &&
+        (this._isIndexBased
+          ? index === +this.value
+          : button.value === this.value);
+
+      button.outlined = !isActive;
 
       const buttonElement = button.shadowRoot.querySelector('.c-button');
 
       buttonElement.classList.add('grouped');
     });
-  }
-
-  private _isString(value) {
-    return Number.isNaN(+value);
   }
 
   render() {
