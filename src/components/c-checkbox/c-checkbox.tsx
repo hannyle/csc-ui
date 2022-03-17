@@ -177,7 +177,7 @@ export class CCheckbox {
           >
             <span class="checkmark"></span>
           </div>
-          {this.label}
+          <div class="c-checkbox__label">{this.label}</div>
         </label>
 
         {this._renderMessages()}

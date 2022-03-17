@@ -1,5 +1,7 @@
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .c-radio-group {
@@ -17,13 +19,14 @@
 .c-radio {
   --c-radio-color: var(--csc-primary);
 
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   position: relative;
   cursor: pointer;
   font-size: 16px;
   user-select: none;
   gap: 4px;
+  line-height: 1.2;
 
   input {
     position: absolute;
@@ -44,6 +47,7 @@
     position: relative;
     height: 42px;
     width: 42px;
+    min-width: 42px;
     border-radius: 50%;
     overflow: hidden;
     transition: translateZ(0);
@@ -73,6 +77,10 @@
       border-radius: 50%;
       background: var(--c-radio-color);
     }
+  }
+
+  &__label {
+    padding-top: 12px;
   }
 
   &--disabled {

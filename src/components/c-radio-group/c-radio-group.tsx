@@ -93,7 +93,7 @@ export class CRadioGroup {
         >
           <span class="selection"></span>
         </span>
-        {item.label}
+        <div class="c-radio__label">{item.label}</div>
       </label>
     );
   };
