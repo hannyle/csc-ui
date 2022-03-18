@@ -13,6 +13,7 @@ import { mdiCloseCircle } from '@mdi/js';
 import { createRipple } from '../../utils/utils';
 /**
  * @group Form
+ * @slot - Default slot for the label
  */
 @Component({
   tag: 'c-checkbox',
@@ -177,7 +178,9 @@ export class CCheckbox {
           >
             <span class="checkmark"></span>
           </div>
-          <div class="c-checkbox__label">{this.label}</div>
+          <div class="c-checkbox__label">
+            {!!this.label ? this.label : <slot></slot>}
+          </div>
         </label>
 
         {this._renderMessages()}

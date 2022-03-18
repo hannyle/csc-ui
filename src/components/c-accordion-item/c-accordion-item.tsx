@@ -3,6 +3,7 @@ import { v4 as uuid } from 'uuid';
 
 /**
  * @parent c-accordion
+ * @slot - Default slot
  */
 @Component({
   tag: 'c-accordion-item',

@@ -56,11 +56,13 @@ export class GettingStartedAngularComponent implements OnInit {
             <c-checkbox
               formControlName="consent"
               hint="Please agree to the terms and conditions"
-              label="I agree to the terms and conditions"
               [valid]="isValid('consent')"
               [validation]="errors('consent')"
               cControl
-            ></c-checkbox>
+            >
+              I agree to the
+              <c-link href="https://csc.fi" underline>terms and conditions</c-link>
+            </c-checkbox>
           </c-card-content>
 
           <c-card-actions justify="end">

@@ -25,6 +25,13 @@
 | `changeValue` | Triggered when element is checked or unchecked | `CustomEvent<any>` |
 
 
+## Slots
+
+| Slot | Description                |
+| ---- | -------------------------- |
+|      | Default slot for the label |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

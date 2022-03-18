@@ -1,9 +1,17 @@
-import { Component, h, Prop, Event, EventEmitter } from '@stencil/core';
+import {
+  Component,
+  h,
+  Prop,
+  Event,
+  EventEmitter,
+  Element,
+} from '@stencil/core';
 import { v4 as uuid } from 'uuid';
 import { createRipple } from '../../utils/utils';
 
 /**
  * @group Form
+ * @slot - Default slot for the label
  */
 @Component({
   tag: 'c-radio-group',
@@ -40,6 +48,8 @@ export class CRadioGroup {
    * Emit value change to the parent
    */
   @Event() changeValue: EventEmitter;
+
+  @Element() el: HTMLCRadioGroupElement;
 
   private _containers?: HTMLDivElement[] = [];
 
@@ -99,9 +109,15 @@ export class CRadioGroup {
   };
 
   render() {
+    const slotHasContent = !!this.el.childNodes.length;
+
     return (
       <div class="c-radio-group">
-        {this.label && <label id="c-radio-group__label">{this.label}</label>}
+        {(!!this.label || slotHasContent) && (
+          <label id="c-radio-group__label">
+            {!!this.label ? this.label : <slot></slot>}
+          </label>
+        )}
         <div
           class="c-radio-group__items"
           role="radiogroup"

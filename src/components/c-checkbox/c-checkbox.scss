@@ -151,8 +151,8 @@
     outline: 2px var(--c-checkbox-color) solid;
   }
 
-  &:not(.c-checkbox--disabled):hover {
-    .ripple {
+  &:not(.c-checkbox--disabled) {
+    .ripple:hover {
       background-color: var(--csc-primary-text-hover);
     }
   }

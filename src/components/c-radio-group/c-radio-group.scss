@@ -7,7 +7,7 @@
 .c-radio-group {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 4px;
 
   &__items {
     display: flex;
@@ -109,8 +109,8 @@
     outline: 2px var(--c-radio-color) solid;
   }
 
-  &:not(.c-radio--disabled):hover {
-    .ripple {
+  &:not(.c-radio--disabled) {
+    .ripple:hover {
       background-color: var(--csc-primary-text-hover);
     }
   }
