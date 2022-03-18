@@ -139,10 +139,6 @@ export namespace Components {
           * Background color
          */
         "backgroundColor": string;
-        /**
-          * Disable the top and bottom paddings
-         */
-        "noPadding": boolean;
     }
     interface CCardActions {
         /**
@@ -1121,10 +1117,6 @@ declare namespace LocalJSX {
           * Background color
          */
         "backgroundColor"?: string;
-        /**
-          * Disable the top and bottom paddings
-         */
-        "noPadding"?: boolean;
     }
     interface CCardActions {
         /**

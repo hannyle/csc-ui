@@ -200,6 +200,7 @@ export class CTextField {
 
     this._handleValidation(this.valid, 0);
     this._calculateElementWidths();
+    this._observer.observe(this._labelRef);
   }
 
   get isActive() {
@@ -209,6 +210,18 @@ export class CTextField {
   get passwordIcon() {
     return this.type === 'password' ? mdiEye : mdiEyeOff;
   }
+
+  private _observer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          this._calculateElementWidths();
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 1 },
+  );
 
   private _calculateElementWidths() {
     this.labelWidth = !!this.label

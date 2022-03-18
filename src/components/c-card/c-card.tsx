@@ -21,11 +21,6 @@ export class CCard {
    */
   @Prop() backgroundColor: string = 'white';
 
-  /**
-   * Disable the top and bottom paddings
-   */
-  @Prop() noPadding = false;
-
   @Element() host: HTMLCCardElement;
 
   private _allowedBackgrounds = ['puhti', 'mahti', 'allas'];
@@ -37,7 +32,6 @@ export class CCard {
 
     const hostClasses = {
       'c-card': true,
-      'c-card--no-padding': this.noPadding,
     };
 
     if (this._allowedBackgrounds.includes(this.background)) {

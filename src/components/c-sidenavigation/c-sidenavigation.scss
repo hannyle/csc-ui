@@ -43,7 +43,7 @@
     right: 0;
     overflow-y: scroll;
     z-index: 999;
-    height: calc(100% - 100px);
+    height: calc(100% - 60px);
 
     &.hideMenu {
       transform: translateX(100%);
