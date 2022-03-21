@@ -28,7 +28,7 @@ export class CTextField {
   /**
    * Disable the input
    */
-  @Prop({ attribute: 'disabled' }) hostDisabled = false;
+  @Prop() disabled = false;
 
   /**
    * Render a hidden input outside the shadow dom
@@ -304,7 +304,7 @@ export class CTextField {
         name: this.name,
         onFocus: this._onFocus,
         onBlur: this._onBlur,
-        disabled: this.hostDisabled,
+        disabled: this.disabled,
         readonly: this.readonly,
         'aria-labelledby': 'c-text-label',
         value: this.value,
@@ -415,7 +415,7 @@ export class CTextField {
 
     const containerClasses = {
       'c-input': true,
-      'c-input--disabled': this.hostDisabled,
+      'c-input--disabled': this.disabled,
       'c-input--shadow': this.shadow,
       'c-input--textarea': this.rows > 1,
       'c-input--error': this.messageOptions.type === 'error',

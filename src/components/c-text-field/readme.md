@@ -10,10 +10,10 @@
 | Property         | Attribute          | Description                                                                                      | Type      | Default            |
 | ---------------- | ------------------ | ------------------------------------------------------------------------------------------------ | --------- | ------------------ |
 | `autofocus`      | `autofocus`        | Auto focus the input                                                                             | `boolean` | `false`            |
+| `disabled`       | `disabled`         | Disable the input                                                                                | `boolean` | `false`            |
 | `form`           | `form`             | Render a hidden input outside the shadow dom                                                     | `boolean` | `false`            |
 | `hideDetails`    | `hide-details`     | Hide the hint and error messages                                                                 | `boolean` | `false`            |
 | `hint`           | `hint`             | Hint text for the input                                                                          | `string`  | `''`               |
-| `hostDisabled`   | `disabled`         | Disable the input                                                                                | `boolean` | `false`            |
 | `hostId`         | `id`               | Id of the input                                                                                  | `string`  | `undefined`        |
 | `label`          | `label`            | Label of the input                                                                               | `string`  | `undefined`        |
 | `max`            | `max`              | Maximum value on a numeric input                                                                 | `number`  | `null`             |
