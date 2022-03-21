@@ -177,7 +177,7 @@ export class CTextField {
 
   @Watch('validation')
   onValidationMessageChange(message: string) {
-    this.onValidChange(message.length === 0);
+    this.onValidChange(message?.length === 0);
   }
 
   @Watch('valid')

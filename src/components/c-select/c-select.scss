@@ -77,6 +77,10 @@
   &:focus-within {
     outline: 2px var(--csc-primary) solid;
   }
+
+  .c-menu {
+    top: 2px;
+  }
 }
 
 .c-select-current {
