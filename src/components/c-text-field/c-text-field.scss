@@ -207,6 +207,14 @@
     }
   }
 
+  &--disabled {
+    input,
+    fieldset,
+    label {
+      color: var(--csc-mid-grey);
+    }
+  }
+
   &--textarea {
     #{$this} {
       &__field {

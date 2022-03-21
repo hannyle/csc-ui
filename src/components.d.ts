@@ -583,10 +583,6 @@ export namespace Components {
          */
         "autofocus": boolean;
         /**
-          * Disable the input
-         */
-        "disabled": boolean;
-        /**
           * Render a hidden input outside the shadow dom
          */
         "form": boolean;
@@ -598,6 +594,10 @@ export namespace Components {
           * Hint text for the input
          */
         "hint": string;
+        /**
+          * Disable the input
+         */
+        "hostDisabled": boolean;
         /**
           * Id of the input
          */
@@ -1617,10 +1617,6 @@ declare namespace LocalJSX {
          */
         "autofocus"?: boolean;
         /**
-          * Disable the input
-         */
-        "disabled"?: boolean;
-        /**
           * Render a hidden input outside the shadow dom
          */
         "form"?: boolean;
@@ -1632,6 +1628,10 @@ declare namespace LocalJSX {
           * Hint text for the input
          */
         "hint"?: string;
+        /**
+          * Disable the input
+         */
+        "hostDisabled"?: boolean;
         /**
           * Id of the input
          */

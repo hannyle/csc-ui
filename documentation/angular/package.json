@@ -23,7 +23,7 @@
     "@types/prettier": "^2.4.4",
     "angular-html-parser": "^1.8.0",
     "bootstrap": "^5.1.3",
-    "csc-ui-accessor": "^0.0.10",
+    "csc-ui-accessor": "^0.0.13",
     "ngx-highlightjs": "^6.1.2",
     "prettier": "^2.5.1",
     "rxjs": "^7.5.5",
