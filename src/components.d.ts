@@ -231,6 +231,97 @@ export namespace Components {
          */
         "text": boolean;
     }
+    interface CInput {
+        /**
+          * Auto focus the input
+         */
+        "autofocus": boolean;
+        /**
+          * Disable the input
+         */
+        "disabled": boolean;
+        /**
+          * Render a hidden input outside the shadow dom
+         */
+        "form": boolean;
+        /**
+          * Hide the hint and error messages
+         */
+        "hideDetails": boolean;
+        /**
+          * Hint text for the input
+         */
+        "hint": string;
+        /**
+          * Id of the input
+         */
+        "hostId": string;
+        /**
+          * Label of the input
+         */
+        "label": string;
+        /**
+          * Maximum value on a numeric input
+         */
+        "max": number;
+        /**
+          * Minimum value on a numeric input
+         */
+        "min": number;
+        /**
+          * Name of the input
+         */
+        "name": string;
+        /**
+          * Numeric input
+          * @deprecated Use type="number" instead
+         */
+        "number": boolean;
+        /**
+          * Placeholder of the input
+         */
+        "placeholder": string;
+        /**
+          * Mark as readonly
+         */
+        "readonly": boolean;
+        /**
+          * Set the input as required
+         */
+        "required": boolean;
+        /**
+          * Rows on the input
+         */
+        "rows": number;
+        /**
+          * Shadow variant of the input
+         */
+        "shadow": boolean;
+        /**
+          * Step size on a numeric input
+         */
+        "step": number;
+        /**
+          * Type of the input
+         */
+        "type": string;
+        /**
+          * Set the validíty of the input
+         */
+        "valid": boolean;
+        /**
+          * Manual validation
+         */
+        "validate": boolean;
+        /**
+          * Validate the input on blur
+         */
+        "validateOnBlur": boolean;
+        /**
+          * Custom validation message
+         */
+        "validation": string;
+    }
     interface CLink {
         /**
           * Url of link
@@ -762,6 +853,12 @@ declare global {
         prototype: HTMLCIconButtonElement;
         new (): HTMLCIconButtonElement;
     };
+    interface HTMLCInputElement extends Components.CInput, HTMLStencilElement {
+    }
+    var HTMLCInputElement: {
+        prototype: HTMLCInputElement;
+        new (): HTMLCInputElement;
+    };
     interface HTMLCLinkElement extends Components.CLink, HTMLStencilElement {
     }
     var HTMLCLinkElement: {
@@ -939,6 +1036,7 @@ declare global {
         "c-csc-logo": HTMLCCscLogoElement;
         "c-flex": HTMLCFlexElement;
         "c-icon-button": HTMLCIconButtonElement;
+        "c-input": HTMLCInputElement;
         "c-link": HTMLCLinkElement;
         "c-loader": HTMLCLoaderElement;
         "c-main": HTMLCMainElement;
@@ -1212,6 +1310,101 @@ declare namespace LocalJSX {
           * Text variant of the button
          */
         "text"?: boolean;
+    }
+    interface CInput {
+        /**
+          * Auto focus the input
+         */
+        "autofocus"?: boolean;
+        /**
+          * Disable the input
+         */
+        "disabled"?: boolean;
+        /**
+          * Render a hidden input outside the shadow dom
+         */
+        "form"?: boolean;
+        /**
+          * Hide the hint and error messages
+         */
+        "hideDetails"?: boolean;
+        /**
+          * Hint text for the input
+         */
+        "hint"?: string;
+        /**
+          * Id of the input
+         */
+        "hostId"?: string;
+        /**
+          * Label of the input
+         */
+        "label"?: string;
+        /**
+          * Maximum value on a numeric input
+         */
+        "max"?: number;
+        /**
+          * Minimum value on a numeric input
+         */
+        "min"?: number;
+        /**
+          * Name of the input
+         */
+        "name"?: string;
+        /**
+          * Numeric input
+          * @deprecated Use type="number" instead
+         */
+        "number"?: boolean;
+        /**
+          * Emit changes to the parent
+         */
+        "onChangeValue"?: (event: CustomEvent<any>) => void;
+        /**
+          * Placeholder of the input
+         */
+        "placeholder"?: string;
+        /**
+          * Mark as readonly
+         */
+        "readonly"?: boolean;
+        /**
+          * Set the input as required
+         */
+        "required"?: boolean;
+        /**
+          * Rows on the input
+         */
+        "rows"?: number;
+        /**
+          * Shadow variant of the input
+         */
+        "shadow"?: boolean;
+        /**
+          * Step size on a numeric input
+         */
+        "step"?: number;
+        /**
+          * Type of the input
+         */
+        "type"?: string;
+        /**
+          * Set the validíty of the input
+         */
+        "valid"?: boolean;
+        /**
+          * Manual validation
+         */
+        "validate"?: boolean;
+        /**
+          * Validate the input on blur
+         */
+        "validateOnBlur"?: boolean;
+        /**
+          * Custom validation message
+         */
+        "validation"?: string;
     }
     interface CLink {
         /**
@@ -1729,6 +1922,7 @@ declare namespace LocalJSX {
         "c-csc-logo": CCscLogo;
         "c-flex": CFlex;
         "c-icon-button": CIconButton;
+        "c-input": CInput;
         "c-link": CLink;
         "c-loader": CLoader;
         "c-main": CMain;
@@ -1776,6 +1970,7 @@ declare module "@stencil/core" {
             "c-csc-logo": LocalJSX.CCscLogo & JSXBase.HTMLAttributes<HTMLCCscLogoElement>;
             "c-flex": LocalJSX.CFlex & JSXBase.HTMLAttributes<HTMLCFlexElement>;
             "c-icon-button": LocalJSX.CIconButton & JSXBase.HTMLAttributes<HTMLCIconButtonElement>;
+            "c-input": LocalJSX.CInput & JSXBase.HTMLAttributes<HTMLCInputElement>;
             "c-link": LocalJSX.CLink & JSXBase.HTMLAttributes<HTMLCLinkElement>;
             "c-loader": LocalJSX.CLoader & JSXBase.HTMLAttributes<HTMLCLoaderElement>;
             "c-main": LocalJSX.CMain & JSXBase.HTMLAttributes<HTMLCMainElement>;

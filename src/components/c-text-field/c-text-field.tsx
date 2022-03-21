@@ -158,7 +158,7 @@ export class CTextField {
 
   private _inputElement?: HTMLInputElement | HTMLTextAreaElement;
 
-  private _labelRef: HTMLLabelElement;
+  // private _labelRef: HTMLLabelElement;
 
   private _originalType = '';
 
@@ -198,9 +198,9 @@ export class CTextField {
       }, 500);
     }
 
-    this._handleValidation(this.valid, 0);
-    this._calculateElementWidths();
-    this._observer.observe(this._labelRef);
+    // this._handleValidation(this.valid, 0);
+    // this._calculateElementWidths();
+    // this._observer.observe(this._labelRef);
   }
 
   get isActive() {
@@ -211,33 +211,33 @@ export class CTextField {
     return this.type === 'password' ? mdiEye : mdiEyeOff;
   }
 
-  private _observer = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          this._calculateElementWidths();
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 1 },
-  );
+  // private _observer = new IntersectionObserver(
+  //   (entries, observer) => {
+  //     entries.forEach((entry) => {
+  //       if (entry.isIntersecting) {
+  //         this._calculateElementWidths();
+  //         observer.unobserve(entry.target);
+  //       }
+  //     });
+  //   },
+  //   { threshold: 1 },
+  // );
 
-  private _calculateElementWidths() {
-    this.labelWidth = !!this.label
-      ? Math.min(
-          this._labelRef.scrollWidth * 0.75 + 6,
-          (this.hiddenEl as HTMLElement).offsetWidth - 24,
-        )
-      : 0;
+  // private _calculateElementWidths() {
+  //   this.labelWidth = !!this.label
+  //     ? Math.min(
+  //         this._labelRef.scrollWidth * 0.75 + 6,
+  //         (this.hiddenEl as HTMLElement).offsetWidth - 24,
+  //       )
+  //     : 0;
 
-    const hasSlotContent = !!this.hiddenEl.querySelector('[slot="pre"]');
+  //   const hasSlotContent = !!this.hiddenEl.querySelector('[slot="pre"]');
 
-    this.preSlotWidth = hasSlotContent
-      ? (this.hiddenEl.querySelector('[slot="pre"]') as HTMLSlotElement)
-          .offsetWidth + 8
-      : 0;
-  }
+  //   this.preSlotWidth = hasSlotContent
+  //     ? (this.hiddenEl.querySelector('[slot="pre"]') as HTMLSlotElement)
+  //         .offsetWidth + 8
+  //     : 0;
+  // }
 
   private _handleChange = (event) => {
     this.value = event.target.value;
@@ -281,21 +281,21 @@ export class CTextField {
     this._inputElement.focus();
   };
 
-  private _renderBorders() {
-    if (this.shadow) return;
+  // private _renderBorders() {
+  //   if (this.shadow) return;
 
-    return (
-      <fieldset aria-hidden="true">
-        <legend
-          style={{
-            width: (this.isActive ? this.labelWidth : 0) + 'px',
-          }}
-        >
-          <span class="notranslate"></span>
-        </legend>
-      </fieldset>
-    );
-  }
+  //   return (
+  //     <fieldset aria-hidden="true">
+  //       <legend
+  //         style={{
+  //           width: (this.isActive ? this.labelWidth : 0) + 'px',
+  //         }}
+  //       >
+  //         <span class="notranslate"></span>
+  //       </legend>
+  //     </fieldset>
+  //   );
+  // }
 
   private _renderInputElement() {
     const props = {
@@ -352,43 +352,43 @@ export class CTextField {
     input.value = value || '';
   }
 
-  private _renderLabel() {
-    const classes = {
-      active: this.isActive,
-    };
+  // private _renderLabel() {
+  //   const classes = {
+  //     active: this.isActive,
+  //   };
 
-    return (
-      <label
-        style={{
-          '--c-label-position': (!this.isActive ? this.preSlotWidth : 0) + 'px',
-        }}
-        ref={(el) => (this._labelRef = el as HTMLLabelElement)}
-        class={classes}
-      >
-        {this.label}
-      </label>
-    );
-  }
+  //   return (
+  //     <label
+  //       style={{
+  //         '--c-label-position': (!this.isActive ? this.preSlotWidth : 0) + 'px',
+  //       }}
+  //       ref={(el) => (this._labelRef = el as HTMLLabelElement)}
+  //       class={classes}
+  //     >
+  //       {this.label}
+  //     </label>
+  //   );
+  // }
 
-  private _renderMessages() {
-    if (this.hideDetails) return;
+  // private _renderMessages() {
+  //   if (this.hideDetails) return;
 
-    const classes = {
-      'c-input__details': true,
-      active: this.messageOptions.show,
-    };
+  //   const classes = {
+  //     'c-input__details': true,
+  //     active: this.messageOptions.show,
+  //   };
 
-    const messageClasses = {
-      'c-input__message': true,
-      [`c-input__message--${this.messageOptions.type}`]: true,
-    };
+  //   const messageClasses = {
+  //     'c-input__message': true,
+  //     [`c-input__message--${this.messageOptions.type}`]: true,
+  //   };
 
-    return (
-      <div class={classes}>
-        <div class={messageClasses}>{this.messageOptions.content}</div>
-      </div>
-    );
-  }
+  //   return (
+  //     <div class={classes}>
+  //       <div class={messageClasses}>{this.messageOptions.content}</div>
+  //     </div>
+  //   );
+  // }
 
   private _renderPasswordToggle() {
     if (this._originalType !== 'password') return;
@@ -413,17 +413,41 @@ export class CTextField {
       this._renderInputOutsideShadowRoot(this.hiddenEl, this.name, this.value);
     }
 
-    const containerClasses = {
-      'c-input': true,
-      'c-input--disabled': this.disabled,
-      'c-input--shadow': this.shadow,
-      'c-input--textarea': this.rows > 1,
-      'c-input--error': this.messageOptions.type === 'error',
-    };
+    // const containerClasses = {
+    //   'c-input': true,
+    //   'c-input--disabled': this.disabled,
+    //   'c-input--shadow': this.shadow,
+    //   'c-input--textarea': this.rows > 1,
+    //   'c-input--error': this.messageOptions.type === 'error',
+    // };
 
     return (
       <Host>
-        <div class={containerClasses}>
+        <c-input
+          autofocus={this.autofocus}
+          disabled={this.disabled}
+          hide-details={this.hideDetails}
+          hint={this.hint}
+          id={this.hostId}
+          label={this.label}
+          name={this.name}
+          placeholder={this.placeholder}
+          readonly={this.readonly}
+          shadow={this.shadow}
+          type={this.type}
+          valid={this.valid}
+          validate={this.validate}
+          validate-on-blur={this.validateOnBlur}
+          validation={this.validation}
+        >
+          <slot name="pre" slot="pre"></slot>
+          {this._renderInputElement()}
+
+          {this._renderPasswordToggle()}
+
+          <slot name="post" slot="post"></slot>
+        </c-input>
+        {/* <div class={containerClasses}>
           <div class="c-input__control">
             <div class="c-input__slot" onClick={this._onFocus}>
               {this._renderBorders()}
@@ -443,7 +467,7 @@ export class CTextField {
 
             {this._renderMessages()}
           </div>
-        </div>
+        </div> */}
       </Host>
     );
   }

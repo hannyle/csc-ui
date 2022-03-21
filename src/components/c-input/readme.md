@@ -1,4 +1,4 @@
-# c-text-field
+# c-input
 
 
 
@@ -31,7 +31,6 @@
 | `validate`       | `validate`         | Manual validation                                                                                | `boolean` | `false`            |
 | `validateOnBlur` | `validate-on-blur` | Validate the input on blur                                                                       | `boolean` | `false`            |
 | `validation`     | `validation`       | Custom validation message                                                                        | `string`  | `'Required field'` |
-| `value`          | `value`            | Value of the input                                                                               | `string`  | `undefined`        |
 
 
 ## Events
@@ -43,15 +42,15 @@
 
 ## Dependencies
 
-### Depends on
+### Used by
 
-- [c-input](../c-input)
+ - [c-text-field](../c-text-field)
 
 ### Graph
 ```mermaid
 graph TD;
   c-text-field --> c-input
-  style c-text-field fill:#f9f,stroke:#333,stroke-width:4px
+  style c-input fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------
