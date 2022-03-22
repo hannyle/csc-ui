@@ -321,6 +321,10 @@ export namespace Components {
           * Custom validation message
          */
         "validation": string;
+        /**
+          * Value of the input
+         */
+        "value": string | number | { name: string; value: string | number };
     }
     interface CLink {
         /**
@@ -482,9 +486,21 @@ export namespace Components {
     }
     interface CSelect {
         /**
-          * Dense variant
+          * Auto focus the input
          */
-        "dense": boolean;
+        "autofocus": boolean;
+        /**
+          * Disable the input
+         */
+        "disabled": boolean;
+        /**
+          * Hide the hint and error messages
+         */
+        "hideDetails": boolean;
+        /**
+          * Hint text for the input
+         */
+        "hint": string;
         /**
           * Id of the element
          */
@@ -502,10 +518,6 @@ export namespace Components {
          */
         "label": string;
         /**
-          * Label is aligned to the right
-         */
-        "labelRight": boolean;
-        /**
           * Input field name
          */
         "name": string;
@@ -522,13 +534,21 @@ export namespace Components {
          */
         "shadow": boolean;
         /**
-          * Run validation when changed to true
+          * Set the validíty of the input
+         */
+        "valid": boolean;
+        /**
+          * Manual validation
          */
         "validate": boolean;
         /**
-          * Show validation after touching the menu
+          * Validate the input on blur
          */
         "validateOnBlur": boolean;
+        /**
+          * Custom validation message
+         */
+        "validation": string;
         /**
           * Selected item
          */
@@ -1405,6 +1425,10 @@ declare namespace LocalJSX {
           * Custom validation message
          */
         "validation"?: string;
+        /**
+          * Value of the input
+         */
+        "value"?: string | number | { name: string; value: string | number };
     }
     interface CLink {
         /**
@@ -1578,9 +1602,21 @@ declare namespace LocalJSX {
     }
     interface CSelect {
         /**
-          * Dense variant
+          * Auto focus the input
          */
-        "dense"?: boolean;
+        "autofocus"?: boolean;
+        /**
+          * Disable the input
+         */
+        "disabled"?: boolean;
+        /**
+          * Hide the hint and error messages
+         */
+        "hideDetails"?: boolean;
+        /**
+          * Hint text for the input
+         */
+        "hint"?: string;
         /**
           * Id of the element
          */
@@ -1597,10 +1633,6 @@ declare namespace LocalJSX {
           * Element label
          */
         "label"?: string;
-        /**
-          * Label is aligned to the right
-         */
-        "labelRight"?: boolean;
         /**
           * Input field name
          */
@@ -1622,13 +1654,21 @@ declare namespace LocalJSX {
          */
         "shadow"?: boolean;
         /**
-          * Run validation when changed to true
+          * Set the validíty of the input
+         */
+        "valid"?: boolean;
+        /**
+          * Manual validation
          */
         "validate"?: boolean;
         /**
-          * Show validation after touching the menu
+          * Validate the input on blur
          */
         "validateOnBlur"?: boolean;
+        /**
+          * Custom validation message
+         */
+        "validation"?: string;
         /**
           * Selected item
          */

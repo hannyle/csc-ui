@@ -7,6 +7,7 @@ import {
   Event,
   EventEmitter,
   Element,
+  Watch,
 } from '@stencil/core';
 import { mdiCloseCircle } from '@mdi/js';
 
@@ -129,6 +130,11 @@ export class CInput {
   @Prop() validation: string = 'Required field';
 
   /**
+   * Value of the input
+   */
+  @Prop() value: string | number | { name: string; value: string | number };
+
+  /**
    * Emit changes to the parent
    */
   @Event() changeValue: EventEmitter;
@@ -147,7 +153,19 @@ export class CInput {
 
   @Element() hiddenEl!: HTMLCInputElement;
 
-  //  private _inputElement?: HTMLInputElement | HTMLTextAreaElement;
+  @Watch('valid')
+  onValidChange(valid: boolean) {
+    if (this.validateOnBlur && !this._hasBlurred) return;
+
+    this._handleValidation(valid);
+  }
+
+  @Watch('value')
+  onValueChange(value) {
+    if (!value) this._onReset();
+  }
+
+  private _hasBlurred = false;
 
   private _labelRef: HTMLLabelElement;
 
@@ -167,11 +185,23 @@ export class CInput {
     this._handleValidation(this.valid, 0);
     this._calculateElementWidths();
     this._observer.observe(this._labelRef);
-    this.inputField.addEventListener('blur', () => this._onBlur());
+
+    this.inputField?.addEventListener('focus', () => this._onFocus());
+    this.inputField?.addEventListener('blur', () => this._onBlur());
+    this.inputField?.addEventListener(
+      'keypress',
+      this._preventNonNumericalInput,
+    );
+
+    // hide the placeholder text initially if there is a label
+    if (this.inputField) {
+      this.inputField.placeholder =
+        !!this.label || !this.placeholder ? '' : this.placeholder;
+    }
   }
 
   get isActive() {
-    return !!this.inputField.value || this.isFocused;
+    return !!this.value || this.isFocused;
   }
 
   private _observer = new IntersectionObserver(
@@ -194,11 +224,14 @@ export class CInput {
         )
       : 0;
 
-    const hasSlotContent = !!this.hiddenEl.querySelector('[slot="pre"]');
+    const nodes = (
+      this.hiddenEl.children.namedItem('pre') as HTMLSlotElement
+    )?.assignedNodes();
+
+    const hasSlotContent = !!nodes?.length;
 
     this.preSlotWidth = hasSlotContent
-      ? (this.hiddenEl.querySelector('[slot="pre"]') as HTMLSlotElement)
-          .offsetWidth + 8
+      ? (nodes[0] as HTMLElement).offsetWidth + 8
       : 0;
   }
 
@@ -225,16 +258,49 @@ export class CInput {
   }
 
   private _onBlur = () => {
-    this.isFocused = false;
+    // delay the blur event to prevent the label from 'flashing' on c-select selection
+    setTimeout(() => {
+      this.isFocused = false;
+      this._hasBlurred = true;
 
-    if (this.validateOnBlur) {
-      this._handleValidation(this.valid);
-    }
+      if (this.validateOnBlur) {
+        this._handleValidation(this.valid);
+      }
+
+      // show the label if there's no label or value
+      this._onReset();
+    }, 100);
   };
 
   private _onFocus = () => {
     this.isFocused = true;
+
+    this.inputField?.focus();
+
+    // show the label if there's no value
+    if (this.inputField) {
+      this.inputField.placeholder =
+        !!this.value || !this.placeholder ? '' : this.placeholder;
+    }
   };
+
+  private _onReset() {
+    if (this.inputField) {
+      this.inputField.placeholder =
+        !this.label && !this.value && !!this.placeholder
+          ? this.placeholder
+          : '';
+    }
+  }
+
+  /**
+   * Prevent non numeric values in the numeric fields
+   */
+  private _preventNonNumericalInput(event: KeyboardEvent) {
+    if (this.type !== 'number') return;
+
+    if (!event.key.match(/^[0-9]+$/)) event.preventDefault();
+  }
 
   private _renderBorders() {
     if (this.shadow) return;
@@ -271,10 +337,21 @@ export class CInput {
   }
 
   get inputField() {
-    return Array.from(this.hiddenEl.childNodes).find(
-      (item: HTMLInputElement | HTMLTextAreaElement) =>
-        ['INPUT', 'TEXTAREA'].includes(item.tagName),
+    const nodes = Array.from(this.hiddenEl.childNodes) as HTMLElement[];
+    const input = nodes.find((item: HTMLInputElement | HTMLTextAreaElement) =>
+      ['INPUT', 'TEXTAREA'].includes(item.tagName),
     ) as HTMLInputElement | HTMLTextAreaElement;
+
+    if (input) return input;
+
+    const nestedInput = nodes
+      .filter(
+        (node: HTMLElement) =>
+          node.tagName === 'DIV' && node.querySelector('input'),
+      )?.[0]
+      .querySelector('input');
+
+    return nestedInput;
   }
 
   private _renderMessages() {
@@ -310,7 +387,7 @@ export class CInput {
       <Host>
         <div class={containerClasses}>
           <div class="c-input__control">
-            <div class="c-input__slot" onClick={this._onFocus}>
+            <div class="c-input__slot">
               {this._renderBorders()}
 
               <div class="c-input__field">

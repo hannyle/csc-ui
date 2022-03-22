@@ -31,10 +31,14 @@
           formControlName="username"
           label="Username"
           hint="Enter your username"
+          placeholder="Your superhero name"
           [valid]="isValid('username')"
           [validation]="errors('username')"
+          autofocus
           cControl
-        ></c-text-field>
+        >
+          <i class="mdi mdi-star" slot="pre"></i>
+        </c-text-field>
 
         <c-text-field
           formControlName="age"
