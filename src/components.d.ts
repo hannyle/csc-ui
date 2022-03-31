@@ -74,10 +74,7 @@ export namespace Components {
         /**
           * Items to be selected
          */
-        "items": {
-    name: string;
-    value: string;
-  }[];
+        "items": CAutocompleteItem[];
         /**
           * Items per page before adding scroll
          */
@@ -103,6 +100,10 @@ export namespace Components {
          */
         "required": boolean;
         /**
+          * Return only the item value rather than the whole item object
+         */
+        "returnValue": false;
+        /**
           * Shadow variant
          */
         "shadow": boolean;
@@ -125,7 +126,7 @@ export namespace Components {
         /**
           * Selected item
          */
-        "value": CAutocompleteItem;
+        "value": string | number | CAutocompleteItem;
     }
     interface CButton {
         /**
@@ -1218,10 +1219,7 @@ declare namespace LocalJSX {
         /**
           * Items to be selected
          */
-        "items"?: {
-    name: string;
-    value: string;
-  }[];
+        "items"?: CAutocompleteItem[];
         /**
           * Items per page before adding scroll
          */
@@ -1255,6 +1253,10 @@ declare namespace LocalJSX {
          */
         "required"?: boolean;
         /**
+          * Return only the item value rather than the whole item object
+         */
+        "returnValue"?: false;
+        /**
           * Shadow variant
          */
         "shadow"?: boolean;
@@ -1277,7 +1279,7 @@ declare namespace LocalJSX {
         /**
           * Selected item
          */
-        "value"?: CAutocompleteItem;
+        "value"?: string | number | CAutocompleteItem;
     }
     interface CButton {
         /**
