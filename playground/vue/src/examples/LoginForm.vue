@@ -53,8 +53,6 @@ const onSubmit = () => {
   <c-card>
     <c-card-title>Using csc-ui with Vue 3</c-card-title>
 
-    <pre>{{ form.password }}</pre>
-
     <c-card-content>
       <c-text-field
         v-model="form.username.$value"

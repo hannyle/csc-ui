@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import CSCUiComponents from './components/CSCUiComponents.vue';
 import LoginForm from './examples/LoginForm.vue';
 </script>
 
