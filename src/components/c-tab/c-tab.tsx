@@ -97,18 +97,6 @@ export class CTab {
     };
 
     return (
-      // <Host {...a11y}>
-      //   <li class={classes} role="presentation">
-      //     <button
-      //       id={this.hostId}
-      //       tabindex="-1"
-      //       ref={(el) => (this._container = el as HTMLButtonElement)}
-      //       onClick={this._onClick}
-      //     >
-      //       <slot></slot>
-      //     </button>
-      //   </li>
-      // </Host>
       <Host {...a11y} id={this.hostId} class={classes} onClick={this._onClick}>
         <slot></slot>
       </Host>
