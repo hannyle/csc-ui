@@ -27,12 +27,12 @@ export class CAccordion {
   /**
    * Allow expanding multiple items
    */
-  @Prop() multiple: boolean = false;
+  @Prop() multiple = false;
 
   /**
    * Show an outline around expanded items
    */
-  @Prop() outlined: boolean = false;
+  @Prop() outlined = false;
 
   /**
    * Emit changes to the parent
@@ -70,6 +70,7 @@ export class CAccordion {
 
   private _handleItemExpansion() {
     for (const item of this.items) {
+      item.collapsable = this.multiple;
       item.outlined = this.outlined;
       item.expanded = Array.isArray(this.value)
         ? this.value.includes(item.value)
