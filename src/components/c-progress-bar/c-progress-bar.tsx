@@ -69,9 +69,7 @@ export class CProgressBar {
     return (
       <Host {...a11y}>
         <label class={classes} style={style}>
-          <progress tabindex="0" {...params}>
-            {!this.indeterminate && `${value}%`}
-          </progress>
+          <progress {...params}>{!this.indeterminate && `${value}%`}</progress>
         </label>
 
         {!this.indeterminate && (
