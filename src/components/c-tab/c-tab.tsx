@@ -88,8 +88,9 @@ export class CTab {
     };
 
     const a11y = {
-      'aria-disabled': this.disabled ? 'true' : 'false',
-      'aria-selected': this.active ? 'true' : 'false',
+      'aria-disabled': this.disabled.toString(),
+      'aria-hidden': this.disabled.toString(),
+      'aria-selected': this.active.toString(),
       'aria-setsize': this.setsize,
       'aria-posinset': this.position,
       role: 'tab',

@@ -112,13 +112,19 @@ export class CTabs {
   }
 
   private _handleActiveTab(isUserAction = false) {
-    this.tabs.forEach((tab: HTMLCTabElement, index) => {
+    let position = 0;
+
+    this.tabs.forEach((tab: HTMLCTabElement) => {
+      if (!tab.disabled) {
+        position += 1;
+      }
+
       const isActive = tab.value === this.value;
 
       tab.active = isActive;
 
-      if (!isUserAction) {
-        tab.position = index + 1;
+      if (!isUserAction && !tab.disabled) {
+        tab.position = position;
         tab.setsize = this.availableValues.length;
       }
 
