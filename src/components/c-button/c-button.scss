@@ -1,5 +1,11 @@
 :host {
+  --c-outline-color: var(--csc-primary);
+
   display: inline-flex;
+}
+
+:host(.inverted) {
+  --c-outline-color: #fff;
 }
 
 ::slotted([slot='icon']) {
@@ -31,7 +37,7 @@ a {
   margin: 0;
 
   &:focus {
-    outline: 2px var(--csc-primary) solid;
+    outline: 2px var(--c-outline-color) solid;
     outline-offset: 2px;
   }
 
@@ -42,7 +48,7 @@ a {
   }
 
   &:focus-visible {
-    outline: 2px var(--csc-primary) solid;
+    outline: 2px var(--c-outline-color) solid;
     outline-offset: 2px;
   }
 

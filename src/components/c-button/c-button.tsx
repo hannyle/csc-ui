@@ -215,6 +215,7 @@ export class CButton {
 
     const hostClasses = {
       'c-button--active': this.grouped && !this.outlined,
+      inverted: this.inverted,
     };
 
     const descriptionSlotClasses = {
