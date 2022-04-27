@@ -17,44 +17,50 @@ export class CSidenavigation {
    * Mobile version menu visibility
    */
   @Prop({ mutable: true }) menuVisible: boolean = false; // eslint-disable-line
+
   @Element() host: HTMLCSidenavigationElement;
 
   @Listen('itemChange')
   handleChange(event: Event) {
-    const slotted = this.host.childNodes;
+    const slotted = this.host.querySelectorAll('c-sidenavigationitem');
+
     slotted.forEach((item) => {
-      (item as HTMLCSidenavigationitemElement).active = false;
+      item.active = false;
     });
+
     (event.target as HTMLCSidenavigationitemElement).active = true;
   }
-  componentDidLoad() {
-    const _this = this;
 
-    window.addEventListener('click', function (event: any) {
+  componentDidLoad() {
+    window.addEventListener('click', (event: MouseEvent) => {
       if (
-        event.target.matches('c-navigationbutton') ||
-        event.target.matches('c-sidenavigation')
+        (event.target as HTMLElement).matches('c-navigationbutton') ||
+        (event.target as HTMLElement).matches('c-sidenavigation')
       ) {
-        _this.menuVisible = !_this.menuVisible;
+        this.menuVisible = !this.menuVisible;
       }
     });
   }
+
   render() {
-    const classes = ['c-sidenavigation'];
-    classes.push(this.menuVisible ? 'showMenu' : 'hideMenu');
-    if (this.mobile === true) {
-      classes.push('mobile');
-    }
+    const classes = {
+      'c-sidenavigation': true,
+      'hide-menu': !this.menuVisible,
+      mobile: !!this.mobile,
+      desktop: !this.mobile,
+    };
+
     return (
-      <Host class={this.mobile !== true ? 'desktop' : ''}>
-        <div class={classes.join(' ')}>
-          <div>
-            <slot></slot>
-            <div class="vertical-spacer"></div>
-            <slot name="bottom"></slot>
-          </div>
-        </div>
-        {this.menuVisible && this.mobile === true && (
+      <Host class={{ desktop: !this.mobile }}>
+        <nav class={classes} role="menubar">
+          <slot></slot>
+
+          <div class="vertical-spacer"></div>
+
+          <slot name="bottom"></slot>
+        </nav>
+
+        {this.menuVisible && this.mobile && (
           <div class="c-overlay c-fadeIn"></div>
         )}
       </Host>
