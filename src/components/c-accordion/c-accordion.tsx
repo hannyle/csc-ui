@@ -25,6 +25,11 @@ export class CAccordion {
   @Prop({ mutable: true }) value!: number | string | (number | string)[];
 
   /**
+   * Disallow collapsing all the items
+   */
+  @Prop() mandatory = false;
+
+  /**
    * Allow expanding multiple items
    */
   @Prop() multiple = false;
@@ -69,12 +74,21 @@ export class CAccordion {
   }
 
   private _handleItemExpansion() {
-    for (const item of this.items) {
-      item.collapsable = this.multiple;
-      item.outlined = this.outlined;
-      item.expanded = Array.isArray(this.value)
+    const isExpanded = (item) =>
+      Array.isArray(this.value)
         ? this.value.includes(item.value)
         : item.value === this.value;
+
+    const isLastExpandedItem = (item) =>
+      Array.isArray(this.value)
+        ? isExpanded(item) && this.value.length === 1
+        : isExpanded(item);
+
+    for (const item of this.items) {
+      item.collapsable =
+        !this.mandatory || (this.mandatory && !isLastExpandedItem(item));
+      item.outlined = this.outlined;
+      item.expanded = isExpanded(item);
     }
   }
 
