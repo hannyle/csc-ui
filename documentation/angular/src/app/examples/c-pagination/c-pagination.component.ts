@@ -140,9 +140,7 @@ example2() {
   };
 }`,
   };
-  countries = Object.keys(countries)
-    .map((key) => countries[key].english)
-    .sort();
+  countries = Object.values(countries).sort();
   options: CPaginationOptions = {
     itemCount: this.countries.length,
     itemsPerPage: 25,

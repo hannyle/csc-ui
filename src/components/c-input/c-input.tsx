@@ -18,7 +18,7 @@ import { CAutocompleteItem, CSelectItem } from '../../types';
 @Component({
   tag: 'c-input',
   styleUrl: 'c-input.scss',
-  shadow: true,
+  shadow: false,
 })
 export class CInput {
   /**
@@ -50,6 +50,11 @@ export class CInput {
    * Id of the input
    */
   @Prop({ attribute: 'id' }) hostId: string;
+
+  /**
+   * Id of the input element
+   */
+  @Prop() inputId: string;
 
   /**
    * Label of the input
@@ -96,7 +101,7 @@ export class CInput {
   /**
    * Rows on the input
    */
-  @Prop() rows: number = 1;
+  @Prop() rows = 1;
 
   /**
    * Shadow variant of the input
@@ -116,22 +121,22 @@ export class CInput {
   /**
    * Set the validíty of the input
    */
-  @Prop() valid: boolean = true;
+  @Prop() valid = true;
 
   /**
    * Manual validation
    */
-  @Prop() validate: boolean = false;
+  @Prop() validate = false;
 
   /**
    * Validate the input on blur
    */
-  @Prop() validateOnBlur: boolean = false;
+  @Prop() validateOnBlur = false;
 
   /**
    * Custom validation message
    */
-  @Prop() validation: string = 'Required field';
+  @Prop() validation = 'Required field';
 
   /**
    * Value of the input
@@ -217,7 +222,10 @@ export class CInput {
 
     this._handleValidation(this.valid, 0);
     this._calculateElementWidths();
-    this._observer.observe(this._labelRef);
+
+    if (this.label) {
+      this._observer.observe(this._labelRef);
+    }
 
     this.inputField?.addEventListener('focus', () => this._onFocus(false));
     this.inputField?.addEventListener('blur', () => this._onBlur());
@@ -230,6 +238,8 @@ export class CInput {
     if (this.inputField) {
       this.inputField.placeholder =
         !!this.label || !this.placeholder ? '' : this.placeholder;
+
+      this.inputField.title = this.label ?? this.placeholder;
     }
   }
 
@@ -240,6 +250,8 @@ export class CInput {
       'keypress',
       this._preventNonNumericalInput,
     );
+
+    this._observer.disconnect();
   }
 
   get isActive() {
@@ -259,22 +271,8 @@ export class CInput {
   );
 
   private _calculateElementWidths() {
-    this.labelWidth = !!this.label
-      ? Math.min(
-          this._labelRef.scrollWidth * 0.75 + 6,
-          (this.hiddenEl as HTMLElement).offsetWidth - 24,
-        )
-      : 0;
-
-    const nodes = (
-      this.hiddenEl.children.namedItem('pre') as HTMLSlotElement
-    )?.assignedNodes();
-
-    const hasSlotContent = !!nodes?.length;
-
-    this.preSlotWidth = hasSlotContent
-      ? (nodes[0] as HTMLElement).offsetWidth + 8
-      : 0;
+    this.labelWidth = !!this.label ? this._labelRef.scrollWidth * 0.75 + 6 : 0;
+    this.preSlotWidth = this.inputField.offsetLeft;
   }
 
   private _handleValidation(valid: boolean, timeout = 200) {
@@ -320,6 +318,7 @@ export class CInput {
     this.isFocused = true;
 
     this.inputField?.focus();
+
     if (click) this.inputField?.click();
 
     // show the label if there's no value
@@ -350,11 +349,16 @@ export class CInput {
   private _renderBorders() {
     if (this.shadow) return;
 
+    const classes = {
+      active: this.isActive,
+    };
+
     return (
       <fieldset aria-hidden="true">
         <legend
+          class={classes}
           style={{
-            width: (this.isActive ? this.labelWidth : 0) + 'px',
+            '--c-legend-width': this.labelWidth + 'px',
           }}
         >
           <span class="notranslate"></span>
@@ -364,15 +368,15 @@ export class CInput {
   }
 
   private _renderLabel() {
+    if (!this.label) return;
+
     const classes = {
       active: this.isActive,
     };
 
     return (
       <label
-        style={{
-          '--c-label-position': (!this.isActive ? this.preSlotWidth : 0) + 'px',
-        }}
+        htmlFor={this.inputId}
         ref={(el) => (this._labelRef = el as HTMLLabelElement)}
         class={classes}
       >
@@ -382,21 +386,9 @@ export class CInput {
   }
 
   get inputField() {
-    const nodes = Array.from(this.hiddenEl.childNodes) as HTMLElement[];
-    const input = nodes.find((item: HTMLInputElement | HTMLTextAreaElement) =>
-      ['INPUT', 'TEXTAREA'].includes(item.tagName),
-    ) as HTMLInputElement | HTMLTextAreaElement;
-
-    if (input) return input;
-
-    const nestedInput = nodes
-      .filter(
-        (node: HTMLElement) =>
-          node.tagName === 'DIV' && node.querySelector('input'),
-      )?.[0]
-      .querySelector('input');
-
-    return nestedInput;
+    return this.hiddenEl?.querySelector('.c-input__input') as
+      | HTMLInputElement
+      | HTMLTextAreaElement;
   }
 
   private _renderMessages() {
@@ -436,7 +428,12 @@ export class CInput {
             <div class="c-input__slot" onClick={() => this._onFocus()}>
               {this._renderBorders()}
 
-              <div class="c-input__field">
+              <div
+                class="c-input__field"
+                style={{
+                  '--c-label-position': this.preSlotWidth + 'px',
+                }}
+              >
                 <slot name="pre"></slot>
 
                 {this._renderLabel()}
