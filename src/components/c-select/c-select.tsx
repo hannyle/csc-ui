@@ -131,8 +131,6 @@ export class CSelect {
 
   private _itemRefs: { value: string | number; ref: HTMLElement }[] = [];
 
-  private _direction: ScrollLogicalPosition = 'end';
-
   private _id: string;
 
   private _inputElement: HTMLInputElement;
@@ -152,7 +150,7 @@ export class CSelect {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) {
           entry.target.scrollIntoView({
-            block: this._direction,
+            block: 'nearest',
             inline: 'nearest',
           });
           observer.unobserve(entry.target);
@@ -254,14 +252,12 @@ export class CSelect {
 
     if (ev.key === 'Home' && this.menuVisible) {
       ev.preventDefault();
-      this._direction = 'start';
       this.currentIndex = 0;
       this._selectItem();
     }
 
     if (ev.key === 'End' && this.menuVisible) {
       ev.preventDefault();
-      this._direction = 'end';
       this.currentIndex = this.items.length - 1;
       this._selectItem();
     }
@@ -271,7 +267,6 @@ export class CSelect {
     }
 
     if (ev.key === 'ArrowDown') {
-      this._direction = 'end';
       ev.preventDefault();
 
       this.menuVisible = true;
@@ -286,7 +281,6 @@ export class CSelect {
     }
 
     if (ev.key === 'ArrowUp') {
-      this._direction = 'start';
       ev.preventDefault();
 
       this.menuVisible = true;
@@ -339,8 +333,6 @@ export class CSelect {
       this.currentIndex = this.items.findIndex(
         (item) => item.value === this.value,
       );
-
-      this._scrollToElement();
     }
   }
 

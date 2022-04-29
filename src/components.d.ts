@@ -295,6 +295,10 @@ export namespace Components {
          */
         "ghost": boolean;
         /**
+          * Inverted color for dark backgrounds
+         */
+        "inverted": boolean;
+        /**
           * Outlined variant of the button
          */
         "outlined": boolean;
@@ -1645,6 +1649,10 @@ declare namespace LocalJSX {
           * Ghost variant of the button
          */
         "ghost"?: boolean;
+        /**
+          * Inverted color for dark backgrounds
+         */
+        "inverted"?: boolean;
         /**
           * Outlined variant of the button
          */

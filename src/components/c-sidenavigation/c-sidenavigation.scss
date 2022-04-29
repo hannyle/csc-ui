@@ -40,27 +40,45 @@
   width: 100%;
   z-index: 8;
 
-  &.desktop {
-    background: var(--csc-primary);
+  &__content {
+    $content: &;
+
     display: flex;
+    flex-direction: column;
     flex-basis: 260px;
     flex-grow: 1;
     flex-shrink: 2;
     width: 320px;
+
+    &--mobile {
+      height: 100vh;
+      max-width: 260px;
+      overflow-y: scroll;
+      position: fixed;
+      right: 0;
+      top: 0;
+      transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.5, 1);
+      transform: translateX(0%);
+      z-index: 999;
+
+      &#{$content} {
+        &--hidden {
+          transform: translateX(100%);
+        }
+      }
+
+      > nav {
+        min-height: auto;
+        padding-top: 0;
+      }
+    }
   }
 
-  &.mobile {
-    height: calc(100% - 60px);
-    max-width: 260px;
-    overflow-y: scroll;
-    position: fixed;
-    right: 0;
-    transform: translateX(0%);
-    z-index: 999;
-
-    &.hide-menu {
-      transform: translateX(100%);
-    }
+  &__burger {
+    background-color: var(--csc-primary);
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px 16px;
   }
 
   ul {
@@ -113,4 +131,16 @@
 c-sidenavigationitem,
 c-subnavigationitem {
   display: contents;
+}
+
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }

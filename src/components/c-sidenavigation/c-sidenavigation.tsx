@@ -1,3 +1,4 @@
+import { mdiArrowRight } from '@mdi/js';
 import { Component, Host, h, Prop, Listen, Element } from '@stencil/core';
 /**
  * @group Navigation
@@ -33,13 +34,14 @@ export class CSidenavigation {
 
   componentDidLoad() {
     window.addEventListener('click', (event: MouseEvent) => {
-      if (
-        (event.target as HTMLElement).matches('c-navigationbutton') ||
-        (event.target as HTMLElement).matches('c-sidenavigation')
-      ) {
+      if ((event.target as HTMLElement).matches('c-navigationbutton')) {
         this.menuVisible = !this.menuVisible;
       }
     });
+  }
+
+  private _closeMenu() {
+    this.menuVisible = false;
   }
 
   render() {
@@ -50,18 +52,39 @@ export class CSidenavigation {
       desktop: !this.mobile,
     };
 
+    const containerClasses = {
+      'c-sidenavigation__content': true,
+      'c-sidenavigation__content--hidden': !this.menuVisible,
+      'c-sidenavigation__content--mobile': !!this.mobile,
+      'c-sidenavigation__content--desktop': !this.mobile,
+    };
+
     return (
       <Host class={{ desktop: !this.mobile }}>
-        <nav class={classes} role="menubar">
-          <slot></slot>
+        <div class={containerClasses}>
+          {this.mobile && (
+            <div class="c-sidenavigation__burger">
+              <c-icon-button inverted text onClick={() => this._closeMenu()}>
+                <span class="visuallyhidden">Close sidemenu</span>
+                <svg width="24" height="24" viewBox="0 0 24 24">
+                  <path d={mdiArrowRight} />
+                </svg>
+              </c-icon-button>
+            </div>
+          )}
 
-          <div class="vertical-spacer"></div>
-
-          <slot name="bottom"></slot>
-        </nav>
+          <nav class={classes} role="menubar">
+            <slot></slot>
+            <div class="vertical-spacer"></div>
+            <slot name="bottom"></slot>
+          </nav>
+        </div>
 
         {this.menuVisible && this.mobile && (
-          <div class="c-overlay c-fadeIn"></div>
+          <div
+            class="c-overlay c-fadeIn"
+            onClick={() => this._closeMenu()}
+          ></div>
         )}
       </Host>
     );

@@ -110,7 +110,6 @@ export class CSidenavigationitem {
     };
 
     const a11y = {
-      'aria-controls': 'subnav',
       role: 'menuitem',
       tabindex: '0',
     };
@@ -141,7 +140,6 @@ export class CSidenavigationitem {
 
         {this._slotHasContent && (
           <nav
-            id="subnav"
             role="menubar"
             aria-label={this._ariaLabel}
             aria-expanded={this.active.toString()}
