@@ -32,7 +32,8 @@
   flex-flow: column nowrap;
   flex: 1;
   gap: 4px;
-  height: 100%;
+  height: fit-content;
+  min-height: 100%;
   padding: 24px 0px 24px 24px;
   position: relative;
   transition: transform 0.3s ease;
