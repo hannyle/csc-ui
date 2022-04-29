@@ -165,23 +165,30 @@ export class CInput {
     content: '',
   };
 
+  @State() statusText = '';
+
   @Element() hiddenEl!: HTMLCInputElement;
 
   @Watch('valid')
   onValidChange(valid: boolean) {
     if (this.validateOnBlur && !this._hasBlurred) return;
 
+    this._setAriaDescriptionId();
+
     this._handleValidation(valid);
   }
 
   @Watch('validation')
   onValidationMessageChange(message: string) {
+    this._updateStatusText();
+
     if (this.valid || !message) return;
 
     this.messageOptions = {
       ...this.messageOptions,
       content: (
         <span>
+          <span class="visuallyhidden">Error: </span>
           {this._validationIcon} {message}
         </span>
       ),
@@ -194,7 +201,12 @@ export class CInput {
 
     this.messageOptions = {
       ...this.messageOptions,
-      content: <span>{message}</span>,
+      content: (
+        <span>
+          <span class="visuallyhidden">Hint: </span>
+          {message}
+        </span>
+      ),
     };
   }
 
@@ -213,6 +225,8 @@ export class CInput {
     </svg>
   );
 
+  private _debounce = null;
+
   componentDidLoad() {
     if (this.autofocus) {
       setTimeout(() => {
@@ -222,6 +236,7 @@ export class CInput {
 
     this._handleValidation(this.valid, 0);
     this._calculateElementWidths();
+    this._setAriaDescriptionId();
 
     if (this.label) {
       this._observer.observe(this._labelRef);
@@ -258,6 +273,27 @@ export class CInput {
     return !!this.value || this.isFocused;
   }
 
+  private _setAriaDescriptionId() {
+    this.inputField.removeAttribute('aria-describedby');
+
+    let type = null;
+
+    if (this.valid && !this.value && this.hint) {
+      type = 'hint';
+    }
+
+    if (!this.valid) {
+      type = 'error';
+    }
+
+    if (type) {
+      this.inputField.setAttribute(
+        'aria-describedby',
+        `${type}-${this.inputId}`,
+      );
+    }
+  }
+
   private _observer = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
@@ -287,10 +323,15 @@ export class CInput {
         type: valid ? 'hint' : 'error',
         show: true,
         content: valid ? (
-          <span>{this.hint}</span>
+          <span id={`hint-${this.inputId}`}>
+            <span class="visuallyhidden">Hint: </span>
+            {this.hint}
+          </span>
         ) : (
-          <span>
-            {this._validationIcon} {this.validation}
+          <span id={`error-${this.inputId}`}>
+            {this._validationIcon}
+            <span class="visuallyhidden">Error: </span>
+            {this.validation}
           </span>
         ),
       };
@@ -411,6 +452,19 @@ export class CInput {
     );
   }
 
+  private _updateStatusText() {
+    if (this._debounce !== null) {
+      clearTimeout(this._debounce);
+      this._debounce = null;
+    }
+
+    this._debounce = window.setTimeout(() => {
+      this.statusText = this.valid ? '' : `Error: ${this.validation}`;
+
+      this._debounce = null;
+    }, 1400);
+  }
+
   render() {
     const containerClasses = {
       'c-input': true,
@@ -423,6 +477,15 @@ export class CInput {
 
     return (
       <Host disabled={this.disabled}>
+        <div
+          id={'announce-' + this.inputId}
+          class="visuallyhidden"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          {this.statusText}
+        </div>
+
         <div class={containerClasses}>
           <div class="c-input__control">
             <div class="c-input__slot" onClick={() => this._onFocus()}>

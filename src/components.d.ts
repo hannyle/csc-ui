@@ -11,6 +11,10 @@ import { CLoginCardBlendMode } from "./components/c-login-card/c-login-card";
 export namespace Components {
     interface CAccordion {
         /**
+          * Disallow collapsing all the items
+         */
+        "mandatory": boolean;
+        /**
           * Allow expanding multiple items
          */
         "multiple": boolean;
@@ -24,6 +28,11 @@ export namespace Components {
         "value": number | string | (number | string)[];
     }
     interface CAccordionItem {
+        /**
+          * Marks the item as collapsable
+          * @private
+         */
+        "collapsable": boolean;
         /**
           * Expansion status of the item
          */
@@ -161,6 +170,10 @@ export namespace Components {
          */
         "icon": 'plus' | 'minus' | 'account' | 'edit';
         /**
+          * Inverted button style for dark backgrounds
+         */
+        "inverted": boolean;
+        /**
           * Display loader on the button
          */
         "loading": boolean;
@@ -189,7 +202,7 @@ export namespace Components {
          */
         "type": 'button' | 'submit';
         /**
-          * Value for the button - for use in the c-content-switcher
+          * Value for the button - for use in the c-tab-buttons
          */
         "value"?: number | string;
     }
@@ -319,6 +332,10 @@ export namespace Components {
           * Id of the input
          */
         "hostId": string;
+        /**
+          * Id of the input element
+         */
+        "inputId": string;
         /**
           * Label of the input
          */
@@ -484,7 +501,7 @@ export namespace Components {
         /**
           * Menu items
          */
-        "items": { name: string; action: Function }[];
+        "items": { name: string; action: () => void }[];
         /**
           * No hover background
          */
@@ -742,6 +759,10 @@ export namespace Components {
          */
         "active": boolean;
         /**
+          * Element is visible and focusable
+         */
+        "focusable": boolean;
+        /**
           * Link url
          */
         "href": string;
@@ -774,6 +795,16 @@ export namespace Components {
          */
         "label": string;
         /**
+          * Position in the set
+          * @private
+         */
+        "position": number;
+        /**
+          * Size of the set
+          * @private
+         */
+        "setsize": number;
+        /**
           * Value of the button
          */
         "value": number | string;
@@ -805,6 +836,16 @@ export namespace Components {
           * Id of the tab
          */
         "hostId": string;
+        /**
+          * Position in the set
+          * @private
+         */
+        "position": number;
+        /**
+          * Size of the set
+          * @private
+         */
+        "setsize": number;
         /**
           * Value for the tab - for use in c-tabs
          */
@@ -851,6 +892,10 @@ export namespace Components {
           * Stretch to fill the container
          */
         "fit": boolean;
+        /**
+          * Remove the hover effect
+         */
+        "flat": boolean;
     }
     interface CTextField {
         /**
@@ -861,10 +906,6 @@ export namespace Components {
           * Disable the input
          */
         "disabled": boolean;
-        /**
-          * Render a hidden input outside the shadow dom
-         */
-        "form": boolean;
         /**
           * Hide the hint and error messages
          */
@@ -1295,6 +1336,10 @@ declare global {
 declare namespace LocalJSX {
     interface CAccordion {
         /**
+          * Disallow collapsing all the items
+         */
+        "mandatory"?: boolean;
+        /**
           * Allow expanding multiple items
          */
         "multiple"?: boolean;
@@ -1312,6 +1357,11 @@ declare namespace LocalJSX {
         "value": number | string | (number | string)[];
     }
     interface CAccordionItem {
+        /**
+          * Marks the item as collapsable
+          * @private
+         */
+        "collapsable"?: boolean;
         /**
           * Expansion status of the item
          */
@@ -1462,6 +1512,10 @@ declare namespace LocalJSX {
          */
         "icon"?: 'plus' | 'minus' | 'account' | 'edit';
         /**
+          * Inverted button style for dark backgrounds
+         */
+        "inverted"?: boolean;
+        /**
           * Display loader on the button
          */
         "loading"?: boolean;
@@ -1495,7 +1549,7 @@ declare namespace LocalJSX {
          */
         "type"?: 'button' | 'submit';
         /**
-          * Value for the button - for use in the c-content-switcher
+          * Value for the button - for use in the c-tab-buttons
          */
         "value"?: number | string;
     }
@@ -1629,6 +1683,10 @@ declare namespace LocalJSX {
           * Id of the input
          */
         "hostId"?: string;
+        /**
+          * Id of the input element
+         */
+        "inputId"?: string;
         /**
           * Label of the input
          */
@@ -1798,7 +1856,7 @@ declare namespace LocalJSX {
         /**
           * Menu items
          */
-        "items"?: { name: string; action: Function }[];
+        "items"?: { name: string; action: () => void }[];
         /**
           * No hover background
          */
@@ -2077,6 +2135,10 @@ declare namespace LocalJSX {
          */
         "active"?: boolean;
         /**
+          * Element is visible and focusable
+         */
+        "focusable"?: boolean;
+        /**
           * Link url
          */
         "href"?: string;
@@ -2086,6 +2148,10 @@ declare namespace LocalJSX {
         "loading"?: boolean;
     }
     interface CSwiper {
+        /**
+          * Emit value change to the parent
+         */
+        "onChangeValue"?: (event: CustomEvent<number | string>) => void;
         /**
           * Value of the swiper
          */
@@ -2110,18 +2176,19 @@ declare namespace LocalJSX {
         "label"?: string;
         /**
           * Emit value change to the parent
+          * @private
          */
         "onChangeValue"?: (event: CustomEvent<number | string>) => void;
         /**
-          * Emit tab focus to the parent
+          * Position in the set
           * @private
          */
-        "onFocusTab"?: (event: CustomEvent<any>) => void;
+        "position"?: number;
         /**
-          * Emit tab change to parent
+          * Size of the set
           * @private
          */
-        "onTabChange"?: (event: CustomEvent<any>) => void;
+        "setsize"?: number;
         /**
           * Value of the button
          */
@@ -2163,6 +2230,16 @@ declare namespace LocalJSX {
           * @private
          */
         "onTabChange"?: (event: CustomEvent<any>) => void;
+        /**
+          * Position in the set
+          * @private
+         */
+        "position"?: number;
+        /**
+          * Size of the set
+          * @private
+         */
+        "setsize"?: number;
         /**
           * Value for the tab - for use in c-tabs
          */
@@ -2217,6 +2294,10 @@ declare namespace LocalJSX {
           * Stretch to fill the container
          */
         "fit"?: boolean;
+        /**
+          * Remove the hover effect
+         */
+        "flat"?: boolean;
     }
     interface CTextField {
         /**
@@ -2227,10 +2308,6 @@ declare namespace LocalJSX {
           * Disable the input
          */
         "disabled"?: boolean;
-        /**
-          * Render a hidden input outside the shadow dom
-         */
-        "form"?: boolean;
         /**
           * Hide the hint and error messages
          */
