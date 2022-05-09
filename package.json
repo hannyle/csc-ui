@@ -40,7 +40,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@mdi/js": "^4.9.95",
+    "@mdi/js": "^6.6.96",
     "@types/node": "^17.0.25",
     "stencil-click-outside": "^1.8.0",
     "swiper": "^8.1.3",
