@@ -162,7 +162,18 @@ export class CDataTable {
   }
 
   componentWillLoad() {
+    this.sortBy = this.sortBy ?? this.headers[0].key;
     this._getData();
+
+    // Hide the initially hidden headers
+    this.hiddenHeaders = [
+      ...new Set([
+        ...this.hiddenHeaders,
+        ...this.headers
+          .filter((header) => !!header.hidden)
+          .map((header) => header.key),
+      ]),
+    ];
   }
 
   componentDidLoad() {
@@ -240,6 +251,7 @@ export class CDataTable {
       (header) => !Object.keys(this.data?.[0] || {}).includes(header.key),
     );
 
+    // create cells for headers not present in the data
     const extraCells = this._extraHeaders.reduce(
       (cells, header) => ({
         ...cells,
@@ -261,7 +273,8 @@ export class CDataTable {
         };
 
         Object.keys(cell)
-          .filter((key) => !this.hiddenHeaders.includes(key))
+          // remove keys not present in headers
+          .filter((key) => this._headerKeys.includes(key))
           .forEach((key) => {
             item[key] = cell[key];
           });
@@ -493,36 +506,30 @@ export class CDataTable {
               </td>
             )}
 
-            {Object.entries(row)
-              .filter(([key]) => !['_hiddenData'].includes(key))
-              .sort(
-                ([keyA], [keyB]) =>
-                  this._headerKeys.indexOf(keyA) -
-                  this._headerKeys.indexOf(keyB),
-              )
-              .map(([key, options], index) => (
-                <td>
-                  <div>
-                    {this._renderCell(key, options, index, i, row)}
-                    {!!options.children && (
-                      <div class="children">
-                        {this._renderCellChildren(options, i, key, row)}
-                      </div>
-                    )}
+            {this._sortCellProperties(row).map(([key, options], index) => (
+              <td>
+                <div>
+                  {this._renderCell(key, options, index, i, row)}
+                  {!!options.children && (
+                    <div class="children">
+                      {this._renderCellChildren(options, i, key, row)}
+                    </div>
+                  )}
 
-                    {!!this.headers[index]?.children && (
-                      <div class="children">
-                        {this._renderCellChildren(
-                          this.headers[index],
-                          i,
-                          key,
-                          row,
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </td>
-              ))}
+                  {!!this.headers.find((header) => header.key === key)
+                    ?.children && (
+                    <div class="children">
+                      {this._renderCellChildren(
+                        this.headers.find((header) => header.key === key),
+                        i,
+                        key,
+                        row,
+                      )}
+                    </div>
+                  )}
+                </div>
+              </td>
+            ))}
           </tr>
 
           {this._hasHiddenData && (
@@ -598,6 +605,18 @@ export class CDataTable {
         )}
       </svg>
     );
+  }
+
+  /**
+   * Order table row properties by the header keys
+   */
+  private _sortCellProperties(row: CDataTableDataItemPrivate) {
+    return Object.entries(row)
+      .filter(([key]) => !['_hiddenData'].includes(key))
+      .sort(
+        ([keyA], [keyB]) =>
+          this._headerKeys.indexOf(keyA) - this._headerKeys.indexOf(keyB),
+      );
   }
 
   private _validateProps(data) {

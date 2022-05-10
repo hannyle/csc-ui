@@ -36,6 +36,7 @@ export interface CDataTableHeader {
   width?: string;
   sortable?: boolean;
   children?: CDataTableChild[];
+  hidden?: boolean;
 }
 
 export interface CDataTableData {
