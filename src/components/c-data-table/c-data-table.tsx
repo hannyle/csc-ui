@@ -413,10 +413,16 @@ export class CDataTable {
     this._activeRows = [...this._activeRows, value];
   }
 
-  private _renderCell(key, options, colIndex, rowIndex) {
-    const Tag = this._headers[colIndex]?.component?.tag;
-    const injectValue = !!this._headers[colIndex]?.component?.injectValue;
-    const params = this._headers[colIndex]?.component?.params || {};
+  private _renderCell(
+    key: string,
+    options: CDataTableDataItem,
+    colIndex: number,
+    rowIndex: number,
+  ) {
+    const component = options.component || this._headers[colIndex]?.component;
+    const Tag = component?.tag || null;
+    const injectValue = !!component?.injectValue;
+    const params = component?.params || {};
 
     if (injectValue) {
       params.value = options.value;

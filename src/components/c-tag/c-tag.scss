@@ -13,7 +13,7 @@
 }
 
 :host(.flat) {
-  cursor: default;
+  cursor: inherit;
 }
 
 :host(:focus) {

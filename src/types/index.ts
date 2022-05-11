@@ -47,6 +47,7 @@ export interface CDataTableData {
 export interface CDataTableDataItem {
   value: string | number;
   children?: CDataTableChild[];
+  component?: CDataTableComponent;
 }
 
 export interface CDataTableChild {
@@ -56,7 +57,7 @@ export interface CDataTableChild {
 
 export interface CDataTableComponent {
   tag: string;
-  params: CDataTableComponentParams;
+  params?: CDataTableComponentParams;
   injectValue?: boolean;
 }
 
