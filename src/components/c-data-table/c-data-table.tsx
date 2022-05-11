@@ -61,11 +61,6 @@ export class CDataTable {
   @Prop() headers: CDataTableHeader[] = [];
 
   /**
-   * Add hover effect to the table rows
-   */
-  @Prop() hoverable = false;
-
-  /**
    * Items per page options
    */
   @Prop() footerOptions: CDataTableFooterOptions = {
@@ -95,6 +90,11 @@ export class CDataTable {
    * Property used in selections
    */
   @Prop() selectionProperty: string = null;
+
+  /**
+   * Allow only a single row expanded at a time
+   */
+  @Prop() singleExpansion = false;
 
   /**
    * Sort data by
@@ -398,6 +398,12 @@ export class CDataTable {
   private _onToggleAdditionalData(value: string | number) {
     if (!this._hasHiddenData) return;
 
+    if (this.singleExpansion) {
+      this._activeRows = this._activeRows[0] === value ? [] : [value];
+
+      return;
+    }
+
     if (this._activeRows.includes(value)) {
       this._activeRows = this._activeRows.filter((i) => i !== value);
 
@@ -508,7 +514,11 @@ export class CDataTable {
 
             {this._sortCellProperties(row).map(([key, options], index) => (
               <td>
-                <div>
+                <div
+                  data-align={
+                    this.headers.find((header) => header.key === key)?.align
+                  }
+                >
                   {this._renderCell(key, options, index, i, row)}
                   {!!options.children && (
                     <div class="children">
@@ -621,6 +631,7 @@ export class CDataTable {
 
   private _validateProps(data) {
     if (
+      !!data &&
       !this._isValidated &&
       this.selectionProperty !== null &&
       !data[this.selectionProperty]
@@ -636,7 +647,7 @@ export class CDataTable {
   render() {
     const tableClasses = {
       'c-data-table': true,
-      'c-data-table--hoverable': this.hoverable,
+      'c-data-table--hoverable': this.selectable || this._hasHiddenData,
     };
 
     return (
@@ -658,9 +669,9 @@ export class CDataTable {
                   const params = {
                     'data-id': header.key,
                     ref: (el) => this._addHeaderRef(header.key, el),
-                    ...(!!header.width && {
+                    ...(!!header && {
                       style: {
-                        width: header.width || 'auto',
+                        ...(header.width && { width: header.width }),
                       },
                     }),
                     ...(isSortable && {
@@ -721,6 +732,8 @@ export class CDataTable {
             </tfoot>
           )}
         </table>
+
+        <pre>{this._activeRows}</pre>
       </Host>
     );
   }

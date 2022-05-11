@@ -48,6 +48,7 @@ import { GettingStartedVueComponent } from './getting-started-vue/getting-starte
 import { CLoginCardComponent } from './examples/c-login-card/c-login-card.component';
 import { CDataTableComponent } from './examples/c-data-table/c-data-table.component';
 import { CRowComponent } from './examples/c-row/c-row.component';
+import { CStatusComponent } from './examples/c-status/c-status.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import { CRowComponent } from './examples/c-row/c-row.component';
     CLoginCardComponent,
     CDataTableComponent,
     CRowComponent,
+    CStatusComponent,
   ],
   imports: [
     BrowserModule,

@@ -47,19 +47,20 @@ export class CDataTableComponent implements OnInit {
         },
       },
     },
-    { key: 'email', value: 'Email' },
-    { key: 'city', value: 'City' },
+    { key: 'email', value: 'Email', hidden: true },
+    { key: 'city', value: 'City', hidden: true },
     {
       key: 'actions',
       value: null,
       sortable: false,
+      align: 'end',
       children: [
         {
-          value: null,
+          value: 'Remove user',
           component: {
-            tag: 'c-icon-button',
+            tag: 'c-button',
             params: {
-              ghost: true,
+              text: true,
               path: mdiDelete,
               size: 'small',
               title: 'Remove user',
@@ -68,11 +69,11 @@ export class CDataTableComponent implements OnInit {
           },
         },
         {
-          value: null,
+          value: 'Add to favourites',
           component: {
-            tag: 'c-icon-button',
+            tag: 'c-button',
             params: {
-              ghost: true,
+              text: true,
               path: mdiHeartPlus,
               title: 'Add to favourites',
               size: 'small',

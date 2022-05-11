@@ -35,8 +35,24 @@ table {
   .children {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 4px;
     width: 100%;
+
+    pre {
+      white-space: pre-wrap;
+    }
+  }
+
+  [data-align='end'] .children {
+    justify-content: flex-end;
+  }
+
+  [data-align='start'] .children {
+    justify-content: flex-start;
+  }
+
+  [data-align='center'] .children {
+    justify-content: center;
   }
 
   th,
@@ -152,9 +168,19 @@ table {
     tr {
       box-shadow: inset 0 1px 0 0 var(--csc-light-grey);
 
+      &.actions {
+        box-shadow: none;
+
+        td > div {
+          height: auto;
+          background-color: rgba(0, 0, 0, 0.015);
+        }
+      }
+
       &.active {
         box-shadow: inset 2px 0 0 var(--csc-primary),
           inset -2px 0 0 var(--csc-primary), inset 0 2px 0 var(--csc-primary);
+        border-radius: 6px 6px 0 0;
 
         svg {
           transform: rotate(180deg);
@@ -163,6 +189,7 @@ table {
         + .additional-data {
           box-shadow: inset 2px 0 0 var(--csc-primary),
             inset -2px 0 0 var(--csc-primary), inset 0 -2px 0 var(--csc-primary);
+          border-radius: 0 0 6px 6px;
         }
 
         &.selected {
@@ -175,6 +202,11 @@ table {
         background-color: rgba($csc-primary, 0.05);
         box-shadow: inset 4px 0 0 var(--csc-primary),
           inset 0 1px 0 0 var(--csc-light-grey);
+
+        + .additional-data {
+          box-shadow: inset 4px 0 0 var(--csc-primary),
+            inset -2px 0 0 var(--csc-primary), inset 0 -2px 0 var(--csc-primary);
+        }
       }
     }
   }
@@ -220,13 +252,12 @@ table {
 
       li {
         padding: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
 
         &:not(:last-child) {
           box-shadow: inset 0 -1px 0 0 var(--csc-light-grey);
-        }
-
-        .children {
-          margin-top: 8px;
         }
       }
     }
@@ -234,12 +265,32 @@ table {
 
   &--hoverable {
     tbody {
-      tr.parent {
+      tr:not(.additional-data) {
         cursor: pointer;
 
         &:hover {
           background-color: var(--csc-primary-text-hover);
+          overflow: hidden;
           box-shadow: inset 0 0 0 2px var(--csc-primary);
+          border-radius: 6px;
+        }
+
+        &.active:hover {
+          border-radius: 6px 6px 0 0;
+          box-shadow: inset 2px 0 0 var(--csc-primary),
+            inset -2px 0 0 var(--csc-primary), inset 0 2px 0 var(--csc-primary);
+        }
+
+        &.selected.active:hover {
+          border-radius: 6px 6px 0 0;
+          box-shadow: inset 4px 0 0 var(--csc-primary),
+            inset -2px 0 0 var(--csc-primary), inset 0 2px 0 var(--csc-primary);
+        }
+
+        &.selected:hover {
+          border-radius: 6px;
+          box-shadow: inset 4px 0 0 var(--csc-primary),
+            inset 0 0 0 2px var(--csc-primary);
         }
       }
     }

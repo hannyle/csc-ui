@@ -186,6 +186,10 @@ export namespace Components {
          */
         "outlined": boolean;
         /**
+          * Path for the svg icon
+         */
+        "path": string;
+        /**
           * Size of the button
          */
         "size": 'default' | 'small' | 'large';
@@ -297,10 +301,6 @@ export namespace Components {
          */
         "headers": CDataTableHeader[];
         /**
-          * Add hover effect to the table rows
-         */
-        "hoverable": boolean;
-        /**
           * Show a loader on top of the table
          */
         "loading": boolean;
@@ -316,6 +316,10 @@ export namespace Components {
           * Property used in selections
          */
         "selectionProperty": string;
+        /**
+          * Allow only a single row expanded at a time
+         */
+        "singleExpansion": boolean;
         /**
           * Sort data by
          */
@@ -815,6 +819,12 @@ export namespace Components {
     }
     interface CSpacer {
     }
+    interface CStatus {
+        /**
+          * Status type
+         */
+        "type"?: 'info' | 'warning' | 'error' | 'success';
+    }
     interface CSubnavigationitem {
         /**
           * Active state
@@ -1284,6 +1294,12 @@ declare global {
         prototype: HTMLCSpacerElement;
         new (): HTMLCSpacerElement;
     };
+    interface HTMLCStatusElement extends Components.CStatus, HTMLStencilElement {
+    }
+    var HTMLCStatusElement: {
+        prototype: HTMLCStatusElement;
+        new (): HTMLCStatusElement;
+    };
     interface HTMLCSubnavigationitemElement extends Components.CSubnavigationitem, HTMLStencilElement {
     }
     var HTMLCSubnavigationitemElement: {
@@ -1389,6 +1405,7 @@ declare global {
         "c-sidenavigation": HTMLCSidenavigationElement;
         "c-sidenavigationitem": HTMLCSidenavigationitemElement;
         "c-spacer": HTMLCSpacerElement;
+        "c-status": HTMLCStatusElement;
         "c-subnavigationitem": HTMLCSubnavigationitemElement;
         "c-swiper": HTMLCSwiperElement;
         "c-swiper-tab": HTMLCSwiperTabElement;
@@ -1602,6 +1619,10 @@ declare namespace LocalJSX {
          */
         "outlined"?: boolean;
         /**
+          * Path for the svg icon
+         */
+        "path"?: string;
+        /**
           * Size of the button
          */
         "size"?: 'default' | 'small' | 'large';
@@ -1717,10 +1738,6 @@ declare namespace LocalJSX {
          */
         "headers"?: CDataTableHeader[];
         /**
-          * Add hover effect to the table rows
-         */
-        "hoverable"?: boolean;
-        /**
           * Show a loader on top of the table
          */
         "loading"?: boolean;
@@ -1748,6 +1765,10 @@ declare namespace LocalJSX {
           * Property used in selections
          */
         "selectionProperty"?: string;
+        /**
+          * Allow only a single row expanded at a time
+         */
+        "singleExpansion"?: boolean;
         /**
           * Sort data by
          */
@@ -2272,6 +2293,12 @@ declare namespace LocalJSX {
     }
     interface CSpacer {
     }
+    interface CStatus {
+        /**
+          * Status type
+         */
+        "type"?: 'info' | 'warning' | 'error' | 'success';
+    }
     interface CSubnavigationitem {
         /**
           * Active state
@@ -2580,6 +2607,7 @@ declare namespace LocalJSX {
         "c-sidenavigation": CSidenavigation;
         "c-sidenavigationitem": CSidenavigationitem;
         "c-spacer": CSpacer;
+        "c-status": CStatus;
         "c-subnavigationitem": CSubnavigationitem;
         "c-swiper": CSwiper;
         "c-swiper-tab": CSwiperTab;
@@ -2635,6 +2663,7 @@ declare module "@stencil/core" {
             "c-sidenavigation": LocalJSX.CSidenavigation & JSXBase.HTMLAttributes<HTMLCSidenavigationElement>;
             "c-sidenavigationitem": LocalJSX.CSidenavigationitem & JSXBase.HTMLAttributes<HTMLCSidenavigationitemElement>;
             "c-spacer": LocalJSX.CSpacer & JSXBase.HTMLAttributes<HTMLCSpacerElement>;
+            "c-status": LocalJSX.CStatus & JSXBase.HTMLAttributes<HTMLCStatusElement>;
             "c-subnavigationitem": LocalJSX.CSubnavigationitem & JSXBase.HTMLAttributes<HTMLCSubnavigationitemElement>;
             "c-swiper": LocalJSX.CSwiper & JSXBase.HTMLAttributes<HTMLCSwiperElement>;
             "c-swiper-tab": LocalJSX.CSwiperTab & JSXBase.HTMLAttributes<HTMLCSwiperTabElement>;
