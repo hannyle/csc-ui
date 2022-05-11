@@ -42,24 +42,16 @@ export class CTag {
       flat: this.flat,
     };
 
-    const hostParams: {
-      tabindex: number;
-      role?: string;
-    } = {
+    const hostParams = {
       tabindex: 0,
+      ...(!this.flat && {
+        role: 'button',
+        onClick: (event) => event.stopPropagation(),
+      }),
     };
 
-    if (!this.flat) {
-      hostParams.role = 'button';
-    }
-
     return (
-      <Host
-        tabindex="0"
-        {...hostParams}
-        class={hostClasses}
-        onClick={(e) => e.stopPropagation()}
-      >
+      <Host tabindex="0" {...hostParams} class={hostClasses}>
         <div class={classes}>
           <div class="row">
             <slot></slot>

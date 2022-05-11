@@ -24,7 +24,6 @@ export class CDataTableComponent implements OnInit {
       component: {
         tag: 'c-tag',
         params: {
-          outlined: true,
           onClick: ({ data }) =>
             console.log(`Row with an id of ${data?.['id']?.value} was clicked`),
         },

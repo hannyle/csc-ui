@@ -301,7 +301,7 @@ export class CDataTable {
 
   private get _headers() {
     return this.headers.filter(
-      (header) => !this.hiddenHeaders.includes(header.key),
+      (header) => !this.hiddenHeaders.includes(header.key) && !header.hidden,
     );
   }
 
@@ -413,10 +413,10 @@ export class CDataTable {
     this._activeRows = [...this._activeRows, value];
   }
 
-  private _renderCell(key, options, index, rowIndex, data) {
-    const Tag = this.headers[index]?.component?.tag;
-    const injectValue = !!this.headers[index]?.component?.injectValue;
-    const params = this.headers[index]?.component?.params || {};
+  private _renderCell(key, options, colIndex, rowIndex) {
+    const Tag = this._headers[colIndex]?.component?.tag;
+    const injectValue = !!this._headers[colIndex]?.component?.injectValue;
+    const params = this._headers[colIndex]?.component?.params || {};
 
     if (injectValue) {
       params.value = options.value;
@@ -429,9 +429,9 @@ export class CDataTable {
           params?.onClick?.({
             index: rowIndex,
             value: options.value,
+            data: this.data[rowIndex],
             event,
             key,
-            data,
           })
         }
       >
@@ -519,7 +519,8 @@ export class CDataTable {
                     this.headers.find((header) => header.key === key)?.align
                   }
                 >
-                  {this._renderCell(key, options, index, i, row)}
+                  {this._renderCell(key, options, index, i)}
+
                   {!!options.children && (
                     <div class="children">
                       {this._renderCellChildren(options, i, key, row)}
@@ -557,13 +558,19 @@ export class CDataTable {
                         (d) => !this._extraHeaders.find((h) => h.key === d.id),
                       )
                       .map(({ id, key, value: options }) => {
-                        const index = this.headers.findIndex(
+                        const index = this._headers.findIndex(
                           (h) => h.key === id,
                         );
 
                         return (
                           <li>
-                            {key}: {this._renderCell(id, options, index, i, {})}
+                            {!!key && (
+                              <div class="title">
+                                <span>{key}:</span>
+                                {this._renderCell(id, options, index, i)}
+                              </div>
+                            )}
+
                             {!!options.children && (
                               <div class="children">
                                 {this._renderCellChildren(options, i, id)}
@@ -574,14 +581,16 @@ export class CDataTable {
                       })}
 
                     {this._data[i]._hiddenData.map(({ id, key }) => {
-                      const index = this.headers.findIndex((h) => h.key === id);
+                      const index = this._headers.findIndex(
+                        (h) => h.key === id,
+                      );
 
                       return (
-                        !!this.headers[index]?.children && (
+                        !!this._headers[index]?.children && (
                           <li>
                             <div class="children">
                               {this._renderCellChildren(
-                                this.headers[index],
+                                this._headers[index],
                                 i,
                                 key,
                                 row,
@@ -732,8 +741,6 @@ export class CDataTable {
             </tfoot>
           )}
         </table>
-
-        <pre>{this._activeRows}</pre>
       </Host>
     );
   }
