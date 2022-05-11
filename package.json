@@ -22,7 +22,9 @@
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
-    "style-dictionary:build": "style-dictionary build --config ./style-dictionary.config.js"
+    "style-dictionary:build": "style-dictionary build --config ./style-dictionary.config.js",
+    "deploy": "npm run build && npm publish && npm run deploy:documentation",
+    "deploy:documentation": "cd documentation/angular && npm run build && firebase deploy"
   },
   "devDependencies": {
     "@stencil/angular-output-target": "^0.4.0",
