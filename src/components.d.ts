@@ -957,6 +957,10 @@ export namespace Components {
          */
         "active": boolean;
         /**
+          * Display an optional badge at the start of the tag
+         */
+        "badge": string | number;
+        /**
           * Mark tag as closeable
          */
         "closeable": boolean;
@@ -2456,6 +2460,10 @@ declare namespace LocalJSX {
           * Mark tag as active
          */
         "active"?: boolean;
+        /**
+          * Display an optional badge at the start of the tag
+         */
+        "badge"?: string | number;
         /**
           * Mark tag as closeable
          */
