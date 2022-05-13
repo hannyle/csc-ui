@@ -37,6 +37,7 @@
     [pagination]="externalOptions"
     [sortBy]="externalSortBy"
     [sortDirection]="externalDirection"
+    no-data-text="There seems to be an error while fetching the data. Please try again later."
     external-data
     (paginate)="onPagination($event)"
     (sort)="onSort($event)"

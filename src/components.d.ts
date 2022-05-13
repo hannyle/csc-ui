@@ -305,6 +305,14 @@ export namespace Components {
          */
         "loading": boolean;
         /**
+          * Text shown when there is no data and the table is loading
+         */
+        "loadingText": string;
+        /**
+          * Text shown when there are no data available
+         */
+        "noDataText": string;
+        /**
           * Pagination options
          */
         "pagination": CPaginationOptions;
@@ -1745,6 +1753,14 @@ declare namespace LocalJSX {
           * Show a loader on top of the table
          */
         "loading"?: boolean;
+        /**
+          * Text shown when there is no data and the table is loading
+         */
+        "loadingText"?: string;
+        /**
+          * Text shown when there are no data available
+         */
+        "noDataText"?: string;
         /**
           * Triggered on pagination
          */

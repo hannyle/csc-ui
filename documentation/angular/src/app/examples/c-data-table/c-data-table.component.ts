@@ -300,6 +300,7 @@ export class CDataTableComponent implements OnInit {
   [sortDirection]="direction"
   selection-property="id"
   selectable
+  single-expansion
   (selection)="onSelection($event)"
 ></c-data-table>
 
@@ -308,14 +309,15 @@ export class CDataTableComponent implements OnInit {
   {{ selections.join(', ') || 'none' }}
 </div>`,
     external: `<c-data-table
+  id="external-data"
   [data]="data"
   [headers]="headers"
   [loading]="loading"
   [pagination]="options"
   [sortBy]="sortBy"
   [sortDirection]="direction"
+  no-data-text="There seems to be an error while fetching the data. Please try again later."
   external-data
-  hoverable
   (paginate)="onPagination($event)"
   (sort)="onSort($event)"
 ></c-data-table>`,
@@ -461,19 +463,20 @@ headers: CDataTableHeader[] = [
         },
       },
     },
-    { key: 'email', value: 'Email' },
-    { key: 'city', value: 'City' },
+    { key: 'email', value: 'Email', hidden: true },
+    { key: 'city', value: 'City', hidden: true },
     {
       key: 'actions',
       value: null,
       sortable: false,
+      align: 'end',
       children: [
         {
           value: null,
           component: {
-            tag: 'c-icon-button',
+            tag: 'c-button',
             params: {
-              ghost: true,
+              text: true,
               path: mdiDelete,
               size: 'small',
               title: 'Remove user',
@@ -484,9 +487,9 @@ headers: CDataTableHeader[] = [
         {
           value: null,
           component: {
-            tag: 'c-icon-button',
+            tag: 'c-button',
             params: {
-              ghost: true,
+              text: true,
               path: mdiHeartPlus,
               title: 'Add to favourites',
               size: 'small',
