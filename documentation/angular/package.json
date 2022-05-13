@@ -1,14 +1,4 @@
 {
-  "name": "angular-playground",
-  "version": "0.0.1",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
-  },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^13.2.6",
     "@angular/cdk": "^13.2.6",
@@ -44,5 +34,16 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "typescript": "~4.5.2"
-  }
+  },
+  "name": "angular-playground",
+  "private": true,
+  "scripts": {
+    "build": "ng build",
+    "dev": "node ../../scripts/build-examples.js && ng serve",
+    "ng": "ng",
+    "start": "ng serve",
+    "test": "ng test",
+    "watch": "ng build --watch --configuration development"
+  },
+  "version": "0.0.1"
 }

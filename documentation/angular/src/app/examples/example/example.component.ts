@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { formatScript, formatTemplate } from 'src/app/utils/utils';
 import docs from '../../../../../../docs.json';
+import * as examples from '../../../../../../examples/c-tag.example';
 
 @Component({
   selector: 'app-example',
@@ -19,6 +20,7 @@ import docs from '../../../../../../docs.json';
 export class ExampleComponent implements AfterViewInit, AfterContentChecked {
   @Input() title: string;
   @Input() subtitle: string;
+  @Input() name: string;
   @Input() cols: string;
   @Input() rows: string;
   @Input() raw: string;
@@ -50,6 +52,6 @@ export class ExampleComponent implements AfterViewInit, AfterContentChecked {
       ? formatTemplate(this.raw, false)
       : formatTemplate(this.example.nativeElement.innerHTML);
 
-    this.scriptCode = formatScript(this.script);
+    this.scriptCode = examples[this.name] || formatScript(this.script);
   }
 }
