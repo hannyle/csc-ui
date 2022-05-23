@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { CAutocompleteItem, CDataTableData, CDataTableFooterOptions, CDataTableHeader, CPaginationOptions, CRadioGroupItem, CSelectItem } from "./types";
 import { CardBackground } from "./components/c-card/c-card";
 import { CLoginCardBlendMode } from "./components/c-login-card/c-login-card";
+import { CNotificationItem } from "./types/index";
 export namespace Components {
     interface CAccordion {
         /**
@@ -470,7 +471,7 @@ export namespace Components {
         /**
           * Value of the input
          */
-        "value": string | number | CSelectItem | CAutocompleteItem;
+        "value": string | number | boolean | CSelectItem | CAutocompleteItem;
         /**
           * Variant
          */
@@ -593,9 +594,13 @@ export namespace Components {
     }
     interface CModal {
         /**
-          * Not dismissed when touching/clicking outside the content
+          * Dismissed when touching/clicking outside the content
          */
-        "persistent": boolean;
+        "dismissable": boolean;
+        /**
+          * Maximum width of the dialog in pixels
+         */
+        "maxWidth": number;
         /**
           * Is the modal visible
          */
@@ -607,12 +612,7 @@ export namespace Components {
         /**
           * notification contents
          */
-        "notification": {
-    name: string;
-    type: 'warning' | 'error' | 'success' | 'info';
-    delay?: number;
-    requiresClosing?: boolean;
-  };
+        "notification": CNotificationItem;
         /**
           * Position of the notifications
          */
@@ -799,7 +799,7 @@ export namespace Components {
         /**
           * Selected item
          */
-        "value": string | number | CSelectItem;
+        "value": string | number | boolean | CSelectItem;
     }
     interface CSidenavigation {
         /**
@@ -1935,7 +1935,7 @@ declare namespace LocalJSX {
         /**
           * Value of the input
          */
-        "value"?: string | number | CSelectItem | CAutocompleteItem;
+        "value"?: string | number | boolean | CSelectItem | CAutocompleteItem;
         /**
           * Variant
          */
@@ -2058,13 +2058,17 @@ declare namespace LocalJSX {
     }
     interface CModal {
         /**
+          * Dismissed when touching/clicking outside the content
+         */
+        "dismissable"?: boolean;
+        /**
+          * Maximum width of the dialog in pixels
+         */
+        "maxWidth"?: number;
+        /**
           * Triggered when value is changed
          */
         "onChangeValue"?: (event: CustomEvent<boolean>) => void;
-        /**
-          * Not dismissed when touching/clicking outside the content
-         */
-        "persistent"?: boolean;
         /**
           * Is the modal visible
          */
@@ -2076,12 +2080,7 @@ declare namespace LocalJSX {
         /**
           * notification contents
          */
-        "notification"?: {
-    name: string;
-    type: 'warning' | 'error' | 'success' | 'info';
-    delay?: number;
-    requiresClosing?: boolean;
-  };
+        "notification"?: CNotificationItem;
         /**
           * Position of the notifications
          */
@@ -2280,7 +2279,7 @@ declare namespace LocalJSX {
         /**
           * Selected item
          */
-        "value"?: string | number | CSelectItem;
+        "value"?: string | number | boolean | CSelectItem;
     }
     interface CSidenavigation {
         /**

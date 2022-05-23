@@ -9,7 +9,7 @@ export interface CPaginationOptions {
 
 export interface CSelectItem {
   name: string;
-  value: string | number;
+  value: string | number | boolean;
 }
 
 export interface CAutocompleteItem extends CSelectItem {
@@ -73,3 +73,12 @@ export interface CDataTableFunctionParams {
   key: string;
   data: CDataTableData;
 }
+
+export interface CNotificationItem {
+  name: string;
+  type: CNotificationItemType;
+  delay?: number;
+  requiresClosing?: boolean;
+}
+
+export type CNotificationItemType = 'warning' | 'error' | 'success' | 'info';

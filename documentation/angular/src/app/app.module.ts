@@ -12,7 +12,6 @@ import { CCardComponent } from './examples/c-card/c-card.component';
 import { CTabButtonsComponent } from './examples/c-tab-buttons/c-tab-buttons.component';
 import { CIconButtonComponent } from './examples/c-icon-button/c-icon-button.component';
 import { CSwitchComponent } from './examples/c-switch/c-switch.component';
-import { CTabComponent } from './examples/c-tab/c-tab.component';
 import { CTabsComponent } from './examples/c-tabs/c-tabs.component';
 import { CTagComponent } from './examples/c-tag/c-tag.component';
 import { CTextFieldComponent } from './examples/c-text-field/c-text-field.component';
@@ -58,7 +57,6 @@ import { CStatusComponent } from './examples/c-status/c-status.component';
     CTabButtonsComponent,
     CIconButtonComponent,
     CSwitchComponent,
-    CTabComponent,
     CTabsComponent,
     CTagComponent,
     CTextFieldComponent,

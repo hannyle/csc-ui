@@ -6,10 +6,10 @@ import {
   ViewChild,
   ChangeDetectionStrategy,
   Input,
+  OnInit,
 } from '@angular/core';
-import { formatScript, formatTemplate } from 'src/app/utils/utils';
+import { sanitize } from 'src/app/utils/utils';
 import docs from '../../../../../../docs.json';
-import * as examples from '../../../../../../examples/c-tag.example';
 
 @Component({
   selector: 'app-example',
@@ -17,7 +17,7 @@ import * as examples from '../../../../../../examples/c-tag.example';
   styleUrls: ['./example.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ExampleComponent implements AfterViewInit, AfterContentChecked {
+export class ExampleComponent implements AfterViewInit, AfterContentChecked, OnInit {
   @Input() title: string;
   @Input() subtitle: string;
   @Input() name: string;
@@ -25,11 +25,15 @@ export class ExampleComponent implements AfterViewInit, AfterContentChecked {
   @Input() rows: string;
   @Input() raw: string;
   @Input() script: string;
+  @Input() component: string;
+
   @ViewChild('example') example;
+
   code = '';
   scriptCode = '';
   allowedAttributes = [];
   showCode = false;
+  examples = null;
 
   constructor(private cdref: ChangeDetectorRef) {
     const attrs = docs.components?.reduce(
@@ -43,15 +47,36 @@ export class ExampleComponent implements AfterViewInit, AfterContentChecked {
     this.allowedAttributes = [...new Set(attrs)];
   }
 
+  async ngOnInit() {
+    if (!this.component) {
+      this.examples = {};
+
+      return;
+    }
+
+    const script = await import(`../data/${this.component}.script.js`);
+    const template = await import(`../data/${this.component}.template.js`);
+
+    this.examples = {
+      script,
+      template,
+    };
+
+    this.initializeExamples();
+  }
+
   ngAfterContentChecked() {
     this.cdref.detectChanges();
   }
 
   ngAfterViewInit(): void {
-    this.code = this.raw
-      ? formatTemplate(this.raw, false)
-      : formatTemplate(this.example.nativeElement.innerHTML);
+    this.initializeExamples();
+  }
 
-    this.scriptCode = examples[this.name] || formatScript(this.script);
+  initializeExamples() {
+    this.code = this.examples?.template?.[this.name];
+    this.scriptCode = sanitize(this.examples?.script?.[this.name]);
+
+    this.cdref.detectChanges();
   }
 }
