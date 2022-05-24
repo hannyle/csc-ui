@@ -52,8 +52,8 @@ export class ExampleComponent implements AfterViewInit, AfterContentChecked, OnI
       return;
     }
 
-    const script = await import(`../data/${this.component}.script.js`);
-    const template = await import(`../data/${this.component}.template.js`);
+    const script = await import(`../example-data/${this.component}.script.js`);
+    const template = await import(`../example-data/${this.component}.template.js`);
 
     this.examples = {
       script,
