@@ -63,7 +63,6 @@ export class CModal {
   componentDidLoad() {
     this.innerValue = this.value;
 
-    console.log(this.el, this.maxWidth);
     this.el.style.setProperty('--c-modal-max-width', `${this.maxWidth}px`);
   }
 

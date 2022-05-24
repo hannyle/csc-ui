@@ -339,7 +339,6 @@ export class CSelect {
       this.currentIndex = this.items.findIndex(
         (item) => item.value === this.value,
       );
-      console.log('🦊', this.value, this.currentIndex);
     }
   }
 
