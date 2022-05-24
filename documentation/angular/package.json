@@ -34,7 +34,7 @@
   "name": "angular-playground",
   "private": true,
   "scripts": {
-    "build": "ng build",
+    "build": "npm run build:examples && ng build",
     "build:examples": "node ../../scripts/build-examples.js",
     "dev": "npm run build:examples && ng serve",
     "ng": "ng",
