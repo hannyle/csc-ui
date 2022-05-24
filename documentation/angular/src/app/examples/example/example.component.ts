@@ -23,8 +23,6 @@ export class ExampleComponent implements AfterViewInit, AfterContentChecked, OnI
   @Input() name: string;
   @Input() cols: string;
   @Input() rows: string;
-  @Input() raw: string;
-  @Input() script: string;
   @Input() component: string;
 
   @ViewChild('example') example;
