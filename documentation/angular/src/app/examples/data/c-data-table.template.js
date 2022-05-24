@@ -1,7 +1,7 @@
 
 /**
  * Examples for c-data-table.
- * Automatically generated at 5/23/2022, 5:59:55 PM.
+ * Automatically generated at 5/24/2022, 8:51:23 AM.
  *
  * ⚠️ DO NOT EDIT THESE MANUALLY AS THEY WILL BE OVERWRITTEN IN THE NEXT BUILD!
  */
