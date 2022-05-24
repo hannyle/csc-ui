@@ -4,19 +4,8 @@ const readline = require('readline');
 const path = require('path');
 const consola = require('consola');
 
-module.exports = async (component) => {
+module.exports = async (component, filename) => {
   try {
-    const examplesFolder = path.resolve(
-      __dirname,
-      '../../documentation/angular/src/app/examples/data',
-    );
-
-    if (!fs.existsSync(examplesFolder)) {
-      fs.mkdirSync(examplesFolder);
-    }
-
-    const filename = `${examplesFolder}/${component}.template.js`;
-
     const writeStream = fs.createWriteStream(filename);
 
     const writeline = (line, lineChange = true) => {
