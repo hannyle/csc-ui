@@ -48,6 +48,9 @@ import { CLoginCardComponent } from './examples/c-login-card/c-login-card.compon
 import { CDataTableComponent } from './examples/c-data-table/c-data-table.component';
 import { CRowComponent } from './examples/c-row/c-row.component';
 import { CStatusComponent } from './examples/c-status/c-status.component';
+import { CToastComponent } from './examples/c-toast/c-toast.component';
+import { CToastsComponent } from './examples/c-toasts/c-toasts.component';
+import { ViewerMethodsComponent } from './viewer/viewer-methods/viewer-methods.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +96,9 @@ import { CStatusComponent } from './examples/c-status/c-status.component';
     CDataTableComponent,
     CRowComponent,
     CStatusComponent,
+    CToastComponent,
+    CToastsComponent,
+    ViewerMethodsComponent,
   ],
   imports: [
     BrowserModule,

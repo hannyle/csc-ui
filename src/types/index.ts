@@ -82,3 +82,27 @@ export interface CNotificationItem {
 }
 
 export type CNotificationItemType = 'warning' | 'error' | 'success' | 'info';
+
+export enum CToastType {
+  Warning = 'warning',
+  Error = 'error',
+  Success = 'success',
+  Info = 'info',
+}
+
+export enum CToastPosition {
+  Absolute = 'absolute',
+  Fixed = 'fixed',
+}
+
+export interface CToastMessage {
+  message: string;
+  title?: string;
+  type?: CToastType;
+  duration?: number;
+  persistent?: boolean;
+  position?: CToastPosition;
+  id?: string;
+  closeText?: string;
+  indeterminate?: boolean;
+}

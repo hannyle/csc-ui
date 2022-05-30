@@ -5,10 +5,9 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { CAutocompleteItem, CDataTableData, CDataTableFooterOptions, CDataTableHeader, CPaginationOptions, CRadioGroupItem, CSelectItem } from "./types";
+import { CAutocompleteItem, CDataTableData, CDataTableFooterOptions, CDataTableHeader, CPaginationOptions, CRadioGroupItem, CSelectItem, CToastMessage } from "./types";
 import { CardBackground } from "./components/c-card/c-card";
 import { CLoginCardBlendMode } from "./components/c-login-card/c-login-card";
-import { CNotificationItem } from "./types/index";
 export namespace Components {
     interface CAccordion {
         /**
@@ -612,7 +611,12 @@ export namespace Components {
         /**
           * notification contents
          */
-        "notification": CNotificationItem;
+        "notification": {
+    name: string;
+    type: 'warning' | 'error' | 'success' | 'info';
+    delay?: number;
+    requiresClosing?: boolean;
+  };
         /**
           * Position of the notifications
          */
@@ -1074,6 +1078,39 @@ export namespace Components {
     }
     interface CTitle {
     }
+    interface CToast {
+        /**
+          * Close toast
+          * @emits close
+         */
+        "closeToast": () => Promise<void>;
+        /**
+          * Messages
+         */
+        "message": CToastMessage;
+    }
+    interface CToasts {
+        /**
+          * Use absolute positioning
+         */
+        "absolute": boolean;
+        /**
+          * Add a new message
+         */
+        "addToast": (message: CToastMessage) => Promise<void>;
+        /**
+          * Horizontal position
+         */
+        "horizontal": 'left' | 'center' | 'right';
+        /**
+          * Remove a message by id (id should be specified in the addToast params)
+         */
+        "removeToast": (id: string) => Promise<void>;
+        /**
+          * Vertical position
+         */
+        "vertical": 'top' | 'bottom';
+    }
     interface CToolbar {
     }
 }
@@ -1372,6 +1409,18 @@ declare global {
         prototype: HTMLCTitleElement;
         new (): HTMLCTitleElement;
     };
+    interface HTMLCToastElement extends Components.CToast, HTMLStencilElement {
+    }
+    var HTMLCToastElement: {
+        prototype: HTMLCToastElement;
+        new (): HTMLCToastElement;
+    };
+    interface HTMLCToastsElement extends Components.CToasts, HTMLStencilElement {
+    }
+    var HTMLCToastsElement: {
+        prototype: HTMLCToastsElement;
+        new (): HTMLCToastsElement;
+    };
     interface HTMLCToolbarElement extends Components.CToolbar, HTMLStencilElement {
     }
     var HTMLCToolbarElement: {
@@ -1428,6 +1477,8 @@ declare global {
         "c-tag": HTMLCTagElement;
         "c-text-field": HTMLCTextFieldElement;
         "c-title": HTMLCTitleElement;
+        "c-toast": HTMLCToastElement;
+        "c-toasts": HTMLCToastsElement;
         "c-toolbar": HTMLCToolbarElement;
     }
 }
@@ -2080,7 +2131,12 @@ declare namespace LocalJSX {
         /**
           * notification contents
          */
-        "notification"?: CNotificationItem;
+        "notification"?: {
+    name: string;
+    type: 'warning' | 'error' | 'success' | 'info';
+    delay?: number;
+    requiresClosing?: boolean;
+  };
         /**
           * Position of the notifications
          */
@@ -2589,6 +2645,30 @@ declare namespace LocalJSX {
     }
     interface CTitle {
     }
+    interface CToast {
+        /**
+          * Messages
+         */
+        "message"?: CToastMessage;
+        /**
+          * Emit inner value change to parent
+         */
+        "onClose"?: (event: CustomEvent<CToastMessage>) => void;
+    }
+    interface CToasts {
+        /**
+          * Use absolute positioning
+         */
+        "absolute"?: boolean;
+        /**
+          * Horizontal position
+         */
+        "horizontal"?: 'left' | 'center' | 'right';
+        /**
+          * Vertical position
+         */
+        "vertical"?: 'top' | 'bottom';
+    }
     interface CToolbar {
     }
     interface IntrinsicElements {
@@ -2641,6 +2721,8 @@ declare namespace LocalJSX {
         "c-tag": CTag;
         "c-text-field": CTextField;
         "c-title": CTitle;
+        "c-toast": CToast;
+        "c-toasts": CToasts;
         "c-toolbar": CToolbar;
     }
 }
@@ -2697,6 +2779,8 @@ declare module "@stencil/core" {
             "c-tag": LocalJSX.CTag & JSXBase.HTMLAttributes<HTMLCTagElement>;
             "c-text-field": LocalJSX.CTextField & JSXBase.HTMLAttributes<HTMLCTextFieldElement>;
             "c-title": LocalJSX.CTitle & JSXBase.HTMLAttributes<HTMLCTitleElement>;
+            "c-toast": LocalJSX.CToast & JSXBase.HTMLAttributes<HTMLCToastElement>;
+            "c-toasts": LocalJSX.CToasts & JSXBase.HTMLAttributes<HTMLCToastsElement>;
             "c-toolbar": LocalJSX.CToolbar & JSXBase.HTMLAttributes<HTMLCToolbarElement>;
         }
     }
