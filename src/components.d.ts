@@ -597,13 +597,13 @@ export namespace Components {
          */
         "dismissable": boolean;
         /**
-          * Maximum width of the dialog in pixels
-         */
-        "maxWidth": number;
-        /**
           * Is the modal visible
          */
         "value": boolean;
+        /**
+          * Width of the dialog in pixels
+         */
+        "width": number;
     }
     interface CNavigationbutton {
     }
@@ -2193,10 +2193,6 @@ declare namespace LocalJSX {
          */
         "dismissable"?: boolean;
         /**
-          * Maximum width of the dialog in pixels
-         */
-        "maxWidth"?: number;
-        /**
           * Triggered when value is changed
          */
         "onChangeValue"?: (event: CModalCustomEvent<boolean>) => void;
@@ -2204,6 +2200,10 @@ declare namespace LocalJSX {
           * Is the modal visible
          */
         "value"?: boolean;
+        /**
+          * Width of the dialog in pixels
+         */
+        "width"?: number;
     }
     interface CNavigationbutton {
     }
