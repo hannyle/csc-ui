@@ -12,6 +12,14 @@
 | `type`   | `type`    | Type of the alert | `CAlertType.Error \| CAlertType.Info \| CAlertType.Success \| CAlertType.Warning` | `undefined` |
 
 
+## Slots
+
+| Slot      | Description  |
+| --------- | ------------ |
+|           | Default slot |
+| `"title"` | Title slot   |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

@@ -9,6 +9,8 @@ import { CAlertType } from '../../types';
 
 /**
  * @group Indicators
+ * @slot - Default slot
+ * @slot title - Title slot
  */
 @Component({
   tag: 'c-alert',
