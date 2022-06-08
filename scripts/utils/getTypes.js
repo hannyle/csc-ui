@@ -18,49 +18,6 @@ module.exports = async (filename) => {
 
     let hasInfo = false;
     let isExample = false;
-    // let row = 0;
-
-    // const data = {};
-    // let examples = [];
-
-    // const addLine = ({ line, name, lineChange = true, firstLine = false }) => {
-    //   let firstExample = false;
-
-    //   if (!data[name]) {
-    //     firstExample = true;
-    //     data[name] = [];
-    //   }
-
-    //   if (lineChange && !firstExample) {
-    //     data[name].push('\n');
-    //   }
-
-    //   if (firstLine && !firstExample) {
-    //     return;
-    //   }
-
-    //   data[name].push(line.replace(/^\s{2}/, ''));
-    // };
-
-    // const writeData = () => {
-    //   Object.values(data).forEach((block) => {
-    //     block.forEach((row, index) => {
-    //       const formattedRow =
-    //         index === 0
-    //           ? row
-    //           : row
-    //               .replace(/`/g, "'")
-    //               .replace(/'\$\{([^\}]+)\}/g, "$1 + '")
-    //               .replace(/\$\{([^\}]+)\}/g, "' + $1 + '");
-
-    //       writeStream.write(
-    //         `${formattedRow}${index + 1 === block.length ? '`;\n' : ''}`,
-    //       );
-    //     });
-
-    //     writeStream.write('\n');
-    //   });
-    // };
 
     const infoText = `/**
  * CSC-UI Types.
