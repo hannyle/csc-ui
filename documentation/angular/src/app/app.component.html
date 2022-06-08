@@ -88,13 +88,6 @@
         </div>
       </c-sidenavigationitem>
 
-      <c-sidenavigationitem [routerLink]="['types']" [active]="url?.startsWith('/types')">
-        <div slot="main" class="text-capitalize">
-          <span class="mdi mdi-language-typescript me-1"></span>
-          Types
-        </div>
-      </c-sidenavigationitem>
-
       <p class="text-white border-bottom mt-4 mb-3">Components</p>
 
       <c-text-field
@@ -138,6 +131,15 @@
         (keyup.enter)="navigate($event, item.tag)"
       >
         <div slot="main" class="text-capitalize">{{ item.name }}</div>
+      </c-sidenavigationitem>
+
+      <p class="text-white border-bottom mt-4 mb-3">Miscellaneous</p>
+
+      <c-sidenavigationitem [routerLink]="['types']" [active]="url?.startsWith('/types')">
+        <div slot="main" class="text-capitalize">
+          <span class="mdi mdi-language-typescript me-1"></span>
+          Types
+        </div>
       </c-sidenavigationitem>
     </c-sidenavigation>
     <c-flex class="container-height">
