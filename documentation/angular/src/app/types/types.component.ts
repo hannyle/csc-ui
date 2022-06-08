@@ -27,12 +27,12 @@ export class TypesComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    const divElement = document.getElementById(this._route.snapshot.fragment);
-    console.log(this._route.snapshot.fragment, divElement);
-    if (!divElement) return;
+    const element = document.getElementById(this._route.snapshot.fragment);
+
+    if (!element) return;
 
     setTimeout(() => {
-      window.requestAnimationFrame(() => divElement.scrollIntoView({ behavior: 'smooth' }));
+      window.requestAnimationFrame(() => element.scrollIntoView({ behavior: 'smooth' }));
     }, 1000);
   }
 
