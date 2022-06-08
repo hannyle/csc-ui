@@ -691,6 +691,10 @@ export namespace Components {
          */
         "hint": string;
         /**
+          * Display radio buttons inline
+         */
+        "inline": boolean;
+        /**
           * Radio group items
          */
         "items": CRadioGroupItem[];
@@ -2307,6 +2311,10 @@ declare namespace LocalJSX {
           * Hint text for the input
          */
         "hint"?: string;
+        /**
+          * Display radio buttons inline
+         */
+        "inline"?: boolean;
         /**
           * Radio group items
          */

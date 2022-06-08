@@ -52,6 +52,7 @@ import { CToastComponent } from './examples/c-toast/c-toast.component';
 import { CToastsComponent } from './examples/c-toasts/c-toasts.component';
 import { ViewerMethodsComponent } from './viewer/viewer-methods/viewer-methods.component';
 import { CAlertComponent } from './examples/c-alert/c-alert.component';
+import { TypesComponent } from './types/types.component';
 
 @NgModule({
   declarations: [
@@ -101,6 +102,7 @@ import { CAlertComponent } from './examples/c-alert/c-alert.component';
     CToastsComponent,
     ViewerMethodsComponent,
     CAlertComponent,
+    TypesComponent,
   ],
   imports: [
     BrowserModule,
