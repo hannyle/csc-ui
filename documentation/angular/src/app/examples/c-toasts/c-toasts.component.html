@@ -27,8 +27,6 @@
         </ng-container>
 
         <ng-template #customContentTemplate>
-          <span>Toasts with custom content are restricted to one (1) visible toast.</span>
-
           <c-text-field
             [(ngModel)]="customContent"
             label="Custom content"
@@ -120,9 +118,7 @@
           [absolute]="absolute"
           [vertical]="vertical"
           [horizontal]="horizontal"
-        >
-          <div *ngIf="customContent" [innerHTML]="customContent | safeHtml"></div>
-        </c-toasts>
+        ></c-toasts>
       </div>
     </div>
   </c-row>

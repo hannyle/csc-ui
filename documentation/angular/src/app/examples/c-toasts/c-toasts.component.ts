@@ -67,6 +67,7 @@ export class CToastsComponent {
       progress: this.progress,
       closeText: this.closeText,
       custom: this.custom,
+      template: this.customContent,
     };
 
     const toasts = document.querySelector('#toasts') as HTMLCToastsElement;
