@@ -43,7 +43,8 @@ export class CMenu {
   /**
    * Menu items
    */
-  @Prop() items: { name: string; action: () => void }[] = [];
+  @Prop() items: { name: string; action: () => void; disabled?: boolean }[] =
+    [];
 
   @Watch('currentIndex')
   onIndexChange(index: number) {
@@ -142,10 +143,23 @@ export class CMenu {
   private _getListItem = (item) => {
     const classes = {
       small: this.small,
+      disabled: item.disabled,
+    };
+
+    const onItemClick = (item) => {
+      if (!item.disabled) {
+        item.action();
+        this._hideMenu();
+      }
     };
 
     return (
-      <li class={classes} tabindex="-1" role="menuitem" onClick={item.action}>
+      <li
+        class={classes}
+        tabindex="-1"
+        role="menuitem"
+        onClick={() => onItemClick(item)}
+      >
         {item.name}
       </li>
     );
@@ -197,12 +211,7 @@ export class CMenu {
           )}
         </button>
 
-        <ul
-          id="c-menu-items"
-          class={menuClasses}
-          role="menu"
-          onClick={() => this._hideMenu()}
-        >
+        <ul id="c-menu-items" class={menuClasses} role="menu">
           {this.items.map((item) => this._getListItem(item))}
         </ul>
       </Host>
