@@ -106,8 +106,11 @@ export class CMenu {
     if (ev.key === 'Enter') {
       if (this.currentIndex !== null) {
         const selectedItem = this.items[this.currentIndex];
-        selectedItem.action();
-        this.menuVisible = false;
+
+        if (!selectedItem.disabled) {
+          selectedItem.action();
+          this.menuVisible = false;
+        }
 
         return;
       }
