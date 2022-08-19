@@ -48,6 +48,7 @@ export class CMenu {
     action: () => void;
     disabled?: boolean;
     icon?: string;
+    iconPosition?: 'start' | 'end';
   }[] = [];
 
   @Watch('currentIndex')
@@ -148,6 +149,8 @@ export class CMenu {
     const classes = {
       small: this.small,
       disabled: item.disabled,
+      'icon-start': item.iconPosition === 'start',
+      'icon-end': item.iconPosition === 'end',
     };
 
     const onItemClick = (item) => {
@@ -167,7 +170,7 @@ export class CMenu {
         {item.name}
 
         {item.icon && (
-          <svg width="20" height="20" viewBox="0 0 24 24">
+          <svg class="icon" width="20" height="20" viewBox="0 0 24 24">
             <path d={item.icon} />
           </svg>
         )}

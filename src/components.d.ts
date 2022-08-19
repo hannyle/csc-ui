@@ -578,6 +578,7 @@ export namespace Components {
     action: () => void;
     disabled?: boolean;
     icon?: string;
+    iconPosition?: 'start' | 'end';
   }[];
         /**
           * No hover background
@@ -2212,6 +2213,7 @@ declare namespace LocalJSX {
     action: () => void;
     disabled?: boolean;
     icon?: string;
+    iconPosition?: 'start' | 'end';
   }[];
         /**
           * No hover background
