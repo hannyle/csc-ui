@@ -573,7 +573,12 @@ export namespace Components {
         /**
           * Menu items
          */
-        "items": { name: string; action: () => void; disabled?: boolean }[];
+        "items": {
+    name: string;
+    action: () => void;
+    disabled?: boolean;
+    icon?: string;
+  }[];
         /**
           * No hover background
          */
@@ -2202,7 +2207,12 @@ declare namespace LocalJSX {
         /**
           * Menu items
          */
-        "items"?: { name: string; action: () => void; disabled?: boolean }[];
+        "items"?: {
+    name: string;
+    action: () => void;
+    disabled?: boolean;
+    icon?: string;
+  }[];
         /**
           * No hover background
          */

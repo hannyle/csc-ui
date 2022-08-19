@@ -43,8 +43,12 @@ export class CMenu {
   /**
    * Menu items
    */
-  @Prop() items: { name: string; action: () => void; disabled?: boolean }[] =
-    [];
+  @Prop() items: {
+    name: string;
+    action: () => void;
+    disabled?: boolean;
+    icon?: string;
+  }[] = [];
 
   @Watch('currentIndex')
   onIndexChange(index: number) {
@@ -161,6 +165,12 @@ export class CMenu {
         onClick={() => onItemClick(item)}
       >
         {item.name}
+
+        {item.icon && (
+          <svg width="20" height="20" viewBox="0 0 24 24">
+            <path d={item.icon} />
+          </svg>
+        )}
       </li>
     );
   };
