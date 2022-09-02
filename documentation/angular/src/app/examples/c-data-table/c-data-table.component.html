@@ -41,6 +41,10 @@
   name="paginated"
   component="c-data-table"
 >
+  <c-row>
+    <c-menu class="mb-4" [items]="localeOptions">Change pagination language</c-menu>
+  </c-row>
+
   <c-data-table
     id="external-data"
     [data]="pagedData"

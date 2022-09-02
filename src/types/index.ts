@@ -5,6 +5,7 @@ export interface CPaginationOptions {
   itemsPerPage?: number;
   startFrom?: number;
   endTo?: number;
+  locale?: string;
 }
 
 export interface CSelectItem {

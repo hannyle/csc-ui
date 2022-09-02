@@ -219,6 +219,7 @@ export class CDataTableComponent implements OnInit {
     currentPage: 1,
     startFrom: 0,
     endTo: 9,
+    locale: 'en',
   };
 
   externalSortBy = 'name';
@@ -226,6 +227,20 @@ export class CDataTableComponent implements OnInit {
   externalDirection = 'asc';
 
   loading = false;
+
+  locales = [
+    {id: 'en', label: 'In English'},
+    {id: 'fi', label: 'Suomeksi'},
+    {id: 'sv', label: 'På svenska'},
+  ];
+
+  localeOptions = this.locales.map(locale => (
+    {
+      name: locale.label,
+      action: () => this.changeLocale(locale.id),
+    }
+  ));
+
 
   constructor(private _ngZone: NgZone, private _http: HttpClient) {}
 
@@ -338,6 +353,13 @@ export class CDataTableComponent implements OnInit {
     });
 
     this.loading = false;
+  }
+
+  changeLocale = (locale) => {
+    this._ngZone.run(() => {
+      this.externalOptions = {...this.externalOptions, locale: locale}
+      this.getData();
+    });
   }
   // @example-end
 }

@@ -93,6 +93,41 @@ export class CPagination {
     this._setRange();
   }
 
+  private _locale = 'en';
+
+  private _textContent = {
+    page: {
+      en: 'page',
+      fi: 'sivu',
+      sv: 'sida',
+    },
+    of: {
+      en: 'of',
+      fi: '/',
+      sv: 'av',
+    },
+    items: {
+      en: 'items',
+      fi: '',
+      sv: '',
+    },
+    previous: {
+      en: 'Previous',
+      fi: 'Edellinen',
+      sv: 'Föregående',
+    },
+    next: {
+      en: 'Next',
+      fi: 'Seuraava',
+      sv: 'Nästä',
+    },
+  };
+
+  // Translate text content
+  private _t(key: string) {
+    return this._textContent[key][this._locale];
+  }
+
   private _setRange() {
     this._currentPage = this.value.currentPage || 1;
     this._itemsPerPage = this.value.itemsPerPage || 25;
@@ -126,7 +161,9 @@ export class CPagination {
     return (
       <c-menu items={itemsPerPageOptions} nohover>
         <div>
-          <span class="items-per-page">{this._itemsPerPage} per page</span>
+          <span class="items-per-page">
+            {this._itemsPerPage} per {this._t('page')}
+          </span>
         </div>
       </c-menu>
     );
@@ -164,7 +201,9 @@ export class CPagination {
     );
     const start = this.value.startFrom + 1;
 
-    return `${start} - ${end} of ${this.value.itemCount} items`;
+    return `${start} - ${end} ${this._t('of')} ${
+      this.value.itemCount
+    } ${this._t('items')}`;
   }
 
   private _getArrowLeft(size) {
@@ -172,15 +211,15 @@ export class CPagination {
       <li>
         <c-icon-button
           aria-disabled={this.value.currentPage <= 1 ? 'true' : 'false'}
-          aria-label="previous page"
+          aria-label={`${this._t('previous')} ${this._t('page')} `}
           disabled={this.value.currentPage <= 1}
           size={size}
           text
           onClick={this._decreasePageNumber}
         >
           <span class="visuallyhidden">
-            Previous
-            <span>page</span>
+            {this._t('previous')}
+            <span>{this._t('page')}</span>
           </span>
           <svg width="24" height="24" viewBox="0 0 24 24">
             <path d={mdiChevronLeft} />
@@ -197,15 +236,15 @@ export class CPagination {
           aria-disabled={
             this.value.currentPage >= this._getTotalPages() ? 'true' : 'false'
           }
-          aria-label="next page"
+          aria-label={`${this._t('next')} ${this._t('page')} `}
           disabled={this.value.currentPage >= this._getTotalPages()}
           size={size}
           text
           onClick={this._increasePageNumber}
         >
           <span class="visuallyhidden">
-            Next
-            <span>page</span>
+            {this._t('next')}
+            <span>{this._t('page')}</span>
           </span>
           <svg width="24" height="24" viewBox="0 0 24 24">
             <path d={mdiChevronRight} />
@@ -229,9 +268,11 @@ export class CPagination {
     return (
       <li>
         <c-icon-button {...params}>
-          <span class="visuallyhidden">page </span>
+          <span class="visuallyhidden">{this._t('page')} </span>
           {number}
-          <span class="visuallyhidden">of {this._getTotalPages()}</span>
+          <span class="visuallyhidden">
+            {this._t('of')} {this._getTotalPages()}
+          </span>
         </c-icon-button>
       </li>
     );
@@ -282,6 +323,7 @@ export class CPagination {
   }
 
   private _getPageButtons(size) {
+    this._locale = this.value.locale || 'en'; // Default to English locale
     this._buttons = [];
     let buttonStart = 0;
     let buttonCount = this._getTotalPages() + 1;
