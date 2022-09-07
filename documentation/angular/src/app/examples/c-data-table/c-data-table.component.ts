@@ -219,7 +219,6 @@ export class CDataTableComponent implements OnInit {
     currentPage: 1,
     startFrom: 0,
     endTo: 9,
-    locale: 'en',
   };
 
   externalSortBy = 'name';
@@ -228,19 +227,15 @@ export class CDataTableComponent implements OnInit {
 
   loading = false;
 
-  locales = [
-    {id: 'en', label: 'In English'},
-    {id: 'fi', label: 'Suomeksi'},
-    {id: 'sv', label: 'På svenska'},
-  ];
+  textOverride = false;
 
-  localeOptions = this.locales.map(locale => (
-    {
-      name: locale.label,
-      action: () => this.changeLocale(locale.id),
-    }
-  ));
-
+  textOverrides = {
+    itemsPerPageText: 'Kohteita sivulla:',
+    nextPage: 'Seuraava sivu',
+    prevPage: 'Edellinen sivu',
+    pageText: ({start, end, count}) => `${start} - ${end} / ${count}`,
+    pageOfText: ({pageNumber, count}) => `Sivu ${pageNumber} / ${count}`,
+  };
 
   constructor(private _ngZone: NgZone, private _http: HttpClient) {}
 
@@ -355,9 +350,13 @@ export class CDataTableComponent implements OnInit {
     this.loading = false;
   }
 
-  changeLocale = (locale) => {
+  toggleTextOverride(event) {
     this._ngZone.run(() => {
-      this.externalOptions = {...this.externalOptions, locale: locale}
+      this.externalOptions = {
+        ...this.externalOptions,
+        textOverrides: event.detail ? this.textOverrides : undefined
+      }
+
       this.getData();
     });
   }
