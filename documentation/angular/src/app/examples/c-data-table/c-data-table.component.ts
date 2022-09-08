@@ -230,7 +230,7 @@ export class CDataTableComponent implements OnInit {
   textOverride = false;
 
   textOverrides = {
-    itemsPerPageText: 'Kohteita sivulla:',
+    // itemsPerPageText: 'Kohteita sivulla:',
     nextPage: 'Seuraava sivu',
     prevPage: 'Edellinen sivu',
     pageText: ({start, end, count}) => `${start} - ${end} / ${count}`,

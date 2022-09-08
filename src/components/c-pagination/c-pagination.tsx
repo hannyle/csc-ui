@@ -100,7 +100,7 @@ export class CPagination {
   };
 
   private _getText(key: string) {
-    const source = this.value.textOverrides
+    const source = this.value.textOverrides?.[key]
       ? this.value.textOverrides
       : this._textContent;
 
@@ -260,8 +260,6 @@ export class CPagination {
         count: this._getTotalPages(),
       });
     }
-
-    console.log(parsedPageOfTextOverride);
 
     return (
       <li>
