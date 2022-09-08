@@ -658,15 +658,15 @@ export class CDataTable {
     return !!Tag ? (
       <Tag
         {...params}
-        onClick={(event: MouseEvent) =>
+        onClick={(event: MouseEvent) => {
           params?.onClick?.({
             index: rowIndex,
             value: options.value,
             data: this.data[rowIndex],
             event,
             key,
-          })
-        }
+          });
+        }}
       >
         {options.formattedValue || options.value}
       </Tag>
@@ -679,24 +679,35 @@ export class CDataTable {
     options: CDataTableDataItem | CDataTableHeader,
     index: number,
     key: string,
-    data = {},
+    data: CDataTableDataItemPrivate,
   ) {
     return options.children.map((child) => {
       const Tag = child.component?.tag;
       const params = child.component?.params || {};
 
+      const { _hiddenData = [], ...rest } = data;
+
+      const flatData: CDataTableData = {
+        ...(rest as Partial<CDataTableData>),
+        ..._hiddenData.reduce((obj, row) => {
+          obj[row.id] = row.value;
+
+          return obj;
+        }, {} as CDataTableData),
+      };
+
       return !!Tag ? (
         <Tag
           {...params}
-          onClick={(event: MouseEvent) =>
+          onClick={(event: MouseEvent) => {
             params?.onClick?.({
               value: options.value,
               index,
               event,
               key,
-              data,
-            })
-          }
+              data: flatData,
+            });
+          }}
         >
           {child.value}
         </Tag>
@@ -737,7 +748,7 @@ export class CDataTable {
 
             {!!options.children && (
               <div class="children">
-                {this._renderCellChildren(options, index, id)}
+                {this._renderCellChildren(options, index, id, {})}
               </div>
             )}
           </li>
