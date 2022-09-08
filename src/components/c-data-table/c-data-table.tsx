@@ -244,6 +244,44 @@ export class CDataTable {
     this._rootIntersectionObserver.disconnect();
   }
 
+  private _handleHeaderVisibility(
+    header: HTMLElement,
+    rootWidth: number,
+    x: number,
+  ) {
+    const index = this._headers.findIndex((h) => h.key === header.dataset.id);
+    const position = header.getBoundingClientRect();
+    const isFullyVisible = position.right - x <= rootWidth;
+    const isLastVisibleHeader =
+      header.dataset.id === Array.from(this._headerRefs.keys()).at(0);
+    const isPinned = this._headers[index]?.pinned;
+
+    if (!isFullyVisible && isPinned && index >= 1) {
+      const nextUnpinnedHeader = Array.from(this._headerRefs.values())
+        .reverse()
+        .find((hdr) => {
+          if (!hdr) return false;
+
+          return !this._headers.find((h) => h.key === hdr.dataset.id)?.pinned;
+        });
+
+      this.hiddenHeaders = [
+        ...new Set([
+          ...this.hiddenHeaders,
+          (nextUnpinnedHeader || header).dataset.id, // hide the pinned header as a last resort
+        ]),
+      ];
+
+      return;
+    }
+
+    if (!isFullyVisible && !isLastVisibleHeader) {
+      this.hiddenHeaders = [
+        ...new Set([...this.hiddenHeaders, header.dataset.id]),
+      ];
+    }
+  }
+
   private _handleResponsiveHeaders() {
     const { width: tableWidth } = this._tableElement.getBoundingClientRect();
     const { width: rootWidth, x } = this.element.getBoundingClientRect();
@@ -257,16 +295,7 @@ export class CDataTable {
       setTimeout(() => {
         for (const header of this._headerRefs.values()) {
           if (header) {
-            const position = header.getBoundingClientRect();
-            const isFullyVisible = position.right - x <= rootWidth;
-            const isLastVisibleHeader =
-              header.dataset.id === Array.from(this._headerRefs.keys()).at(0);
-
-            if (!isFullyVisible && !isLastVisibleHeader) {
-              this.hiddenHeaders = [
-                ...new Set([...this.hiddenHeaders, header.dataset.id]),
-              ];
-            }
+            this._handleHeaderVisibility(header, rootWidth, x);
           }
         }
 
@@ -352,9 +381,14 @@ export class CDataTable {
   }
 
   private get _headers() {
-    return this.headers.filter(
-      (header) => !this.hiddenHeaders.includes(header.key) && !header.hidden,
-    );
+    return this.headers
+      .map((header) => ({
+        ...header,
+        pinned: !!header.pinned,
+      }))
+      .filter(
+        (header) => !this.hiddenHeaders.includes(header.key) && !header.hidden,
+      );
   }
 
   private get _headerKeys() {

@@ -117,6 +117,7 @@ export class CDataTableComponent implements OnInit {
     {
       key: 'id',
       value: 'Id',
+      pinned: true,
       component: {
         tag: 'c-tag',
         params: {
@@ -148,6 +149,7 @@ export class CDataTableComponent implements OnInit {
       key: 'actions',
       value: null,
       sortable: false,
+      pinned: true,
       align: 'end',
       children: [
         {
