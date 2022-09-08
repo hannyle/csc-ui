@@ -318,12 +318,9 @@ export class CDataTable {
           _hiddenData: [],
         };
 
-        Object.keys(cell)
-          // remove keys not present in headers
-          .filter((key) => this._headerKeys.includes(key))
-          .forEach((key) => {
-            item[key] = cell[key];
-          });
+        Object.keys(cell).forEach((key) => {
+          item[key] = cell[key];
+        });
 
         this.hiddenHeaders.forEach((header) => {
           const cellData = this.headers.find((h) => h.key === header);
@@ -893,31 +890,36 @@ export class CDataTable {
     rowIndex: number,
     rowData = {},
   ) {
+    const header = this.headers.find((header) => header.key === key);
+    const isHidden = this.hiddenHeaders.includes(key);
+
+    // Render only if key is present in headers
     return (
-      <td>
-        <div
-          data-align={this.headers.find((header) => header.key === key)?.align}
-        >
-          {this._renderCellData(key, options, colIndex, rowIndex)}
+      !!header &&
+      !isHidden && (
+        <td>
+          <div data-align={header?.align}>
+            {this._renderCellData(key, options, colIndex, rowIndex)}
 
-          {!!options.children && (
-            <div class="children">
-              {this._renderCellChildren(options, rowIndex, key, rowData)}
-            </div>
-          )}
+            {!!options.children && (
+              <div class="children">
+                {this._renderCellChildren(options, rowIndex, key, rowData)}
+              </div>
+            )}
 
-          {!!this.headers.find((header) => header.key === key)?.children && (
-            <div class="children">
-              {this._renderCellChildren(
-                this.headers.find((header) => header.key === key),
-                rowIndex,
-                key,
-                rowData,
-              )}
-            </div>
-          )}
-        </div>
-      </td>
+            {!!this.headers.find((header) => header.key === key)?.children && (
+              <div class="children">
+                {this._renderCellChildren(
+                  this.headers.find((header) => header.key === key),
+                  rowIndex,
+                  key,
+                  rowData,
+                )}
+              </div>
+            )}
+          </div>
+        </td>
+      )
     );
   }
 
