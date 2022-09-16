@@ -38,7 +38,7 @@ export const config: Config = {
     },
     {
       type: 'docs-vscode',
-      file: './dist/custom-elements.json',
+      file: 'vscode-data.json',
     },
     {
       type: 'www',
