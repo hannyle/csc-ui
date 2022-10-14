@@ -57,11 +57,6 @@ export class CSubnavigationitem {
   }
 
   render() {
-    const classes = {
-      'c-subnavigation-item': true,
-      // active: this.active,
-    };
-
     const a11y = {
       tabindex: this.focusable ? '0' : '-1',
       role: 'menuitem',
@@ -79,7 +74,7 @@ export class CSubnavigationitem {
         onKeyDown={(e) => this._redirect(e)}
       >
         <div class="c-subnavigation-item__wrapper">
-          <div class={classes}>
+          <div class="c-subnavigation-item">
             <div class="c-subnavigation-item__content">
               <div class="c-subnavigation-item__slot">
                 <slot></slot>
