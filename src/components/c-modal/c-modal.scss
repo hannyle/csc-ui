@@ -23,6 +23,12 @@
   &--show {
     transform: scale(1);
   }
+
+  &--animate {
+    animation-duration: 0.15s;
+    animation-name: animate-dialog;
+    animation-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
 }
 
 .c-overlay {
@@ -40,5 +46,18 @@
   &--show {
     opacity: 1;
     pointer-events: all;
+  }
+}
+
+@keyframes animate-dialog {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
   }
 }
