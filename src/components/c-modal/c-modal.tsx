@@ -102,8 +102,8 @@ export class CModal {
 
     return (
       <div class="modal-wrapper">
-        <div class={modalClasses}>
-          <slot></slot>
+        <div class={modalClasses} aria-hidden={!this.value}>
+          {this.value && <slot></slot>}
         </div>
         <div class={overlayClasses} onClick={() => this._hideModal()}></div>
       </div>
