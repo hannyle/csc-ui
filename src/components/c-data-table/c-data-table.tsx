@@ -324,10 +324,10 @@ export class CDataTable {
   }
 
   disconnectedCallback() {
-    this._resizeObserver.disconnect();
-    this._rootIntersectionObserver.disconnect();
-    this._firstCellIntersectionObserver.disconnect();
-    this._lastCellIntersectionObserver.disconnect();
+    this._resizeObserver?.disconnect();
+    this._rootIntersectionObserver?.disconnect();
+    this._firstCellIntersectionObserver?.disconnect();
+    this._lastCellIntersectionObserver?.disconnect();
   }
 
   private _handleHeaderVisibility(
@@ -487,6 +487,14 @@ export class CDataTable {
     this.pagination = { ...this.pagination, itemCount: this.data.length };
 
     this._validateProps(this._data[0]);
+
+    this._handleScrollWidth();
+
+    requestAnimationFrame(() => {
+      this.element.style.height = `${Math.ceil(
+        this._tableElement?.getBoundingClientRect().height,
+      )}px`;
+    });
   }
 
   private _getSelectionValue(
