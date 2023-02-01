@@ -167,43 +167,46 @@ export class CMenu {
   private _showMenu() {
     if (this.menuVisible) {
       this.currentIndex = null;
+
+      return;
     }
 
     this.menuVisible = !this.menuVisible;
-
-    const { top, left, width, height } = this.el.getBoundingClientRect();
-
-    const initialPosition = top + height;
-
-    this.menuItemsComponent = document.createElement('c-menu-items');
-
-    this.menuItemsComponent.items = this.items;
-    this.menuItemsComponent.small = this.small;
-
-    this.menuItemsComponent.style.minWidth = `${width}px`;
-    this.menuItemsComponent.style.left = `${left}px`;
-    this.menuItemsComponent.style.top = `${initialPosition}px`;
-
-    this.scrollingParentComponent = this._getScrollParent(this.el);
-
-    const initialScrollPosition = this.scrollingParentComponent.scrollTop;
-
-    this.scrollingParentComponent.onscroll = (event) => {
-      const position =
-        (event.target as HTMLElement).scrollTop - initialScrollPosition;
-      this.menuItemsComponent.style.top = `${initialPosition - position}px`;
-    };
-
-    this.menuItemsComponent.addEventListener('close', () => this._hideMenu());
-
-    document.body.appendChild(this.menuItemsComponent);
-
     requestAnimationFrame(() => {
+      const { top, left, width, height } = this.el.getBoundingClientRect();
+
+      const initialPosition = top + height;
+
+      this.menuItemsComponent = document.createElement('c-menu-items');
+
+      this.menuItemsComponent.items = this.items;
+      this.menuItemsComponent.small = this.small;
+
+      this.menuItemsComponent.style.minWidth = `${width}px`;
+      this.menuItemsComponent.style.left = `${left}px`;
+      this.menuItemsComponent.style.top = `${initialPosition}px`;
+
+      this.scrollingParentComponent = this._getScrollParent(this.el);
+
+      const initialScrollPosition = this.scrollingParentComponent.scrollTop;
+
+      this.scrollingParentComponent.onscroll = (event) => {
+        const position =
+          (event.target as HTMLElement).scrollTop - initialScrollPosition;
+        this.menuItemsComponent.style.top = `${initialPosition - position}px`;
+      };
+
+      this.menuItemsComponent.addEventListener('close', () => this._hideMenu());
+
+      document.body.appendChild(this.menuItemsComponent);
+
       this.menuItemsComponent.active = true;
     });
   }
 
   private _hideMenu() {
+    if (!this.menuVisible) return;
+
     this.menuVisible = false;
 
     if (this.menuItemsComponent) {
@@ -239,41 +242,6 @@ export class CMenu {
     );
   }
 
-  // private _getListItem = (item) => {
-  //   const classes = {
-  //     small: this.small,
-  //     disabled: item.disabled,
-  //     'icon-start': item.iconPosition === 'start',
-  //     'icon-end': item.iconPosition === 'end',
-  //   };
-
-  //   const onItemClick = (event, item) => {
-  //     event.stopPropagation();
-
-  //     if (!item.disabled) {
-  //       item.action();
-  //       this._hideMenu();
-  //     }
-  //   };
-
-  //   return (
-  //     <li
-  //       class={classes}
-  //       tabindex="-1"
-  //       role="menuitem"
-  //       onClick={(event) => onItemClick(event, item)}
-  //     >
-  //       {item.name}
-
-  //       {item.icon && (
-  //         <svg class="icon" width="20" height="20" viewBox="0 0 24 24">
-  //           <path d={item.icon} />
-  //         </svg>
-  //       )}
-  //     </li>
-  //   );
-  // };
-
   /**
    * Prevent unstyled elements from showing in Firefox
    */
@@ -291,11 +259,6 @@ export class CMenu {
       nohover: this.nohover,
       small: this.small,
     };
-
-    // const menuClasses = {
-    //   'c-menu-list': true,
-    //   active: this.menuVisible,
-    // };
 
     return (
       this.isInitialized && (
@@ -338,18 +301,6 @@ export class CMenu {
               )}
             </button>
           )}
-
-          {/* {this.menuVisible && (
-            <c-menu-items
-              active={this.menuVisible}
-              items={this.items}
-              small={this.small}
-              onClose={() => this._hideMenu()}
-            />
-            // <ul id="c-menu-items" class={menuClasses} role="menu">
-            //   {this.items.map((item) => this._getListItem(item))}
-            // </ul>
-          )} */}
         </Host>
       )
     );
