@@ -339,6 +339,10 @@ export namespace Components {
          */
         "hideFooter": boolean;
         /**
+          * Use horizontal scrolling
+         */
+        "horizontalScrolling": boolean;
+        /**
           * Show a loader on top of the table
          */
         "loading": boolean;
@@ -354,6 +358,10 @@ export namespace Components {
           * Pagination options
          */
         "pagination": CPaginationOptions;
+        /**
+          * Trigger resize externally
+         */
+        "resize": () => Promise<void>;
         /**
           * Make rows selectable
          */
@@ -674,6 +682,20 @@ export namespace Components {
           * Is the item the active selection
          */
         "active": boolean;
+        /**
+          * Small variant
+         */
+        "small": boolean;
+    }
+    interface CMenuItems {
+        /**
+          * is active
+         */
+        "active": boolean;
+        /**
+          * Menu items
+         */
+        "items": CMenuOption[];
         /**
           * Small variant
          */
@@ -1292,6 +1314,10 @@ export interface CInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCInputElement;
 }
+export interface CMenuItemsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCMenuItemsElement;
+}
 export interface CModalCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCModalElement;
@@ -1523,6 +1549,12 @@ declare global {
         prototype: HTMLCMenuItemElement;
         new (): HTMLCMenuItemElement;
     };
+    interface HTMLCMenuItemsElement extends Components.CMenuItems, HTMLStencilElement {
+    }
+    var HTMLCMenuItemsElement: {
+        prototype: HTMLCMenuItemsElement;
+        new (): HTMLCMenuItemsElement;
+    };
     interface HTMLCModalElement extends Components.CModal, HTMLStencilElement {
     }
     var HTMLCModalElement: {
@@ -1715,6 +1747,7 @@ declare global {
         "c-main": HTMLCMainElement;
         "c-menu": HTMLCMenuElement;
         "c-menu-item": HTMLCMenuItemElement;
+        "c-menu-items": HTMLCMenuItemsElement;
         "c-modal": HTMLCModalElement;
         "c-navigationbutton": HTMLCNavigationbuttonElement;
         "c-notification": HTMLCNotificationElement;
@@ -2089,6 +2122,10 @@ declare namespace LocalJSX {
          */
         "hideFooter"?: boolean;
         /**
+          * Use horizontal scrolling
+         */
+        "horizontalScrolling"?: boolean;
+        /**
           * Show a loader on top of the table
          */
         "loading"?: boolean;
@@ -2444,6 +2481,24 @@ declare namespace LocalJSX {
           * Is the item the active selection
          */
         "active"?: boolean;
+        /**
+          * Small variant
+         */
+        "small"?: boolean;
+    }
+    interface CMenuItems {
+        /**
+          * is active
+         */
+        "active"?: boolean;
+        /**
+          * Menu items
+         */
+        "items"?: CMenuOption[];
+        /**
+          * Triggered when menu is closed
+         */
+        "onClose"?: (event: CMenuItemsCustomEvent<any>) => void;
         /**
           * Small variant
          */
@@ -3109,6 +3164,7 @@ declare namespace LocalJSX {
         "c-main": CMain;
         "c-menu": CMenu;
         "c-menu-item": CMenuItem;
+        "c-menu-items": CMenuItems;
         "c-modal": CModal;
         "c-navigationbutton": CNavigationbutton;
         "c-notification": CNotification;
@@ -3171,6 +3227,7 @@ declare module "@stencil/core" {
             "c-main": LocalJSX.CMain & JSXBase.HTMLAttributes<HTMLCMainElement>;
             "c-menu": LocalJSX.CMenu & JSXBase.HTMLAttributes<HTMLCMenuElement>;
             "c-menu-item": LocalJSX.CMenuItem & JSXBase.HTMLAttributes<HTMLCMenuItemElement>;
+            "c-menu-items": LocalJSX.CMenuItems & JSXBase.HTMLAttributes<HTMLCMenuItemsElement>;
             "c-modal": LocalJSX.CModal & JSXBase.HTMLAttributes<HTMLCModalElement>;
             "c-navigationbutton": LocalJSX.CNavigationbutton & JSXBase.HTMLAttributes<HTMLCNavigationbuttonElement>;
             "c-notification": LocalJSX.CNotification & JSXBase.HTMLAttributes<HTMLCNotificationElement>;

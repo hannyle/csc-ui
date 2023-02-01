@@ -1,3 +1,4 @@
+import { formatNumber } from '@angular/common';
 import { CDataTableData, CDataTableFunctionParams } from '../../../../../../src/types/index';
 
 const users: CDataTableData[] = [
@@ -872,6 +873,17 @@ const getRandomProgress = (min = 0, max = 100) => Math.floor(Math.random() * (ma
 users.forEach((user) => {
   user['progress'] = {
     value: getRandomProgress(),
+  };
+
+  user['progress2'] = {
+    value: getRandomProgress(50, 100),
+  };
+
+  const salary = getRandomProgress(2500, 5000);
+
+  user['salary'] = {
+    value: salary,
+    formattedValue: `${formatNumber(salary, 'en-US', '1.0')} $`,
   };
 });
 

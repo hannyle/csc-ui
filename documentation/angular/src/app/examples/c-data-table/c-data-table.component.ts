@@ -169,8 +169,30 @@ export class CDataTableComponent implements OnInit {
         },
       },
     },
+    {
+      key: 'progress2',
+      value: 'Efficiency',
+      width: '128px',
+      component: {
+        tag: 'c-progress-bar',
+        injectValue: true,
+        params: {
+          style: {
+            width: '100%',
+          },
+          hideDetails: true,
+          color: '#830051',
+        },
+      },
+    },
+    {
+      key: 'salary',
+      value: 'Salary',
+      width: '128px',
+      justify: 'end',
+    },
     { key: 'email', value: 'Email', hidden: true },
-    { key: 'city', value: 'City', hidden: true },
+    { key: 'city', value: 'City', hidden: false },
     {
       key: 'actions',
       value: null,

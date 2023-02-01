@@ -9,7 +9,7 @@
 
 | Property       | Attribute  | Description                   | Type                                                                                                              | Default     |
 | -------------- | ---------- | ----------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
-| `notification` | --         | notification contents         | `{ name: string; type: "error" \| "warning" \| "success" \| "info"; delay?: number; requiresClosing?: boolean; }` | `null`      |
+| `notification` | --         | notification contents         | `{ name: string; type: "info" \| "warning" \| "error" \| "success"; delay?: number; requiresClosing?: boolean; }` | `null`      |
 | `position`     | `position` | Position of the notifications | `"absolute" \| "fixed"`                                                                                           | `undefined` |
 
 

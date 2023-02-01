@@ -13,6 +13,7 @@ button.icon-button {
   position: relative;
   align-items: center;
   justify-content: center;
+  content: 'kikkeli';
 
   ::slotted(svg),
   ::slotted(i),
