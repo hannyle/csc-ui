@@ -290,7 +290,6 @@ export class CDataTable {
 
       this._resizeObserver.observe(this._tableElement);
     } else {
-      console.log(this._headerKeys);
       const [firstCell] = this._headerKeys;
       const lastCell = this._headerKeys[this._headerKeys.length - 1];
 
@@ -1215,7 +1214,12 @@ export class CDataTable {
             <th colSpan={100}>
               <div style={indicatorRowStyles}>
                 {this.firstCellHidden && (
-                  <c-icon-button class="first" size="small" outlined>
+                  <c-icon-button
+                    class="first"
+                    size="small"
+                    outlined
+                    onClick={() => this._scrollLeft()}
+                  >
                     <c-icon path={mdiChevronLeft}></c-icon>
                   </c-icon-button>
                 )}
@@ -1223,7 +1227,12 @@ export class CDataTable {
                 <c-spacer />
 
                 {this.lastCellHidden && (
-                  <c-icon-button class="last" size="small" outlined>
+                  <c-icon-button
+                    class="last"
+                    size="small"
+                    outlined
+                    onClick={() => this._scrollRight()}
+                  >
                     <c-icon path={mdiChevronRight}></c-icon>
                   </c-icon-button>
                 )}
@@ -1233,6 +1242,44 @@ export class CDataTable {
         )}
       </thead>
     );
+  }
+
+  private _scrollLeft() {
+    const leftBorder = this.element.getBoundingClientRect().left;
+
+    const hiddenHeaderKeys = this._headerKeys.filter((key) => {
+      const headerCellLeftBorder = this._tableElement
+        .querySelector(`[data-id="${key}"]`)
+        ?.getBoundingClientRect().left;
+
+      return headerCellLeftBorder < leftBorder - 2;
+    });
+
+    if (hiddenHeaderKeys.length) {
+      this._tableElement
+        .querySelector(
+          `[data-id="${hiddenHeaderKeys[hiddenHeaderKeys.length - 1]}"]`,
+        )
+        .scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  private _scrollRight() {
+    const rightBorder = this.element.getBoundingClientRect().right;
+
+    const hiddenHeaderKeys = this._headerKeys.filter((key) => {
+      const headerCellRightBorder = this._tableElement
+        .querySelector(`[data-id="${key}"]`)
+        ?.getBoundingClientRect().right;
+
+      return headerCellRightBorder > rightBorder + 2;
+    });
+
+    if (hiddenHeaderKeys.length) {
+      this._tableElement
+        .querySelector(`[data-id="${hiddenHeaderKeys[0]}"]`)
+        .scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
   }
 
   /**

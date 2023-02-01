@@ -677,16 +677,6 @@ export namespace Components {
          */
         "small": boolean;
     }
-    interface CMenuItem {
-        /**
-          * Is the item the active selection
-         */
-        "active": boolean;
-        /**
-          * Small variant
-         */
-        "small": boolean;
-    }
     interface CMenuItems {
         /**
           * is active
@@ -1543,12 +1533,6 @@ declare global {
         prototype: HTMLCMenuElement;
         new (): HTMLCMenuElement;
     };
-    interface HTMLCMenuItemElement extends Components.CMenuItem, HTMLStencilElement {
-    }
-    var HTMLCMenuItemElement: {
-        prototype: HTMLCMenuItemElement;
-        new (): HTMLCMenuItemElement;
-    };
     interface HTMLCMenuItemsElement extends Components.CMenuItems, HTMLStencilElement {
     }
     var HTMLCMenuItemsElement: {
@@ -1746,7 +1730,6 @@ declare global {
         "c-login-card-title": HTMLCLoginCardTitleElement;
         "c-main": HTMLCMainElement;
         "c-menu": HTMLCMenuElement;
-        "c-menu-item": HTMLCMenuItemElement;
         "c-menu-items": HTMLCMenuItemsElement;
         "c-modal": HTMLCModalElement;
         "c-navigationbutton": HTMLCNavigationbuttonElement;
@@ -2476,16 +2459,6 @@ declare namespace LocalJSX {
          */
         "small"?: boolean;
     }
-    interface CMenuItem {
-        /**
-          * Is the item the active selection
-         */
-        "active"?: boolean;
-        /**
-          * Small variant
-         */
-        "small"?: boolean;
-    }
     interface CMenuItems {
         /**
           * is active
@@ -3163,7 +3136,6 @@ declare namespace LocalJSX {
         "c-login-card-title": CLoginCardTitle;
         "c-main": CMain;
         "c-menu": CMenu;
-        "c-menu-item": CMenuItem;
         "c-menu-items": CMenuItems;
         "c-modal": CModal;
         "c-navigationbutton": CNavigationbutton;
@@ -3226,7 +3198,6 @@ declare module "@stencil/core" {
             "c-login-card-title": LocalJSX.CLoginCardTitle & JSXBase.HTMLAttributes<HTMLCLoginCardTitleElement>;
             "c-main": LocalJSX.CMain & JSXBase.HTMLAttributes<HTMLCMainElement>;
             "c-menu": LocalJSX.CMenu & JSXBase.HTMLAttributes<HTMLCMenuElement>;
-            "c-menu-item": LocalJSX.CMenuItem & JSXBase.HTMLAttributes<HTMLCMenuItemElement>;
             "c-menu-items": LocalJSX.CMenuItems & JSXBase.HTMLAttributes<HTMLCMenuItemsElement>;
             "c-modal": LocalJSX.CModal & JSXBase.HTMLAttributes<HTMLCModalElement>;
             "c-navigationbutton": LocalJSX.CNavigationbutton & JSXBase.HTMLAttributes<HTMLCNavigationbuttonElement>;
