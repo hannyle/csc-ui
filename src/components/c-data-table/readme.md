@@ -50,16 +50,6 @@ Type: `Promise<void>`
 
 
 
-### `resize() => Promise<void>`
-
-Trigger resize externally
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
 
 ## Dependencies
 

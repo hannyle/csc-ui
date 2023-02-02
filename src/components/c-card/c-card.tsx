@@ -8,7 +8,6 @@ import {
   getAssetPath,
   State,
   Method,
-  Watch,
 } from '@stencil/core';
 
 export type CardBackground = 'puhti' | 'mahti' | 'allas';
@@ -87,15 +86,6 @@ export class CCard {
   @Method()
   async enterFullscreen() {
     this.isFullscreen = true;
-  }
-
-  @Watch('isFullscreen')
-  onFullscreenChange() {
-    this.host
-      .querySelectorAll('c-data-table')
-      ?.forEach((el: HTMLCDataTableElement) => {
-        el.resize();
-      });
   }
 
   render() {

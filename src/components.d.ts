@@ -359,10 +359,6 @@ export namespace Components {
          */
         "pagination": CPaginationOptions;
         /**
-          * Trigger resize externally
-         */
-        "resize": () => Promise<void>;
-        /**
           * Make rows selectable
          */
         "selectable": boolean;

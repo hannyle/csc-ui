@@ -240,21 +240,6 @@ export class CDataTable {
     this._emitChange();
   }
 
-  /**
-   * Trigger resize externally
-   */
-  @Method()
-  async resize() {
-    this.hiddenHeaders = [...new Set([...this.headersHiddenInData])];
-    this.breakpoints = [];
-
-    if (!this.horizontalScrolling) return;
-
-    requestAnimationFrame(() => {
-      this._handleScrollWidth();
-    });
-  }
-
   componentWillLoad() {
     this.sortBy = this.sortBy ?? this.headers[0].key;
     this.sortDirection = this.sortDirection ?? 'asc';
@@ -295,14 +280,14 @@ export class CDataTable {
         ([entry]) => {
           this.firstCellHidden = !entry.isIntersecting;
         },
-        { threshold: 1.0 },
+        { threshold: 1, rootMargin: '16px', root: this.element },
       );
 
       this._lastCellIntersectionObserver = new IntersectionObserver(
         ([entry]) => {
           this.lastCellHidden = !entry.isIntersecting;
         },
-        { threshold: 1.0 },
+        { threshold: 1, rootMargin: '16px', root: this.element },
       );
 
       this._resizeObserver = new ResizeObserver(() => {
@@ -318,7 +303,7 @@ export class CDataTable {
       );
     }
 
-    this._resizeObserver.observe(this._tableElement);
+    this._resizeObserver.observe(this.element);
   }
 
   disconnectedCallback() {
@@ -566,22 +551,10 @@ export class CDataTable {
   }
 
   private _handleScrollWidth() {
-    const { height } = this.element.getBoundingClientRect();
-    this.element.style.display = 'none';
-
-    this.parentWidth = this.element.parentElement.getBoundingClientRect().width;
-
-    this.element.style.maxWidth = `${Math.ceil(this.parentWidth)}px`;
-    this.element.style.height = `${Math.ceil(height)}px`;
-
-    this.element.style.display = 'block';
+    this.parentWidth = this.element.getBoundingClientRect().width;
   }
 
   private _handleResize() {
-    const { height } = this._tableElement.getBoundingClientRect();
-
-    this.element.style.height = `${Math.ceil(height)}px`;
-
     if (this._isVisible) {
       this._handleResponsiveHeaders();
     }
@@ -694,13 +667,6 @@ export class CDataTable {
     this._setIntermediateStatus();
 
     this._getData();
-
-    // requestAnimationFrame(() => {
-    //   const height =
-    //     this.element.shadowRoot.querySelector('table').scrollHeight;
-
-    //   this.element.style.height = `${Math.ceil(height + 8)}px`;
-    // });
   }
 
   private _onSelection(value: string | number) {
@@ -1149,8 +1115,6 @@ export class CDataTable {
   }
 
   private _renderTableHeader() {
-    // const { width } = this.element.getBoundingClientRect();
-
     const indicatorRowStyles = this.horizontalScrolling
       ? {
           width: `${this.parentWidth - 8}px`,
