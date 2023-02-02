@@ -282,13 +282,11 @@ export class CDataTable {
         }
       });
 
-      this._resizeObserver = new ResizeObserver(([entry]) => {
-        this._handleResize(entry);
+      this._resizeObserver = new ResizeObserver(() => {
+        this._handleResize();
       });
 
       this._rootIntersectionObserver.observe(this.element);
-
-      this._resizeObserver.observe(this._tableElement);
     } else {
       const [firstCell] = this._headerKeys;
       const lastCell = this._headerKeys[this._headerKeys.length - 1];
@@ -318,9 +316,9 @@ export class CDataTable {
       this._lastCellIntersectionObserver.observe(
         this._tableElement.querySelector(`[data-id="${lastCell}"]`),
       );
-
-      this._resizeObserver.observe(document.body);
     }
+
+    this._resizeObserver.observe(this._tableElement);
   }
 
   disconnectedCallback() {
@@ -491,9 +489,7 @@ export class CDataTable {
     this._handleScrollWidth();
 
     requestAnimationFrame(() => {
-      this.element.style.height = `${Math.ceil(
-        this._tableElement?.getBoundingClientRect().height,
-      )}px`;
+      this._handleResize();
     });
   }
 
@@ -581,8 +577,8 @@ export class CDataTable {
     this.element.style.display = 'block';
   }
 
-  private _handleResize(entry: ResizeObserverEntry) {
-    const { height } = entry.contentRect;
+  private _handleResize() {
+    const { height } = this._tableElement.getBoundingClientRect();
 
     this.element.style.height = `${Math.ceil(height)}px`;
 
@@ -699,12 +695,12 @@ export class CDataTable {
 
     this._getData();
 
-    requestAnimationFrame(() => {
-      const height =
-        this.element.shadowRoot.querySelector('table').scrollHeight;
+    // requestAnimationFrame(() => {
+    //   const height =
+    //     this.element.shadowRoot.querySelector('table').scrollHeight;
 
-      this.element.style.height = `${Math.ceil(height + 8)}px`;
-    });
+    //   this.element.style.height = `${Math.ceil(height + 8)}px`;
+    // });
   }
 
   private _onSelection(value: string | number) {
