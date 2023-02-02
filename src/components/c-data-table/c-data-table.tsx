@@ -245,16 +245,14 @@ export class CDataTable {
     this.sortDirection = this.sortDirection ?? 'asc';
     this._getData();
 
-    if (!this.horizontalScrolling) {
-      this.headersHiddenInData = this.headers
-        .filter((header) => !!header.hidden)
-        .map((header) => header.key);
+    this.headersHiddenInData = this.headers
+      .filter((header) => !!header.hidden)
+      .map((header) => header.key);
 
-      // Hide the initially hidden headers
-      this.hiddenHeaders = [
-        ...new Set([...this.hiddenHeaders, ...this.headersHiddenInData]),
-      ];
-    }
+    // Hide the initially hidden headers
+    this.hiddenHeaders = [
+      ...new Set([...this.hiddenHeaders, ...this.headersHiddenInData]),
+    ];
   }
 
   componentDidLoad() {
@@ -1224,6 +1222,16 @@ export class CDataTable {
     });
 
     if (hiddenHeaderKeys.length) {
+      if (hiddenHeaderKeys.length === 1) {
+        this._tableElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'start',
+        });
+
+        return;
+      }
+
       this._tableElement
         .querySelector(
           `[data-id="${hiddenHeaderKeys[hiddenHeaderKeys.length - 1]}"]`,
