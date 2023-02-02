@@ -173,7 +173,7 @@ export class CDataTable {
 
   @State() hiddenHeaders: string[] = [];
 
-  @State() headersHiddenInData: string[] = [];
+  @State() initiallyHiddenHeaders: string[] = [];
 
   @State() forceRender = false;
 
@@ -245,13 +245,13 @@ export class CDataTable {
     this.sortDirection = this.sortDirection ?? 'asc';
     this._getData();
 
-    this.headersHiddenInData = this.headers
+    this.initiallyHiddenHeaders = this.headers
       .filter((header) => !!header.hidden)
       .map((header) => header.key);
 
     // Hide the initially hidden headers
     this.hiddenHeaders = [
-      ...new Set([...this.hiddenHeaders, ...this.headersHiddenInData]),
+      ...new Set([...this.hiddenHeaders, ...this.initiallyHiddenHeaders]),
     ];
   }
 
@@ -334,7 +334,7 @@ export class CDataTable {
 
       this.hiddenHeaders = [
         ...new Set([
-          ...this.headersHiddenInData,
+          ...this.initiallyHiddenHeaders,
           ...this.hiddenHeaders,
           (nextUnpinnedHeader || header).dataset.id, // hide the pinned header as a last resort
         ]),
@@ -346,7 +346,7 @@ export class CDataTable {
     if (!isFullyVisible && !isLastVisibleHeader) {
       this.hiddenHeaders = [
         ...new Set([
-          ...this.headersHiddenInData,
+          ...this.initiallyHiddenHeaders,
           ...this.hiddenHeaders,
           header.dataset.id,
         ]),
@@ -396,7 +396,7 @@ export class CDataTable {
         const headerIndex = this.hiddenHeaders.indexOf(displayHeader.key);
         this.hiddenHeaders.splice(headerIndex, 1);
         this.hiddenHeaders = [
-          ...new Set([...this.hiddenHeaders, ...this.headersHiddenInData]),
+          ...new Set([...this.hiddenHeaders, ...this.initiallyHiddenHeaders]),
         ];
       }
     }
@@ -491,11 +491,9 @@ export class CDataTable {
         ...header,
         pinned: !!header.pinned,
       }))
-      .filter((header) => {
-        if (this.horizontalScrolling) return true;
-
-        return !this.hiddenHeaders.includes(header.key) && !header.hidden;
-      });
+      .filter(
+        (header) => !this.hiddenHeaders.includes(header.key) && !header.hidden,
+      );
   }
 
   private get _headerKeys() {
@@ -1155,7 +1153,7 @@ export class CDataTable {
                 ref: (el) => this._addHeaderRef(header.key, el),
                 ...(!!header && {
                   style: {
-                    ...(header.width && { width: header.width }),
+                    ...(header.width && { minWidth: header.width }),
                   },
                 }),
                 ...(isSortable && {

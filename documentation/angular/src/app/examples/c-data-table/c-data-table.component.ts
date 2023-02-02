@@ -157,7 +157,7 @@ export class CDataTableComponent implements OnInit {
     {
       key: 'progress',
       value: 'Progress',
-      width: '128px',
+      width: '200px',
       component: {
         tag: 'c-progress-bar',
         injectValue: true,
@@ -172,7 +172,7 @@ export class CDataTableComponent implements OnInit {
     {
       key: 'progress2',
       value: 'Efficiency',
-      width: '128px',
+      width: '200px',
       component: {
         tag: 'c-progress-bar',
         injectValue: true,
@@ -186,9 +186,25 @@ export class CDataTableComponent implements OnInit {
       },
     },
     {
+      key: 'failure',
+      value: 'Failure rate',
+      width: '200px',
+      component: {
+        tag: 'c-progress-bar',
+        injectValue: true,
+        params: {
+          style: {
+            width: '100%',
+          },
+          hideDetails: true,
+          color: 'red',
+        },
+      },
+    },
+    {
       key: 'salary',
       value: 'Salary',
-      width: '128px',
+      width: '200px',
       justify: 'end',
     },
     { key: 'email', value: 'Email', hidden: true },

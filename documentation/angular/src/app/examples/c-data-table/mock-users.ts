@@ -879,6 +879,13 @@ users.forEach((user) => {
     value: getRandomProgress(50, 100),
   };
 
+  const failure = getRandomProgress(0, 33);
+
+  user['failure'] = {
+    value: failure,
+    formattedValue: `${failure} %`,
+  };
+
   const salary = getRandomProgress(2500, 5000);
 
   user['salary'] = {
