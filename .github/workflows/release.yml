@@ -1,11 +1,16 @@
 name: Release
 
-on: [push]
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
 
 jobs:
   release:
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
+    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci') && github.event.pull_request.merged == true"
     steps:
       - uses: actions/checkout@v3
 
@@ -24,7 +29,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npm i
-          echo npm run build
-          echo npm run style-dictionary:build:prod
-          npx auto shipit -d
-          echo npm run deploy:documentation
+          npm run build
+          npm run style-dictionary:build:prod
+          npx auto shipit
+          npm run deploy:documentation
