@@ -10,6 +10,7 @@
 | Property         | Attribute          | Description                                                  | Type                                    | Default            |
 | ---------------- | ------------------ | ------------------------------------------------------------ | --------------------------------------- | ------------------ |
 | `autofocus`      | `autofocus`        | Auto focus the input                                         | `boolean`                               | `false`            |
+| `customMenu`     | `custom-menu`      | Render custom menu                                           | `boolean`                               | `false`            |
 | `dense`          | `dense`            | Dense variant                                                | `boolean`                               | `undefined`        |
 | `disabled`       | `disabled`         | Disable the input                                            | `boolean`                               | `false`            |
 | `hideDetails`    | `hide-details`     | Hide the hint and error messages                             | `boolean`                               | `false`            |

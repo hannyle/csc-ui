@@ -83,6 +83,10 @@ export namespace Components {
          */
         "autofocus": boolean;
         /**
+          * Render custom menu
+         */
+        "customMenu": boolean;
+        /**
           * Dense variant
          */
         "dense": boolean;
@@ -2220,6 +2224,10 @@ declare namespace LocalJSX {
           * Auto focus the input
          */
         "autofocus"?: boolean;
+        /**
+          * Render custom menu
+         */
+        "customMenu"?: boolean;
         /**
           * Dense variant
          */

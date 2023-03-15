@@ -29,6 +29,12 @@ export class CAutocomplete {
   @Prop() autofocus = false;
 
   /**
+    Render custom menu
+  */
+
+  @Prop() customMenu = false;
+
+  /**
    * Disable the input
    */
   @Prop() disabled = false;
@@ -213,6 +219,13 @@ export class CAutocomplete {
         this.currentIndex += 1;
       }
 
+      if (this.customMenu && this.currentIndex > 0) {
+        const currentItem = this._getItemRef(this.currentIndex);
+        const prevItem = this._getItemRef(this.currentIndex - 1);
+        prevItem.toggleAttribute('aria-selected');
+        currentItem.setAttribute('aria-selected', 'true');
+      }
+
       this._scrollToElement();
     }
 
@@ -230,6 +243,13 @@ export class CAutocomplete {
         this.currentIndex -= 1;
       } else if (this.currentIndex === null) {
         this.currentIndex = this.items.length - 1;
+      }
+
+      if (this.customMenu && this.currentIndex >= 0) {
+        const currentItem = this._getItemRef(this.currentIndex);
+        const prevItem = this._getItemRef(this.currentIndex + 1);
+        prevItem.toggleAttribute('aria-selected');
+        currentItem.setAttribute('aria-selected', 'true');
       }
 
       this._scrollToElement();
@@ -251,6 +271,14 @@ export class CAutocomplete {
     }
   }
 
+  private _getItemRef(index) {
+    const itemRef = this._itemRefs.find(
+      (item) => item.value === this.items[index].value,
+    )?.ref;
+
+    return itemRef;
+  }
+
   private _observer = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
@@ -270,9 +298,7 @@ export class CAutocomplete {
 
   private _scrollToElement() {
     if (this.items.length > this.itemsPerPage) {
-      const itemRef = this._itemRefs.find(
-        (item) => item.value === this.items[this.currentIndex].value,
-      )?.ref;
+      const itemRef = this._getItemRef(this.currentIndex);
 
       if (!!itemRef) {
         this._observer.observe(itemRef);
@@ -384,6 +410,53 @@ export class CAutocomplete {
     );
   }
 
+  private _renderEmptyMenu() {
+    return (
+      <ul class="c-input-menu__items c-input-menu__items--empty">
+        <li tabindex="-1">
+          <svg viewBox="0 0 24 24">
+            <path d={mdiAlert} />
+          </svg>
+          No suggestions found
+        </li>
+      </ul>
+    );
+  }
+
+  private _renderCustomMenu(style) {
+    if (this.currentIndex === 0 && this.menuVisible) {
+      const currentItem = this._getItemRef(this.currentIndex);
+      currentItem.setAttribute('aria-selected', 'true');
+    }
+
+    return (
+      <div
+        class={{
+          'c-input-menu__item-wrapper': true,
+          'c-input-menu__item-wrapper--shadow': this.shadow,
+        }}
+      >
+        {!!this.items.length && this.menuVisible && (
+          <div
+            id={'results_' + this._id}
+            class={
+              this.menuVisible
+                ? 'c-input-menu__items'
+                : 'c-input-menu__items c-input-menu__items--hidden'
+            }
+            style={style}
+          >
+            <slot name="customMenu" />
+          </div>
+        )}
+        {!this.items.length &&
+          this.menuVisible &&
+          this.query.length > 0 &&
+          this._renderEmptyMenu()}
+      </div>
+    );
+  }
+
   private _renderMenu(style) {
     return (
       <div
@@ -426,17 +499,7 @@ export class CAutocomplete {
               ))}
           </ul>
         )}
-
-        {!this.items.length && this.menuVisible && (
-          <ul class="c-input-menu__items c-input-menu__items--empty">
-            <li tabindex="-1">
-              <svg viewBox="0 0 24 24">
-                <path d={mdiAlert} />
-              </svg>
-              No suggestions found
-            </li>
-          </ul>
-        )}
+        {!this.items.length && this.menuVisible && this._renderEmptyMenu()}
       </div>
     );
   }
@@ -476,6 +539,17 @@ export class CAutocomplete {
       };
     }
 
+    if (this.customMenu) {
+      const slotContent = document.querySelectorAll('[slot="customMenu"]');
+
+      for (let i = 0; i < this.items.length; i++) {
+        this._itemRefs.push({
+          value: this.items[i].value,
+          ref: slotContent[i] as HTMLElement,
+        });
+      }
+    }
+
     return (
       <Host>
         <div
@@ -509,7 +583,9 @@ export class CAutocomplete {
 
           <div class="c-input__content">
             {this._renderInputElement()}
-            {this._renderMenu(itemsPerPageStyle)}
+            {this.customMenu
+              ? this._renderCustomMenu(itemsPerPageStyle)
+              : this._renderMenu(itemsPerPageStyle)}
             {this._renderChevron()}
           </div>
 
