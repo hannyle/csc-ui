@@ -40,6 +40,19 @@
 | `changeValue` | Triggered when an item is selected | `CustomEvent<any>` |
 
 
+## Methods
+
+### `setValue(event: any, item: any) => Promise<void>`
+
+Sets the value of the autocomplete externally
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+
 ## Dependencies
 
 ### Depends on

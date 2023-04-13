@@ -139,6 +139,10 @@ export namespace Components {
          */
         "returnValue": false;
         /**
+          * Sets the value of the autocomplete externally
+         */
+        "setValue": (event: any, item: any) => Promise<void>;
+        /**
           * Shadow variant
          */
         "shadow": boolean;

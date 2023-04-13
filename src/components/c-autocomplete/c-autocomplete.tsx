@@ -9,6 +9,7 @@ import {
   Event,
   EventEmitter,
   Watch,
+  Method,
 } from '@stencil/core';
 import { mdiChevronDown, mdiAlert } from '@mdi/js';
 import { v4 as uuid } from 'uuid';
@@ -138,6 +139,14 @@ export class CAutocomplete {
    * Triggered when an item is selected
    */
   @Event({ bubbles: false }) changeValue: EventEmitter;
+
+  /**
+   * Sets the value of the autocomplete externally
+   */
+  @Method()
+  async setValue(event, item) {
+    this._select(event, item);
+  }
 
   private _valueChangedHandler(item: string | number | CAutocompleteItem) {
     function isItem(element) {
@@ -425,6 +434,18 @@ export class CAutocomplete {
 
   private _renderCustomMenu(style) {
     if (this.currentIndex === 0 && this.menuVisible) {
+      const selectedItem = document.querySelectorAll(
+        'div[aria-selected = "true"]',
+      );
+
+      if (selectedItem.length === 1) {
+        /**
+          When currentIndex is 0 and there is no query text,
+          remove aria-selected attribute from current highlighted item
+         */
+        selectedItem[0].toggleAttribute('aria-selected');
+      }
+
       const currentItem = this._getItemRef(this.currentIndex);
       currentItem.setAttribute('aria-selected', 'true');
     }
