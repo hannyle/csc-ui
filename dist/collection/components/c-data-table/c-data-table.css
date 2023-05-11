@@ -1,0 +1,364 @@
+/**
+ * Do not edit directly
+ * Generated on Mon, 23 May 2022 09:57:17 GMT
+ */
+
+:host {
+  --csc-border-radius: 4px;
+  --csc-dark-grey: rgb(89, 89, 89);
+  --csc-error: #e71d32;
+  --csc-font-family: 'museo-sans', sans-serif;
+  --csc-light-grey: rgb(223, 225, 227);
+  --csc-light-grey-blue: rgb(204, 244, 240);
+  --csc-lightest-grey: rgba(223, 225, 227, 0.5);
+  --csc-link: #025B97;
+  --csc-mid-grey: rgb(140, 140, 140);
+  --csc-primary: rgb(0, 103, 120);
+  --csc-primary-ghost: rgba(0, 103, 120, 0.15);
+  --csc-primary-ghost-hover: rgba(0, 103, 120, 0.25);
+  --csc-primary-hover: rgb(80, 151, 141);
+  --csc-primary-text-hover: rgba(0, 103, 120, 0.15);
+  --csc-success: #51a808;
+  --csc-warning: #ff5800;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.md-ripple {
+  display: block;
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  transform: scale(0);
+  background: currentColor;
+  opacity: 0.3;
+}
+.md-ripple.animate {
+  animation: mdRipple 0.7s backwards linear;
+}
+
+:host {
+  font-family: var(--csc-font-family);
+}
+
+@keyframes mdRipple {
+  100% {
+    opacity: 0;
+    transform: scale(2.5);
+  }
+}
+::-ms-reveal {
+  display: none;
+}
+
+:host {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+:host([horizontal-scrolling]) {
+  overflow-x: scroll;
+}
+
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.c-data-table {
+  box-shadow: inset 0 0 0 1px var(--csc-light-grey);
+  width: 100%;
+}
+.c-data-table .children {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  width: 100%;
+}
+.c-data-table .children pre {
+  font-family: inherit;
+  white-space: pre-wrap;
+}
+.c-data-table [data-justify=end],
+.c-data-table [data-align=end] .children {
+  align-items: flex-end;
+}
+.c-data-table [data-justify=start],
+.c-data-table [data-align=start] .children {
+  align-items: flex-start;
+}
+.c-data-table [data-justify=center],
+.c-data-table [data-align=center] .children {
+  align-items: center;
+}
+.c-data-table [data-align=end],
+.c-data-table [data-justify=end] .children {
+  justify-content: flex-end;
+}
+.c-data-table [data-align=start],
+.c-data-table [data-justify=start] .children {
+  justify-content: flex-start;
+}
+.c-data-table [data-align=center],
+.c-data-table [data-justify=center] .children {
+  justify-content: center;
+}
+.c-data-table th,
+.c-data-table td {
+  font-weight: 400;
+}
+.c-data-table th > div,
+.c-data-table td > div {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  line-height: 1;
+  padding: 12px;
+  width: 100%;
+}
+.c-data-table th {
+  font-size: 14px;
+  padding: 4px;
+}
+.c-data-table th.selection {
+  width: 56px;
+}
+.c-data-table th.indicator {
+  width: 46px;
+}
+.c-data-table th > div {
+  border-radius: 4px;
+  flex-wrap: nowrap;
+  gap: 8px;
+  height: 48px;
+  white-space: nowrap;
+}
+.c-data-table th > div.sortable:hover {
+  background-color: var(--csc-primary-text-hover);
+  color: var(--csc-primary);
+  cursor: pointer;
+}
+.c-data-table th > div.sortable:hover svg {
+  fill: var(--csc-primary);
+}
+.c-data-table th > div.selection--heading {
+  padding-left: 8px;
+  padding-right: 0;
+  margin-right: -8px;
+}
+.c-data-table td {
+  font-size: 16px;
+}
+.c-data-table td > div {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  min-height: 56px;
+  padding: 12px;
+}
+.c-data-table td > div.selection {
+  margin-right: -4px;
+  padding: 7px 0 7px 12px;
+}
+.c-data-table td > div c-tag {
+  --c-tag-margin: 0px;
+}
+.c-data-table td.loader {
+  background-color: var(--csc-light-grey);
+  height: 2px;
+  position: relative;
+}
+.c-data-table td.loader > div {
+  height: 2px;
+  min-height: auto;
+  padding: 0;
+}
+.c-data-table td.info > div {
+  height: 108px;
+  justify-content: center;
+}
+.c-data-table td svg {
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+}
+.c-data-table thead {
+  background-color: #fff;
+  position: relative;
+}
+.c-data-table thead.sticky {
+  box-shadow: 0 2px 0 0 var(--csc-light-grey);
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+.c-data-table thead .c-data-table__header-indicators {
+  pointer-events: none;
+}
+.c-data-table thead .c-data-table__header-indicators th > div {
+  margin-top: -56px;
+  display: flex;
+  justify-items: space-between;
+}
+.c-data-table thead .c-data-table__header-indicators c-icon-button {
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 50%;
+  pointer-events: all;
+}
+.c-data-table tfoot {
+  background-color: #fff;
+}
+.c-data-table tfoot tr {
+  box-shadow: inset 0 1px 0 0 var(--csc-light-grey);
+}
+.c-data-table tfoot td > div {
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  min-height: 48px;
+}
+.c-data-table tfoot td c-pagination {
+  flex: 1;
+}
+.c-data-table tbody {
+  /* Safari box shadow replacement */
+}
+@supports (-webkit-hyphens: none) {
+  .c-data-table tbody tr {
+    border-bottom: 1px solid var(--csc-light-grey);
+  }
+}
+.c-data-table tbody tr {
+  box-shadow: inset 0 1px 0 0 var(--csc-light-grey);
+}
+.c-data-table tbody tr.actions {
+  box-shadow: none;
+}
+.c-data-table tbody tr.actions td > div {
+  background-color: rgba(0, 0, 0, 0.015);
+  height: auto;
+}
+.c-data-table tbody tr.active {
+  box-shadow: inset 2px 0 0 var(--csc-primary), inset -2px 0 0 var(--csc-primary), inset 0 2px 0 var(--csc-primary);
+  border-radius: 6px 6px 0 0;
+}
+.c-data-table tbody tr.active svg {
+  transform: rotate(180deg);
+}
+.c-data-table tbody tr.active + .additional-data {
+  border-radius: 0 0 6px 6px;
+  box-shadow: inset 2px 0 0 var(--csc-primary), inset -2px 0 0 var(--csc-primary), inset 0 -2px 0 var(--csc-primary);
+}
+.c-data-table tbody tr.active.selected {
+  box-shadow: inset 4px 0 0 var(--csc-primary), inset -2px 0 0 var(--csc-primary), inset 0 2px 0 var(--csc-primary);
+}
+.c-data-table tbody tr.selected {
+  background-color: rgba(0, 103, 120, 0.05);
+  box-shadow: inset 4px 0 0 var(--csc-primary), inset 0 1px 0 0 var(--csc-light-grey);
+}
+.c-data-table tbody tr.selected + .additional-data {
+  box-shadow: inset 4px 0 0 var(--csc-primary), inset -2px 0 0 var(--csc-primary), inset 0 -2px 0 var(--csc-primary);
+}
+.c-data-table__loader {
+  background-color: var(--csc-light-grey);
+  height: 2px;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+}
+.c-data-table .loading-bar {
+  animation: loading 1s ease-in 0.5s infinite;
+  background-color: var(--csc-primary);
+  height: 100%;
+  left: -50%;
+  position: absolute;
+  width: 50%;
+}
+@keyframes loading {
+  0% {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(400%);
+  }
+}
+.c-data-table .additional-data {
+  display: none;
+}
+.c-data-table .additional-data.active {
+  display: table-row;
+}
+.c-data-table .additional-data ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.c-data-table .additional-data ul li {
+  padding: 12px;
+}
+.c-data-table .additional-data ul li:not(:last-child) {
+  box-shadow: inset 0 -1px 0 0 var(--csc-light-grey);
+}
+.c-data-table .additional-data ul li span {
+  color: var(--csc-primary);
+  font-weight: 600;
+}
+.c-data-table .additional-data ul li .title {
+  display: flex;
+  gap: 8px;
+}
+.c-data-table .additional-data ul li .title + .children {
+  margin-top: 8px;
+}
+.c-data-table--scrollable {
+  position: relative;
+}
+.c-data-table--hoverable tbody tr:not(.additional-data) {
+  cursor: pointer;
+}
+.c-data-table--hoverable tbody tr:not(.additional-data):hover {
+  background-color: var(--csc-primary-text-hover);
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 2px var(--csc-primary);
+  overflow: hidden;
+}
+.c-data-table--hoverable tbody tr:not(.additional-data).active:hover {
+  border-radius: 6px 6px 0 0;
+  box-shadow: inset 2px 0 0 var(--csc-primary), inset -2px 0 0 var(--csc-primary), inset 0 2px 0 var(--csc-primary);
+}
+.c-data-table--hoverable tbody tr:not(.additional-data).selected.active:hover {
+  border-radius: 6px 6px 0 0;
+  box-shadow: inset 4px 0 0 var(--csc-primary), inset -2px 0 0 var(--csc-primary), inset 0 2px 0 var(--csc-primary);
+}
+.c-data-table--hoverable tbody tr:not(.additional-data).selected:hover {
+  border-radius: 6px;
+  box-shadow: inset 4px 0 0 var(--csc-primary), inset 0 0 0 2px var(--csc-primary);
+}
+
+.sorted-column {
+  background-color: rgba(0, 103, 120, 0.05);
+}

@@ -1,0 +1,2 @@
+import{r as t,h as s}from"./p-d0418cc2.js";const r=class{constructor(s){t(this,s);this.align="center";this.justify="start"}render(){return s("c-card-actions",{align:this.align,justify:this.justify,style:{padding:"0px"}},s("slot",null))}};export{r as c_login_card_actions};
+//# sourceMappingURL=p-3d11d60a.entry.js.map

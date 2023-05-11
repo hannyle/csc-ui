@@ -1,0 +1,30 @@
+import { EventEmitter } from '../../stencil-public-runtime';
+export declare class CButton {
+  inverted: boolean;
+  outlined: boolean;
+  ghost: boolean;
+  grouped: boolean;
+  text: boolean;
+  loading: boolean;
+  fit: boolean;
+  noRadius: boolean;
+  iconEnd: boolean;
+  type: 'button' | 'submit';
+  disabled: boolean;
+  icon: 'plus' | 'minus' | 'account' | 'edit';
+  value?: number | string;
+  hostId: string;
+  size: 'default' | 'small' | 'large';
+  href: string;
+  path: string;
+  target: string;
+  tabChange: EventEmitter<number | string>;
+  hostElement: HTMLCButtonElement;
+  private _container?;
+  private _onClick;
+  private _onKeyDown;
+  private _closestElementComposed;
+  private _containerhasDescriptionSlot;
+  componentWillLoad(): void;
+  render(): any;
+}
